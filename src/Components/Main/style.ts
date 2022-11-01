@@ -13,10 +13,10 @@ export const StyledTextsMain = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    text-align: center;
     align-items: center;
     justify-content: flex-start;
     padding-top: 2rem;
-    height: 50%;
 
     h1{
         color: var(--main-title-text-color);
@@ -39,6 +39,20 @@ export const StyledTextsMain = styled.div`
         font-size: var(--main-subtitle-text-size);
         max-width: 60%;
         text-align: center;
+
+        @media(max-width: 1200px){
+            font-size: 1.3rem;
+        }
+    }
+
+    @media(max-width: 650px){
+        h1, h2{
+            font-size: 2rem;
+        }
+        p{
+            font-size: 1rem;
+            width: 80%;
+        }
     }
 `
 
@@ -50,7 +64,14 @@ export const StyledImagesMain = styled.div`
     height: 50%;
 
     img{
-        height: 100%;
         max-width: calc(100%/3);
+        align-self: flex-end;
     }
+
+    @media(max-width: 650px){
+        height: 20%;
+        margin-bottom: 12rem;
+    }   
+
+    
 `

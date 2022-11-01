@@ -11,8 +11,8 @@ export const StyledNewProjectButton = styled.button`
     position: absolute;
     margin-top: 19rem;
 
-    width: 149px;
-    height: 150px;
+    width: 9.3rem;
+    height: 9.37rem;
 
     background: var(--button-background-color);
     color: var(--button-text-color);
@@ -26,6 +26,35 @@ export const StyledNewProjectButton = styled.button`
     &:hover {
         background: var(--button-background-hover-color);
         transition: var(--button-hover-transition);
+    }
+
+    @media(max-width: 1080px){
+        margin-top: 22rem;
+    }
+
+    @media(max-width: 900px){
+        margin-top: 24rem;
+    }
+
+    @media(max-width: 750px){
+        margin-top: 25rem;
+    }
+
+    @media(max-width: 650px){
+        margin-top: 15rem;
+        width: 6rem;
+        height: 6rem;
+        font-size: 12px;
+        border: 6px;
+        border: 6px solid var(--white);
+    }
+
+    @media(max-width: 450px){
+        margin-top: 17rem;
+    }
+
+    @media(max-width: 350px){
+        margin-top: 20rem;
     }
 `;
 
