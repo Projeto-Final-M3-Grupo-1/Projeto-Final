@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "../Pages/Login";
-import Home from "../Pages/Home";
-import DashboardDev from "../Pages/DashboardDev";
-import DashboardCompany from "../Pages/DashboardCompany";
+import { Login } from "../Pages/Login";
+import { Home } from "../Pages/Home";
+import { DashboardDev } from "../Pages/DashboardDev";
+import { DashboardCompany } from "../Pages/DashboardCompany";
 
 const Routers = () => {
     return (
