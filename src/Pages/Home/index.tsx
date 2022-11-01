@@ -1,4 +1,3 @@
-
 export function Home() {
   return (
     <>
@@ -12,6 +11,7 @@ export function Home() {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
+
     </>
   );
 }
