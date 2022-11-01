@@ -1,9 +1,10 @@
 
 export function Home() {
-    return (
-        <>
-            <h1>hi, i am home</h1>
-            {/* 
+  return (
+    <>
+      <h1>hi, i am home</h1>
+
+      {/* 
                 HEADER
                 MAIN
                 CARDS
@@ -11,6 +12,6 @@ export function Home() {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
-        </>
-    );
+    </>
+  );
 }
