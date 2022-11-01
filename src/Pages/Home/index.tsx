@@ -14,6 +14,7 @@ export function Home() {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
+
     </>
   );
 }
