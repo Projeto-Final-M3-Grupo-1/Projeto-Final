@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     :root {
+        /* Color Styles */
         --rose-900: #881337;
         --rose-800: #9f1239;
         --rose-700: #be123c;
@@ -23,5 +24,79 @@ export const GlobalStyle = createGlobalStyle`
         --slate-200: #e2e8f0;
         --slate-100: #f1f5f9;
         --slate-50: #f8fafc;
+
+        --white: #ffffff;
+        --black: #000000;
+
+        /* Homepage Texts */
+        // Header
+        --logo-text-size: 1.5rem;
+        --logo-text-color: var(--rose-600);
+        --logo-text-hover-color: var(--rose-500);
+        --logo-text-hover-transition: 0.2s;
+        --logo-text-weight: 900;
+
+        --menu-item-text-size: 1rem;
+        --menu-item-text-color: var(--slate-700);
+        --menu-item-text-hover-color: var(--slate-900);
+        --menu-item-text-hover-transition: 0.2s;
+        --menu-item-text-weight: 600;
+
+        --button-text-size: 1rem;
+        --button-text-color: var(--white);
+        --button-background-color: var(--rose-600);
+        --button-background-hover-color: var(--rose-700);
+        --button-text-hover-transition: 0.2s;
+        --button-text-weight: 600;
+
+        --header-height: 5rem;
+        --header-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Reset */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
     }
 `;
