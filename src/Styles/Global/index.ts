@@ -39,18 +39,35 @@ export const GlobalStyle = createGlobalStyle`
         --menu-item-text-size: 1rem;
         --menu-item-text-color: var(--slate-700);
         --menu-item-text-hover-color: var(--slate-900);
-        --menu-item-text-hover-transition: 0.2s;
+        --menu-item-hover-transition: 0.2s;
         --menu-item-text-weight: 600;
 
         --button-text-size: 1rem;
         --button-text-color: var(--white);
         --button-background-color: var(--rose-600);
         --button-background-hover-color: var(--rose-700);
-        --button-text-hover-transition: 0.2s;
+        --button-hover-transition: 0.2s;
         --button-text-weight: 600;
 
         --header-height: 5rem;
         --header-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        // Main
+        --main-title-text-size: 5rem;
+        --main-title-text-color: var(--rose-600);
+        --main-title-text-color-secondary: var(--slate-800);
+        --main-title-text-weight: 900;
+        --main-title-text-secondary-weight: 600;
+
+        --main-subtitle-text-size: 1.5rem;
+        --main-subtitle-text-color: var(--slate-800);
+        --main-subtitle-text-weight: 500;
+
+        --cta-button-text-size: 1.25rem;
+        --cta-button-text-color: var(--white);
+        --cta-button-background-color: var(--rose-600);
+        --cta-button-background-hover-color: var(--rose-600);
+        --cta-button-hover-transition: 0.2s;
     }
 
     /* Reset */
