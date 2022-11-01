@@ -5,10 +5,11 @@ export const StyledNewProjectButton = styled.button`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    justify-self: center;
+    align-self: center;
     padding: 0px;
     gap: 10px;
     position: absolute;
+    margin-top: 17.5rem;
 
     width: 149px;
     height: 150px;

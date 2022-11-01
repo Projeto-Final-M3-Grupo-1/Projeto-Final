@@ -12,7 +12,7 @@ export const MainStyle = styled.main`
 export const StyledTextsMain = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     height: 50%;
@@ -39,6 +39,7 @@ export const StyledTextsMain = styled.div`
         font-size: var(--main-subtitle-text-size);
         max-width: 60%;
         text-align: center;
+        margin-bottom: 4rem;
     }
 `
 
