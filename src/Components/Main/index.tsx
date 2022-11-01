@@ -1,6 +1,9 @@
 import { StyledNewProjectButton } from "../Button";
 import { MainStyle, StyledTextsMain, StyledImagesMain } from "./style";
-import imgmain1 from "../../assets/img-main-1.svg"
+import imgmain1 from "../../assets/imgmain1.svg"
+import imgmain2 from "../../assets/imgmain2.svg"
+import imgmain3 from "../../assets/imgmain3.svg"
+
 
 const Main = () => {
     return (
@@ -12,9 +15,9 @@ const Main = () => {
             </StyledTextsMain>
             <StyledNewProjectButton>Iniciar um projeto!</StyledNewProjectButton>
             <StyledImagesMain>
-                <img src="https://medicinasa.com.br/wp-content/uploads/2019/08/volunteer2.jpg" alt="" />
-                <img src="https://medicinasa.com.br/wp-content/uploads/2019/08/volunteer2.jpg" alt="" />
-                <img src="https://medicinasa.com.br/wp-content/uploads/2019/08/volunteer2.jpg" alt="" />
+                <img src={imgmain1} alt="" />
+                <img src={imgmain2} alt="" />
+                <img src={imgmain3} alt="" />
             </StyledImagesMain>
         </MainStyle>
     )

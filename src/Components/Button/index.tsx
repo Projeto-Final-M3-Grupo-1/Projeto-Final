@@ -9,7 +9,7 @@ export const StyledNewProjectButton = styled.button`
     padding: 0px;
     gap: 10px;
     position: absolute;
-    margin-top: 17.5rem;
+    margin-top: 19rem;
 
     width: 149px;
     height: 150px;

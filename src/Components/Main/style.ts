@@ -14,7 +14,8 @@ export const StyledTextsMain = styled.div`
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
     height: 50%;
 
     h1{
@@ -27,7 +28,6 @@ export const StyledTextsMain = styled.div`
         font-weight: var(--main-title-text-secondary-weight);
         font-size: var(--main-title-text-size);
 
-
         b{
             font-weight: var(--main-title-text-weight);
         }
@@ -39,7 +39,6 @@ export const StyledTextsMain = styled.div`
         font-size: var(--main-subtitle-text-size);
         max-width: 60%;
         text-align: center;
-        margin-bottom: 4rem;
     }
 `
 
@@ -51,6 +50,7 @@ export const StyledImagesMain = styled.div`
     height: 50%;
 
     img{
+        height: 100%;
         max-width: calc(100%/3);
     }
 `

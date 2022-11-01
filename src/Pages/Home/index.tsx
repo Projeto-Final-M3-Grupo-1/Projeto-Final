@@ -1,11 +1,9 @@
-import Headers from "../../Components/Header";
-import { AboutUs } from "../../Components/AboutUs";
+import Main from "../../Components/Main";
 
 export const Home = () => {
     return (
         <>
-            <Headers />
-            <AboutUs />
+            <Main></Main>
 
             {/* 
                 HEADER
