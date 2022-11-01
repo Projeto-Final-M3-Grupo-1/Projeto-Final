@@ -1,6 +1,6 @@
 import { StyledNewProjectButton } from "../Button";
 import { MainStyle, StyledTextsMain, StyledImagesMain } from "./style";
-// import { img-main-1 } from "../../assets/img-main-1.svg"
+import imgmain1 from "../../assets/img-main-1.svg"
 
 const Main = () => {
     return (

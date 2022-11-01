@@ -1,13 +1,13 @@
-import Main from "../../Components/Main";
+import Headers from "../../Components/Header";
+import { AboutUs } from "../../Components/AboutUs";
 
-export function Home() {
-  return (
-    <>
-      {/* <h1>hi, i am home</h1> */}
-      
-      <Main></Main>
+export const Home = () => {
+    return (
+        <>
+            <Headers />
+            <AboutUs />
 
-      {/* 
+            {/* 
                 HEADER
                 MAIN
                 CARDS
@@ -15,7 +15,6 @@ export function Home() {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
-
-    </>
-  );
-}
+        </>
+    );
+};
