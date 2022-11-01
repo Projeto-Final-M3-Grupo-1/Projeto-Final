@@ -58,7 +58,6 @@ export const GlobalStyle = createGlobalStyle`
         --main-title-text-color-secondary: var(--slate-800);
         --main-title-text-weight: 900;
         --main-title-text-secondary-weight: 600;
-
         --main-subtitle-text-size: 1.5rem;
         --main-subtitle-text-color: var(--slate-800);
         --main-subtitle-text-weight: 500;
@@ -68,6 +67,52 @@ export const GlobalStyle = createGlobalStyle`
         --cta-button-background-color: var(--rose-600);
         --cta-button-background-hover-color: var(--rose-600);
         --cta-button-hover-transition: 0.2s;
+
+        --card-border-color: var(--rose-700);
+        --card-title-text-size: 2rem;
+        --card-title-text-color: var(--rose-600);
+        --card-title-text-weight: 600;
+        --card-subtitle-text-size: 1.5rem;
+        --card-subtitle-text-color: var(--slate-900);
+        --card-subtitle-text-weight: 600;
+        --card-text-size: 1rem;
+        --card-text-color: var(--slate-700);
+        --card-text-weight: 400;
+        --card-button-text-size: 1rem;
+        --card-button-text-color: var(--white);
+        --card-button-background-color: var(--rose-500);
+
+        // Sobre nós
+        --about-title-text-size: 1.5rem;
+        --about-title-text-color: var(--rose-600);
+        --about-title-text-weight: 900;
+        --about-subtitle-text-size: 1rem;
+        --about-subtitle-text-color: var(--slate-900);
+        --about-subtitle-text-weight: 500;
+
+        // Projetos já realizados
+        --projects-title-text-size: 1.5rem;
+        --projects-title-text-color: var(--rose-600);
+        --projects-title-text-weight: 900;
+        --projects-subtitle-text-size: 1rem;
+        --projects-subtitle-text-color: var(--slate-900);
+        --projects-subtitle-text-weight: 500;
+        --projects-button-text-size: 1rem;
+        --projects-button-text-color: var(--white);
+        --projects-button-text-weight: 600;
+        --projects-button-background-color: var(--rose-500);
+
+        // Footer
+        --footer-background-color: var(--rose-600);
+        --footer-text-color: var(--white);
+        --footer-title-text-size: 1.5rem;
+        --footer-title-text-weight: 900;
+        --footer-socials-text-size: 1.5rem;
+        --footer-socials-text-weight: 400;
+        --footer-button-background-color: var(--white);
+        --footer-button-text-color: var(--slate-900);
+        --footer-text-small-size: 0.9375rem;
+        --footer-text-small-weight: 400;
     }
 
     /* Reset */
