@@ -101,6 +101,18 @@ export const GlobalStyle = createGlobalStyle`
         --projects-button-text-color: var(--white);
         --projects-button-text-weight: 600;
         --projects-button-background-color: var(--rose-500);
+
+        // Footer
+        --footer-background-color: var(--rose-600);
+        --footer-text-color: var(--white);
+        --footer-title-text-size: 1.5rem;
+        --footer-title-text-weight: 900;
+        --footer-socials-text-size: 1.5rem;
+        --footer-socials-text-weight: 400;
+        --footer-button-background-color: var(--white);
+        --footer-button-text-color: var(--slate-900);
+        --footer-text-small-size: 0.9375rem;
+        --footer-text-small-weight: 400;
     }
 
     /* Reset */
