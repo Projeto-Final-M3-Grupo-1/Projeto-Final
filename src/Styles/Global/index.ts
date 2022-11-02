@@ -1,3 +1,4 @@
+
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -76,6 +77,8 @@ export const GlobalStyle = createGlobalStyle`
         --card-subtitle-text-color: var(--slate-900);
         --card-subtitle-text-weight: 600;
         --card-text-size: 1rem;
+        --card-text2-size: .8rem;
+        --card-text3-size: .7rem;
         --card-text-color: var(--slate-700);
         --card-text-weight: 400;
         --card-button-text-size: 1rem;
@@ -163,5 +166,14 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+
+    #root {
+        position: relative;
+        min-height: 100vh;
     }
 `;
+
