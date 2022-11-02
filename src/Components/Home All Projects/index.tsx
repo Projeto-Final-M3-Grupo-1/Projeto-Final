@@ -18,7 +18,7 @@ export const AllProjects = () => {
                 {projects.map((element: any) => (
                     <li>
                         <img src={element.imgProject} alt="" />
-                        <h2>{element.title}</h2>
+                        <h3>{element.title}</h3>
                         <p>{element.description}</p>
                         <StyledButtonCta>Visite o site</StyledButtonCta>
                     </li>

@@ -9,15 +9,14 @@ import { AllProjects } from "../../Components/Home All Projects";
 export const Home = () => {
     return (
         <>
-
             <StyledContentWrapper>
                 <Headers />
+                <Cards />
                 <AboutUs />
                 <AllProjects />
             </StyledContentWrapper>
 
             <Footer />
-
 
             {/* 
                 HEADER

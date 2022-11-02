@@ -6,6 +6,7 @@ export const StyledAllProjectsBox = styled.div`
 
     margin: 0 auto;
     margin-top: 1rem;
+    position: relative;
 
     display: flex;
     justify-content: center;
@@ -25,15 +26,32 @@ export const StyledAllProjectsBox = styled.div`
             top: 0%;
         }
     }
+    h3 {
+        font-size: var(--main-subtitle-text-size);
+        font-weight: var(--main-title-text-weight);
+        line-height: 1.8rem;
+
+        color: var(--main-title-text-color);
+    }
+    @media (min-width: 700px) {
+        h3 {
+            position: absolute;
+            left: 47%;
+            top: 0%;
+        }
+    }
 
     ul {
         width: 100%;
         max-width: 700px;
         max-height: 400px;
         margin-top: 1rem;
+        margin-bottom: 1rem;
 
         display: flex;
         gap: 20px;
+
+        padding: 1rem;
 
         overflow: hidden;
         overflow-x: scroll;
@@ -43,6 +61,16 @@ export const StyledAllProjectsBox = styled.div`
             min-width: 1200px;
             height: 600px;
         }
+    }
+    ul::-webkit-scrollbar {
+        background-color: var(--rose-200);
+        border-radius: 20px;
+        width: 10px;
+        height: 5px;
+    }
+    ul::-webkit-scrollbar-thumb {
+        background-color: var(--main-title-text-color);
+        border-radius: 20px;
     }
 
     li {
