@@ -1,4 +1,3 @@
-
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledButtonCta } from "../Button";
@@ -17,7 +16,7 @@ export const AllProjects = () => {
             <h2>Projetos já realizados</h2>
             <ul>
                 {projects.map((element: any) => (
-                    <li>
+                    <li key={element.id}>
                         <img src={element.imgProject} alt="" />
                         <h3>{element.title}</h3>
                         <p>{element.description}</p>
@@ -28,4 +27,3 @@ export const AllProjects = () => {
         </StyledAllProjectsBox>
     );
 };
-
