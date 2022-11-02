@@ -1,3 +1,4 @@
+
 import { useContext } from "react";
 import { ModalRegister } from "../../Components/Modal/ModalRegister";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
@@ -12,3 +13,4 @@ export const RegisterDev = () => {
         </>
     );
 };
+

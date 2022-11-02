@@ -1,3 +1,4 @@
+
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledButtonCta } from "../Button";
@@ -27,3 +28,4 @@ export const AllProjects = () => {
         </StyledAllProjectsBox>
     );
 };
+

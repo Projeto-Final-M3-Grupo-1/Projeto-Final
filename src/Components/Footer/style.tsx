@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
@@ -47,3 +48,4 @@ export const StyledFooter = styled.footer`
         color: var(--slate-900);
     }
 `;
+
