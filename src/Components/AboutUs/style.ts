@@ -7,10 +7,15 @@ export const StyledDiv = styled.div`
     text-align: center;
     margin-top: 1rem;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     @media (min-width: 768px) {
         box-sizing: border-box;
         height: 15.8rem;
-        padding: 100px;
+        /* padding: 100px; */
     }
 `;
 export const StyledTitle = styled.h3`

@@ -109,71 +109,23 @@ export const StyledAllProjectsBox = styled.div`
     }
     @media (min-width: 700px) {
         li > button {
-            max-width: 300px;
+            max-width: 380px;
             position: absolute;
             right: 0%;
             bottom: 0%;
         }
     }
     li > p {
-        max-width: 18ch;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        line-height: 1.1;
+        max-width: 80ch;
     }
-    @media (min-width: 700px) {
+    @media (max-width: 700px) {
         li > p {
-            max-width: none;
+            max-width: 18ch;
 
-            overflow: none;
-            text-overflow: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
-    /*
-    ul {
-        max-height: 500px;
-
-        margin-top: 100px;
-
-        overflow: hidden;
-        overflow-y: scroll;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 20px;
-    }
-    li {
-        position: relative;
-
-        width: 90%;
-        max-width: 700px;
-        min-height: 200px;
-    }
-    @media (max-width: ) {
-        
-    }
-    img {
-        width: 200px;
-        height: 200px;
-    }
-    li > h2 {
-        position: absolute;
-        left: 30%;
-        top: 0%;
-    }
-    li > p {
-        position: absolute;
-        left: 30%;
-        top: 20%;
-        text-align: center;
-    }
-    li > button {
-        position: absolute;
-        right: 0%;
-        bottom: 0%;
-    } */
 `;
