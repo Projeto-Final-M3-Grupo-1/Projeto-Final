@@ -4,13 +4,15 @@ import styled from "styled-components";
 export const StyledNewProjectButton = styled.button`
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     padding: 0px;
     gap: 10px;
+    position: absolute;
+    margin-left: 45%;   
+    flex-wrap: wrap;
 
-    width: 149px;
-    height: 150px;
+    width: 9.3rem;
+    height: 9.37rem;
 
     background: var(--button-background-color);
     color: var(--button-text-color);
@@ -25,6 +27,11 @@ export const StyledNewProjectButton = styled.button`
         background: var(--button-background-hover-color);
         transition: var(--button-hover-transition);
     }
+
+    @media(max-width: 400px){
+        margin-left: 40%; 
+    }
+
 `;
 
 export const StyledLoginButton = styled.button`
