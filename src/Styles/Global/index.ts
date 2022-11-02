@@ -165,5 +165,13 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+
+    #root {
+        position: relative;
+        min-height: 100vh;
     }
 `;
