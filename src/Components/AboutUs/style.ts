@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-    width: 95%;
-    margin: 0 auto;
+
+  width: 95%;
+  margin: 0 auto;
+  height: 300px;
+
 
     @media (min-width: 768px) {
         box-sizing: border-box;

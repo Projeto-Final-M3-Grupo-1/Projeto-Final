@@ -1,15 +1,21 @@
 import Headers from "../../Components/Header";
 import { AboutUs } from "../../Components/AboutUs";
-import { AllProjects } from "../../Components/Home All Projects";
+
+import { Footer } from "../../Components/Footer";
+import { StyledContentWrapper } from "./styles";
 
 export const Home = () => {
-    return (
-        <>
-            {/* <Headers /> */}
-            <AboutUs />
-            <AllProjects />
+  return (
+    <>
+      <StyledContentWrapper>
+        <Headers />
+        <AboutUs />
+      </StyledContentWrapper>
 
-            {/* 
+
+      <Footer />
+
+      {/* 
                 HEADER
                 MAIN
                 CARDS
@@ -17,6 +23,6 @@ export const Home = () => {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
-        </>
-    );
+    </>
+  );
 };
