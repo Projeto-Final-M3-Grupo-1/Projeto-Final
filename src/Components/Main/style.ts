@@ -5,8 +5,7 @@ export const MainStyle = styled.main`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+    justify-content: space-around;
 `
 
 export const StyledTextsMain = styled.div`
@@ -17,6 +16,7 @@ export const StyledTextsMain = styled.div`
     align-items: center;
     justify-content: flex-start;
     padding-top: 2rem;
+    flex-wrap: wrap;
 
     h1{
         color: var(--main-title-text-color);
@@ -62,15 +62,35 @@ export const StyledImagesMain = styled.div`
     max-width: 100%;
     overflow-x: hidden;
     height: 50%;
+    position: relative;
 
     img{
-        max-width: calc(100%/3);
+        height: 80%;
+        width: 100%;
         align-self: flex-end;
+        max-height: 254px;
+    }
+
+    @media(max-width: 877px){
+        margin-top: 2rem;
+
+        button{
+            width: 7.5rem;
+        height: 7.5rem;
+        }
     }
 
     @media(max-width: 650px){
-        height: 20%;
-        margin-bottom: 12rem;
+
+        img{
+            margin-bottom: 1rem;
+        }
+
+        button{
+            width: 6rem;
+            height: 6rem;
+            font-size: 10px; 
+        }
     }   
 
     
