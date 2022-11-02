@@ -17,15 +17,14 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 export const UserProvider = ({ children }: IUserChildren) => {
     const { handleNavigate } = useContext(ProjectsContext);
     const onSubmitLogin = (data: any) => {
-        console.log(data);
         api.post("/login", data)
-            .then((res) => {
-                console.log(res);
+            .then(() => {
                 toast.success("Cadastro realizado com sucesso!");
                 handleNavigate("/login");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
+
     return (
         <UserContext.Provider
             value={{
