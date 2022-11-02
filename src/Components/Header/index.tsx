@@ -29,7 +29,7 @@ function Headers() {
                 </nav>
             )}
             <button onClick={handleClick}></button> */}
-      <button type="button">Lofffgin</button>
+      <button type="button">Login</button>
     </StyledHeader>
   );
 }
