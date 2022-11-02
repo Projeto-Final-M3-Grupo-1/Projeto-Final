@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const StyledContentWrapper = styled.div`
@@ -10,3 +11,4 @@ export const StyledContentWrapper = styled.div`
     align-items: center;
     justify-content: center;
 `;
+

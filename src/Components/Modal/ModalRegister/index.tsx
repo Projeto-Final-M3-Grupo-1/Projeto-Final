@@ -1,3 +1,4 @@
+
 export const ModalRegister = () => {
     return (
         <>
@@ -5,3 +6,4 @@ export const ModalRegister = () => {
         </>
     );
 };
+

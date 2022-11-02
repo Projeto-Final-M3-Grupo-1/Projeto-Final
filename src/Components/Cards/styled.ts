@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
@@ -93,3 +94,4 @@ export const StyledCard = styled.div`
         font-size: 14px;
     }
 `;
+

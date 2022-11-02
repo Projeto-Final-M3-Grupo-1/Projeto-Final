@@ -1,3 +1,4 @@
+
 import { StyledFooter } from "./style";
 import {
   AiOutlineFacebook,
@@ -30,3 +31,4 @@ export const Footer = () => {
     </StyledFooter>
   );
 };
+
