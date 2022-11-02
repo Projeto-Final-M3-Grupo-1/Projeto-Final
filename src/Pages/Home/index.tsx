@@ -18,7 +18,6 @@ export const Home = () => {
                 <AboutUs />
                 <AllProjects />
             </StyledContentWrapper>
-
             <Footer />
 
             {/* 

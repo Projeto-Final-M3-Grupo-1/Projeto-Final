@@ -5,14 +5,14 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledHeader } from "./header";
 
 function Headers() {
-    const { menu, setMenu } = useContext(ProjectsContext);
-    const handleClick = () => {
-        return !menu ? setMenu(true) : setMenu(false);
-    };
+    // const { menu, setMenu } = useContext(ProjectsContext);
+    // const handleClick = () => {
+    //     return !menu ? setMenu(true) : setMenu(false);
+    // };
     return (
         <StyledHeader>
             <h2>Logo</h2>
-            {menu && (
+            {/* {menu && (
                 <nav>
                     <Link className="links--menu_header" to="/home">
                         Início
@@ -28,7 +28,7 @@ function Headers() {
                     </Link>
                 </nav>
             )}
-            <button onClick={handleClick}></button>
+            <button onClick={handleClick}></button> */}
             <button type="button">Login</button>
         </StyledHeader>
     );

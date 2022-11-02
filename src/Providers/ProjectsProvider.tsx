@@ -9,6 +9,10 @@ interface IProjectsContext {
     requestProjects: () => void;
     menu: boolean;
     setMenu: any;
+    showModal: boolean;
+    setShowModal: any;
+    handleMenu: () => void;
+    handleModal: () => void;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -29,13 +33,30 @@ interface IProjectChildren {
 export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [projects, setProjects] = useState([] as any);
     const [menu, setMenu] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    function requestProjects() {
+    const handleMenu = () => {
+        return !menu ? setMenu(true) : setMenu(false);
+    };
+    const handleModal = () => {
+        return !showModal ? setShowModal(true) : setShowModal(false);
+    };
+    const requestProjects = () => {
         api.get("/projects").then((res) => setProjects(res.data));
-    }
+    };
     return (
         <ProjectsContext.Provider
-            value={{ requestProjects, projects, setProjects, menu, setMenu }}
+            value={{
+                requestProjects,
+                projects,
+                setProjects,
+                menu,
+                setMenu,
+                showModal,
+                setShowModal,
+                handleMenu,
+                handleModal,
+            }}
         >
             {children}
         </ProjectsContext.Provider>
