@@ -14,7 +14,7 @@ export const StyledInput = styled.div`
         font-weight: 500;
     }
     input {
-        width: 90%;
+        width: 95%;
         height: 25px;
 
         border: solid 1px var(--rose-700);
