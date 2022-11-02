@@ -171,6 +171,5 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         position: relative;
         min-height: 100vh;
-
     }
 `;
