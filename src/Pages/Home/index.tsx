@@ -3,19 +3,20 @@ import { AboutUs } from "../../Components/AboutUs";
 
 import { Footer } from "../../Components/Footer";
 import { StyledContentWrapper } from "./styles";
+import { AllProjects } from "../../Components/Home All Projects";
 
 export const Home = () => {
-  return (
-    <>
-      <StyledContentWrapper>
-        <Headers />
-        <AboutUs />
-      </StyledContentWrapper>
+    return (
+        <>
+            <StyledContentWrapper>
+                <Headers />
+                <AboutUs />
+                <AllProjects />
+            </StyledContentWrapper>
 
+            <Footer />
 
-      <Footer />
-
-      {/* 
+            {/* 
                 HEADER
                 MAIN
                 CARDS
@@ -23,6 +24,6 @@ export const Home = () => {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
-    </>
-  );
+        </>
+    );
 };

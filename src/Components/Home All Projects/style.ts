@@ -21,7 +21,6 @@ export const StyledAllProjectsBox = styled.div`
     }
     @media (min-width: 700px) {
         h2 {
-            position: absolute;
             left: 47%;
             top: 0%;
         }
