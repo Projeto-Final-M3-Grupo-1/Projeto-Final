@@ -1,8 +1,8 @@
-
 import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import { ModalLogin } from "../Modal/ModalLogin";
 import { StyledHeader } from "./header";
 
 function Headers() {
@@ -10,10 +10,12 @@ function Headers() {
     // const handleClick = () => {
     //     return !menu ? setMenu(true) : setMenu(false);
     // };
+    const { handleModal, showModal } = useContext(ProjectsContext);
     return (
-        <StyledHeader>
-            <h2>Logo</h2>
-            {/* {menu && (
+        <>
+            <StyledHeader>
+                <h2>Logo</h2>
+                {/* {menu && (
                 <nav>
                     <Link className="links--menu_header" to="/home">
                         Início
@@ -30,10 +32,13 @@ function Headers() {
                 </nav>
             )}
             <button onClick={handleClick}></button> */}
-            <button type="button">Login</button>
-        </StyledHeader>
+                <button onClick={handleModal} type="button">
+                    Login
+                </button>
+            </StyledHeader>
+            {showModal && <ModalLogin />}
+        </>
     );
 }
 
 export default Headers;
-
