@@ -163,5 +163,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
+        width: 100vw;
+        height: 100vh;
     }
 `;

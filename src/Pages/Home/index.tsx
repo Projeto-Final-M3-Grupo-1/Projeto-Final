@@ -1,11 +1,13 @@
 import Headers from "../../Components/Header";
 import { AboutUs } from "../../Components/AboutUs";
+import { AllProjects } from "../../Components/Home All Projects";
 
 export const Home = () => {
     return (
         <>
-            <Headers />
+            {/* <Headers /> */}
             <AboutUs />
+            <AllProjects />
 
             {/* 
                 HEADER
