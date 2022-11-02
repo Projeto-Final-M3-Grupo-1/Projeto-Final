@@ -1,4 +1,6 @@
-
+import { useContext } from "react";
+import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import { TbArrowBigTop } from "react-icons/tb";
 import { StyledFooter } from "./style";
 import {
   AiOutlineFacebook,
@@ -7,6 +9,8 @@ import {
 } from "react-icons/ai";
 
 export const Footer = () => {
+  const { scrollToTop } = useContext(ProjectsContext);
+
   return (
     <StyledFooter>
       <div>
@@ -24,6 +28,9 @@ export const Footer = () => {
             <AiOutlineFacebook />
             <p>/DeVoluntario</p>
           </li>
+          <TbArrowBigTop className="scrolltop" onClick={scrollToTop}>
+            Topo
+          </TbArrowBigTop>
         </ul>
       </div>
 
@@ -31,4 +38,3 @@ export const Footer = () => {
     </StyledFooter>
   );
 };
-
