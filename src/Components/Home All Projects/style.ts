@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 
 export const StyledAllProjectsBox = styled.div`
@@ -13,6 +12,8 @@ export const StyledAllProjectsBox = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
+    /* z-index: -1; */
 
     h2 {
         font-size: var(--main-subtitle-text-size);

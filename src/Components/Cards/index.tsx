@@ -1,4 +1,3 @@
-
 import { useContext } from "react";
 import { StyledButtonCta } from "../Button";
 import { StyledDiv, StyledCard } from "./styled";
@@ -42,11 +41,10 @@ export const Cards = () => {
                     apenas de sua cidade ou estado mas de todo brasil e do
                     mundo, inscreva-se já e solicite a análise do seu projeto!
                 </p>
-                <StyledButtonCta onClick={() => handleNavigate("/registerdev")}>
+                <StyledButtonCta onClick={() => handleNavigate("/registerong")}>
                     Solicite um projeto!
                 </StyledButtonCta>
             </StyledCard>
         </StyledDiv>
     );
 };
-
