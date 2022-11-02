@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { ReactNode } from "react";
-import { array } from "yup";
+import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
 
 interface IProjectsContext {
@@ -13,6 +13,7 @@ interface IProjectsContext {
     setShowModal: any;
     handleMenu: () => void;
     handleModal: () => void;
+    handleNavigate: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -35,12 +36,18 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [menu, setMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleMenu = () => {
         return !menu ? setMenu(true) : setMenu(false);
     };
     const handleModal = () => {
         return !showModal ? setShowModal(true) : setShowModal(false);
     };
+    const handleNavigate = (route: string) => {
+        return navigate(route);
+    };
+
     const requestProjects = () => {
         api.get("/projects").then((res) => setProjects(res.data));
     };
@@ -56,6 +63,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 setShowModal,
                 handleMenu,
                 handleModal,
+                handleNavigate,
             }}
         >
             {children}
