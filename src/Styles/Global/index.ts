@@ -76,6 +76,8 @@ export const GlobalStyle = createGlobalStyle`
         --card-subtitle-text-color: var(--slate-900);
         --card-subtitle-text-weight: 600;
         --card-text-size: 1rem;
+        --card-text2-size: .8rem;
+        --card-text3-size: .7rem;
         --card-text-color: var(--slate-700);
         --card-text-weight: 400;
         --card-button-text-size: 1rem;
