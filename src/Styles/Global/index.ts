@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -154,6 +153,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        overflow-x: hidden;
     }
     ol, ul {
         list-style: none;
@@ -182,4 +182,3 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
     }
 `;
-
