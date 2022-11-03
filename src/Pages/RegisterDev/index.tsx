@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StyledLoginButton } from "../../Components/Button";
+import { StyledButtonCta } from "../../Components/Button";
 import { Footer } from "../../Components/Footer";
 import Headers from "../../Components/Header";
 import { ModalRegister } from "../../Components/Modal/ModalRegister";
@@ -62,7 +62,7 @@ export const RegisterDev = () => {
         </p>
         {showModal && <ModalRegister />}
 
-        <StyledLoginButton onClick={handleModal}>Cadastrar</StyledLoginButton>
+        <StyledButtonCta onClick={handleModal}>Cadastrar</StyledButtonCta>
       </StyledRegisterDev>
 
       <Footer />
