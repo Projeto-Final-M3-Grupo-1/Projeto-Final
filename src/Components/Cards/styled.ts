@@ -8,6 +8,7 @@ export const StyledDiv = styled.div`
     height: 434px;
     flex-direction: column;
     margin: 0 auto;
+    padding: 2rem 0;
 
     /* overflow: hidden;
     overflow-x: scroll;
