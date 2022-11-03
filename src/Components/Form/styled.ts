@@ -14,10 +14,22 @@ export const StyledForm = styled.form`
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
     background-color: white;
 
     h2 {
         font-size: 1.5rem;
         font-weight: 600;
+    }
+    .close {
+        position: absolute;
+        right: 0%;
+        top: 0%;
+
+        width: 25px;
+        height: 25px;
+
+        color: var(--rose-700);
     }
 `;
