@@ -1,5 +1,5 @@
 // import { Form } from "../../Form";
-import { StyledButtonCloseModal, StyledLoginButton } from "../../Button";
+import { StyledLoginButton } from "../../Button";
 import { InputAndLabel } from "../../Input";
 import { StyledBoxModal } from "./style";
 import { useForm } from "react-hook-form";
@@ -9,8 +9,9 @@ import { UserContext } from "../../../Providers/UserProvider";
 import { useContext } from "react";
 import { FieldError } from "react-hook-form";
 import { StyledForm } from "../../Form/styled";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 interface IUserLogin {
     email: string;
@@ -37,10 +38,8 @@ export const ModalLogin = () => {
         <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
 
-                 <StyledButtonCloseModal onClick={handleModal}>
-                    <IoIosCloseCircleOutline/>
-                </StyledButtonCloseModal>
-                
+                <ButtonCloseModal callback={handleModal}/>
+
                 <h2>Já faz parte?</h2>
 
                 <InputAndLabel
