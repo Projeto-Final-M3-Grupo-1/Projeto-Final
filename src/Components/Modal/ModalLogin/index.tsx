@@ -1,5 +1,5 @@
 // import { Form } from "../../Form";
-import { StyledLoginButton } from "../../Button";
+import { StyledButtonCloseModal, StyledLoginButton } from "../../Button";
 import { InputAndLabel } from "../../Input";
 import { StyledBoxModal } from "./style";
 import { useForm } from "react-hook-form";
@@ -36,10 +36,11 @@ export const ModalLogin = () => {
     return (
         <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
-                <IoIosCloseCircleOutline
-                    onClick={handleModal}
-                    className="close"
-                />
+
+                 <StyledButtonCloseModal onClick={handleModal}>
+                    <IoIosCloseCircleOutline/>
+                </StyledButtonCloseModal>
+                
                 <h2>Já faz parte?</h2>
 
                 <InputAndLabel
