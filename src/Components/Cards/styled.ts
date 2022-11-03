@@ -9,7 +9,7 @@ export const StyledDiv = styled.div`
     flex-direction: column;
     margin: 0 auto;
 
-    overflow: hidden;
+    /* overflow: hidden;
     overflow-x: scroll;
     ::-webkit-scrollbar {
         background-color: var(--rose-200);
@@ -19,10 +19,11 @@ export const StyledDiv = styled.div`
     ::-webkit-scrollbar-thumb {
         background-color: var(--main-title-text-color);
         border-radius: 20px;
-    }
+    } */
 
     @media (min-width: 768px) {
         box-sizing: border-box;
+        flex-direction: row;
         max-width: 1200px;
         height: 400px;
         margin: 0 auto;
