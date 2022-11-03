@@ -4,7 +4,7 @@ import { InputAndLabel } from "../../Input";
 import { StyledBoxModal } from "../ModalLogin/style";
 import { StyledForm } from "../../Form/styled";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { shemaUserRegister } from "../../../Services/validation/createUser.validation";
+import { schemaUserOng } from "../../../Services/validation/createUser.validation";
 import { FieldError } from "react-hook-form";
 import { UserContext } from "../../../Providers/UserProvider";
 import { useContext } from "react";
@@ -12,27 +12,27 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-export interface IUserRegister {
+export interface IUserOng {
   email: string;
   password: string;
-  nome: string;
-  github: string;
-  linkedin: string;
+  razaoSocial: string;
+  cnpj: string;
+  nomeDoResponsavel: string;
   fotoDePerfil: string;
-  confirmPassword: string;
+  telefone: string;
 
   error?: {
     email?: FieldError;
     password?: FieldError;
-    name?: FieldError;
-    github?: FieldError;
-    linkedin?: FieldError;
+    razaoSocial?: FieldError;
+    cnpj?: FieldError;
+    nomeDoResponsavel?: FieldError;
     fotoDePerfil?: FieldError;
-    confirmPassword?: FieldError;
+    telefone?: FieldError;
   };
 }
-export const ModalRegister = () => {
-  const { onSubmitRegister } = useContext(UserContext);
+export const ModalRegisterOng = () => {
+  const { onSubmitOng } = useContext(UserContext);
   const { handleModal } = useContext(ProjectsContext);
   const {
     handleSubmit,
@@ -41,33 +41,49 @@ export const ModalRegister = () => {
       errors: {
         email,
         password,
-        nome,
-        github,
-        linkedin,
+        razaoSocial,
+        cnpj,
+        telefone,
+        nomeDoResponsavel,
         fotoDePerfil,
-        confirmPassword,
       },
     },
-  } = useForm<IUserRegister>({
-    resolver: yupResolver(shemaUserRegister),
+  } = useForm<IUserOng>({
+    resolver: yupResolver(schemaUserOng),
   });
   return (
     <StyledBoxModal>
-      <StyledForm onSubmit={handleSubmit(onSubmitRegister)}>
+      <StyledForm onSubmit={handleSubmit(onSubmitOng)}>
         <IoIosCloseCircleOutline onClick={handleModal} className="close" />
-        <h2>Cadastrar Dev</h2>
+        <h2>Cadastrar ONG</h2>
         <InputAndLabel
-          textLabel="Nome"
-          name="nome"
-          placeholder="Digite seu nome"
+          textLabel="Razão Social"
+          name="razaoSocial"
+          placeholder="Digite o nome da ONG"
           type="text"
           register={register}
-          error={nome?.message}
+          error={razaoSocial?.message}
+        />
+        <InputAndLabel
+          textLabel="CNPJ"
+          name="cnpj"
+          placeholder="Digite seu CNPJ"
+          type="number"
+          register={register}
+          error={cnpj?.message}
+        />
+        <InputAndLabel
+          textLabel="Telefone"
+          name="telefone"
+          placeholder="Digite seu telefone"
+          type="number"
+          register={register}
+          error={telefone?.message}
         />
         <InputAndLabel
           textLabel="Email"
           name="email"
-          placeholder="Digite seu e-mail"
+          placeholder="Digite seu email"
           type="text"
           register={register}
           error={email?.message}
@@ -75,34 +91,18 @@ export const ModalRegister = () => {
         <InputAndLabel
           textLabel="Senha"
           name="password"
-          placeholder="Digite sua senha "
+          placeholder="Insira uma senha"
           type="password"
+          register={register}
           error={password?.message}
-          register={register}
         />
         <InputAndLabel
-          textLabel="Confirmação de Senha"
-          name="confirmPassword"
-          placeholder="Digite sua senha novamente"
-          type="password"
-          register={register}
-          error={confirmPassword?.message}
-        />
-        <InputAndLabel
-          textLabel="Github"
-          name="github"
-          placeholder="Insira o link para o seu Github "
+          textLabel="Nome do Responsável Legal"
+          name="nomeDoResponsavel"
+          placeholder="Insira o nome do responsável"
           type="text"
           register={register}
-          error={github?.message}
-        />
-        <InputAndLabel
-          textLabel="Linkedin"
-          name="linkedin"
-          placeholder="Insira o link para o seu Linkedin"
-          type="text"
-          register={register}
-          error={linkedin?.message}
+          error={nomeDoResponsavel?.message}
         />
         <InputAndLabel
           textLabel="Link para foto de perfil"
