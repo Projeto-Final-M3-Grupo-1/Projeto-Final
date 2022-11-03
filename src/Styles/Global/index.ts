@@ -116,6 +116,12 @@ export const GlobalStyle = createGlobalStyle`
         --footer-button-text-color: var(--slate-900);
         --footer-text-small-size: 0.9375rem;
         --footer-text-small-weight: 400;
+
+        /*Page Ong e Dev*/
+        --page-title-font-size: 2rem;
+        --page-title-color: var(--rose-600);
+        --page-title-text-weight: 600;
+
     }
 
     /* Reset */

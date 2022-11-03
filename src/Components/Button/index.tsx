@@ -64,10 +64,10 @@ export const StyledButtonCta = styled.button`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    padding: 0 0.5rem;
     gap: 10px;
 
-    width: 478px;
+    width: 50%;
     height: 40px;
 
     background: var(--button-background-color);
@@ -81,6 +81,10 @@ export const StyledButtonCta = styled.button`
     &:hover {
         background: var(--button-background-hover-color);
         transition: var(--button-hover-transition);
+    }
+
+    @media(max-width: 600px){
+        width: 100%;
     }
 `;
 
