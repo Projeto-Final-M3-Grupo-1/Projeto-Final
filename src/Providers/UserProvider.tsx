@@ -9,6 +9,7 @@ interface IUserContext {
     onSubmitLogin: any;
     onSubmitRegister: any;
     onSubmitOng: any;
+    type: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -17,14 +18,22 @@ interface IUserChildren {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
+    const [type, setType] = useState<any>({});
+
+    const navigate = useNavigate();
     const { handleNavigate } = useContext(ProjectsContext);
     const onSubmitLogin = (data: any) => {
+        // console.log(data);
         api.post("/login", data)
-            .then(() => {
-                toast.success("Cadastro realizado com sucesso!");
-                handleNavigate("/dashboarddev");
+            .then((res) => {
+                navigate("/dashboard");
+
+                setType(res.data.user);
+                console.log(res.data.user);
+
+                console.log(res);
             })
-            .catch(() => toast.error("Cadastro não realizado"));
+            .catch((err) => console.log(err));
     };
     const onSubmitRegister = (data: any) => {
         api.post("/registerdev", data)
@@ -49,6 +58,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitLogin,
                 onSubmitRegister,
                 onSubmitOng,
+                type,
             }}
         >
             {children}
