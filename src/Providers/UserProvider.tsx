@@ -3,13 +3,12 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
 import { toast } from "react-toastify";
-import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
     onSubmitLogin: any;
     onSubmitRegister: any;
     onSubmitOng: any;
-    type: any;
+    user: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -18,37 +17,38 @@ interface IUserChildren {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
-    const [type, setType] = useState<any>({});
+    const [user, setUser] = useState<any>({});
 
     const navigate = useNavigate();
-    const { handleNavigate } = useContext(ProjectsContext);
+
     const onSubmitLogin = (data: any) => {
-        // console.log(data);
         api.post("/login", data)
             .then((res) => {
                 navigate("/dashboard");
-
-                setType(res.data.user);
+                toast.success("Login realizado com sucesso");
+                setUser(res.data.user);
                 console.log(res.data.user);
 
                 console.log(res);
             })
-            .catch((err) => console.log(err));
+            .catch(() => toast.error("Email ou senha invalidos"));
     };
     const onSubmitRegister = (data: any) => {
+        data.typeUser = "dev";
         api.post("/registerdev", data)
             .then(() => {
                 toast.success("Cadastro realizado com sucesso!");
-                handleNavigate("/registerdev");
+                navigate("/home");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
 
     const onSubmitOng = (data: any) => {
+        data.typeUser = "ong";
         api.post("/registerong", data)
             .then(() => {
                 toast.success("Cadastro realizado com sucesso!");
-                handleNavigate("/registerong");
+                navigate("/home");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
@@ -58,7 +58,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitLogin,
                 onSubmitRegister,
                 onSubmitOng,
-                type,
+                user,
             }}
         >
             {children}
