@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
         --header-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
         // Main
-        --main-title-text-size: 5rem;
+        --main-title-text-size: 4rem;
         --main-title-text-color: var(--rose-600);
         --main-title-text-color-secondary: var(--slate-800);
         --main-title-text-weight: 900;

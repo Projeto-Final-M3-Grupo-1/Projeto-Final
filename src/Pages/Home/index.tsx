@@ -1,4 +1,3 @@
-
 import Headers from "../../Components/Header";
 import { AboutUs } from "../../Components/AboutUs";
 import { Cards } from "../../Components/Cards";
@@ -8,6 +7,8 @@ import { Footer } from "../../Components/Footer";
 import { StyledContentWrapper } from "./styles";
 import { AllProjects } from "../../Components/Home All Projects";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import Main from "../../Components/Main";
+
 
 export const Home = () => {
     const { menu } = useContext(ProjectsContext);
@@ -15,6 +16,7 @@ export const Home = () => {
         <>
             <StyledContentWrapper>
                 <Headers />
+                <Main />
                 <Cards />
                 <AboutUs />
                 <AllProjects />
