@@ -29,7 +29,7 @@ export const StyledHeader = styled.header`
 
   nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     height: 80px;
     align-items: center;
     font-family: "Inter";
@@ -49,6 +49,7 @@ export const StyledHeader = styled.header`
   @media (max-width: 700px) {
     nav {
       display: flex;
+      justify-content: center;
       box-sizing: border-box;
       flex-wrap: wrap;
       gap: 10px;

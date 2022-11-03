@@ -41,14 +41,25 @@ export const StyledFooter = styled.footer`
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 90%;
+    left: 85%;
+    bottom: 2%;
+
+    @media (max-width: 720px) {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      left: 45%;
+      bottom: 150px;
+      color: var(--rose-700);
+    }
   }
   .scrolltop:hover {
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 90%;
+    left: 85%;
     color: var(--rose-700);
+    bottom: 2%;
   }
 
   button {

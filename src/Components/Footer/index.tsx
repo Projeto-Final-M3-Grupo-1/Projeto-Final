@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { TbArrowBigTop } from "react-icons/tb";
 import { StyledFooter } from "./style";
+
 import {
   AiOutlineFacebook,
   AiOutlineInstagram,
