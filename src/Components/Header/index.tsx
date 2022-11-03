@@ -5,9 +5,12 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { ModalLogin } from "../Modal/ModalLogin";
 import { StyledHeader } from "./header";
 import { StyledLoginButton } from "../Button";
+import { useNavigate, Outlet } from "react-router-dom";
 
 function Headers() {
   const { handleModal, showModal } = useContext(ProjectsContext);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -23,6 +26,7 @@ function Headers() {
             to="/home"
             className="links--menu_header"
             href="/git"
+            onClick={() => navigate("/home")}
           >
             Início
           </Link>

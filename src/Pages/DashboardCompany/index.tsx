@@ -5,18 +5,18 @@ import { useContext } from "react";
 import { DashboardOng } from "../../Components/Dashboards/DashboardOng";
 
 export function Dashboard() {
-    const { type } = useContext(UserContext);
-    const { typeUser } = type;
-    console.log(typeUser);
-    return (
-        <>
-            {typeUser == "admin" ? (
-                <DashboardAdmin />
-            ) : typeUser == "dev" ? (
-                <DashboardDev />
-            ) : (
-                <DashboardOng />
-            )}
-        </>
-    );
+  const { type } = useContext(UserContext);
+  const { typeUser } = type;
+  console.log(typeUser);
+  return (
+    <>
+      {typeUser === "admin" ? (
+        <DashboardAdmin />
+      ) : typeUser === "dev" ? (
+        <DashboardDev />
+      ) : (
+        <DashboardOng />
+      )}
+    </>
+  );
 }

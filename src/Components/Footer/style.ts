@@ -57,9 +57,9 @@ export const StyledFooter = styled.footer`
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 85%;
+    left: 45%;
     color: var(--rose-700);
-    bottom: 2%;
+    bottom: 150px;
   }
 
   button {
