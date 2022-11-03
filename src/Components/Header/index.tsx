@@ -9,7 +9,6 @@ import { useNavigate, Outlet } from "react-router-dom";
 
 function Headers() {
   const { handleModal, showModal } = useContext(ProjectsContext);
-
   const navigate = useNavigate();
 
   return (

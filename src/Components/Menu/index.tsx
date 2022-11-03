@@ -1,5 +1,4 @@
-import { Children } from "react";
-import { StyledAside } from "../Aside/style";
+import { StyledAside } from "../Asides/style";
 import { ReactNode } from "react";
 
 interface IChildren {

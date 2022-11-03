@@ -1,7 +1,10 @@
+import MenuAsideDev from "../../Asides/AsideDev";
+
 export const DashboardDev = () => {
-    return (
-        <>
-            <h1>eu sou a das do dev</h1>
-        </>
-    );
+  return (
+    <>
+      <MenuAsideDev />
+      <h1>eu sou a das do dev</h1>
+    </>
+  );
 };

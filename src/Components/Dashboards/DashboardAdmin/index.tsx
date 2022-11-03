@@ -1,9 +1,9 @@
-import MenuAside from "../../Aside";
+import MenuAsideAdmin from "../../Asides/AsideAdmin";
 
 export const DashboardAdmin = () => {
   return (
     <>
-      <MenuAside />
+      <MenuAsideAdmin />
       <h1>eu sou a das do ADMIN</h1>
     </>
   );
