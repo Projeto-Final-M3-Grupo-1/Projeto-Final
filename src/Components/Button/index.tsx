@@ -24,10 +24,6 @@ export const StyledNewProjectButton = styled.button`
         background: var(--button-background-hover-color);
         transition: var(--button-hover-transition);
     }
-
-    @media (max-width: 400px) {
-        margin-left: 40%;
-    }
 `;
 
 export const StyledLoginButton = styled.button`
