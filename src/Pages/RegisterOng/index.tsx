@@ -10,6 +10,7 @@ export const RegisterOng = () => {
   const { showModal, handleModal } = useContext(ProjectsContext);
   return (
     <>
+
       {/* <h1>Sou o Registro da Ong</h1>
       {showModal && <ModalRegister />}
       <button onClick={handleModal}>Cadastrar</button> */}
