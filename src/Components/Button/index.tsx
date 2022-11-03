@@ -31,7 +31,7 @@ export const StyledNewProjectButton = styled.button`
     @media(max-width: 400px){
         margin-left: 40%; 
     }
-
+`
 export const StyledLoginButton = styled.button`
   display: flex;
   flex-direction: row;
