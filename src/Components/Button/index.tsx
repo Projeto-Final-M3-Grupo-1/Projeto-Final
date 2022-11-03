@@ -29,6 +29,7 @@ export const StyledNewProjectButton = styled.button`
         margin-left: 40%;
     }
 `;
+
 export const StyledLoginButton = styled.button`
     display: flex;
     flex-direction: row;
