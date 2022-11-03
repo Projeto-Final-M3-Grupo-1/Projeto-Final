@@ -7,7 +7,7 @@ export const AboutUs = () => {
   return (
     <StyledDiv> 
 
-      <StyledTitle>Sobre Nós</StyledTitle>
+      <StyledTitle id="aboutUs">Sobre Nós</StyledTitle>
 
       <StyledParagraph>
         Como desenvolvedores nossa missão é resolver problemas por meio da tecnologia e pensando nisso criamos essa plataforma com a missão de Ajudar ONGs que precisam de tecnologias, mas que não possuem recursos para contratar desenvolvedores, a implantarem tecnologias para divulgarem seus serviços e assim conseguir mais ajuda. e o outro problema que são os desenvolvedores recém formados, que muitas vezes deixam de conseguir uma vaga por não ter experiência. <br /> <br />
