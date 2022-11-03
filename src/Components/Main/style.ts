@@ -71,12 +71,17 @@ export const StyledImagesMain = styled.div`
   overflow-x: hidden;
   height: 50%;
   position: relative;
+  justify-content: center;
 
   img {
     width: 100%;
     align-self: flex-end;
     max-height: 254px;
     margin-top: 4rem;
+  }
+
+  button{
+    position: absolute;
   }
 
   @media (max-width: 880px) {
