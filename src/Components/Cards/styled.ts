@@ -3,13 +3,10 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
     display: flex;
-    align-items: center;
-
     gap: 20px;
-
     max-width: 95%;
-    height: 300px;
-
+    height: 434px;
+    flex-direction: column;
     margin: 0 auto;
 
     overflow: hidden;
@@ -26,7 +23,6 @@ export const StyledDiv = styled.div`
 
     @media (min-width: 768px) {
         box-sizing: border-box;
-        overflow: hidden;
         max-width: 1200px;
         height: 400px;
         margin: 0 auto;
@@ -56,6 +52,13 @@ export const StyledCard = styled.div`
         max-height: 450px;
         max-width: 400px;
         border-radius: 8px;
+    
+        &:hover{
+            box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            -webkit-box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            -moz-box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            transition: .5s
+        }
     }
 
     h2 {
@@ -92,6 +95,12 @@ export const StyledCard = styled.div`
         width: 90%;
         height: 25px;
         font-size: 14px;
+    }
+
+    @media (min-width:768px){
+        > button {
+            height: 40px;
+        }
     }
 `;
 
