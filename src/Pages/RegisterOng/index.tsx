@@ -4,16 +4,20 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledMainPageOng, StyledTextPageOng } from "./style";
 import Headers from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
-import { StyledButtonCta } from "../../Components/Button";
+import { StyledButtonCta, StyledLoginButton } from "../../Components/Button";
+import { StyledHeader } from "../../Components/Header/header";
 
 export const RegisterOng = () => {
-    const { showModal, handleModal } = useContext(ProjectsContext);
+    const { showModal, handleModal, handleNavigate } =
+        useContext(ProjectsContext);
     return (
         <>
-            {/* <h1>Sou o Registro da Ong</h1>
-      {showModal && <ModalRegister />}
-      <button onClick={handleModal}>Cadastrar</button> */}
-            <Headers />
+            <StyledHeader>
+                <h2>Logo</h2>
+                <StyledLoginButton onClick={() => handleNavigate("/home")}>
+                    Voltar
+                </StyledLoginButton>
+            </StyledHeader>
             <StyledMainPageOng>
                 <StyledTextPageOng>
                     <h1>
