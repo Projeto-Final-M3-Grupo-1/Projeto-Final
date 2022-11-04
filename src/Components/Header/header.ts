@@ -7,8 +7,11 @@ export const StyledHeader = styled.header`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   align-items: center;
   justify-content: space-around;
-  padding: 15px;
-
+  padding: 15px 0px;
+  .logout {
+    color: white;
+    background-color: white;
+  }
   @media (max-width: 700px) {
     width: 100%;
     box-sizing: border-box;
