@@ -53,9 +53,8 @@ export const ModalRegister = () => {
         resolver: yupResolver(shemaUserRegister),
     });
     return (
-        <StyledBoxModal>
+        <StyledBoxModal onClick={handleModal}>
             <StyledForm onSubmit={handleSubmit(onSubmitRegister)}>
-                <ButtonCloseModal callback={handleModal} />
                 <h2>Cadastrar Dev</h2>
                 <InputAndLabel
                     textLabel="Nome"

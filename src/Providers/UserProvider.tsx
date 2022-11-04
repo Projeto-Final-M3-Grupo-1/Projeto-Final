@@ -23,8 +23,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
     const navigate = useNavigate();
 
-    const onSubmitLogin = (data: any) => {
-        api.post("/login", data)
+    const onSubmitLogin = async (data: any) => {
+        await api
+            .post("/login", data)
             .then((res) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
