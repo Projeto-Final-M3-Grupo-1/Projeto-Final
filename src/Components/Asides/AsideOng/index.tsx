@@ -7,7 +7,7 @@ import { Menu } from "../../Menu";
 function MenuAsideOng() {
   return (
     <>
-      <Menu>
+      {/* <Menu>
         <a>
           <IoHome className="IconAside" />
           Home
@@ -24,7 +24,7 @@ function MenuAsideOng() {
           <TbSubtask className="IconAside" />
           Projeto
         </a>
-      </Menu>
+      </Menu> */}
     </>
   );
 }

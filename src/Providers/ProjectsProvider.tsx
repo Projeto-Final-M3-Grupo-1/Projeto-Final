@@ -12,10 +12,13 @@ interface IProjectsContext {
   setMenu: any;
   showModal: boolean;
   setShowModal: any;
+  showAside: boolean;
+  setShowAside: React.Dispatch<React.SetStateAction<boolean>>;
   handleMenu: () => void;
   handleModal: () => void;
   handleNavigate: any;
   scrollToTop: () => void;
+  MoveAsideMenu: () => void;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -37,6 +40,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [projects, setProjects] = useState([] as any);
   const [menu, setMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showAside, setShowAside] = useState(false);
 
   const navigate = useNavigate();
 
@@ -58,6 +62,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     scroll.scrollToTop();
   };
 
+  const MoveAsideMenu = () => {
+    return !showAside ? setShowAside(true) : setShowAside(false);
+  };
+
   return (
     <ProjectsContext.Provider
       value={{
@@ -72,6 +80,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         handleMenu,
         handleModal,
         handleNavigate,
+        MoveAsideMenu,
+        showAside,
+        setShowAside,
       }}
     >
       {children}

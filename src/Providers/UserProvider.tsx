@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
@@ -10,6 +10,9 @@ interface IUserContext {
   onSubmitRegister: any;
   onSubmitOng: any;
   user: any;
+  HandleDataUser: any;
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
 }
 interface IUserChildren {
   children: ReactNode;
@@ -19,6 +22,7 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
   const [user, setUser] = useState<any>({});
+  const [token, setToken] = useState<string>("");
   const { setShowModal } = useContext(ProjectsContext);
 
   const navigate = useNavigate();
@@ -31,11 +35,18 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.success("Login realizado com sucesso");
         setUser(res.data.user);
         setShowModal(false);
+        HandleDataUser(res.data.user);
         console.log(res.data.user);
 
         console.log(res);
       })
       .catch(() => toast.error("Email ou senha invalidos"));
+  };
+
+  const HandleDataUser = (data: any) => {
+    useEffect(() => {
+      console.log(data);
+    }, []);
   };
   const onSubmitRegister = (data: any) => {
     data.typeUser = "dev";
@@ -66,6 +77,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
         onSubmitRegister,
         onSubmitOng,
         user,
+        HandleDataUser,
+        token,
+        setToken,
       }}
     >
       {children}

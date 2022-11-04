@@ -2,12 +2,16 @@ import { IoHome } from "react-icons/io5";
 import { GrUserSettings } from "react-icons/gr";
 import { GrAppsRounded } from "react-icons/gr";
 import { TbSubtask } from "react-icons/tb";
+import { TfiAngleLeft } from "react-icons/tfi";
+import { useContext } from "react";
 import { Menu } from "../../Menu";
+import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 
 function MenuAsideAdmin() {
+  const { MoveAsideMenu, showAside } = useContext(ProjectsContext);
   return (
     <>
-      <Menu>
+      <Menu classMovieAside={showAside}>
         <a>
           <IoHome className="IconAside" />
           Home
@@ -22,12 +26,15 @@ function MenuAsideAdmin() {
         </a>
         <a>
           <TbSubtask className="IconAside" />
-          Meus Projetos
+          Criar Tarefas
         </a>
         <a>
           <TbSubtask className="IconAside" />
-          Meus Projetos
+          Criar Post
         </a>
+        <TfiAngleLeft className="btnAside" onClick={MoveAsideMenu}>
+          Teste
+        </TfiAngleLeft>
       </Menu>
     </>
   );

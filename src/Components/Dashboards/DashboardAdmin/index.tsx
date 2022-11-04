@@ -6,10 +6,17 @@ import { StyledHeader } from "../../Header/header";
 import { MdLogout } from "react-icons/md";
 export const DashboardAdmin = () => {
   const { handleNavigate } = useContext(ProjectsContext);
+
   return (
     <>
       <StyledHeader>
-        <h2>Logo</h2>
+        <h2
+          onClick={() => {
+            handleNavigate("/home");
+          }}
+        >
+          Logo
+        </h2>
         <StyledLoginButton onClick={() => handleNavigate("/home")}>
           <MdLogout className="logout" />
           Logout
