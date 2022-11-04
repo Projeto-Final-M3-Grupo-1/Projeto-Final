@@ -29,11 +29,11 @@ export const schemaUserOng = yup.object().shape({
   cnpj: yup
     .string()
     .required(`CNPJ obrigatorio`)
-    .matches(/.{14,}/, "Deve conter no minimo 14 caracater"),
+    .matches(/.{14,}/, "Deve conter no minimo 14 caracateres"),
   telefone: yup
     .string()
     .required(`Telefone obrigatório`)
-    .matches(/.{11,}/, "Deve conter no minimo 11 caracater"),
+    .matches(/.{11,}/, "Deve conter no minimo 11 caracateres"),
   email: yup.string().required(`E-mail obrigatório`).email(`E-mail invalido`),
   password: yup
     .string()
