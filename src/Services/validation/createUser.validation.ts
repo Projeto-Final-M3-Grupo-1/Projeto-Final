@@ -18,10 +18,9 @@ export const shemaUserRegister = yup.object().shape({
     .string()
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
-  github: yup.string().required(`Campo obrigatório`),
-  linkedin: yup.string().required(`Campo obrigatório`),
-  fotoDoPerfil: yup.string().required(`Campo obrigatório`),
-  fotoDePerfil: yup.string().required(`Campo obrigatório`),
+  github: yup.string().url().required(`Campo obrigatório`),
+  linkedin: yup.string().url().required(`Campo obrigatório`),
+  fotoDePerfil: yup.string().url().required(`Campo obrigatório`),
 });
 
 export const schemaUserOng = yup.object().shape({
@@ -47,5 +46,5 @@ export const schemaUserOng = yup.object().shape({
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
   nomeDoResponsavel: yup.string().required(`Campo obrigatório`),
-  fotoDePerfil: yup.string().required(`Campo obrigatório`),
+  fotoDePerfil: yup.string().url().required(`Campo obrigatório`),
 });
