@@ -10,6 +10,7 @@ interface IUserContext {
     onSubmitRegister: any;
     onSubmitOng: any;
     user: any;
+    setUser: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -19,7 +20,6 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
     const [user, setUser] = useState<any>({});
-    const { setShowModal } = useContext(ProjectsContext);
 
     const navigate = useNavigate();
 
@@ -28,10 +28,11 @@ export const UserProvider = ({ children }: IUserChildren) => {
             .post("/login", data)
             .then((res) => {
                 navigate("/dashboard");
+                // console.log(res.data.user.id);
                 toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
                 localStorage.setItem("token", res.data.accessToken);
-                localStorage.setItem("user", JSON.stringify(res.data.user));
+                localStorage.setItem("userId", res.data.user.id);
             })
             .catch(() => toast.error("Email ou senha invalidos"));
     };
@@ -62,6 +63,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitRegister,
                 onSubmitOng,
                 user,
+                setUser,
             }}
         >
             {children}
