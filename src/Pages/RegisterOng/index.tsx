@@ -4,7 +4,8 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledMainPageOng, StyledTextPageOng } from "./style";
 import Headers from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
-import { StyledButtonCta } from "../../Components/Button";
+import { StyledButtonCta, StyledLoginButton } from "../../Components/Button";
+import { StyledHeader } from "../../Components/Header/header";
 
 export const RegisterOng = () => {
   const { showModal, handleModal } = useContext(ProjectsContext);

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
 import { toast } from "react-toastify";
+import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
     onSubmitLogin: any;
@@ -18,6 +19,7 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
     const [user, setUser] = useState<any>({});
+    const { setShowModal } = useContext(ProjectsContext);
 
     const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
+                // setShowModal(false);
                 console.log(res.data.user);
 
                 console.log(res);
@@ -37,8 +40,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
         data.typeUser = "dev";
         api.post("/registerdev", data)
             .then(() => {
-                toast.success("Cadastro realizado com sucesso!");
                 navigate("/home");
+                toast.success("Cadastro realizado com sucesso!");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
@@ -46,6 +49,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const onSubmitOng = (data: any) => {
         data.typeUser = "ong";
         api.post("/registerong", data)
+
             .then(() => {
                 toast.success("Cadastro realizado com sucesso!");
                 navigate("/home");
