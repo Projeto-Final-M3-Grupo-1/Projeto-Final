@@ -1,7 +1,12 @@
+import MenuAsideOng from "../../Asides/AsideOng";
+import Headers from "../../Header";
+
 export const DashboardOng = () => {
-    return (
-        <>
-            <h1>eu sou a das do ong</h1>
-        </>
-    );
+  return (
+    <>
+      <Headers />
+      <MenuAsideOng />
+      <h1>eu sou a das do ong</h1>
+    </>
+  );
 };
