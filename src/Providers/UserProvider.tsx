@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
-                // setShowModal(false);
+                // localStorage.setItem("token");
                 console.log(res.data.user);
 
                 console.log(res);
