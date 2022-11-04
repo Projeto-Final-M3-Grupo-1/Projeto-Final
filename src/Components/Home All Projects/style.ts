@@ -44,7 +44,7 @@ export const StyledAllProjectsBox = styled.div`
     }
 
     ul {
-        width: 100%;
+        width: 90%;
         max-width: 700px;
         max-height: 400px;
         margin-top: 1rem;
@@ -60,7 +60,8 @@ export const StyledAllProjectsBox = styled.div`
     }
     @media (min-width: 700px) {
         ul {
-            min-width: 1200px;
+            width: 90%;
+            max-width: 1200px;
             height: 600px;
         }
     }

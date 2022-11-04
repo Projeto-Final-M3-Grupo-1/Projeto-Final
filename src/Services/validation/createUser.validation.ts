@@ -13,7 +13,7 @@ export const shemaUserRegister = yup.object().shape({
     .matches(/[a-z]/, "Deve conter ao menos 1 letra minúscula ")
     .matches(/(\d)/, "Deve conter ao menos 1 número")
     .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
-    .matches(/.{8,}/, "Deve conter no minimo 8 caracater"),
+    .matches(/.{8,}/, "Deve conter no minimo 8 caracateres"),
   confirmPassword: yup
     .string()
     .required("Confirmar senha obrigatório")
@@ -29,17 +29,11 @@ export const schemaUserOng = yup.object().shape({
   cnpj: yup
     .string()
     .required(`CNPJ obrigatorio`)
-    .matches(
-      /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/,
-      "O campo deve seguir o formato de CNPJ"
-    ),
+    .matches(/.{14,}/, "Deve conter no minimo 14 caracater"),
   telefone: yup
     .string()
     .required(`Telefone obrigatório`)
-    .matches(
-      /^\(\d{2}\) \d{4,5}-\d{4}$/gi,
-      "O campo deve seguir o formato de telefone do Brasil"
-    ),
+    .matches(/.{11,}/, "Deve conter no minimo 11 caracater"),
   email: yup.string().required(`E-mail obrigatório`).email(`E-mail invalido`),
   password: yup
     .string()
