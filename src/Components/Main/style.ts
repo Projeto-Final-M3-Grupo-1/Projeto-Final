@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { GlobalStyle } from "../../Styles/Global";
 
 export const MainStyle = styled.main`
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
+  gap: 2rem;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const StyledTextsMain = styled.div`
@@ -45,6 +45,13 @@ export const StyledTextsMain = styled.div`
     }
   }
 
+  @media (max-width: 880px) {
+    h1,
+    h2 {
+      font-size: 3rem;
+    }
+  }
+
   @media (max-width: 650px) {
     h1,
     h2 {
@@ -64,15 +71,23 @@ export const StyledImagesMain = styled.div`
   overflow-x: hidden;
   height: 50%;
   position: relative;
+  justify-content: center;
 
   img {
     width: 100%;
     align-self: flex-end;
     max-height: 254px;
+    margin-top: 4rem;
   }
 
-  @media (max-width: 877px) {
-    margin-top: 2rem;
+  button{
+    position: absolute;
+  }
+
+  @media (max-width: 880px) {
+    img {
+      margin-top: 4rem;
+    }
 
     button {
       width: 7.5rem;
@@ -82,12 +97,11 @@ export const StyledImagesMain = styled.div`
 
   @media (max-width: 650px) {
     img {
-      margin-bottom: 1rem;
+      margin-top: 3rem;
     }
-
     button {
-      width: 6rem;
-      height: 6rem;
+      width: 5rem;
+      height: 5rem;
       font-size: 10px;
     }
   }

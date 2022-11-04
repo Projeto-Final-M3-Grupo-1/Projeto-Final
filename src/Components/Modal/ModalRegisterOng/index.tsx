@@ -1,4 +1,3 @@
-import { Form } from "../../Form";
 import { StyledButtonCadastro } from "../../Button";
 import { InputAndLabel } from "../../Input";
 import { StyledBoxModal } from "../ModalLogin/style";
@@ -11,6 +10,7 @@ import { useContext } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 export interface IUserOng {
   email: string;

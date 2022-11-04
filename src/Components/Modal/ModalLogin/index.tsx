@@ -9,8 +9,9 @@ import { UserContext } from "../../../Providers/UserProvider";
 import { useContext } from "react";
 import { FieldError } from "react-hook-form";
 import { StyledForm } from "../../Form/styled";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 interface IUserLogin {
     email: string;
@@ -36,10 +37,9 @@ export const ModalLogin = () => {
     return (
         <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
-                <IoIosCloseCircleOutline
-                    onClick={handleModal}
-                    className="close"
-                />
+
+                <ButtonCloseModal callback={handleModal}/>
+
                 <h2>Já faz parte?</h2>
 
                 <InputAndLabel

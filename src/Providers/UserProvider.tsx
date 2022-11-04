@@ -9,6 +9,7 @@ interface IUserContext {
   onSubmitLogin: any;
   onSubmitRegister: any;
   onSubmitOng: any;
+  user: any;
 }
 interface IUserChildren {
   children: ReactNode;
@@ -17,32 +18,44 @@ interface IUserChildren {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
-  const { handleNavigate } = useContext(ProjectsContext);
+  const [user, setUser] = useState<any>({});
+  const { setShowModal } = useContext(ProjectsContext);
+
+  const navigate = useNavigate();
+
   const onSubmitLogin = (data: any) => {
     api
       .post("/login", data)
-      .then(() => {
-        toast.success("Cadastro realizado com sucesso!");
-        handleNavigate("/login");
+      .then((res) => {
+        navigate("/dashboard");
+        toast.success("Login realizado com sucesso");
+        setUser(res.data.user);
+        setShowModal(false);
+        console.log(res.data.user);
+
+        console.log(res);
       })
-      .catch(() => toast.error("Cadastro não realizado"));
+      .catch(() => toast.error("Email ou senha invalidos"));
   };
   const onSubmitRegister = (data: any) => {
+    data.typeUser = "dev";
     api
       .post("/registerdev", data)
       .then(() => {
         toast.success("Cadastro realizado com sucesso!");
-        handleNavigate("/registerdev");
+        navigate("/home");
       })
       .catch(() => toast.error("Cadastro não realizado"));
   };
 
   const onSubmitOng = (data: any) => {
+    data.typeUser = "ong";
     api
       .post("/registerong", data)
       .then(() => {
+        setShowModal(false);
         toast.success("Cadastro realizado com sucesso!");
-        handleNavigate("/registerong");
+        navigate("/home");
       })
       .catch(() => toast.error("Cadastro não realizado"));
   };
@@ -52,6 +65,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
         onSubmitLogin,
         onSubmitRegister,
         onSubmitOng,
+        user,
       }}
     >
       {children}
