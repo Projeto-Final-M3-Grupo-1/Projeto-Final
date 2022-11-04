@@ -20,6 +20,7 @@ export interface IUserOng {
   nomeDoResponsavel: string;
   fotoDePerfil: string;
   telefone: string;
+  confirmPassword: string;
 
   error?: {
     email?: FieldError;
@@ -29,6 +30,7 @@ export interface IUserOng {
     nomeDoResponsavel?: FieldError;
     fotoDePerfil?: FieldError;
     telefone?: FieldError;
+    confirmPassword?: FieldError;
   };
 }
 export const ModalRegisterOng = () => {
@@ -46,6 +48,7 @@ export const ModalRegisterOng = () => {
         telefone,
         nomeDoResponsavel,
         fotoDePerfil,
+        confirmPassword,
       },
     },
   } = useForm<IUserOng>({
@@ -95,6 +98,14 @@ export const ModalRegisterOng = () => {
           type="password"
           register={register}
           error={password?.message}
+        />
+        <InputAndLabel
+          textLabel="Confirmação de Senha"
+          name="confirmPassword"
+          placeholder="Digite sua senha novamente"
+          type="password"
+          register={register}
+          error={confirmPassword?.message}
         />
         <InputAndLabel
           textLabel="Nome do Responsável Legal"
