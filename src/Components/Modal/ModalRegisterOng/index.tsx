@@ -55,7 +55,7 @@ export const ModalRegisterOng = () => {
         resolver: yupResolver(schemaUserOng),
     });
     return (
-        <StyledBoxModal onClick={handleModal}>
+        <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitOng)}>
                 <h2>Cadastrar ONG</h2>
                 <InputAndLabel
