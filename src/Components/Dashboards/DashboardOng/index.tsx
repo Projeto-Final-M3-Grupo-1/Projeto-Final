@@ -5,9 +5,10 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import MenuAsideOng from "../../Asides/AsideOng";
 import { StyledLoginButton } from "../../Button";
 import { StyledHeader } from "../../Header/header";
+import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
 
 export const DashboardOng = () => {
-    const { handleNavigate } = useContext(ProjectsContext);
+    const {  showModal, handleNavigate } = useContext(ProjectsContext);
     return (
         <>
             <StyledHeader>
@@ -16,8 +17,12 @@ export const DashboardOng = () => {
                     Logout
                 </StyledLoginButton>
             </StyledHeader>
-            <MenuAsideOng />
-            <h1>eu sou a das do ong</h1>
+          { showModal ? (<ModalPerfilOng/>)
+                :
+            (<MenuAsideOng />)
+          }    
+
+           
         </>
     );
 };

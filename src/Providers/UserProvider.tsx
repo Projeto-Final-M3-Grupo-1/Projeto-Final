@@ -28,7 +28,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             .then((res) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
-                setUser(res.data.user);
                 // setShowModal(false);
                 console.log(res.data.user);
 
