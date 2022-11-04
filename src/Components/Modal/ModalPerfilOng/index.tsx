@@ -19,14 +19,11 @@ import {
 } from "./style";
 
 interface iState {
-  length: any;
   map(arg0: (elem: any) => void): import("react").ReactNode;
-  projects:any;
   title: string;
   description: string;
   id: number;
   user: number;
-  setProjects: any;
 
 }
 
@@ -34,7 +31,7 @@ export const ModalPerfilOng = () => {
   const { handleModal, handleNavigate } = useContext(ProjectsContext);
   const { dataUser } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-  const [projects, setProjetcts] = useState([] as unknown as iState);
+  const [projects, setProjetcts] = useState<iStat>([] as iState);
 
   useEffect(() => {
     const getProject = () => {
