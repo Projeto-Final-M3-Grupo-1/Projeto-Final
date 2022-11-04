@@ -23,16 +23,15 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
     const navigate = useNavigate();
 
-    const onSubmitLogin = (data: any) => {
-        api.post("/login", data)
+    const onSubmitLogin = async (data: any) => {
+        await api
+            .post("/login", data)
             .then((res) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
-                // setShowModal(false);
-                console.log(res.data.user);
-
-                console.log(res);
+                localStorage.setItem("token", res.data.accessToken);
+                localStorage.setItem("user", JSON.stringify(res.data.user));
             })
             .catch(() => toast.error("Email ou senha invalidos"));
     };
@@ -51,8 +50,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
         api.post("/registerong", data)
 
             .then(() => {
-                toast.success("Cadastro realizado com sucesso!");
                 navigate("/home");
+                toast.success("Cadastro realizado com sucesso!");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };

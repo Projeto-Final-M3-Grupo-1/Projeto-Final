@@ -10,7 +10,7 @@ export const PerfilDev = () => {
             <img src={user.fotoDePerfil} alt="" />
             <a href={user.github}>{user.github}</a>
             <a href={user.linkedin}>{user.linkedin}</a>
-            <h1>{user.nome}</h1>
+            <input value={user.nome} />
         </StyledPerfilDev>
     );
 };
