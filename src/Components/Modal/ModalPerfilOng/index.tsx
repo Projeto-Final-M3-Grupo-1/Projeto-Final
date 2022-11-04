@@ -25,7 +25,7 @@ interface iState{
 }
 
 export const ModalPerfilOng = () => {
-  const { handleModal, showModal, handleNavigate } = useContext(ProjectsContext);
+  const { handleModal, handleNavigate } = useContext(ProjectsContext);
   const { user } = useContext(UserContext);
   const [project, setProjetct] = useState({} as iState)
   
@@ -35,12 +35,13 @@ export const ModalPerfilOng = () => {
   useEffect(()=>{
     const getProject = () => {
     
-        api.get(`/projects`)
-        .then(res => {
-          setProjetct(res.data)
-        }).catch(error => console.log(error)
-        )
-      }
+      api.get(`/projects`)
+      .then(res => {
+        setProjetct(res.data)
+      }).catch(error =>
+         console.log(error)
+      ) 
+    }
       getProject()
   }, [])
   
@@ -99,17 +100,13 @@ export const ModalPerfilOng = () => {
 
               <div className="projectInfo">
                 <h3 className="name">{user.razaoSocial}</h3>
-                {project.map((element) => {
-                  console.log(element);
-                  const id = JSON.parse(localStorage.user)
-                  console.log(id);
+                <p className="ong">{project.title}</p>
+                <p className="description">
+                  {project.description}
+                </p>
                   
-                  if(element.ongId === 3){
-                    console.log(element)
                     
-                  }
-                  
-                })}
+
 
                 <StyledButtonCadastro>Ver mais</StyledButtonCadastro>
               </div>
