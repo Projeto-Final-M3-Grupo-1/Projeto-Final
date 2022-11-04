@@ -1,4 +1,6 @@
+import { elementAcceptingRef } from "@mui/utils";
 import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import api from "../../../Services/api";
@@ -16,40 +18,40 @@ import {
   StyledButtons,
 } from "./style";
 
-interface iState{
+interface iState {
+  length: any;
   map(arg0: (elem: any) => void): import("react").ReactNode;
+  projects:any;
   title: string;
   description: string;
-  id: number, 
-  user: number
+  id: number;
+  user: number;
+  setProjects: any;
+
 }
 
 export const ModalPerfilOng = () => {
   const { handleModal, handleNavigate } = useContext(ProjectsContext);
+  const { dataUser } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-  const [project, setProjetct] = useState({} as iState)
-  
+  const [projects, setProjetcts] = useState([] as unknown as iState);
 
-  
-  
-  useEffect(()=>{
+  useEffect(() => {
     const getProject = () => {
-    
-      api.get(`/projects`)
-      .then(res => {
-        setProjetct(res.data)
-      }).catch(error =>
-         console.log(error)
-      ) 
-    }
-      getProject()
-  }, [])
-  
-  console.log(project);
-      
-  
-    return (
-      <>
+      api
+        .get(`/projects`)
+        .then((res) => {
+          setProjetcts(res.data);
+        })
+        .catch((error) => console.log(error));
+    };
+    getProject();
+  }, []);
+
+  console.log(projects);
+
+  return (
+    <>
       <StyledBoxModal>
         <StyledModalBody>
           <ButtonCloseModal callback={handleModal} />
@@ -58,27 +60,27 @@ export const ModalPerfilOng = () => {
             <StyledOngDetails>
               <div className="profile">
                 <caption>
-                  <img src={user.fotoDePerfil} alt="" />
+                  <img src={dataUser.fotoDePerfil} alt="" />
                 </caption>
                 <div className="details">
-                  <h3>{user.razaoSocial}</h3>
+                  <h3>{dataUser.razaoSocial}</h3>
                   <p>ONG</p>
                 </div>
               </div>
               <StyledProjectDetails>
                 <StyledInfo>
                   <p className="label">Nome do projeto</p>
-                  <input className="info" value={user.razaoSocial}/>
+                  <input className="info" value={dataUser.razaoSocial} />
                 </StyledInfo>
 
                 <StyledInfo>
                   <p className="label">Razão Social</p>
-                  <input className="info" value={user.razaoSocial} />
+                  <input className="info" value={dataUser.razaoSocial} />
                 </StyledInfo>
 
                 <StyledInfo>
                   <p className="label">CNPJ</p>
-                  <input className="info" value={user.cnpj} />
+                  <input className="info" value={dataUser.cnpj} />
                 </StyledInfo>
 
                 <StyledDescription>
@@ -99,26 +101,31 @@ export const ModalPerfilOng = () => {
               <h3 className="title">Solicitações do Projeto</h3>
 
               <div className="projectInfo">
-                <h3 className="name">{user.razaoSocial}</h3>
-                <p className="ong">{project.title}</p>
-                <p className="description">
-                  {project.description}
-                </p>
-                  
-                    
+                <h3 className="name">{dataUser.razaoSocial}</h3>
+               <ul>
+               {projects.length ?
+               (
+                 projects.map(elem => 
+                  console.log(elem)
 
+               )):(
+                <h1>Nada encontrado</h1>
+               )
+                  
+                )}
+               </ul>
 
                 <StyledButtonCadastro>Ver mais</StyledButtonCadastro>
               </div>
             </StyledProjectsRequests>
-        <StyledButtons>
-          <StyledButtonCadastro>Salvar</StyledButtonCadastro>
-          <StyledButtonCadastro onClick={() => handleNavigate("/home")}>Logout</StyledButtonCadastro>
-        </StyledButtons>
+            <StyledButtons>
+              <StyledButtonCadastro>Salvar</StyledButtonCadastro>
+              <StyledButtonCadastro onClick={() => handleNavigate("/home")}>
+                Logout
+              </StyledButtonCadastro>
+            </StyledButtons>
           </StyledContent>
         </StyledModalBody>
-
-
       </StyledBoxModal>
     </>
   );
