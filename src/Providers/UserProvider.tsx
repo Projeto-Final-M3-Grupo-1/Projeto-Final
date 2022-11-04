@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
@@ -28,6 +28,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
             .then((res) => {
                 navigate("/dashboard");
                 toast.success("Login realizado com sucesso");
+                setUser(res.data.user);
                 // setShowModal(false);
                 console.log(res.data.user);
 
