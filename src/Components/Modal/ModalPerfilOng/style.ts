@@ -43,6 +43,7 @@ export const StyledContent = styled.div`
     align-items: center;
     overflow-y: hidden;
     height: 95%;
+    width: 90%;
     /* outline: 1px solid blue; */
   }
 `;
@@ -198,19 +199,31 @@ export const StyledDescription = styled.div`
   max-height: 147px;
 
   gap: 5px;
-
-  overflow: hidden;
-  overflow-y: scroll;
-
-
-  ::-webkit-scrollbar {
-    background-color: var(--rose-200);
-    border-radius: 20px;
-    width: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--main-title-text-color);
-    border-radius: 20px;
+  
+  textarea {
+    box-sizing: border-box;
+    
+    height: 120px;
+    width: 95%;
+    
+    border: 1px solid var(--rose-600);
+    border-radius: 4px;
+    
+    color: var(--rose-600);
+    
+    resize: none;
+    
+    padding: 10px 0 0 10px;
+    
+    ::-webkit-scrollbar {
+      background-color: var(--rose-200);
+      border-radius: 20px;
+      width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--main-title-text-color);
+      border-radius: 20px;
+    }
   }
 `;
 

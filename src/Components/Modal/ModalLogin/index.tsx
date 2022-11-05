@@ -11,7 +11,8 @@ import { FieldError } from "react-hook-form";
 import { StyledForm } from "../../Form/styled";
 
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
+// import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 interface IUserLogin {
     email: string;
@@ -23,7 +24,10 @@ interface IUserLogin {
 }
 export const ModalLogin = () => {
     const { onSubmitLogin } = useContext(UserContext);
-    const { handleModal } = useContext(ProjectsContext);
+    const { setShowModal } = useContext(ProjectsContext);
+    const modalRef = useOutSideClick(() => {
+        setShowModal(null)
+    })
     const {
         handleSubmit,
         register,
@@ -36,7 +40,7 @@ export const ModalLogin = () => {
 
     return (
         <StyledBoxModal>
-            <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
+            <StyledForm ref={modalRef} onSubmit={handleSubmit(onSubmitLogin)} >
                 <h2>Já faz parte?</h2>
 
                 <InputAndLabel

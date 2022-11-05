@@ -1,12 +1,11 @@
-import { elementAcceptingRef } from "@mui/utils";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import { UserContext } from "../../../Providers/UserProvider";
 import api from "../../../Services/api";
 import { StyledButtonCadastro } from "../../Button";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 import { StyledBoxModal } from "../ModalLogin/style";
+import {useOutSideClick} from '../../../hooks/useOutSideClick'
 import {
     StyledModalBody,
     StyledOngDetails,
@@ -30,10 +29,13 @@ interface iState {
 }
 
 export const ModalPerfilOng = () => {
-    const { handleModal, handleNavigate } = useContext(ProjectsContext);
-    const { dataUser } = useContext(AuthContext);
-    const { user } = useContext(UserContext);
+    const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+    const { dataUser, } = useContext(AuthContext);
     const [projects, setProjetcts] = useState([] as unknown as iState);
+
+    const modalRef = useOutSideClick(() => {
+        setShowModal(null)
+    })
 
     useEffect(() => {
         const getProject = () => {
@@ -42,17 +44,17 @@ export const ModalPerfilOng = () => {
                     setProjetcts(res.data);
                 })
                 .catch((error) => console.log(error));
-        };
-        getProject();
-    }, []);
+            };
+        getProject(); 
+    }, [dataUser]);     
 
     console.log(projects);
 
     return (
         <>
             <StyledBoxModal>
-                <StyledModalBody>
-                    <ButtonCloseModal callback={handleModal} />
+                <StyledModalBody ref={modalRef}>
+                    <ButtonCloseModal callback={(()=> setShowModal(false))} />
 
                     <StyledContent>
                         <StyledOngDetails>
@@ -92,16 +94,9 @@ export const ModalPerfilOng = () => {
 
                                 <StyledDescription>
                                     <p>O que fazemos</p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Etiam eu lorem sit amet
-                                        odio ullamcorper pretium. Suspendisse
-                                        sed iaculis massa. Vivamus varius semper
-                                        posuere. Proin aliquet vel est id
-                                        ultrices. Vestibulum quis pharetra
-                                        lectus. Praesent vel nulla arcu. Proin
-                                        eget sodales odio.
-                                    </p>
+                                    <textarea placeholder="Escreva sua descrição">
+                                            {dataUser.description}
+                                    </textarea>                                      
                                 </StyledDescription>
                             </StyledProjectDetails>
                         </StyledOngDetails>
@@ -127,11 +122,11 @@ export const ModalPerfilOng = () => {
                                         }
                                     })
                                 ) : (
-                                    <h1>Não Rolou</h1>
+                                    <h1>Nenhum projeto</h1>
                                 )}
 
                                 <StyledButtonCadastro>
-                                    Ver mais
+                                    Criar projeto
                                 </StyledButtonCadastro>
                             </div>
                         </StyledProjectsRequests>
