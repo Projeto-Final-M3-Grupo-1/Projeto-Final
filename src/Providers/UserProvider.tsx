@@ -27,7 +27,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
     const navigate = useNavigate();
     const handleCreateTech = () => {
-        return createTech ? setCreateTech(true) : setCreateTech(false);
+        return !createTech ? setCreateTech(true) : setCreateTech(false);
     };
 
     const onSubmitLogin = async (data: any) => {

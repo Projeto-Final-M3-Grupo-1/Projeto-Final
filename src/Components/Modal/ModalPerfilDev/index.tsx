@@ -91,54 +91,27 @@ export const ModalPerfilDev = () => {
                                 </StyledInfo>
 
                                 <StyledInfo>
-                                    <p className="label">GitHub</p>
+                                    <p className="label">Linkedin</p>
                                     <input
                                         className="info"
                                         value={dataUser.linkedin}
                                     />
                                 </StyledInfo>
-
-                                <div>
-                                    <h2>Tecnologias que trabalho</h2>
-                                    <ul>
-                                        {" "}
-                                        {createTech && <ModalCreateTech />}
-                                    </ul>
-                                    <StyledButtonCadastro
-                                        onClick={handleCreateTech}
-                                    >
-                                        Adicionar tecnologias
-                                    </StyledButtonCadastro>
-                                </div>
                             </StyledProjectDetails>
                         </StyledOngDetails>
 
                         <StyledProjectsRequests>
-                            <h3 className="title">Solicitações do Projeto</h3>
-
                             <div className="projectInfo">
-                                <h3 className="name">{dataUser.razaoSocial}</h3>
-                                {projects.length ? (
-                                    projects.map((element) => {
-                                        if (element.ongId == dataUser.id) {
-                                            return (
-                                                <>
-                                                    <p className="title">
-                                                        {element.title}
-                                                    </p>
-                                                    <p className="description">
-                                                        {element.description}
-                                                    </p>
-                                                </>
-                                            );
-                                        }
-                                    })
-                                ) : (
-                                    <h1>Não Rolou</h1>
-                                )}
-
-                                <StyledButtonCadastro>
-                                    Ver mais
+                                <h2 className="title">
+                                    Tecnologias que trabalho
+                                </h2>
+                                <ul className="techs">
+                                    <li>JavaScript</li>
+                                </ul>
+                                <StyledButtonCadastro
+                                    onClick={handleCreateTech}
+                                >
+                                    Adicionar tecnologias
                                 </StyledButtonCadastro>
                             </div>
                         </StyledProjectsRequests>
@@ -153,6 +126,7 @@ export const ModalPerfilDev = () => {
                     </StyledContent>
                 </StyledModalBody>
             </StyledBoxModal>
+            {createTech && <ModalCreateTech />}
         </>
     );
 };
