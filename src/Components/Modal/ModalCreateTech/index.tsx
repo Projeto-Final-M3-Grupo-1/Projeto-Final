@@ -10,7 +10,7 @@ import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 import { StyledButtonCta } from "../../Button";
 
 interface ICreateTech {
-    nome: string;
+    tech: string;
 }
 export const ModalCreateTech = () => {
     const { onSubmitTech } = useContext(UserContext);
@@ -19,7 +19,7 @@ export const ModalCreateTech = () => {
         handleSubmit,
         register,
         formState: {
-            errors: { nome },
+            errors: { tech },
         },
     } = useForm<ICreateTech>({
         resolver: yupResolver(schemaCreateTech),
@@ -30,13 +30,15 @@ export const ModalCreateTech = () => {
                 <ButtonCloseModal callback={handleCreateTech} />
                 <InputAndLabel
                     textLabel="Nome"
-                    name="nome"
+                    name="tech"
                     placeholder="Digite seu nome"
                     type="text"
                     register={register}
-                    error={nome?.message}
+                    error={tech?.message}
                 />
-                <StyledButtonCta>Criar Tecnologia</StyledButtonCta>
+                <StyledButtonCta type="submit">
+                    Criar Tecnologia
+                </StyledButtonCta>
             </StyledForm>
         </StyledBoxModal>
     );

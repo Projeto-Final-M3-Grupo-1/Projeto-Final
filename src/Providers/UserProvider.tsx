@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
 import { toast } from "react-toastify";
-import { ProjectsContext } from "./ProjectsProvider";
+import { AuthContext } from "./AuthContext";
 
 interface IUserContext {
     onSubmitLogin: any;
@@ -14,6 +14,10 @@ interface IUserContext {
     setUser: any;
     handleCreateTech: any;
     createTech: boolean;
+    requestTechs: any;
+    techs: any;
+    requestDeleteTech: any;
+    onSubmitEditPerfil: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -22,8 +26,11 @@ interface IUserChildren {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
+    const { setDataUser } = useContext(AuthContext);
+
     const [user, setUser] = useState<any>({});
     const [createTech, setCreateTech] = useState<any>(false);
+    const [techs, setTechs] = useState([]);
 
     const navigate = useNavigate();
     const handleCreateTech = () => {
@@ -43,7 +50,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
             .catch(() => toast.error("Email ou senha invalidos"));
     };
     const onSubmitTech = async (data: any) => {
-        console.log(data);
+        data.userId = Number(localStorage.userId);
+        requestCreateTech(data);
     };
     const onSubmitRegister = (data: any) => {
         data.typeUser = "dev";
@@ -65,6 +73,53 @@ export const UserProvider = ({ children }: IUserChildren) => {
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
+    const onSubmitEditPerfil = (data: any) => {
+        requestEditeTech(data);
+    };
+
+    const requestTechs = () => {
+        api.get("/techs", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => setTechs(res.data))
+            .catch((res) => console.log(res));
+    };
+    const requestCreateTech = (data: any) => {
+        api.post("/techs", data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then(() => {
+                setCreateTech(false);
+                requestTechs();
+            })
+            .catch((err) => console.log(err));
+    };
+    const requestDeleteTech = (id: any) => {
+        api.delete(`/techs/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => requestTechs());
+    };
+    const requestEditeTech = (data: any) => {
+        api.patch(`/users/${localStorage.userId}`, data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => {
+                setDataUser(res);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
         <UserContext.Provider
             value={{
@@ -76,6 +131,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitTech,
                 handleCreateTech,
                 createTech,
+                requestTechs,
+                techs,
+                requestDeleteTech,
+                onSubmitEditPerfil,
             }}
         >
             {children}

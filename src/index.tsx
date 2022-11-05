@@ -12,14 +12,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <BrowserRouter>
-        <UserProvider>
-            <ProjectsProvider>
-                <AuthProvider>
+        <AuthProvider>
+            <UserProvider>
+                <ProjectsProvider>
                     <React.StrictMode>
                         <App />
                     </React.StrictMode>
-                </AuthProvider>
-            </ProjectsProvider>
-        </UserProvider>
+                </ProjectsProvider>
+            </UserProvider>
+        </AuthProvider>
     </BrowserRouter>
 );

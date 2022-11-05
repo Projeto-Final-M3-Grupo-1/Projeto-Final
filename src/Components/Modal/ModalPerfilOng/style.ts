@@ -56,7 +56,15 @@ export const StyledOngDetails = styled.div`
         width: 45%;
         height: 80%;
     }
-
+    .formEditPerfil {
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .formEditPerfil > button {
+        min-width: 95%;
+    }
     .profile {
         display: flex;
         justify-content: flex-start;
@@ -69,7 +77,8 @@ export const StyledOngDetails = styled.div`
             width: 30px;
 
             > img {
-                width: 80%;
+                width: 100%;
+                border-radius: 50%;
             }
         }
 
@@ -150,13 +159,17 @@ export const StyledInfo = styled.div`
     .info {
         box-sizing: border-box;
 
-        padding-left: 10px;
-
         width: 95%;
-        height: 24px;
+        height: 25px;
+
+        padding: 4px 0px 0px 5px;
 
         border-radius: 4px;
         border: 1px solid var(--rose-600);
+
+        font-size: 14px;
+
+        resize: none;
     }
 `;
 
@@ -169,33 +182,31 @@ export const StyledDescription = styled.div`
 
     gap: 5px;
 
-    
     textarea {
-    box-sizing: border-box;
-    
-    height: 120px;
-    width: 95%;
-    
-    border: 1px solid var(--rose-600);
-    border-radius: 4px;
-    
-    color: var(--rose-600);
-    
-    resize: none;
-    
-    padding: 10px 0 0 10px;
-    
-    ::-webkit-scrollbar {
-      background-color: var(--rose-200);
-      border-radius: 20px;
-      width: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--main-title-text-color);
-      border-radius: 20px;
-    }
-  }
+        box-sizing: border-box;
 
+        height: 120px;
+        width: 95%;
+
+        border: 1px solid var(--rose-600);
+        border-radius: 4px;
+
+        color: var(--rose-600);
+
+        resize: none;
+
+        padding: 10px 0 0 10px;
+
+        ::-webkit-scrollbar {
+            background-color: var(--rose-200);
+            border-radius: 20px;
+            width: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--main-title-text-color);
+            border-radius: 20px;
+        }
+    }
 `;
 
 export const StyledProjectsRequests = styled.div`
@@ -204,7 +215,13 @@ export const StyledProjectsRequests = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 95%;
+    border: 2px solid red;
+
+    width: 90%;
+
+    border-radius: 4px;
+
+    padding: 1rem 0rem;
 
     .title {
         margin-bottom: 10px;
@@ -217,7 +234,7 @@ export const StyledProjectsRequests = styled.div`
         flex-direction: column;
 
         padding: 5px;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         height: 327px;
         width: 90%;
         gap: 7px;
@@ -230,20 +247,32 @@ export const StyledProjectsRequests = styled.div`
             font-size: var(--card-button-text-size);
             font-weight: var(--card-border-color);
         }
+        button {
+            font-size: 14px;
+            width: 100%;
+        }
 
         p {
             font-size: 14px;
         }
         .techs {
             width: 100%;
+            max-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: hidden;
+            overflow-y: scroll;
         }
         .techs > li {
             min-width: 90%;
-            height: 30px;
+            min-height: 30px;
 
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+
+            padding: 0px 5px;
 
             font-size: 16px;
             font-weight: 600;
@@ -283,7 +312,7 @@ export const StyledProjectsRequests = styled.div`
             justify-content: center;
             align-items: center;
 
-            border: 1px solid red;
+            /* border: 1px solid red; */
             border-radius: 4px;
 
             height: 300px;
