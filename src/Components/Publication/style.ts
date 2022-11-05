@@ -10,7 +10,7 @@ export const StyledPublications = styled.div`
     padding: 3rem 4rem;
 
     @media (max-width: 650px){
-     padding: 2rem 1rem;    
+     padding: 2rem 2rem;    
     }
 `
 
