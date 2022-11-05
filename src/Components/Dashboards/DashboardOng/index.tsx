@@ -9,17 +9,17 @@ import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
 import Publications from "../../Publication";
 
 export const DashboardOng = () => {
-	const { showModal, handleNavigate } = useContext(ProjectsContext);
-	const { renderPublications } = useContext(UserContext);
+    const { showModal, handleNavigate } = useContext(ProjectsContext);
+    const { renderPublications } = useContext(UserContext);
 
-	useEffect(() => {
-		renderPublications();
-	 }, [])
-	return (
-		<>
-			<HeaderDashboard />
-			{showModal ? <ModalPerfilOng /> : <MenuAsideOng />}
-			<Publications></Publications>
-		</>
-	);
+    useEffect(() => {
+        renderPublications();
+    }, []);
+    return (
+        <>
+            <HeaderDashboard />
+            {showModal && <ModalPerfilOng />}
+            <Publications></Publications>
+        </>
+    );
 };

@@ -5,7 +5,7 @@ import api from "../../../Services/api";
 import { StyledButtonCadastro } from "../../Button";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 import { StyledBoxModal } from "../ModalLogin/style";
-import {useOutSideClick} from '../../../hooks/useOutSideClick'
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
 import {
     StyledModalBody,
     StyledOngDetails,
@@ -30,12 +30,13 @@ interface iState {
 
 export const ModalPerfilOng = () => {
     const { setShowModal, handleNavigate } = useContext(ProjectsContext);
-    const { dataUser, } = useContext(AuthContext);
+
+    const { dataUser } = useContext(AuthContext);
     const [projects, setProjetcts] = useState([] as unknown as iState);
 
     const modalRef = useOutSideClick(() => {
-        setShowModal(null)
-    })
+        setShowModal(null);
+    });
 
     useEffect(() => {
         const getProject = () => {
@@ -44,9 +45,9 @@ export const ModalPerfilOng = () => {
                     setProjetcts(res.data);
                 })
                 .catch((error) => console.log(error));
-            };
-        getProject(); 
-    }, [dataUser]);     
+        };
+        getProject();
+    }, [dataUser]);
 
     console.log(projects);
 
@@ -54,7 +55,7 @@ export const ModalPerfilOng = () => {
         <>
             <StyledBoxModal>
                 <StyledModalBody ref={modalRef}>
-                    <ButtonCloseModal callback={(()=> setShowModal(false))} />
+                    <ButtonCloseModal callback={() => setShowModal(false)} />
 
                     <StyledContent>
                         <StyledOngDetails>
@@ -95,8 +96,8 @@ export const ModalPerfilOng = () => {
                                 <StyledDescription>
                                     <p>O que fazemos</p>
                                     <textarea placeholder="Escreva sua descrição">
-                                            {dataUser.description}
-                                    </textarea>                                      
+                                        {dataUser.description}
+                                    </textarea>
                                 </StyledDescription>
                             </StyledProjectDetails>
                         </StyledOngDetails>
@@ -105,7 +106,9 @@ export const ModalPerfilOng = () => {
                             <h3 className="title">Solicitações do Projeto</h3>
 
                             <div className="projectInfo">
-                                <h3 className="name">{dataUser.nomeDoResponsavel}</h3>
+                                <h3 className="name">
+                                    {dataUser.nomeDoResponsavel}
+                                </h3>
                                 {projects.length ? (
                                     projects.map((element) => {
                                         if (element.ongId === dataUser.id) {
