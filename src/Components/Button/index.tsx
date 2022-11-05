@@ -104,3 +104,22 @@ export const StyledButtonCadastro = styled.button`
         transition: var(--button-hover-transition);
     }
 `;
+
+export const StyledButtonAddPubli = styled.button`
+    background: transparent;
+    color: var(--button-background-color);
+    font-weight: var(--button-text-weight);
+    align-items: center;
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    border: 2px solid var(--button-background-color); 
+    cursor: pointer;
+
+    &:hover {
+        background: var(--button-background-color);
+        color: var(--button-text-color);
+        transition: var(--button-hover-transition);
+    }    
+`

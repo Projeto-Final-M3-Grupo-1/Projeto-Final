@@ -6,22 +6,21 @@ import { DashboardOng } from "../../Components/Dashboards/DashboardOng";
 import { AuthContext } from "../../Providers/AuthContext";
 
 export function Dashboard() {
-    const { dataUser, loadingUser } = useContext(AuthContext);
+	const { dataUser, loadingUser } = useContext(AuthContext);
 
-    useEffect(() => {
-        loadingUser();
-    }, []);
-    const { typeUser } = dataUser;
-    console.log(typeUser);
-    return (
-        <>
-            {typeUser == "admin" ? (
-                <DashboardAdmin />
-            ) : typeUser == "dev" ? (
-                <DashboardDev />
-            ) : (
-                <DashboardOng />
-            )}
-        </>
-    );
+	useEffect(() => {
+		loadingUser();
+	}, []);
+	const { typeUser } = dataUser;
+	return (
+		<>
+			{typeUser == "admin" ? (
+				<DashboardAdmin />
+			) : typeUser == "dev" ? (
+				<DashboardDev />
+			) : (
+				<DashboardOng />
+			)}
+		</>
+	);
 }
