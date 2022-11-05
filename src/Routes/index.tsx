@@ -4,7 +4,6 @@ import { Home } from "../Pages/Home";
 import { Dashboard } from "../Pages/DashboardCompany";
 import { RegisterDev } from "../Pages/RegisterDev";
 import { RegisterOng } from "../Pages/RegisterOng";
-import Test from "../Pages/Test/Test";
 
 const Routers = () => {
 	return (
@@ -13,7 +12,6 @@ const Routers = () => {
 			<Route path="/dashboard" element={<Dashboard />} />
 			<Route path="/registerong" element={<RegisterOng />} />
 			<Route path="/registerdev" element={<RegisterDev />} />
-			<Route path="/test" element={<Test />} />
 			<Route path="*" element={<Navigate to="/home" />} />
 		</Routes>
 	);
