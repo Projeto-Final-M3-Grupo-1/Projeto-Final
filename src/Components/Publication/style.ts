@@ -8,6 +8,10 @@ export const StyledPublications = styled.div`
     max-width: 1000px; 
     gap: 1rem;
     padding: 3rem 4rem;
+
+    @media (max-width: 650px){
+     padding: 2rem 1rem;    
+    }
 `
 
 export const StyledHeaderPublications = styled.div`

@@ -6,10 +6,25 @@ export const StyledCard = styled.li`
     justify-content: space-between;
     border: 4px solid var(--rose-600);
     border-radius: 4px;
+    padding: 1rem;
+    gap: 2rem;
 
     img{
         width: 50%;
         height: 100%;
+    }
+
+    @media (max-width: 850px) {
+        flex-direction: column;
+        align-items: center;
+
+        /* max-width: 60%; */
+
+        img{
+            max-height: 350px;
+            width: 100%; 
+
+        }
     }
 `
 
@@ -18,7 +33,8 @@ export const StyledRightCard = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    
+    gap: 1rem;
 
     button{
         width: 90%;
@@ -40,5 +56,25 @@ export const StyledTextCard = styled.div`
     p{
         font-size: 14px;
         line-height: 1.5;
+    }
+`
+
+export const StyledButtonsAdmin = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+    button{
+        width: 45%;
+    }
+
+    @media (max-width: 850px) {
+        flex-direction: column;
+        gap: 1rem;
+
+        button{
+            width: 100%;
+        } 
     }
 `

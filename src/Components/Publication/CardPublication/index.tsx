@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { string } from "yup";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { StyledLoginButton } from "../../Button";
-import { StyledCard, StyledTextCard, StyledRightCard } from "./style";
+import { StyledCard, StyledTextCard, StyledRightCard, StyledButtonsAdmin } from "./style";
 
 interface ICard {
   img: string;
@@ -23,10 +23,10 @@ const Card = ({ img, title, description }: ICard) => {
           <p>{description}</p>
         </StyledTextCard>
         {typeUser === "admin" ? (
-          <>
+          <StyledButtonsAdmin>
             <StyledLoginButton>Ver site</StyledLoginButton>
             <StyledLoginButton>Editar</StyledLoginButton>
-          </>
+          </StyledButtonsAdmin>
         ) : (
           <StyledLoginButton>Ver site</StyledLoginButton>
         )}
