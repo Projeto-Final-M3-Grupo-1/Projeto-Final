@@ -169,18 +169,33 @@ export const StyledDescription = styled.div`
 
     gap: 5px;
 
-    overflow: hidden;
-    overflow-y: scroll;
-
+    
+    textarea {
+    box-sizing: border-box;
+    
+    height: 120px;
+    width: 95%;
+    
+    border: 1px solid var(--rose-600);
+    border-radius: 4px;
+    
+    color: var(--rose-600);
+    
+    resize: none;
+    
+    padding: 10px 0 0 10px;
+    
     ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        width: 5px;
+      background-color: var(--rose-200);
+      border-radius: 20px;
+      width: 5px;
     }
     ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
+      background-color: var(--main-title-text-color);
+      border-radius: 20px;
     }
+  }
+
 `;
 
 export const StyledProjectsRequests = styled.div`

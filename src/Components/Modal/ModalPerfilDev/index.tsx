@@ -1,4 +1,6 @@
+
 import { useContext, useEffect, useState } from "react";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
@@ -30,7 +32,8 @@ interface iState {
 }
 
 export const ModalPerfilDev = () => {
-    const { handleModal, handleNavigate } = useContext(ProjectsContext);
+    const { setShowModal, handleModal, handleNavigate } = useContext(ProjectsContext);
+
     const { dataUser } = useContext(AuthContext);
     const { handleCreateTech, createTech } = useContext(UserContext);
     const [projects, setProjetcts] = useState([] as unknown as iState);
@@ -48,10 +51,14 @@ export const ModalPerfilDev = () => {
 
     console.log(dataUser);
 
+    const modalRef = useOutSideClick(() => {
+        setShowModal(null)
+    })
+
     return (
         <>
             <StyledBoxModal>
-                <StyledModalBody>
+                <StyledModalBody ref={modalRef}>
                     <ButtonCloseModal callback={handleModal} />
 
                     <StyledContent>
