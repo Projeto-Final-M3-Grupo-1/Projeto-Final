@@ -9,9 +9,11 @@ interface IUserContext {
     onSubmitLogin: any;
     onSubmitRegister: any;
     onSubmitOng: any;
-    onSubmitTech: any;
+    renderPublications: () => void,
     user: any;
     setUser: any;
+    publications: [];
+    onSubmitTech: any;
     handleCreateTech: any;
     createTech: boolean;
 }
@@ -22,8 +24,14 @@ interface IUserChildren {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
-    const [user, setUser] = useState<any>({});
-    const [createTech, setCreateTech] = useState<any>(false);
+
+  const [user, setUser] = useState<any>({});
+  const [token, setToken] = useState<any>({});
+  const [email, setEmail] = useState<any>({});
+  const [publications, setPublications] = useState<any>({});
+  const { setShowModal } = useContext(ProjectsContext);
+  const [createTech, setCreateTech] = useState<any>(false);
+
 
     const navigate = useNavigate();
     const handleCreateTech = () => {
@@ -65,6 +73,12 @@ export const UserProvider = ({ children }: IUserChildren) => {
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
+
+    const renderPublications = () => {
+       api.get("/notices")
+       .then((resp) => setPublications(resp.data))
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -73,6 +87,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitOng,
                 user,
                 setUser,
+                publications,
+                renderPublications,
                 onSubmitTech,
                 handleCreateTech,
                 createTech,
@@ -82,3 +98,4 @@ export const UserProvider = ({ children }: IUserChildren) => {
         </UserContext.Provider>
     );
 };
+
