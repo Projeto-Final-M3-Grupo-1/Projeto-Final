@@ -1,4 +1,58 @@
 import styled from "styled-components";
+import { GiHamburgerMenu } from "react-icons/gi";
+
+export const MenuHamburger = styled(GiHamburgerMenu)`
+	color: var(--rose-600);
+	width: 30px;
+	height: 30px;
+
+	&:hover ~ div {
+		display: block;
+	}
+`;
+
+export const MobileDropdown = styled.div`
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 2rem;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+
+	background-color: var(--white);
+	border-bottom-left-radius: 4px;
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	z-index: 1;
+`;
+
+export const MobileDropdownList = styled.ul`
+	list-style: none;
+`;
+
+export const MobileDropdownItem = styled.li`
+	padding: 10px;
+	border-bottom: 1px solid var(--slate-200);
+`;
+
+export const LogoutButton = styled.button`
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 200px;
+	padding: 0.25rem;
+
+	background-color: var(--rose-100);
+	color: var(--rose-600);
+	font-weight: 500;
+	border: 1px solid var(--rose-600);
+	border-radius: 4px;
+`;
+
 export const Header = styled.header`
 	width: 100%;
 	display: flex;
@@ -8,10 +62,7 @@ export const Header = styled.header`
 	align-items: center;
 	justify-content: space-around;
 	padding: 15px 0px;
-	.logout {
-		color: white;
-		background-color: white;
-	}
+
 	@media (max-width: 700px) {
 		width: 100%;
 		box-sizing: border-box;
@@ -29,17 +80,6 @@ export const Header = styled.header`
 		align-items: center;
 		text-transform: uppercase;
 	}
-
-	@media (max-width: 700px) {
-		nav {
-			display: flex;
-			justify-content: center;
-			box-sizing: border-box;
-			flex-wrap: wrap;
-			gap: 10px;
-			min-width: 320px;
-		}
-	}
 `;
 
 export const Nav = styled.nav`
@@ -49,6 +89,22 @@ export const Nav = styled.nav`
 
 	width: 80%;
 	max-width: 1200px;
+
+	div {
+		display: flex;
+		flex-direction: column;
+	}
+`;
+
+export const MobileNav = styled.nav`
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	gap: 1rem;
+
+	div {
+		display: none;
+	}
 `;
 
 export const Dropdown = styled.ul`
