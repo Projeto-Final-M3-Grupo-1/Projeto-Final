@@ -105,7 +105,7 @@ export const ModalPerfilOng = () => {
                             <h3 className="title">Solicitações do Projeto</h3>
 
                             <div className="projectInfo">
-                                <h3 className="name">{dataUser.razaoSocial}</h3>
+                                <h3 className="name">{dataUser.nomeDoResponsavel}</h3>
                                 {projects.length ? (
                                     projects.map((element) => {
                                         if (element.ongId === dataUser.id) {
