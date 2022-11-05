@@ -7,19 +7,18 @@ import HeaderDashboard from "../../HeaderDashboard";
 import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 
 export const DashboardDev = () => {
-    const { handleModal, showModal, handleNavigate } =
-        useContext(ProjectsContext);
-    const { renderPublications } = useContext(UserContext);
+    const { renderPublications, handlePerfil, openPerfil } =
+        useContext(UserContext);
 
     useEffect(() => {
-       renderPublications();
-    }, [])
+        renderPublications();
+    }, []);
 
     return (
         <>
             <HeaderDashboard />
-            {showModal && <ModalPerfilDev />}
-            <button onClick={handleModal}>perfil</button>
+            {openPerfil && <ModalPerfilDev />}
+            <button onClick={handlePerfil}>perfil</button>
             <Publications></Publications>
         </>
     );

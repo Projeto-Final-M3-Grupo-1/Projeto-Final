@@ -1,4 +1,3 @@
-import { request } from "https";
 import { useContext, useEffect, useState } from "react";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
 import { AuthContext } from "../../../Providers/AuthContext";
@@ -36,9 +35,8 @@ interface iState {
 }
 interface IEditPerfil {}
 export const ModalPerfilDev = () => {
-    const { setShowModal, handleModal, handleNavigate } =
-        useContext(ProjectsContext);
-
+    const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+    const { handlePerfil, setOpenPerfil } = useContext(UserContext);
     const {
         handleSubmit,
         register,
@@ -83,7 +81,7 @@ export const ModalPerfilDev = () => {
         <>
             <StyledBoxModal>
                 <StyledModalBody>
-                    <ButtonCloseModal callback={handleModal} />
+                    <ButtonCloseModal callback={handlePerfil} />
 
                     <StyledContent>
                         <StyledOngDetails>
@@ -180,7 +178,10 @@ export const ModalPerfilDev = () => {
                         </StyledProjectsRequests>
                         <StyledButtons>
                             <StyledButtonCadastro
-                                onClick={() => handleNavigate("/home")}
+                                onClick={() => {
+                                    setOpenPerfil(false);
+                                    handleNavigate("/home");
+                                }}
                             >
                                 Logout
                             </StyledButtonCadastro>

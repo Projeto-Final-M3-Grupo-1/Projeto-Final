@@ -21,6 +21,9 @@ interface IUserContext {
     techs: any;
     requestDeleteTech: any;
     onSubmitEditPerfil: any;
+    openPerfil: boolean;
+    handlePerfil: any;
+    setOpenPerfil: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -35,12 +38,16 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const [user, setUser] = useState<any>({});
     const [token, setToken] = useState<any>({});
     const [email, setEmail] = useState<any>({});
+    const [openPerfil, setOpenPerfil] = useState(false);
     const [publications, setPublications] = useState<any>({});
     const { setShowModal } = useContext(ProjectsContext);
 
     const navigate = useNavigate();
     const handleCreateTech = () => {
         return !createTech ? setCreateTech(true) : setCreateTech(false);
+    };
+    const handlePerfil = () => {
+        return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
     };
 
     const onSubmitLogin = async (data: any) => {
@@ -148,6 +155,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 techs,
                 requestDeleteTech,
                 onSubmitEditPerfil,
+                openPerfil,
+                handlePerfil,
+                setOpenPerfil,
             }}
         >
             {children}

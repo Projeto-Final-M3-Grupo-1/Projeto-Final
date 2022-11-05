@@ -22,6 +22,7 @@ export const StyledModalBody = styled.div`
 
         height: 33rem;
         width: 60%;
+        max-width: 600px;
 
         margin: 0 auto;
         overflow-y: hidden;
