@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
@@ -19,24 +19,38 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
   const [user, setUser] = useState<any>({});
+  const [token, setToken] = useState<any>({});
+  const [email, setEmail] = useState<any>({});
+  const [notices, setNotices] = useState<any>({});
   const { setShowModal } = useContext(ProjectsContext);
 
   const navigate = useNavigate();
 
-  const onSubmitLogin = (data: any) => {
-    api
-      .post("/login", data)
-      .then((res) => {
+  async function onSubmitLogin(data: any){
+    try {
+      const resp = await api.post("/login", data);
         navigate("/dashboard");
         toast.success("Login realizado com sucesso");
-        setUser(res.data.user);
-        setShowModal(false);
-        console.log(res.data.user);
+        console.log(resp.data);
+        
 
-        console.log(res);
-      })
-      .catch(() => toast.error("Email ou senha invalidos"));
+        const { email } = resp.data.user;
+        const { user: userResp, accessToken } = resp.data;
+
+        console.log(userResp);
+        
+
+        localStorage.setItem("@kenzieHub:token", token);
+        localStorage.setItem("@kenzieHub:name", email);
+        
+        setUser(userResp);
+        // setToken(accessToken + "")
+        setShowModal(false);
+    } catch (error) {
+      toast.error("Email ou senha invalidos")
+    }
   };
+
   const onSubmitRegister = (data: any) => {
     data.typeUser = "dev";
     api
@@ -59,6 +73,36 @@ export const UserProvider = ({ children }: IUserChildren) => {
       })
       .catch(() => toast.error("Cadastro não realizado"));
   };
+
+  // Carregamento inicial
+  useEffect(() => {
+    async function loadUser() {
+
+      const tokenUser = localStorage.getItem("@kenzieHub:token");
+      const emailUser = localStorage.getItem("@kenzieHub:name");
+
+      if (tokenUser){
+        try {
+          const resp = await api.get("/notices");
+          console.log(resp);
+
+          setNotices(resp);
+    
+          // setUser(data);
+          // setTechs(data.techs);
+
+          // setName(nameBusca + '');
+          // setModule(moduleBusca + '');
+          // setToken(tokenBusca);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      // setLoading(false);
+    }
+    loadUser();
+  
+
   return (
     <UserContext.Provider
       value={{
@@ -71,4 +115,4 @@ export const UserProvider = ({ children }: IUserChildren) => {
       {children}
     </UserContext.Provider>
   );
-};
+}
