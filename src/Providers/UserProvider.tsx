@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../Services/api";
@@ -10,6 +10,7 @@ interface IUserContext {
     onSubmitRegister: any;
     onSubmitOng: any;
     user: any;
+    setUser: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -19,20 +20,19 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
     const [user, setUser] = useState<any>({});
-    const { setShowModal } = useContext(ProjectsContext);
 
     const navigate = useNavigate();
 
-    const onSubmitLogin = (data: any) => {
-        api.post("/login", data)
+    const onSubmitLogin = async (data: any) => {
+        await api
+            .post("/login", data)
             .then((res) => {
                 navigate("/dashboard");
+                // console.log(res.data.user.id);
                 toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
-                // setShowModal(false);
-                console.log(res.data.user);
-
-                console.log(res);
+                localStorage.setItem("token", res.data.accessToken);
+                localStorage.setItem("userId", res.data.user.id);
             })
             .catch(() => toast.error("Email ou senha invalidos"));
     };
@@ -51,8 +51,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
         api.post("/registerong", data)
 
             .then(() => {
-                toast.success("Cadastro realizado com sucesso!");
                 navigate("/home");
+                toast.success("Cadastro realizado com sucesso!");
             })
             .catch(() => toast.error("Cadastro não realizado"));
     };
@@ -63,6 +63,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitRegister,
                 onSubmitOng,
                 user,
+                setUser,
             }}
         >
             {children}

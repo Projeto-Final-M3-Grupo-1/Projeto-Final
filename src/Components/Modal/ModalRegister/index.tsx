@@ -55,7 +55,6 @@ export const ModalRegister = () => {
     return (
         <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitRegister)}>
-                <ButtonCloseModal callback={handleModal} />
                 <h2>Cadastrar Dev</h2>
                 <InputAndLabel
                     textLabel="Nome"
