@@ -8,6 +8,7 @@ export const StyledCard = styled.li`
     border-radius: 4px;
     padding: 1rem;
     gap: 2rem;
+    width: 100%;
 
     img{
         width: 50%;
@@ -31,8 +32,9 @@ export const StyledCard = styled.li`
 export const StyledRightCard = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    width: 100%;
     
     gap: 1rem;
 
@@ -46,6 +48,7 @@ export const StyledTextCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    
 
     h2{
         font-size: 22px;
