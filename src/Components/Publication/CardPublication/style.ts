@@ -19,8 +19,6 @@ export const StyledCard = styled.li`
         flex-direction: column;
         align-items: center;
 
-        /* max-width: 60%; */
-
         img{
             max-height: 350px;
             width: 100%; 
