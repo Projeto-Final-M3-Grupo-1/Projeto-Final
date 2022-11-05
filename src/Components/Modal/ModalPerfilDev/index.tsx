@@ -1,16 +1,17 @@
 import { UserContext } from "../../../Providers/UserProvider";
 import { StyledPerfilDev } from "./style";
 import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthContext";
 
 export const PerfilDev = () => {
-    const { user } = useContext(UserContext);
-    console.log(user);
+    const { dataUser } = useContext(AuthContext);
+
     return (
         <StyledPerfilDev>
-            <img src={user.fotoDePerfil} alt="" />
-            <a href={user.github}>{user.github}</a>
-            <a href={user.linkedin}>{user.linkedin}</a>
-            <h1>{user.nome}</h1>
+            <img src={dataUser.fotoDePerfil} alt="" />
+            <input value={dataUser.github} />
+            <input value={dataUser.linkedin} />
+            <input value={dataUser.nome} />
         </StyledPerfilDev>
     );
 };

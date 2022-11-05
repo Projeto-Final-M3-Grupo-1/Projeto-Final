@@ -6,13 +6,16 @@ import { toast } from "react-toastify";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
-  onSubmitLogin: any;
-  onSubmitRegister: any;
-  onSubmitOng: any;
-  user: any;
+    onSubmitLogin: any;
+    onSubmitRegister: any;
+    onSubmitOng: any;
+    renderPublications: () => void,
+    user: any;
+    setUser: any;
+    publications: [];
 }
 interface IUserChildren {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -21,98 +24,64 @@ export const UserProvider = ({ children }: IUserChildren) => {
   const [user, setUser] = useState<any>({});
   const [token, setToken] = useState<any>({});
   const [email, setEmail] = useState<any>({});
-  const [notices, setNotices] = useState<any>({});
+  const [publications, setPublications] = useState<any>({});
   const { setShowModal } = useContext(ProjectsContext);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  async function onSubmitLogin(data: any){
-    try {
-      const resp = await api.post("/login", data);
-        navigate("/dashboard");
-        toast.success("Login realizado com sucesso");
-        console.log(resp.data);
-        
+    const onSubmitLogin = async (data: any) => {
+        await api
+            .post("/login", data)
+            .then((res) => {
+                navigate("/dashboard");
+                // console.log(res.data.user.id);
+                toast.success("Login realizado com sucesso");
+                setUser(res.data.user);
+                localStorage.setItem("token", res.data.accessToken);
+                localStorage.setItem("userId", res.data.user.id);
+            })
+            .catch(() => toast.error("Email ou senha invalidos"));
+    };
+    const onSubmitRegister = (data: any) => {
+        data.typeUser = "dev";
+        api.post("/registerdev", data)
+            .then(() => {
+                navigate("/home");
+                toast.success("Cadastro realizado com sucesso!");
+            })
+            .catch(() => toast.error("Cadastro não realizado"));
+    };
 
-        const { email } = resp.data.user;
-        const { user: userResp, accessToken } = resp.data;
+    const onSubmitOng = (data: any) => {
+        data.typeUser = "ong";
+        api.post("/registerong", data)
 
-        console.log(userResp);
-        
+            .then(() => {
+                navigate("/home");
+                toast.success("Cadastro realizado com sucesso!");
+            })
+            .catch(() => toast.error("Cadastro não realizado"));
+    };
 
-        localStorage.setItem("@kenzieHub:token", token);
-        localStorage.setItem("@kenzieHub:name", email);
-        
-        setUser(userResp);
-        // setToken(accessToken + "")
-        setShowModal(false);
-    } catch (error) {
-      toast.error("Email ou senha invalidos")
+    const renderPublications = () => {
+       api.get("/notices")
+       .then((resp) => setPublications(resp.data))
     }
-  };
 
-  const onSubmitRegister = (data: any) => {
-    data.typeUser = "dev";
-    api
-      .post("/registerdev", data)
-      .then(() => {
-        toast.success("Cadastro realizado com sucesso!");
-        navigate("/home");
-      })
-      .catch(() => toast.error("Cadastro não realizado"));
-  };
+    return (
+        <UserContext.Provider
+            value={{
+                onSubmitLogin,
+                onSubmitRegister,
+                onSubmitOng,
+                user,
+                setUser,
+                publications,
+                renderPublications,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
+};
 
-  const onSubmitOng = (data: any) => {
-    data.typeUser = "ong";
-    api
-      .post("/registerong", data)
-      .then(() => {
-        setShowModal(false);
-        toast.success("Cadastro realizado com sucesso!");
-        navigate("/home");
-      })
-      .catch(() => toast.error("Cadastro não realizado"));
-  };
-
-  // Carregamento inicial
-  useEffect(() => {
-    async function loadUser() {
-
-      const tokenUser = localStorage.getItem("@kenzieHub:token");
-      const emailUser = localStorage.getItem("@kenzieHub:name");
-
-      if (tokenUser){
-        try {
-          const resp = await api.get("/notices");
-          console.log(resp);
-
-          setNotices(resp);
-    
-          // setUser(data);
-          // setTechs(data.techs);
-
-          // setName(nameBusca + '');
-          // setModule(moduleBusca + '');
-          // setToken(tokenBusca);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      // setLoading(false);
-    }
-    loadUser();
-  
-
-  return (
-    <UserContext.Provider
-      value={{
-        onSubmitLogin,
-        onSubmitRegister,
-        onSubmitOng,
-        user,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
-}

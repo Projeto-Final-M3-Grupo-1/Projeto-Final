@@ -9,6 +9,8 @@ import { AllProjects } from "../../Components/Home All Projects";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import Main from "../../Components/Main";
 
+
+
 export const Home = () => {
     const { menu } = useContext(ProjectsContext);
     return (
@@ -20,8 +22,6 @@ export const Home = () => {
                 <AboutUs />
                 <AllProjects />
             </StyledContentWrapper>
-            <Footer />
-
             {/* 
                 HEADER
                 MAIN

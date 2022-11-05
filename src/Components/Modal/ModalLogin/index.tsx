@@ -37,9 +37,6 @@ export const ModalLogin = () => {
     return (
         <StyledBoxModal>
             <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
-
-                <ButtonCloseModal callback={handleModal}/>
-
                 <h2>Já faz parte?</h2>
 
                 <InputAndLabel
