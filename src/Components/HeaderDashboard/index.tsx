@@ -1,10 +1,16 @@
+import { useContext, useEffect } from "react";
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
+import { AuthContext } from "../../Providers/AuthContext";
 
 const DropdownHeader = () => {
-	const reload = () => {
-		window.location.reload();
-	};
+	const { dataUser, loadingUser } = useContext(AuthContext);
+
+	console.log(dataUser);
+
+	useEffect(() => {
+		loadingUser();
+	}, []);
 
 	return (
 		<S.Header>
@@ -14,14 +20,28 @@ const DropdownHeader = () => {
 					<S.Span>
 						Projetos
 						<VscTriangleDown />
+						<S.DropdownList>
+							<S.DropdownItem>Ver todos projetos</S.DropdownItem>
+							<S.DropdownItem>Adicionar projeto</S.DropdownItem>
+						</S.DropdownList>
 					</S.Span>
-					<S.DropdownList>
-						<S.DropdownItem>Ver todos projetos</S.DropdownItem>
-						<S.DropdownItem>Adicionar projeto</S.DropdownItem>
-					</S.DropdownList>
+					<S.Span>
+						Publicações
+						<VscTriangleDown />
+						<S.DropdownList>
+							<S.DropdownItem>
+								Ver todas publicações
+							</S.DropdownItem>
+							<S.DropdownItem>
+								Adicionar publicação
+							</S.DropdownItem>
+						</S.DropdownList>
+					</S.Span>
 				</S.Dropdown>
-
-				<button onClick={reload}>Recarregar</button>
+				<S.User>
+					<S.Name>{dataUser.nome}</S.Name>
+					<S.Image src={dataUser.fotoDePerfil} alt="Foto de perfil" />
+				</S.User>
 			</S.Nav>
 		</S.Header>
 	);

@@ -53,15 +53,13 @@ export const Nav = styled.nav`
 
 export const Dropdown = styled.ul`
 	position: relative;
-	display: inline-block;
+	display: flex;
+	justify-content: space-between;
+	width: 300px;
 
 	ul > li {
 		display: none;
-		width: 200px;
-	}
-
-	&:hover ul > li {
-		display: block;
+		width: 180px;
 	}
 `;
 
@@ -72,8 +70,12 @@ export const Span = styled.span`
 	cursor: pointer;
 	font-weight: 500;
 
-	&:hover {
-		color: var(--rose-600);
+	&:hover ul > li {
+		display: block;
+	}
+
+	&:hover ul {
+		margin-top: 90px;
 	}
 `;
 
@@ -95,4 +97,22 @@ export const DropdownItem = styled.li`
 		background-color: var(--rose-600);
 		color: var(--white);
 	}
+`;
+
+export const User = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 10px;
+`;
+
+export const Name = styled.p`
+	font-weight: 600;
+	color: var(--slack-800);
+`;
+
+export const Image = styled.img`
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	border: 4px solid var(--rose-600);
 `;
