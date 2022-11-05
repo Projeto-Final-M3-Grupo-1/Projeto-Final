@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { StyledLoginButton } from "../../Button";
 import { StyledHeader } from "../../Header/header";
-import { PerfilDev } from "../../Modal/ModalPerfilDev";
+import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 export const DashboardDev = () => {
     const { handleModal, showModal, handleNavigate } =
         useContext(ProjectsContext);
@@ -14,7 +14,7 @@ export const DashboardDev = () => {
                     Logout
                 </StyledLoginButton>
             </StyledHeader>
-            {showModal && <PerfilDev />}
+            {showModal && <ModalPerfilDev />}
             <button onClick={handleModal}>perfil</button>
         </>
     );
