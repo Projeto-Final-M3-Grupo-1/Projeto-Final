@@ -3,10 +3,13 @@ import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ProjectsContext } from "../../Providers/ProjectsProvider";
 
 const DropdownHeader = () => {
     const { dataUser, loadingUser } = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState<boolean>(false);
+    const { handleModal } = useContext(ProjectsContext);
+
     const width = window.innerWidth;
     const navigate = useNavigate();
 
@@ -84,8 +87,10 @@ const DropdownHeader = () => {
                         </S.Span>
                     </S.Dropdown>
                     <S.User>
-                        <S.Name>{dataUser.nome}</S.Name>
+                        <S.Name>{ dataUser.nome || dataUser.razaoSocial}</S.Name>
+
                         <S.Image
+                            onClick={handleModal}
                             src={dataUser.fotoDePerfil}
                             alt="Foto de perfil"
                         />
