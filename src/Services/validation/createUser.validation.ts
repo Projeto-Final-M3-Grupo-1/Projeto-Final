@@ -50,5 +50,12 @@ export const schemaUserOng = yup.object().shape({
 });
 
 export const schemaCreateTech = yup.object().shape({
+    tech: yup.string().required(`Campo obrigatório`),
+});
+
+export const schemaEditePerfil = yup.object().shape({
     nome: yup.string().required(`Campo obrigatório`),
+    email: yup.string().required(`Campo obrigatório`),
+    github: yup.string().required(`Campo obrigatório`),
+    linkedin: yup.string().required(`Campo obrigatório`),
 });
