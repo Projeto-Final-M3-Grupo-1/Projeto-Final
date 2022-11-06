@@ -6,66 +6,91 @@ import { toast } from "react-toastify";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
-    onSubmitLogin: any;
-    onSubmitRegister: any;
-    onSubmitOng: any;
-    user: any;
+  onSubmitLogin: any;
+  onSubmitRegister: any;
+  onSubmitOng: any;
+  user: any;
+  onSubmitCreateTask: (data: iCreateTask) => void;
 }
 interface IUserChildren {
-    children: ReactNode;
+  children: ReactNode;
+}
+
+interface iCreateTask {
+  title: string;
+  content: string;
+  projectId: number;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
-    const [user, setUser] = useState<any>({});
-    const { setShowModal } = useContext(ProjectsContext);
+  const [user, setUser] = useState<any>({});
+  const { setShowModal } = useContext(ProjectsContext);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const onSubmitLogin = (data: any) => {
-        api.post("/login", data)
-            .then((res) => {
-                navigate("/dashboard");
-                toast.success("Login realizado com sucesso");
-                setUser(res.data.user);
-                // localStorage.setItem("token");
-                console.log(res.data.user);
+  const onSubmitLogin = (data: any) => {
+    api
+      .post("/login", data)
+      .then((res) => {
+        navigate("/dashboard");
+        toast.success("Login realizado com sucesso");
+        setUser(res.data.user);
+        // localStorage.setItem("token");
+        console.log(res.data.user);
 
-                console.log(res);
-            })
-            .catch(() => toast.error("Email ou senha invalidos"));
-    };
-    const onSubmitRegister = (data: any) => {
-        data.typeUser = "dev";
-        api.post("/registerdev", data)
-            .then(() => {
-                navigate("/home");
-                toast.success("Cadastro realizado com sucesso!");
-            })
-            .catch(() => toast.error("Cadastro não realizado"));
-    };
+        console.log(res);
+      })
+      .catch(() => toast.error("Email ou senha invalidos"));
+  };
+  const onSubmitRegister = (data: any) => {
+    data.typeUser = "dev";
+    api
+      .post("/registerdev", data)
+      .then(() => {
+        navigate("/home");
+        toast.success("Cadastro realizado com sucesso!");
+      })
+      .catch(() => toast.error("Cadastro não realizado"));
+  };
 
-    const onSubmitOng = (data: any) => {
-        data.typeUser = "ong";
-        api.post("/registerong", data)
+  const onSubmitOng = (data: any) => {
+    data.typeUser = "ong";
+    api
+      .post("/registerong", data)
 
-            .then(() => {
-                toast.success("Cadastro realizado com sucesso!");
-                navigate("/home");
-            })
-            .catch(() => toast.error("Cadastro não realizado"));
-    };
-    return (
-        <UserContext.Provider
-            value={{
-                onSubmitLogin,
-                onSubmitRegister,
-                onSubmitOng,
-                user,
-            }}
-        >
-            {children}
-        </UserContext.Provider>
+      .then(() => {
+        toast.success("Cadastro realizado com sucesso!");
+        navigate("/home");
+      })
+      .catch(() => toast.error("Cadastro não realizado"));
+  };
+
+  const onSubmitCreateTask = (data: iCreateTask) => {
+    toast.promise(
+      api
+        .post("/tasks", data)
+
+        .then(() => {}),
+      {
+        pending: "Criando Tarefa",
+        success: "Sucesso ao criar a tarefa",
+        error: "Erro ao criar a tarefa",
+      }
     );
+  };
+  return (
+    <UserContext.Provider
+      value={{
+        onSubmitLogin,
+        onSubmitRegister,
+        onSubmitOng,
+        onSubmitCreateTask,
+        user,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 };
