@@ -30,7 +30,6 @@ interface iState {
 
 export const ModalPerfilOng = () => {
     const { setShowModal, handleNavigate } = useContext(ProjectsContext);
-
     const { dataUser } = useContext(AuthContext);
     const [projects, setProjetcts] = useState([] as unknown as iState);
 
