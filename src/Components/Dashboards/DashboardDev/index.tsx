@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import Publications from "../../Publication";
 
 import HeaderDashboard from "../../HeaderDashboard";
 import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
+import ModalNovaPublicacao from "../../Modal/ModalNovaPublicacao";
 
 export const DashboardDev = () => {
 	const { renderPublications, handlePerfil, openPerfil } =
@@ -19,7 +20,7 @@ export const DashboardDev = () => {
 			<HeaderDashboard />
 			{openPerfil && <ModalPerfilDev />}
 			<button onClick={handlePerfil}>perfil</button>
-			<Publications></Publications>
+			<Publications />
 		</>
 	);
 };

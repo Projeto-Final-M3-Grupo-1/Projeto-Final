@@ -1,25 +1,51 @@
 import styled from "styled-components";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export const Background = styled.div`
-	background-color: rgba(30, 41, 59, 0.8);
+	background: rgba(30, 41, 59, 0.8);
 	height: 100vh;
 	width: 100vw;
+
+	min-width: 100vw;
+	min-height: 100vh;
+	position: fixed;
+	top: 0%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+
+	z-index: 5;
 `;
 
 export const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
+	min-height: 50px;
+	width: 80%;
 	max-width: 1200px;
-	height: auto;
-	min-height: 840px;
-	background-color: var(--white);
-	border-radius: 8px;
+	position: fixed;
+	top: 0%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+
+	z-index: 5;
 `;
 
 export const Content = styled.div`
@@ -30,6 +56,10 @@ export const Content = styled.div`
 
 	width: 80%;
 	max-width: 996px;
+
+	background-color: white;
+	padding: 2rem;
+	border-radius: 8px;
 `;
 
 export const UserContainer = styled.div`
@@ -60,7 +90,7 @@ export const UserName = styled.h1`
 	font-weight: 600;
 `;
 
-export const UserType = styled.h2`
+export const UserType = styled.span`
 	font-size: 16px;
 	color: var(--slate-800);
 	font-weight: 500;
@@ -123,4 +153,18 @@ export const Description = styled.textarea`
 	&:focus {
 		outline: none;
 	}
+`;
+
+export const CloseButton = styled(IoIosCloseCircleOutline)`
+	position: absolute;
+
+	height: 2rem;
+	width: 2rem;
+
+	top: 8px;
+	right: 8%;
+
+	color: var(--rose-600);
+
+	cursor: pointer;
 `;

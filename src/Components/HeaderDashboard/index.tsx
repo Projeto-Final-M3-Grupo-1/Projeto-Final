@@ -4,14 +4,18 @@ import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 
 const DropdownHeader = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { handleModal } = useContext(ProjectsContext);
 
-	// window.resize
-	console.log(window.onresize);
+	const [isOpen, setIsOpen] = useState(false);
+
+	const handleIsOpen = () => {
+		setIsOpen(!isOpen);
+	};
 
 	const width = window.innerWidth;
 	const navigate = useNavigate();
@@ -36,6 +40,7 @@ const DropdownHeader = () => {
 
 	return (
 		<S.Header>
+			{isOpen && <ModalNovaPublicacao handleIsOpen={handleIsOpen} />}
 			{isMobile ? (
 				<S.MobileNav>
 					<h2>Logo</h2>
@@ -51,7 +56,7 @@ const DropdownHeader = () => {
 							<S.MobileDropdownItem>
 								Ver todas publicações
 							</S.MobileDropdownItem>
-							<S.MobileDropdownItem>
+							<S.MobileDropdownItem onClick={handleIsOpen}>
 								Adicionar publicação
 							</S.MobileDropdownItem>
 							<S.LogoutButton onClick={logout}>
@@ -83,7 +88,7 @@ const DropdownHeader = () => {
 								<S.DropdownItem>
 									Ver todas publicações
 								</S.DropdownItem>
-								<S.DropdownItem>
+								<S.DropdownItem onClick={handleIsOpen}>
 									Adicionar publicação
 								</S.DropdownItem>
 							</S.DropdownList>
