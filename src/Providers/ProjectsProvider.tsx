@@ -12,6 +12,8 @@ interface IProjectsContext {
     setMenu: any;
     showModal: boolean;
     setShowModal: any;
+    modalHome: boolean;
+    setModalHome:React.Dispatch<React.SetStateAction<boolean>>;
     handleMenu: () => void;
     handleModal: () => void;
     handleNavigate: any;
@@ -30,6 +32,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [projects, setProjects] = useState([] as any);
     const [menu, setMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [modalHome, setModalHome] = useState(false)
 
     const navigate = useNavigate();
 
@@ -65,6 +68,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 handleMenu,
                 handleModal,
                 handleNavigate,
+                modalHome, 
+                setModalHome
             }}
         >
             {children}
