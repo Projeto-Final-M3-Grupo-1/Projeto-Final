@@ -3,27 +3,32 @@ import { GrUserSettings } from "react-icons/gr";
 import { GrAppsRounded } from "react-icons/gr";
 import { TbSubtask } from "react-icons/tb";
 import { Menu } from "../../Menu";
+import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { useContext } from "react";
 
 function MenuAsideOng() {
+  const { handleModal } = useContext(ProjectsContext);
+
+
   return (
     <>
       <Menu>
-        <a>
+        <button>
           <IoHome className="IconAside" />
           Home
-        </a>
-        <a>
+        </button>
+        <button onClick={handleModal}>
           <GrUserSettings className="IconAside" />
           Perfil
-        </a>
-        <a>
+        </button>
+        <button>
           <GrAppsRounded className="IconAside" />
           Cadastrar Projeto
-        </a>
-        <a>
+        </button>
+        <button>
           <TbSubtask className="IconAside" />
           Projeto
-        </a>
+        </button>
       </Menu>
     </>
   );

@@ -1,22 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import MenuAsideAdmin from "../../Asides/AsideAdmin";
-import { StyledLoginButton } from "../../Button";
-import { StyledHeader } from "../../Header/header";
-import { MdLogout } from "react-icons/md";
+import { UserContext } from "../../../Providers/UserProvider";
+import HeaderDashboard from "../../HeaderDashboard";
+import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
+import Publications from "../../Publication";
+
 export const DashboardAdmin = () => {
-  const { handleNavigate } = useContext(ProjectsContext);
+  const { loadingUser } = useContext(AuthContext);
+  const { renderPublications } = useContext(UserContext);
+  const { showModal } = useContext(ProjectsContext);
+  useEffect(() => {
+    loadingUser();
+    renderPublications();
+  }, []);
+
   return (
     <>
-      <StyledHeader>
-        <h2>Logo</h2>
-        <StyledLoginButton onClick={() => handleNavigate("/home")}>
-          <MdLogout className="logout" />
-          Logout
-        </StyledLoginButton>
-      </StyledHeader>
-      <MenuAsideAdmin />
-      <h1>eu sou a das do ADMIN</h1>
+      <HeaderDashboard />
+      {showModal && <ModalPerfilAdmin />}
+      <Publications></Publications>
     </>
   );
 };
