@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { StyledButtonCta } from "../Button";
-import { StyledDiv, StyledCard } from "./styled";
+import { StyledDivHome, StyledCardHome, StyledP } from "./styled";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 
-
-export const Cards = () => {
+export const CardsHome = () => {
     const { handleNavigate } = useContext(ProjectsContext);
+
     return (
 
-            <StyledDiv>
-                <StyledCard>
+            <StyledDivHome >
+                <StyledCardHome>
                     <h2>Desenvolvedor</h2>
                     <h3>
                         Ainda não ingressou no mercado de trabalho por falta de
@@ -28,9 +28,11 @@ export const Cards = () => {
                     <StyledButtonCta onClick={() => handleNavigate("/registerdev")}>
                         Torne se um colaborador!
                     </StyledButtonCta>
-                </StyledCard>
+                </StyledCardHome>
     
-                <StyledCard>
+                <StyledP>OU</StyledP>
+
+                <StyledCardHome>
                     <h2>Administrador de ONGs</h2>
                     <h3>
                         Você tem um projeto social, e gostaria de aumentar o seu
@@ -46,7 +48,7 @@ export const Cards = () => {
                     <StyledButtonCta onClick={() => handleNavigate("/registerong")}>
                         Solicite um projeto!
                     </StyledButtonCta>
-                </StyledCard>
-            </StyledDiv>
+                </StyledCardHome>
+            </StyledDivHome>
     );
 };

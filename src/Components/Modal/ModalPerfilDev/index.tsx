@@ -74,9 +74,9 @@ export const ModalPerfilDev = () => {
     requestTechs();
   }, []);
 
-  const modalRef = useOutSideClick(() => {
-    setShowModal(null);
-  });
+  // const modalRef = useOutSideClick(() => {
+  //     setShowModal(null);
+  // });
 
   return (
     <>
@@ -140,7 +140,7 @@ export const ModalPerfilDev = () => {
                 <ul className="techs">
                   {techs.length ? (
                     techs.map((element: any) => {
-                      if (element.userId == dataUser.id) {
+                      if (element.userId === dataUser.id) {
                         return (
                           <li key={element.id}>
                             <h2>{element.tech}</h2>
