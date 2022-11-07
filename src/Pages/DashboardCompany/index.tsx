@@ -1,22 +1,26 @@
 import { DashboardDev } from "../../Components/Dashboards/DashboardDev";
 import { DashboardAdmin } from "../../Components/Dashboards/DashboardAdmin";
 import { UserContext } from "../../Providers/UserProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashboardOng } from "../../Components/Dashboards/DashboardOng";
+import { AuthContext } from "../../Providers/AuthContext";
 
 export function Dashboard() {
-  const { user } = useContext(UserContext);
-  const { typeUser } = user;
+	const { dataUser, loadingUser } = useContext(AuthContext);
 
-  return (
-    <>
-      {typeUser === "admin" ? (
-        <DashboardAdmin />
-      ) : typeUser === "dev" ? (
-        <DashboardDev />
-      ) : (
-        <DashboardOng />
-      )}
-    </>
-  );
+	useEffect(() => {
+		loadingUser();
+	}, []);
+	const { typeUser } = dataUser;
+	return (
+		<>
+			{typeUser == "admin" ? (
+				<DashboardAdmin />
+			) : typeUser == "dev" ? (
+				<DashboardDev />
+			) : (
+				<DashboardOng />
+			)}
+		</>
+	);
 }

@@ -1,23 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { UserContext } from "../../../Providers/UserProvider";
 
 import MenuAsideOng from "../../Asides/AsideOng";
-import { StyledLoginButton } from "../../Button";
-import { StyledHeader } from "../../Header/header";
+import HeaderDashboard from "../../HeaderDashboard";
+import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
+import Publications from "../../Publication";
 
 export const DashboardOng = () => {
-    const { handleNavigate } = useContext(ProjectsContext);
+    const { showModal, handleNavigate } = useContext(ProjectsContext);
+    const { renderPublications } = useContext(UserContext);
+
+    useEffect(() => {
+        renderPublications();
+    }, []);
     return (
         <>
-            <StyledHeader>
-                <h2>Logo</h2>
-                <StyledLoginButton onClick={() => handleNavigate("/home")}>
-                    Logout
-                </StyledLoginButton>
-            </StyledHeader>
-            <MenuAsideOng />
-            <h1>eu sou a das do ong</h1>
+            <HeaderDashboard />
+            {showModal && <ModalPerfilOng />}
+            <Publications></Publications>
         </>
     );
 };

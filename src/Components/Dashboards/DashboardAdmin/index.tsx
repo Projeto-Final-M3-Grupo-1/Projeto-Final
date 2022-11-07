@@ -1,22 +1,21 @@
-import { useContext } from "react";
-import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import MenuAsideAdmin from "../../Asides/AsideAdmin";
-import { StyledLoginButton } from "../../Button";
-import { StyledHeader } from "../../Header/header";
-import { MdLogout } from "react-icons/md";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../Providers/AuthContext";
+import { UserContext } from "../../../Providers/UserProvider";
+import HeaderDashboard from "../../HeaderDashboard";
+import Publications from "../../Publication";
+
 export const DashboardAdmin = () => {
-  const { handleNavigate } = useContext(ProjectsContext);
-  return (
-    <>
-      <StyledHeader>
-        <h2>Logo</h2>
-        <StyledLoginButton onClick={() => handleNavigate("/home")}>
-          <MdLogout className="logout" />
-          Logout
-        </StyledLoginButton>
-      </StyledHeader>
-      <MenuAsideAdmin />
-      <h1>eu sou a das do ADMIN</h1>
-    </>
-  );
+	const { loadingUser } = useContext(AuthContext);
+	const { renderPublications } = useContext(UserContext);
+	useEffect(() => {
+		loadingUser();
+		renderPublications();
+	}, []);
+	
+	return (
+		<>
+			<HeaderDashboard />
+			<Publications></Publications>
+		</>
+	);
 };

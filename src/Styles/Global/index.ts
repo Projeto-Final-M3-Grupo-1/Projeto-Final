@@ -14,6 +14,17 @@ export const GlobalStyle = createGlobalStyle`
         --rose-100: #ffe4e6;
         --rose-50: #fff1f2;
 
+        --blue-900: #1e3a8a;
+        --blue-800: #1e40af;
+        --blue-700: #1e4ed8;
+        --blue-600: #2563eb;
+        --blue-500: #3b82f6;
+        --blue-400: #60a5fa;
+        --blue-300: #93c5fd;
+        --blue-200: #bfdbfe;
+        --blue-100: #dbeafe;
+        --blue-50: #eff6ff;
+
         --slate-900: #0f172a;
         --slate-800: #1e293b;
         --slate-700: #334155;
@@ -130,7 +141,7 @@ a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
+dl, dt, dd, ol, ul, li, textarea,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 

@@ -1,26 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import { StyledLoginButton } from "../../Button";
-import { StyledHeader } from "../../Header/header";
-import { PerfilDev } from "../../Modal/ModalPerfilDev";
+import { UserContext } from "../../../Providers/UserProvider";
+import Publications from "../../Publication";
 
-// teste modal nova publicação
-import ModalNovaPublicacao from "../../Modal/ModalNovaPublicacao";
+import HeaderDashboard from "../../HeaderDashboard";
+import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 
 export const DashboardDev = () => {
-	const { handleModal, showModal, handleNavigate } =
-		useContext(ProjectsContext);
+	const { renderPublications, handlePerfil, openPerfil } =
+		useContext(UserContext);
+
+	useEffect(() => {
+		renderPublications();
+	}, []);
+
 	return (
 		<>
-			<StyledHeader>
-				<h2>Logo</h2>
-				<StyledLoginButton onClick={() => handleNavigate("/home")}>
-					Logout
-				</StyledLoginButton>
-			</StyledHeader>
-			{/* {showModal && <PerfilDev />}
-            <button onClick={handleModal}>perfil</button> */}
-			<ModalNovaPublicacao />
+			<HeaderDashboard />
+			{openPerfil && <ModalPerfilDev />}
+			<button onClick={handlePerfil}>perfil</button>
+			<Publications></Publications>
 		</>
 	);
 };

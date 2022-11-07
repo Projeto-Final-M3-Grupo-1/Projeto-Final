@@ -21,7 +21,6 @@ export const Home = () => {
                 <AllProjects />
             </StyledContentWrapper>
             <Footer />
-
             {/* 
                 HEADER
                 MAIN
