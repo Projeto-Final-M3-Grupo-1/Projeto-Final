@@ -11,11 +11,11 @@ export const DashboardAdmin = () => {
 		loadingUser();
 		renderPublications();
 	}, []);
-	
+
 	return (
 		<>
 			<HeaderDashboard />
-			<Publications></Publications>
+			<Publications />
 		</>
 	);
 };
