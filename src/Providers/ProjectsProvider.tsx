@@ -76,8 +76,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then(() => {
+        }).then((res) => {
             setYouRight(false);
+            console.log(res);
             toast.success(
                 "Cadastrado com sucesso no projeto, acesse Meu Projeto para ver os detalhes"
             );
