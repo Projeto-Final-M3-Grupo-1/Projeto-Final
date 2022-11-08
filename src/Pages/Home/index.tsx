@@ -11,25 +11,25 @@ import Main from "../../Components/Main";
 import { CreateTask } from "../../Components/Modal/ModalCreateTask";
 
 export const Home = () => {
-  const { menu } = useContext(ProjectsContext);
-  const [open, setOpen] = useState(true);
-  return (
-    <>
-      <StyledContentWrapper>
-        <Headers />
-        <Main />
-        <Cards />
-        <AboutUs />
-        <AllProjects />
-      </StyledContentWrapper>
-      <Footer />
-      <CreateTask
+    const { menu } = useContext(ProjectsContext);
+    const [open, setOpen] = useState(true);
+    return (
+        <>
+            <StyledContentWrapper>
+                <Headers />
+                <Main />
+                <Cards />
+                <AboutUs />
+                <AllProjects />
+            </StyledContentWrapper>
+            <Footer />
+            {/* <CreateTask
         open={open}
         handleClose={() => setOpen(false)}
         projectId={1}
-      />
+      /> */}
 
-      {/* 
+            {/* 
                 HEADER
                 MAIN
                 CARDS
@@ -37,6 +37,6 @@ export const Home = () => {
                 PROJETOS FINALIZADOS
                 FOOTER 
              */}
-    </>
-  );
+        </>
+    );
 };
