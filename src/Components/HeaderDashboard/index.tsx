@@ -47,10 +47,6 @@ export const HeaderDashboard = () => {
 		}
 	};
 
-	const proc = () => {
-		console.log("proc");
-	};
-
 	return (
 		<S.Header>
 			{isMobile ? (
