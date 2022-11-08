@@ -27,29 +27,31 @@ export const ProjectsToApply = () => {
                     {projects.length ? (
                         projects.map((element: any) => {
                             return (
-                                <li>
-                                    <img src={element.imgProject} alt="" />
-                                    <h2>{element.title}</h2>
-                                    <p>{element.description}</p>
-                                    <div>
-                                        <StyledLoginButton
-                                            onClick={() =>
-                                                handleYouRight(element.id)
-                                            }
-                                        >
-                                            Trabalhar no projeto
-                                        </StyledLoginButton>
-                                        <StyledLoginButton
-                                            onClick={() =>
-                                                handlePerfilOngOnProject(
-                                                    element.ongId
-                                                )
-                                            }
-                                        >
-                                            Ver perfil da ong
-                                        </StyledLoginButton>
-                                    </div>
-                                </li>
+                                element.status == "develop" && (
+                                    <li>
+                                        <img src={element.imgProject} alt="" />
+                                        <h2>{element.title}</h2>
+                                        <p>{element.description}</p>
+                                        <div>
+                                            <StyledLoginButton
+                                                onClick={() =>
+                                                    handleYouRight(element.id)
+                                                }
+                                            >
+                                                Trabalhar no projeto
+                                            </StyledLoginButton>
+                                            <StyledLoginButton
+                                                onClick={() =>
+                                                    handlePerfilOngOnProject(
+                                                        element.ongId
+                                                    )
+                                                }
+                                            >
+                                                Ver perfil da ong
+                                            </StyledLoginButton>
+                                        </div>
+                                    </li>
+                                )
                             );
                         })
                     ) : (
