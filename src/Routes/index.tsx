@@ -4,7 +4,6 @@ import { Home } from "../Pages/Home";
 import { Dashboard } from "../Pages/DashboardCompany";
 import { RegisterDev } from "../Pages/RegisterDev";
 import { RegisterOng } from "../Pages/RegisterOng";
-import Test from "../Components/Modal/ModalNovaPublicacao";
 
 const Routers = () => {
 	return (
