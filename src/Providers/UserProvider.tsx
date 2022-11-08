@@ -28,6 +28,10 @@ interface IUserContext {
     setOpenPerfil: any;
     newNotice: any;
     onSubmitEditOngPerfil: any;
+    openPerfilAdmin: boolean;
+    setOpenPerfilAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+    showPerfilOngOnProject: boolean;
+    handlePerfilOngOnProject: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -58,8 +62,18 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const [openPerfil, setOpenPerfil] = useState(false);
     const [publications, setPublications] = useState<any>({});
     const { setShowModal } = useContext(ProjectsContext);
+    const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
+    const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
 
     const navigate = useNavigate();
+
+    const handlePerfilOngOnProject = (id: any) => {
+        localStorage.setItem("ongId", id);
+        return !showPerfilOngOnProject
+            ? setShowPerfilOngOnProject(true)
+            : setShowPerfilOngOnProject(false);
+    };
+
     const handleCreateTech = () => {
         return !createTech ? setCreateTech(true) : setCreateTech(false);
     };
@@ -97,7 +111,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/login", data).then((res) => {
                 navigate("/dashboard");
-
                 setUser(res.data.user);
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
@@ -204,54 +217,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         requestEditeTech(data);
     };
 
-    //   const requestTechs = () => {
-    //     api
-    //       .get("/techs", {
-    //         headers: {
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then((res) => setTechs(res.data))
-    //       .catch((res) => console.log(res));
-    //   };
-    //   const requestCreateTech = (data: any) => {
-    //     api
-    //       .post("/techs", data, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then(() => {
-    //         setCreateTech(false);
-    //         requestTechs();
-    //       })
-    //       .catch((err) => console.log(err));
-    //   };
-    //   const requestDeleteTech = (id: any) => {
-    //     api
-    //       .delete(`/techs/${id}`, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then(() => requestTechs());
-    //   };
-    //   const requestEditeTech = (data: any) => {
-    //     api
-    //       .patch(`/users/${localStorage.userId}`, data, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then((res) => {
-    //         setDataUser(res);
-    //       })
-    //       .catch((err) => console.log(err));
-    //   };
-
     const onSubmitEditOngPerfil = (data: any) => {
         console.log(data);
         requestEditeTech(data);
@@ -285,6 +250,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitCreateTask,
                 newNotice,
                 onSubmitEditOngPerfil,
+                openPerfilAdmin,
+                setOpenPerfilAdmin,
+                showPerfilOngOnProject,
+                handlePerfilOngOnProject,
             }}
         >
             {children}

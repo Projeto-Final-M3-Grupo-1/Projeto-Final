@@ -34,6 +34,7 @@ export const DropdownHeaderDev = () => {
 		}
 	};
 
+
 	return (
 		<S.Header>
 			{isMobile ? (
@@ -90,6 +91,7 @@ export const DropdownHeaderDev = () => {
 					</S.Dropdown>
 					<S.User>
 						<S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+
 
 						<S.Image
 							onClick={handlePerfil}
