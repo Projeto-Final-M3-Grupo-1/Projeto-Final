@@ -18,9 +18,9 @@ interface IProjectsContext {
     handleMenu: () => void;
     handleModal: () => void;
     
-    handleProjectsToApply: () => void;
+    handleProjectsToApply: any;
     scrollToTop: () => void;
-    render: boolean;
+    render: string;
     setRender: any;
     youRight: boolean;
     handleYouRight: any;
@@ -45,7 +45,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [menu, setMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalHome, setModalHome] = useState(false);
-    const [render, setRender] = useState(false);
+    const [render, setRender] = useState("publications");
     const [youRight, setYouRight] = useState(false);
     const [showProject, setShowProjects] = useState(false);
 
@@ -55,8 +55,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         localStorage.setItem("projectId", projectId);
         return !youRight ? setYouRight(true) : setYouRight(false);
     };
-    const handleProjectsToApply = () => {
-        return !render ? setRender(true) : setRender(false);
+    const handleProjectsToApply = (destination: any) => {
+        return setRender(destination);
     };
     const handleNavigate = (route: string) => {
         return navigate(route);
