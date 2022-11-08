@@ -97,7 +97,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/login", data).then((res) => {
                 navigate("/dashboard");
-                toast.success("Login realizado com sucesso");
+
                 setUser(res.data.user);
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
@@ -119,7 +119,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/registerdev", data).then(() => {
                 navigate("/home");
-                toast.success("Cadastro realizado com sucesso!");
             }),
             {
                 pending: "Criando...",
@@ -134,7 +133,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/registerong", data).then(() => {
                 navigate("/home");
-                toast.success("Cadastro realizado com sucesso!");
             }),
             {
                 pending: "Criando...",
