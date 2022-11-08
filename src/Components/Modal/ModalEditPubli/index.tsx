@@ -78,8 +78,8 @@ useEffect(() => {
               type="text"
               placeholder="ONG Do Bem se Prepara para lançar manual de ecologia"
               {...register("title")}
+              defaultValue={title}
             >
-              {title}
             </S.Input>
             {errors.title?.message}
 
@@ -88,8 +88,8 @@ useEffect(() => {
               type="text"
               placeholder="https://i.imgur.com/removed.png"
               {...register("img")}
+              defaultValue={img}
             >
-              {img}
             </S.Input>
 
             {errors.img?.message}
@@ -98,8 +98,8 @@ useEffect(() => {
               type="text"
               placeholder="https://www.ongdobem.com.br"
               {...register("site")}
+              defaultValue={site}
             >
-              {site}
             </S.Input>
 
             {errors.site?.message}
@@ -107,8 +107,8 @@ useEffect(() => {
             <S.Description
               placeholder="A ONG Do Bem se prepara para lançar um manual de ecologia para crianças, o manual será lançado em breve e será disponibilizado gratuitamente para todos os interessados."
               {...register("description")}
+              defaultValue={description}
             >
-              {description}
             </S.Description>
 
             {errors.description?.message}

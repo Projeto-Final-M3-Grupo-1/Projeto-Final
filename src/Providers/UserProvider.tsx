@@ -30,6 +30,7 @@ interface IUserContext {
     setOpenPerfil: any;
     newNotice: any;
     onSubmitEditOngPerfil: any;
+    setIdPubli: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -60,6 +61,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const [openPerfil, setOpenPerfil] = useState(false);
     const [publications, setPublications] = useState<any>({});
     const { setShowModal } = useContext(ProjectsContext);
+    const [idPubli, setIdPubli] = useState<Number | null>(null);
 
     const navigate = useNavigate();
     const handleCreateTech = () => {
@@ -158,15 +160,18 @@ export const UserProvider = ({ children }: IUserChildren) => {
         );
     };
 
-    const onSubmitEditPubli = (data : any, id : number) => {
-        api.patch(`notices/${id}`, data, {
+    const onSubmitEditPubli = (data : any) => {     
+        api.patch(`notices/${idPubli}`, data, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
         })
-        .then((resp) => {
-            setPublications(resp.data)
+        .then(() => {
             renderPublications()
+            toast.success("Noticia editada com sucesso!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         })
     }
 
@@ -306,6 +311,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 getPublication,
                 onSubmitEditPubli,
                 onSubmitEditOngPerfil,
+                setIdPubli,
             }}
         >
             {children}

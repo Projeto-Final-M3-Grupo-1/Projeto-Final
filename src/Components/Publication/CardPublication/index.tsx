@@ -24,14 +24,15 @@ interface IIsOpen {
 
 const Card = ({ img, title, description, id, site }: ICard ) => {
   const { dataUser } = useContext(AuthContext);
-  const { getPublication } = useContext(UserContext);
+  const { getPublication, setIdPubli } = useContext(UserContext);
   const { showModal, setShowModal } = useContext(ProjectsContext);
   const { typeUser } = dataUser;
 
   const [isOpenEdit, setIsOpenEdit] = useState<Boolean>(false);
 
 	const handleIsOpen = () => {
-		setIsOpenEdit(!isOpenEdit);    
+		setIsOpenEdit(!isOpenEdit); 
+    setIdPubli(id);
 	};
 
   const teste = () => {

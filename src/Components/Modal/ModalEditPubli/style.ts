@@ -108,7 +108,7 @@ export const Form = styled.form`
 	margin-top: 1rem;
 `;
 
-export const Input = styled.textarea`
+export const Input = styled.input`
 	width: 100%;
 	align-self: center;
 
