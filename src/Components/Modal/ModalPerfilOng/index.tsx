@@ -47,7 +47,7 @@ export const ModalPerfilOng = () => {
                 .catch((error) => console.log(error));
         };
         getProject();
-    }, [dataUser]);
+    }, []);
 
     console.log(projects);
 
