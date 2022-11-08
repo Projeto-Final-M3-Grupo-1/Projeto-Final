@@ -8,6 +8,7 @@ import { StyledModalAddProject } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaCreateProject } from "../../../Services/validation/createUser.validation";
 import { StyledBoxModal } from "../ModalLogin/style";
+import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 interface ICreateProjectProps {
   textLabel: string;
   name: string;
@@ -19,7 +20,7 @@ interface ICreateProjectProps {
 
 function ModalCreateProject() {
   const { dataUser } = useContext(AuthContext);
-  const { createProjects } = useContext(ProjectsContext);
+  const { createProjects, setShowProjects } = useContext(ProjectsContext);
   const { handleSubmit, register } = useForm<ICreateProjectProps>({
     resolver: yupResolver(schemaCreateProject),
   });
@@ -33,6 +34,11 @@ function ModalCreateProject() {
           </S.Name>
           <S.Image src={dataUser.fotoDePerfil} alt="Foto de perfil Ong" />
         </S.User>
+        <ButtonCloseModal
+          callback={() => {
+            setShowProjects(false);
+          }}
+        />{" "}
         <label>Titulo</label>
         <input placeholder="Insira o Nome" {...register("title")} />
         <label>Descrição do Projeto</label>
