@@ -81,30 +81,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
     };
 
-<<<<<<< HEAD
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const onSubmitLogin = async (data: any) => {
-    toast.promise(
-      api.post("/login", data).then((res) => {
-        navigate("/dashboard");
-        toast.success("Login realizado com sucesso");
-        setUser(res.data.user);
-        localStorage.setItem("token", res.data.accessToken);
-        localStorage.setItem("userId", res.data.user.id);
-      }),
-      {
-        pending: "Logando...",
-        success: "Login realizado com sucesso",
-        error: "Email ou senha invalidos",
-      }
-=======
     const newNotice = (notice: iNotice) => {
         const userId = localStorage.userId;
 
@@ -282,6 +258,5 @@ export const UserProvider = ({ children }: IUserChildren) => {
         >
             {children}
         </UserContext.Provider>
->>>>>>> 731cfdc8a912106203508740f0454bc5cde7a698
     );
 };

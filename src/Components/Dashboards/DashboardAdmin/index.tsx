@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
@@ -24,7 +25,7 @@ export const DashboardAdmin = () => {
       <HeaderDashboard />
       {showModal && <ModalPerfilAdmin />}
 
-      {!render ? <Publications /> : <RenderPorjectsDashAdmin/>}
+      <Outlet/>
     </>
   );
 };

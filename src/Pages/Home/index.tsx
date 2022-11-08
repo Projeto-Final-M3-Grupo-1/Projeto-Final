@@ -9,6 +9,7 @@ import { AllProjects } from "../../Components/Home All Projects";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import Main from "../../Components/Main";
 import { CreateTask } from "../../Components/Modal/ModalCreateTask";
+import { RenderPorjectsDashAdmin } from "../../Components/RenderProjectsDashAdmin";
 
 export const Home = () => {
     const { menu } = useContext(ProjectsContext);
@@ -23,6 +24,7 @@ export const Home = () => {
                 <AllProjects />
             </StyledContentWrapper>
             <Footer />
+            <RenderPorjectsDashAdmin/>
 
             {/* <CreateTask
         open={open}
@@ -37,7 +39,7 @@ export const Home = () => {
                 SOBRE NOS
                 PROJETOS FINALIZADOS
                 FOOTER 
-             */}
+            */}
         </>
     );
 };

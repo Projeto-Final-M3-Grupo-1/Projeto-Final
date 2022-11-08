@@ -33,56 +33,6 @@ export const DropdownHeaderDev = () => {
     }
   };
 
-<<<<<<< HEAD
-  return (
-    <S.Header>
-      {isMobile ? (
-        <S.MobileNav>
-          <h2>Logo</h2>
-          <S.MenuHamburger />
-          <S.MobileDropdown>
-            <S.MobileDropdownList>
-              <S.MobileDropdownItem onClick={handleProjectsToApply}>
-                Ver todos projetos
-              </S.MobileDropdownItem>
-              <S.MobileDropdownItem>Meu projeto</S.MobileDropdownItem>
-              <S.MobileDropdownItem onClick={handleProjectsToApply}>
-                Ver todas publicações
-              </S.MobileDropdownItem>
-              <S.LogoutButton onClick={logout}>Sair</S.LogoutButton>
-            </S.MobileDropdownList>
-          </S.MobileDropdown>
-        </S.MobileNav>
-      ) : (
-        <S.Nav>
-          <h2>Logo</h2>
-          <S.Dropdown>
-            <S.Span>
-              Projetos
-              <VscTriangleDown />
-              <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>
-                  Ver todos projetos
-                </S.DropdownItem>
-                <S.DropdownItem>Meu projeto</S.DropdownItem>
-              </S.DropdownList>
-            </S.Span>
-            <S.Span>
-              Publicações
-              <VscTriangleDown />
-              <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>
-                  Ver todas publicações
-                </S.DropdownItem>
-                <S.DropdownItem onClick={handleProjectsToApply}>
-                  Ver todas publicações
-                </S.DropdownItem>
-              </S.DropdownList>
-            </S.Span>
-          </S.Dropdown>
-          <S.User>
-            <S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
-=======
     return (
         <S.Header>
             {isMobile ? (
@@ -153,7 +103,6 @@ export const DropdownHeaderDev = () => {
                     </S.Dropdown>
                     <S.User>
                         <S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
->>>>>>> 731cfdc8a912106203508740f0454bc5cde7a698
 
             <S.Image
               onClick={handlePerfil}

@@ -8,6 +8,7 @@ import Test from "../Components/Modal/ModalNovaPublicacao";
 import { MyProject } from "../Components/MyProjectDev";
 import Publications from "../Components/Publication";
 import { ProjectsToApply } from "../Components/ProjectsToApply";
+import { RenderPorjectsDashAdmin } from "../Components/RenderProjectsDashAdmin";
 
 const Routers = () => {
     return (
@@ -18,9 +19,12 @@ const Routers = () => {
                 <Route path="myproject" element={<MyProject />} />
                 <Route path="projectstoapply" element={<ProjectsToApply />} />
             </Route>
-            <Route path="registerong" element={<RegisterOng />} />
-            <Route path="registerdev" element={<RegisterDev />} />
-            <Route path="*" element={<Navigate to="/home" />} />
+            <Route path="registerong" element={<RegisterOng />}>
+                <Route index element={<Publications />} />
+                <Route path="projectsadmin" element={<RenderPorjectsDashAdmin />} />
+            </Route>
+                <Route path="registerdev" element={<RegisterDev />} />
+                <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
     );
 };

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 import { RenderPorjectsDashAdmin } from "../RenderProjectsDashAdmin";
@@ -59,7 +59,7 @@ const DropdownHeader = () => {
               Projetos
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>Ver todos projetos</S.DropdownItem>
+                <S.DropdownItem onClick={() => navigate("/dashboard/projectsadmin")}>Ver todos projetos</S.DropdownItem>
                 <S.DropdownItem >
                   Adicionar projeto
                 </S.DropdownItem>
@@ -69,7 +69,7 @@ const DropdownHeader = () => {
               Publicações
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>Ver todas publicações</S.DropdownItem>
+                <S.DropdownItem onClick={() => navigate("/dashboard")}>Ver todas publicações</S.DropdownItem>
                 <S.DropdownItem>Adicionar publicação</S.DropdownItem>
               </S.DropdownList>
             </S.Span>
