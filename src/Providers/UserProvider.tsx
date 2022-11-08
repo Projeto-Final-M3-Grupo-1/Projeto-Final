@@ -112,8 +112,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
             api.post("/login", data).then((res) => {
                 navigate("/dashboard");
                 setUser(res.data.user);
+                console.log(res.data);
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
+                localStorage.setItem("projectId", res.data.user.projectId);
             }),
             {
                 pending: "Logando...",
