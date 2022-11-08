@@ -5,14 +5,10 @@ export const MenuHamburger = styled(GiHamburgerMenu)`
 	color: var(--rose-600);
 	width: 30px;
 	height: 30px;
-
-	&:block ~ div {
-		display: block;
-	}
 `;
 
 export const MobileDropdown = styled.div`
-	display: none;
+	display: flex;
 	position: absolute;
 	right: 10%;
 	top: 2rem;
@@ -102,10 +98,6 @@ export const MobileNav = styled.nav`
 	justify-content: space-between;
 	width: 90%;
 	gap: 1rem;
-
-	div {
-		display: none;
-	}
 `;
 
 export const Dropdown = styled.ul`

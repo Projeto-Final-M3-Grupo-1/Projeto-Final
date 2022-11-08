@@ -1,90 +1,192 @@
 import { useContext, useEffect, useState } from "react";
+import { useWindowSize } from "../../hooks/useWindowSize";
+
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
-import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
+import MobileHeader from "./MobileHeader";
 
-const DropdownHeader = () => {
-  const { dataUser, loadingUser } = useContext(AuthContext);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { handleModal, HandleModalProject } = useContext(ProjectsContext);
+export const HeaderDashboard = () => {
+	const { dataUser, loadingUser } = useContext(AuthContext);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const { handlePerfil } = useContext(UserContext);
+	const { setRender, handleProjectsToApply } = useContext(ProjectsContext);
 
-  const width = window.innerWidth;
-  const navigate = useNavigate();
+	const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+	const loadUserType = () => {
+		setUserType(dataUser.typeUser);
+		//console.log(dataUser.typeUser);
+	};
 
-  useEffect(() => {
-    loadingUser();
-    handleResize();
-  }, []);
+	const windowSize = useWindowSize();
+	const width = windowSize.width;
+	const navigate = useNavigate();
 
-  const handleResize = () => {
-    if (width <= 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
+	const logout = () => {
+		localStorage.clear();
+		navigate("/");
+	};
 
-  return (
-    <S.Header>
-      {isMobile ? (
-        <S.MobileNav>
-          <h2>Logo</h2>
-          <S.MenuHamburger />
-          <S.MobileDropdown>
-            <S.MobileDropdownList>
-              <S.MobileDropdownItem>Ver todos projetos</S.MobileDropdownItem>
-              <S.MobileDropdownItem onClick={HandleModalProject}>
-                Adicionar projeto
-              </S.MobileDropdownItem>
-              <S.MobileDropdownItem>Ver todas publicações</S.MobileDropdownItem>
-              <S.MobileDropdownItem>Adicionar publicação</S.MobileDropdownItem>
-              <S.LogoutButton onClick={logout}>Sair</S.LogoutButton>
-            </S.MobileDropdownList>
-          </S.MobileDropdown>
-        </S.MobileNav>
-      ) : (
-        <S.Nav>
-          <h2>Logo</h2>
-          <S.Dropdown>
-            <S.Span>
-              Projetos
-              <VscTriangleDown />
-              <S.DropdownList>
-                <S.DropdownItem>Ver todos projetos</S.DropdownItem>
-                <S.DropdownItem onClick={HandleModalProject}>
-                  Adicionar projeto
-                </S.DropdownItem>
-              </S.DropdownList>
-            </S.Span>
-            <S.Span>
-              Publicações
-              <VscTriangleDown />
-              <S.DropdownList>
-                <S.DropdownItem>Ver todas publicações</S.DropdownItem>
-                <S.DropdownItem>Adicionar publicação</S.DropdownItem>
-              </S.DropdownList>
-            </S.Span>
-          </S.Dropdown>
-          <S.User>
-            <S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+	useEffect(() => {
+		loadingUser();
+		handleResize();
+	}, [width]);
 
-            <S.Image
-              onClick={handleModal}
-              src={dataUser.fotoDePerfil}
-              alt="Foto de perfil"
-            />
-          </S.User>
-        </S.Nav>
-      )}
-    </S.Header>
-  );
+	useEffect(() => {
+		loadUserType();
+	}, [dataUser]);
+
+	const handleResize = () => {
+		if (width <= 768) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+	};
+
+	// verificação do tipo de usuário
+	// dev && ong -> renderiza o header com os dois itens
+	// ong -> renderiza o header com leitura de todas publicacoes, criar projetos e aos projetos em que ela faz parte
+
+	return (
+		<S.Header>
+			{isMobile ? (
+				<MobileHeader
+					callback={handleProjectsToApply}
+					logout={logout}
+				/>
+			) : (
+				<S.Nav>
+					<h2>Logo</h2>
+					<S.Dropdown>
+						{userType === "dev" && (
+							<>
+								<S.Span>
+									Projetos
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todos projetos
+										</S.DropdownItem>
+										<S.DropdownItem>
+											Meu projeto
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>
+								<S.Span>
+									Publicações
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>
+							</>
+						)}
+						{userType === "ong" && (
+							<>
+								<S.Span>
+									Projetos
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Criar projeto
+										</S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todos projetos
+										</S.DropdownItem>
+										<S.DropdownItem>
+											Meu projeto
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>
+								<S.Span>
+									Publicações
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>
+							</>
+						)}
+						{userType === "admin" && (
+							<>
+								<S.Span>
+									Projetos
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Criar projeto
+										</S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todos projetos
+										</S.DropdownItem>
+										<S.DropdownItem>
+											Meu projeto
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>
+								<S.Span>
+									Publicações
+									<VscTriangleDown />
+									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Criar nova publicação
+										</S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
+									</S.DropdownList>
+								</S.Span>{" "}
+							</>
+						)}
+					</S.Dropdown>
+					<S.User>
+						<S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+
+						<S.Image
+							onClick={handlePerfil}
+							src={dataUser.fotoDePerfil}
+							alt="Foto de perfil"
+						/>
+					</S.User>
+				</S.Nav>
+			)}
+		</S.Header>
+	);
 };
-export default DropdownHeader;
