@@ -7,6 +7,7 @@ import api from "../Services/api";
 
 interface IProjectsContext {
 
+
     projects: any;
     setProjects: any;
     requestProjects: () => void;
@@ -26,6 +27,9 @@ interface IProjectsContext {
     youRight: boolean;
     handleYouRight: any;
     applyOnProject: any;
+    showProject: any;
+    setShowProjects: any;
+    HandleModalProject;
 
 }
 
@@ -45,6 +49,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [modalHome, setModalHome] = useState(false);
     const [render, setRender] = useState(false);
     const [youRight, setYouRight] = useState(false);
+    const [showProject, setShowProjects] = useState(false);
 
 
 	const navigate = useNavigate();
@@ -58,16 +63,19 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         return !render ? setRender(true) : setRender(false);
     };
 
-    const handleMenu = () => {
-        return !menu ? setMenu(true) : setMenu(false);
-    };
-    const handleModal = () => {
-        return !showModal ? setShowModal(true) : setShowModal(false);
-    };
-    const handleNavigate = (route: string) => {
-        return navigate(route);
-    };
 
+  const handleMenu = () => {
+    return !menu ? setMenu(true) : setMenu(false);
+  };
+  const handleModal = () => {
+    return !showModal ? setShowModal(true) : setShowModal(false);
+  };
+
+
+  
+  const HandleModalProject = () => {
+    return !showProject ? setShowProjects(true) : setShowProjects(false);
+  };
     const applyOnProject = () => {
         const body = {
             projectId: +localStorage.projectId,
@@ -75,6 +83,22 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         console.log(body);
         requestApplyOnProject(body);
     };
+     
+  const createProjects = (data: any) => {
+    data.userId = localStorage.userId;
+    data.ongId = localStorage.userId;
+    console.log(data);
+    api
+      .post("/pendings", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+      .then(() => {
+        setShowProjects(false);
+        toast.success("Projeto cadastrado com sucesso!");
+      });
+  };
 
     const requestApplyOnProject = (body: any) => {
         api.patch(`/users/${localStorage.userId}`, body, {
@@ -126,9 +150,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 handleYouRight,
                 youRight,
                 applyOnProject,
+                HandleModalProject,
+                createProjects,
+                showProject,
             }}
         >
             {children}
         </ProjectsContext.Provider>
     );
+
 };
