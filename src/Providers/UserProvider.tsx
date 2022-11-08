@@ -30,6 +30,8 @@ interface IUserContext {
     onSubmitEditOngPerfil: any;
     openPerfilAdmin: boolean;
     setOpenPerfilAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+    showPerfilOngOnProject: boolean;
+    handlePerfilOngOnProject: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -61,8 +63,17 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const [publications, setPublications] = useState<any>({});
     const { setShowModal } = useContext(ProjectsContext);
     const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
+    const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
 
     const navigate = useNavigate();
+
+    const handlePerfilOngOnProject = (id: any) => {
+        localStorage.setItem("ongId", id);
+        return !showPerfilOngOnProject
+            ? setShowPerfilOngOnProject(true)
+            : setShowPerfilOngOnProject(false);
+    };
+
     const handleCreateTech = () => {
         return !createTech ? setCreateTech(true) : setCreateTech(false);
     };
@@ -100,7 +111,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/login", data).then((res) => {
                 navigate("/dashboard");
-                toast.success("Login realizado com sucesso");
                 setUser(res.data.user);
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
@@ -122,7 +132,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/registerdev", data).then(() => {
                 navigate("/home");
-                toast.success("Cadastro realizado com sucesso!");
             }),
             {
                 pending: "Criando...",
@@ -137,7 +146,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         toast.promise(
             api.post("/registerong", data).then(() => {
                 navigate("/home");
-                toast.success("Cadastro realizado com sucesso!");
             }),
             {
                 pending: "Criando...",
@@ -209,54 +217,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
         requestEditeTech(data);
     };
 
-    //   const requestTechs = () => {
-    //     api
-    //       .get("/techs", {
-    //         headers: {
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then((res) => setTechs(res.data))
-    //       .catch((res) => console.log(res));
-    //   };
-    //   const requestCreateTech = (data: any) => {
-    //     api
-    //       .post("/techs", data, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then(() => {
-    //         setCreateTech(false);
-    //         requestTechs();
-    //       })
-    //       .catch((err) => console.log(err));
-    //   };
-    //   const requestDeleteTech = (id: any) => {
-    //     api
-    //       .delete(`/techs/${id}`, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then(() => requestTechs());
-    //   };
-    //   const requestEditeTech = (data: any) => {
-    //     api
-    //       .patch(`/users/${localStorage.userId}`, data, {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: `Bearer ${localStorage.token}`,
-    //         },
-    //       })
-    //       .then((res) => {
-    //         setDataUser(res);
-    //       })
-    //       .catch((err) => console.log(err));
-    //   };
-
     const onSubmitEditOngPerfil = (data: any) => {
         console.log(data);
         requestEditeTech(data);
@@ -292,6 +252,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 onSubmitEditOngPerfil,
                 openPerfilAdmin,
                 setOpenPerfilAdmin,
+                showPerfilOngOnProject,
+                handlePerfilOngOnProject,
             }}
         >
             {children}

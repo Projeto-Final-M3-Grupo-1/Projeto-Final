@@ -1,13 +1,18 @@
 import { useContext, useEffect } from "react";
 import { TbH1 } from "react-icons/tb";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import { UserContext } from "../../Providers/UserProvider";
 import { StyledLoginButton } from "../Button";
+import { ShowPerfilOng } from "../Modal/ModalShowPerfil/ShowPerfilOng";
 import { ModalYouRightThis } from "../Modal/ModalYouRightThis";
 import { StyledBoxProjectsToApply } from "./style";
 
 export const ProjectsToApply = () => {
     const { projects, requestProjects, youRight, handleYouRight } =
         useContext(ProjectsContext);
+    const { showPerfilOngOnProject, handlePerfilOngOnProject } =
+        useContext(UserContext);
+
     useEffect(() => {
         requestProjects();
     }, []);
@@ -34,7 +39,9 @@ export const ProjectsToApply = () => {
                                         </StyledLoginButton>
                                         <StyledLoginButton
                                             onClick={() =>
-                                                console.log(element.ongId)
+                                                handlePerfilOngOnProject(
+                                                    element.ongId
+                                                )
                                             }
                                         >
                                             Ver perfil da ong
@@ -49,6 +56,7 @@ export const ProjectsToApply = () => {
                 </ul>
             </StyledBoxProjectsToApply>
             {youRight && <ModalYouRightThis />}
+            {showPerfilOngOnProject && <ShowPerfilOng />}
         </>
     );
 };
