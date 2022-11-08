@@ -37,15 +37,19 @@ export const DropdownHeaderDev = () => {
     <S.Header>
       {isMobile ? (
         <S.MobileNav>
-          <h2>DeVoluntário</h2>
+          <h2>Logo</h2>
           <S.MenuHamburger />
           <S.MobileDropdown>
             <S.MobileDropdownList>
-              <S.MobileDropdownItem onClick={handleProjectsToApply}>
+              <S.MobileDropdownItem onClick={() => navigate("/dashboard")}>
                 Ver todos projetos
               </S.MobileDropdownItem>
               <S.MobileDropdownItem>Meu projeto</S.MobileDropdownItem>
-              <S.MobileDropdownItem onClick={handleProjectsToApply}>
+              <S.MobileDropdownItem
+              /*  onClick={() =>
+                                    handleProjectsToApply()
+                                } */
+              >
                 Ver todas publicações
               </S.MobileDropdownItem>
               <S.LogoutButton onClick={logout}>Sair</S.LogoutButton>
@@ -54,26 +58,30 @@ export const DropdownHeaderDev = () => {
         </S.MobileNav>
       ) : (
         <S.Nav>
-          <h2>DeVoluntário</h2>
+          <h2>Logo</h2>
           <S.Dropdown>
             <S.Span>
               Projetos
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>
+                <S.DropdownItem
+                  onClick={() => navigate("/dashboard/projectstoapply")}
+                >
                   Ver todos projetos
                 </S.DropdownItem>
-                <S.DropdownItem>Meu projeto</S.DropdownItem>
+                <S.DropdownItem
+                  onClick={() => navigate("/dashboard/myproject")}
+                >
+                  Meu projeto
+                </S.DropdownItem>
               </S.DropdownList>
             </S.Span>
             <S.Span>
               Publicações
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem onClick={handleProjectsToApply}>
-                  Ver todas publicações
-                </S.DropdownItem>
-                <S.DropdownItem onClick={handleProjectsToApply}>
+                <S.DropdownItem>Ver todas publicações</S.DropdownItem>
+                <S.DropdownItem onClick={() => navigate("/dashboard")}>
                   Ver todas publicações
                 </S.DropdownItem>
               </S.DropdownList>

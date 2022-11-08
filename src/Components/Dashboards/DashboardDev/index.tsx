@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 
 import { UserContext } from "../../../Providers/UserProvider";
@@ -9,6 +8,10 @@ import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 import { DropdownHeaderDev } from "../../HeaderDashboard/HeaderDashboardDev";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { ProjectsToApply } from "../../ProjectsToApply";
+import { MyProject } from "../../MyProjectDev";
+import { CircularProgress } from "@mui/material";
+import { StyledBoxModal } from "../../Modal/ModalLogin/style";
+import { Outlet } from "react-router-dom";
 
 export const DashboardDev = () => {
     const { renderPublications, openPerfil } = useContext(UserContext);
@@ -22,7 +25,19 @@ export const DashboardDev = () => {
             <DropdownHeaderDev />
             {openPerfil && <ModalPerfilDev />}
 
-            {!render ? <Publications /> : <ProjectsToApply />}
+            <Outlet />
+
+            {/* {render == "myProject" ? (
+                <MyProject />
+            ) : render == "projectsToApply" ? (
+                <ProjectsToApply />
+            ) : render == "publications" ? (
+                <Publications />
+            ) : (
+                <StyledBoxModal>
+                    <CircularProgress />
+                </StyledBoxModal>
+            )} */}
         </>
     );
 };
