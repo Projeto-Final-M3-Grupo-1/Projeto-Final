@@ -5,7 +5,6 @@ import { AuthContext } from "../../Providers/AuthContext";
 import {  useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
-import { RenderPorjectsDashAdmin } from "../RenderProjectsDashAdmin";
 
 const DropdownHeader = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);

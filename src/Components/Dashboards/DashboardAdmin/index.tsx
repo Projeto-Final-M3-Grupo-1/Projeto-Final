@@ -6,8 +6,7 @@ import { UserContext } from "../../../Providers/UserProvider";
 import HeaderDashboard from "../../HeaderDashboard";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 
-import Publications from "../../Publication";
-import { RenderPorjectsDashAdmin } from "../../RenderProjectsDashAdmin";
+// import Publications from "../../Publication";
 
 export const DashboardAdmin = () => {
   const { loadingUser } = useContext(AuthContext);
@@ -15,10 +14,10 @@ export const DashboardAdmin = () => {
 
   const { showModal } = useContext(ProjectsContext);
 
-  useEffect(() => {
-    loadingUser();
-    requestProjects();
-  }, []);
+  // useEffect(() => {
+  //   loadingUser();
+  //   requestProjects();
+  // }, []);
 
   return (
     <>

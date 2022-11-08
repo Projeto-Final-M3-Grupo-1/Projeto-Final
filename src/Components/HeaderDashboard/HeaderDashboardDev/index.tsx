@@ -8,33 +8,6 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import Logo from "../../Logo";
 
 export const DropdownHeaderDev = () => {
-<<<<<<< HEAD
-  const { dataUser, loadingUser } = useContext(AuthContext);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { handlePerfil } = useContext(UserContext);
-  const { setRender, handleProjectsToApply } = useContext(ProjectsContext);
-
-  const width = window.innerWidth;
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
-
-  useEffect(() => {
-    loadingUser();
-    handleResize();
-  }, []);
-
-  const handleResize = () => {
-    if (width <= 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
-=======
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { handlePerfil } = useContext(UserContext);
@@ -60,21 +33,8 @@ export const DropdownHeaderDev = () => {
 			setIsMobile(false);
 		}
 	};
->>>>>>> 8bdc0b50d90a03d27e4c30087b6e18c842c8b28a
 
 
-<<<<<<< HEAD
-            <S.Image
-              onClick={handlePerfil}
-              src={dataUser.fotoDePerfil}
-              alt="Foto de perfil"
-            />
-          </S.User>
-        </S.Nav>
-      )}
-    </S.Header>
-  );
-=======
 	return (
 		<S.Header>
 			{isMobile ? (
@@ -143,5 +103,4 @@ export const DropdownHeaderDev = () => {
 			)}
 		</S.Header>
 	);
->>>>>>> 8bdc0b50d90a03d27e4c30087b6e18c842c8b28a
 };

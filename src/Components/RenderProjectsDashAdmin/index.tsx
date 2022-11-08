@@ -8,7 +8,7 @@ interface iProjects{
     map(arg0: (project: any) => void): import("react").ReactNode;
 }
 
-export const RenderPorjectsDashAdmin = () => {
+export const RenderProjectsDashAdmin = () => {
     const {  requestProjects } =
     useContext(ProjectsContext);
     const [projects, setProjects] = useState([] as unknown as iProjects)
