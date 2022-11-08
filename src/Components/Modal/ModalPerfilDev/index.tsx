@@ -74,10 +74,6 @@ export const ModalPerfilDev = () => {
     requestTechs();
   }, []);
 
-  // const modalRef = useOutSideClick(() => {
-  //     setShowModal(null);
-  // });
-
   return (
     <>
       <StyledBoxModal>

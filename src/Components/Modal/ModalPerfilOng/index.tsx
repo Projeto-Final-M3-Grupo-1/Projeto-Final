@@ -6,6 +6,7 @@ import { StyledButtonCadastro } from "../../Button";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 import { StyledBoxModal } from "../ModalLogin/style";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
+import { useForm } from "react-hook-form";
 import {
     StyledModalBody,
     StyledOngDetails,
@@ -16,7 +17,9 @@ import {
     StyledContent,
     StyledButtons,
 } from "./style";
-
+import { schemaOngDescription } from "../../../Services/validation/createUser.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { UserContext } from "../../../Providers/UserProvider";
 interface iState {
     length: any;
     map(arg0: (elem: any) => void): import("react").ReactNode;
@@ -27,17 +30,29 @@ interface iState {
     user: number;
     setProjects: any;
 }
-
+export interface IUserRegister {
+    descricaoDaOng: string;
+    error?: {
+        descricaoDaOng: string;
+    };
+}
 export const ModalPerfilOng = () => {
-    const { setShowModal, handleNavigate } = useContext(ProjectsContext);
-
     const { dataUser } = useContext(AuthContext);
+    const { onSubmitEditOngPerfil, handlePerfil } = useContext(UserContext);
+    const { setShowModal, handleNavigate } = useContext(ProjectsContext);
     const [projects, setProjetcts] = useState([] as unknown as iState);
-
-    const modalRef = useOutSideClick(() => {
-        setShowModal(null);
+    const {
+        handleSubmit,
+        register,
+        formState: {
+            errors: { descricaoDaOng, telefone },
+        },
+    } = useForm({
+        resolver: yupResolver(schemaOngDescription),
     });
-
+    const modalRef = useOutSideClick(() => {
+        setShowModal(false);
+    });
     useEffect(() => {
         const getProject = () => {
             api.get(`/projects`)
@@ -47,21 +62,21 @@ export const ModalPerfilOng = () => {
                 .catch((error) => console.log(error));
         };
         getProject();
-    }, [dataUser]);
-
-    console.log(projects);
-
+    }, []);
+    console.log(dataUser);
     return (
         <>
             <StyledBoxModal>
                 <StyledModalBody ref={modalRef}>
-                    <ButtonCloseModal callback={() => setShowModal(false)} />
-
+                    <ButtonCloseModal callback={handlePerfil} />
                     <StyledContent>
                         <StyledOngDetails>
                             <div className="profile">
                                 <caption>
-                                    <img src={dataUser.fotoDePerfil} alt="" />
+                                    <img
+                                        src={dataUser.fotoDePerfil}
+                                        alt="foto de perfil"
+                                    />
                                 </caption>
                                 <div className="details">
                                     <h3>{dataUser.razaoSocial}</h3>
@@ -70,21 +85,12 @@ export const ModalPerfilOng = () => {
                             </div>
                             <StyledProjectDetails>
                                 <StyledInfo>
-                                    <p className="label">Nome do projeto</p>
-                                    <input
-                                        className="info"
-                                        value={dataUser.razaoSocial}
-                                    />
-                                </StyledInfo>
-
-                                <StyledInfo>
                                     <p className="label">Razão Social</p>
                                     <input
                                         className="info"
                                         value={dataUser.razaoSocial}
                                     />
                                 </StyledInfo>
-
                                 <StyledInfo>
                                     <p className="label">CNPJ</p>
                                     <input
@@ -92,19 +98,36 @@ export const ModalPerfilOng = () => {
                                         value={dataUser.cnpj}
                                     />
                                 </StyledInfo>
-
                                 <StyledDescription>
-                                    <p>O que fazemos</p>
-                                    <textarea placeholder="Escreva sua descrição">
-                                        {dataUser.description}
-                                    </textarea>
+                                    <form
+                                        onSubmit={handleSubmit(
+                                            onSubmitEditOngPerfil
+                                        )}
+                                    >
+                                        <p className="label">Telefone</p>
+                                        <textarea
+                                            className="telephone"
+                                            {...register("telefone")}
+                                        >
+                                            {dataUser.telefone}
+                                        </textarea>
+                                        <p>O que fazemos</p>
+                                        <textarea
+                                            {...register("descricaoDaOng")}
+                                            placeholder="Escreva sua descrição"
+                                            className="info"
+                                        >
+                                            {dataUser.descricaoDaOng}
+                                        </textarea>
+                                        <StyledButtonCadastro type="submit">
+                                            Salvar
+                                        </StyledButtonCadastro>
+                                    </form>
                                 </StyledDescription>
                             </StyledProjectDetails>
                         </StyledOngDetails>
-
                         <StyledProjectsRequests>
                             <h3 className="title">Solicitações do Projeto</h3>
-
                             <div className="projectInfo">
                                 <h3 className="name">
                                     {dataUser.nomeDoResponsavel}
@@ -127,14 +150,12 @@ export const ModalPerfilOng = () => {
                                 ) : (
                                     <h1>Nenhum projeto</h1>
                                 )}
-
                                 <StyledButtonCadastro>
                                     Criar projeto
                                 </StyledButtonCadastro>
                             </div>
                         </StyledProjectsRequests>
                         <StyledButtons>
-                            <StyledButtonCadastro>Salvar</StyledButtonCadastro>
                             <StyledButtonCadastro
                                 onClick={() => handleNavigate("/home")}
                             >

@@ -32,6 +32,7 @@ interface iState {
 
 export const ModalPerfilAdmin = () => {
   const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+  const { handlePerfil } = useContext(UserContext);
 
   const { dataUser } = useContext(AuthContext);
   const [projects, setProjetcts] = useState([] as unknown as iState);
@@ -44,7 +45,7 @@ export const ModalPerfilAdmin = () => {
   } = useContext(UserContext);
 
   const modalRef = useOutSideClick(() => {
-    setShowModal(null);
+    setShowModal(false);
   });
 
   useEffect(() => {

@@ -5,11 +5,13 @@ import { UserContext } from "../../../Providers/UserProvider";
 
 import MenuAsideOng from "../../Asides/AsideOng";
 import HeaderDashboard from "../../HeaderDashboard";
+import ModalCreateProject from "../../Modal/ModalAddProject";
 import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
 import Publications from "../../Publication";
 
 export const DashboardOng = () => {
-    const { showModal, handleNavigate } = useContext(ProjectsContext);
+    const { showModal, handleNavigate, showProject } =
+        useContext(ProjectsContext);
     const { renderPublications } = useContext(UserContext);
 
     useEffect(() => {
@@ -19,6 +21,7 @@ export const DashboardOng = () => {
         <>
             <HeaderDashboard />
             {showModal && <ModalPerfilOng />}
+            {showProject && <ModalCreateProject />}
             <Publications></Publications>
         </>
     );
