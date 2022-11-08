@@ -22,7 +22,7 @@ export const ProjectsToApply = () => {
                             return (
                                 <li>
                                     <img src={element.imgProject} alt="" />
-                                    <h1>{element.title}</h1>
+                                    <h2>{element.title}</h2>
                                     <p>{element.description}</p>
                                     <div>
                                         <StyledLoginButton
