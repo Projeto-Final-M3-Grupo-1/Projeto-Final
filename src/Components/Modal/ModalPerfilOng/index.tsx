@@ -39,7 +39,8 @@ export const ModalPerfilOng = () => {
 
     useEffect(() => {
         requestProjects();
-    }, [dataUser]);
+    }, []);
+
 
     console.log(projects);
 
