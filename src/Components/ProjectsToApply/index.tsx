@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { TbH1 } from "react-icons/tb";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
@@ -19,6 +20,7 @@ export const ProjectsToApply = () => {
     console.log(projects);
     return (
         <>
+            <CircularProgress />
             <StyledBoxProjectsToApply>
                 <h2>Projetos em que você pode se voluntariar</h2>
                 <ul>
