@@ -29,23 +29,16 @@ interface iState {
 }
 
 export const ModalPerfilOng = () => {
-    const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+    const { setShowModal, handleNavigate, projects, requestProjects } =
+        useContext(ProjectsContext);
     const { dataUser } = useContext(AuthContext);
-    const [projects, setProjetcts] = useState([] as unknown as iState);
 
     const modalRef = useOutSideClick(() => {
         setShowModal(null);
     });
 
     useEffect(() => {
-        const getProject = () => {
-            api.get(`/projects`)
-                .then((res) => {
-                    setProjetcts(res.data);
-                })
-                .catch((error) => console.log(error));
-        };
-        getProject();
+        requestProjects();
     }, [dataUser]);
 
     console.log(projects);
@@ -109,7 +102,7 @@ export const ModalPerfilOng = () => {
                                     {dataUser.nomeDoResponsavel}
                                 </h3>
                                 {projects.length ? (
-                                    projects.map((element) => {
+                                    projects.map((element: any) => {
                                         if (element.ongId === dataUser.id) {
                                             return (
                                                 <>
