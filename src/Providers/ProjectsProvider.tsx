@@ -100,7 +100,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             },
         }).then((res) => {
             setYouRight(false);
-            console.log(res);
             toast.success(
                 "Cadastrado com sucesso no projeto, acesse Meu Projeto para ver os detalhes"
             );
