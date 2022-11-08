@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
-import { AuthContext } from "../../Providers/AuthContext";
+import { AuthContext } from "../../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { ProjectsContext } from "../../Providers/ProjectsProvider";
-import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
+import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import ModalNovaPublicacao from "../../Modal/ModalNovaPublicacao";
+import { PendingProject } from "../../AllProjects/Pendings";
 
 const DropdownHeader = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
@@ -36,11 +37,11 @@ const DropdownHeader = () => {
     <S.Header>
       {isMobile ? (
         <S.MobileNav>
-          <h2>Logo</h2>
+          <h2>DeVoluntário</h2>
           <S.MenuHamburger />
           <S.MobileDropdown>
             <S.MobileDropdownList>
-              <S.MobileDropdownItem>Ver todos projetos</S.MobileDropdownItem>
+              <S.MobileDropdownItem>Meus Projetos</S.MobileDropdownItem>
               <S.MobileDropdownItem onClick={HandleModalProject}>
                 Adicionar projeto
               </S.MobileDropdownItem>
@@ -52,13 +53,13 @@ const DropdownHeader = () => {
         </S.MobileNav>
       ) : (
         <S.Nav>
-          <h2>Logo</h2>
+          <h2>DeVoluntário</h2>
           <S.Dropdown>
             <S.Span>
               Projetos
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem>Ver todos projetos</S.DropdownItem>
+                <S.DropdownItem>Meus Projetos</S.DropdownItem>
                 <S.DropdownItem onClick={HandleModalProject}>
                   Adicionar projeto
                 </S.DropdownItem>

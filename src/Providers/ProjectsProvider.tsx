@@ -29,6 +29,9 @@ interface IProjectsContext {
   createProjects: any;
   HandleModalProject: () => void;
   handleNavigate: any;
+  pendingProject: any;
+  setPendingProject: any;
+  requestPendingProjects: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -47,7 +50,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [render, setRender] = useState(false);
   const [youRight, setYouRight] = useState(false);
   const [showProject, setShowProjects] = useState(false);
-
+  const [pendingProject, setPendingProject] = useState([] as any);
   const navigate = useNavigate();
 
   const handleYouRight = (projectId: any) => {
@@ -71,6 +74,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const HandleModalProject = () => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
   };
+
   const applyOnProject = () => {
     const body = {
       projectId: +localStorage.projectId,
@@ -89,8 +93,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
           Authorization: `Bearer ${localStorage.token}`,
         },
       })
-      .then(() => {
+      .then((res) => {
         setShowProjects(false);
+        setPendingProject(res.data);
+        requestPendingProjects();
         toast.success("Projeto cadastrado com sucesso!");
       });
   };
@@ -119,6 +125,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         },
       })
       .then((res) => setProjects(res.data));
+  };
+
+  const requestPendingProjects = () => {
+    api.get("/pendings").then((res: any) => setPendingProject(res.data));
   };
 
   const scrollToTop = () => {
@@ -151,6 +161,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         createProjects,
         showProject,
         setShowProjects,
+        pendingProject,
+        setPendingProject,
+        requestPendingProjects,
       }}
     >
       {children}

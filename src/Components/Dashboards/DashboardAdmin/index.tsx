@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
-import HeaderDashboard from "../../HeaderDashboard";
+import HeaderDashboard from "../../HeaderDashboard/HeaderDashboardOng";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 import { ProjectsToApply } from "../../ProjectsToApply";
 import Publications from "../../Publication";

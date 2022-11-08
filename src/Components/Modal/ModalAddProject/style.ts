@@ -15,6 +15,12 @@ export const StyledModalAddProject = styled.form`
   background-color: var(--white);
   gap: 20px;
 
+  button :nth-child(1) {
+    background-color: white;
+    width: 90%;
+    position: unset;
+  }
+
   label {
     font-size: 14px;
     font-weight: 500;
@@ -45,7 +51,7 @@ export const StyledModalAddProject = styled.form`
     align-items: center;
     padding: 10px 28px;
     gap: 10px;
-    width: 100%;
+    width: 20%;
     height: 40px;
     background: var(--button-background-color);
     color: var(--button-text-color);

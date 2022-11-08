@@ -13,7 +13,7 @@ export const RegisterOng = () => {
   return (
     <>
       <StyledHeader>
-        <h2>Logo</h2>
+        <h2>DeVoluntário</h2>
         <StyledLoginButton onClick={() => handleNavigate("/home")}>
           Voltar
         </StyledLoginButton>

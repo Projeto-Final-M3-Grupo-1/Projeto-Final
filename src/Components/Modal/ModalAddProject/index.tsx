@@ -1,4 +1,4 @@
-import * as S from "../../HeaderDashboard/style";
+import * as S from "../../HeaderDashboard/HeaderDashboardOng/style";
 
 import { useContext } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
@@ -28,17 +28,17 @@ function ModalCreateProject() {
   return (
     <StyledBoxModal>
       <StyledModalAddProject onSubmit={handleSubmit(createProjects)}>
+        <ButtonCloseModal
+          callback={() => {
+            setShowProjects(false);
+          }}
+        />
         <S.User>
           <S.Name>
             {dataUser.nome} || {dataUser.razaoSocial}
           </S.Name>
           <S.Image src={dataUser.fotoDePerfil} alt="Foto de perfil Ong" />
-        </S.User>
-        <ButtonCloseModal
-          callback={() => {
-            setShowProjects(false);
-          }}
-        />{" "}
+        </S.User>{" "}
         <label>Titulo</label>
         <input placeholder="Insira o Nome" {...register("title")} />
         <label>Descrição do Projeto</label>
