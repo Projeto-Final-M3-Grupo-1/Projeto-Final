@@ -7,31 +7,40 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
-    onSubmitLogin: any;
-    onSubmitRegister: any;
-    onSubmitOng: any;
-    renderPublications: () => void;
-    user: any;
-    setUser: any;
-    publications: [];
-    onSubmitTech: any;
-    handleCreateTech: any;
-    createTech: boolean;
-    requestTechs: any;
-    techs: any;
-    requestDeleteTech: any;
-    onSubmitEditPerfil: any;
-    openPerfil: boolean;
-    handlePerfil: any;
-    setOpenPerfil: any;
+	onSubmitLogin: any;
+	onSubmitRegister: any;
+	onSubmitOng: any;
+	renderPublications: () => void;
+	user: any;
+	setUser: any;
+	publications: [];
+	onSubmitTech: any;
+	handleCreateTech: any;
+	createTech: boolean;
+	requestTechs: any;
+	techs: any;
+	requestDeleteTech: any;
+	onSubmitEditPerfil: any;
+	openPerfil: boolean;
+	handlePerfil: any;
+	setOpenPerfil: any;
+	newNotice: any;
 }
 interface IUserChildren {
-    children: ReactNode;
+	children: ReactNode;
+}
+
+interface iNotice {
+	title: string;
+	description: string;
+	site?: string;
+	img?: string;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
+
     const { setDataUser } = useContext(AuthContext);
     const [createTech, setCreateTech] = useState<any>(false);
     const [techs, setTechs] = useState([]);
@@ -49,6 +58,32 @@ export const UserProvider = ({ children }: IUserChildren) => {
     const handlePerfil = () => {
         return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
     };
+    
+    const newNotice = (notice: iNotice) => {
+		  const userId = localStorage.userId;
+
+		const newNotice = {
+			...notice,
+			userId,
+		};
+
+		const headers = {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		};
+		try {
+			api.post("/notices", newNotice, headers);
+			toast.success("Noticia criada com sucesso!");
+
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
     const onSubmitLogin = async (data: any) => {
         await api
@@ -159,6 +194,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 openPerfil,
                 handlePerfil,
                 setOpenPerfil,
+                newNotice,
             }}
         >
             {children}

@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import api from "../Services/api";
 
 interface IProjectsContext {
+
     projects: any;
     setProjects: any;
     requestProjects: () => void;
@@ -25,17 +26,19 @@ interface IProjectsContext {
     youRight: boolean;
     handleYouRight: any;
     applyOnProject: any;
+
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
-    {} as IProjectsContext
+	{} as IProjectsContext
 );
 
 interface IProjectChildren {
-    children: ReactNode;
+	children: ReactNode;
 }
 
 export const ProjectsProvider = ({ children }: IProjectChildren) => {
+
     const [projects, setProjects] = useState([] as any);
     const [menu, setMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -43,7 +46,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [render, setRender] = useState(false);
     const [youRight, setYouRight] = useState(false);
 
-    const navigate = useNavigate();
+
+	const navigate = useNavigate();
+
 
     const handleYouRight = (projectId: any) => {
         localStorage.setItem("projectId", projectId);
@@ -93,9 +98,11 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => setProjects(res.data));
     };
 
-    const scrollToTop = () => {
-        scroll.scrollToTop();
-    };
+
+	const scrollToTop = () => {
+		scroll.scrollToTop();
+	};
+
 
     return (
         <ProjectsContext.Provider

@@ -136,7 +136,7 @@ export const Span = styled.span`
 `;
 
 export const DropdownList = styled.ul`
-	position: absolute;
+	position: absolute !important;
 	background-color: var(--white);
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 	z-index: 1;
@@ -148,6 +148,13 @@ export const DropdownItem = styled.li`
 	gap: 10px;
 	padding: 10px 20px;
 	cursor: pointer;
+
+	min-height: 25px;
+	min-width: 200px;
+
+	position: relative !important;
+
+	z-index: 20;
 
 	&:hover {
 		background-color: var(--rose-600);
