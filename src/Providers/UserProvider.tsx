@@ -27,6 +27,7 @@ interface IUserContext {
     handlePerfil: any;
     setOpenPerfil: any;
     newNotice: any;
+    onSubmitEditOngPerfil: any;
 }
 interface IUserChildren {
     children: ReactNode;
@@ -196,7 +197,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
         })
             .then((res) => {
                 console.log(res.data);
-                setDataUser(res);
+                setDataUser(res.data);
             })
             .catch((err) => console.log(err));
     };
@@ -253,6 +254,11 @@ export const UserProvider = ({ children }: IUserChildren) => {
     //       .catch((err) => console.log(err));
     //   };
 
+    const onSubmitEditOngPerfil = (data: any) => {
+        console.log(data);
+        requestEditeTech(data);
+    };
+
     const renderPublications = () => {
         api.get("/notices").then((resp) => setPublications(resp.data));
     };
@@ -280,6 +286,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 setOpenPerfil,
                 onSubmitCreateTask,
                 newNotice,
+                onSubmitEditOngPerfil,
             }}
         >
             {children}
