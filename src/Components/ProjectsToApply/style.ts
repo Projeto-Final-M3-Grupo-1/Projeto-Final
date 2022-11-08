@@ -41,6 +41,11 @@ export const StyledBoxProjectsToApply = styled.div`
         border-radius: 2rem;
     }
     ul > li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
         width: 95%;
         min-height: 300px;
 
@@ -64,6 +69,7 @@ export const StyledBoxProjectsToApply = styled.div`
         color: var(--rose-600);
     }
     ul > li > p {
+        width: 90%;
         margin-top: 1rem;
         height: 209px;
         max-width: 1200px;
