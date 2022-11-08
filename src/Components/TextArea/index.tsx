@@ -21,11 +21,12 @@ export const TextArea = ({
     <StyledTextArea>
       <label htmlFor={name}>{textLabel}</label>
       <textarea
+        rows={4}
         type={type}
         id={name}
         placeholder={placeholder}
         {...register(name)}
-      />
+      ></textarea>
       {error && <span>{error}</span>}
     </StyledTextArea>
   );

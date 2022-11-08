@@ -19,6 +19,9 @@ export const StyledBoxModalCreateTask = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 8px;
   }
 
   .containerNomeFuncao {

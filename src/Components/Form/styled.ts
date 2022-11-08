@@ -18,6 +18,8 @@ export const StyledForm = styled.form`
 
   background-color: white;
 
+  gap: 8px;
+
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
