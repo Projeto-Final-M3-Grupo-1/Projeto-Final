@@ -25,6 +25,8 @@ interface IUserContext {
 	handlePerfil: any;
 	setOpenPerfil: any;
 	newNotice: any;
+    getPublication: any;
+    onSubmitEditPubli: any;
 }
 interface IUserChildren {
 	children: ReactNode;
@@ -126,6 +128,17 @@ export const UserProvider = ({ children }: IUserChildren) => {
         requestEditeTech(data);
     };
 
+    const onSubmitEditPubli = (data : any, id : number) => {
+        api.patch(`notices/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+        .then(() => {
+            renderPublications();
+        })
+    }
+
     const requestTechs = () => {
         api.get("/techs", {
             headers: {
@@ -174,6 +187,11 @@ export const UserProvider = ({ children }: IUserChildren) => {
         api.get("/notices").then((resp) => setPublications(resp.data));
     };
 
+    const getPublication = (id : number) => {
+        api.get(`/notices/${id}`).then((resp) => console.log(resp.data)
+        );
+    };
+
     return (
         <UserContext.Provider
             value={{
@@ -195,6 +213,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 handlePerfil,
                 setOpenPerfil,
                 newNotice,
+                getPublication,
+                onSubmitEditPubli
             }}
         >
             {children}
