@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Providers/UserProvider";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import Logo from "../../Logo";
 
 export const DropdownHeaderDev = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
@@ -37,19 +38,15 @@ export const DropdownHeaderDev = () => {
     <S.Header>
       {isMobile ? (
         <S.MobileNav>
-          <h2>Logo</h2>
+          <Logo />
           <S.MenuHamburger />
           <S.MobileDropdown>
             <S.MobileDropdownList>
-              <S.MobileDropdownItem onClick={() => navigate("/dashboard")}>
+              <S.MobileDropdownItem onClick={handleProjectsToApply}>
                 Ver todos projetos
               </S.MobileDropdownItem>
               <S.MobileDropdownItem>Meu projeto</S.MobileDropdownItem>
-              <S.MobileDropdownItem
-              /*  onClick={() =>
-                                    handleProjectsToApply()
-                                } */
-              >
+              <S.MobileDropdownItem onClick={handleProjectsToApply}>
                 Ver todas publicações
               </S.MobileDropdownItem>
               <S.LogoutButton onClick={logout}>Sair</S.LogoutButton>
@@ -58,7 +55,7 @@ export const DropdownHeaderDev = () => {
         </S.MobileNav>
       ) : (
         <S.Nav>
-          <h2>Logo</h2>
+          <Logo />
           <S.Dropdown>
             <S.Span>
               Projetos
@@ -80,8 +77,10 @@ export const DropdownHeaderDev = () => {
               Publicações
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem>Ver todas publicações</S.DropdownItem>
                 <S.DropdownItem onClick={() => navigate("/dashboard")}>
+                  Ver todas publicações
+                </S.DropdownItem>
+                <S.DropdownItem onClick={handleProjectsToApply}>
                   Ver todas publicações
                 </S.DropdownItem>
               </S.DropdownList>

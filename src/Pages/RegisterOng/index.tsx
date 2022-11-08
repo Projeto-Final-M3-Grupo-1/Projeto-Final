@@ -6,6 +6,7 @@ import Headers from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
 import { StyledButtonCta, StyledLoginButton } from "../../Components/Button";
 import { StyledHeader } from "../../Components/Header/header";
+import Logo from "../../Components/Logo";
 
 export const RegisterOng = () => {
   const { showModal, handleModal, handleNavigate } =
@@ -13,7 +14,7 @@ export const RegisterOng = () => {
   return (
     <>
       <StyledHeader>
-        <h2>DeVoluntário</h2>
+        <Logo />
         <StyledLoginButton onClick={() => handleNavigate("/home")}>
           Voltar
         </StyledLoginButton>
