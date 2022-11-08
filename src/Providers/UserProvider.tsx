@@ -129,6 +129,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
             },
         })
             .then((res) => {
+                console.log(res.data);
                 setDataUser(res);
             })
             .catch((err) => console.log(err));

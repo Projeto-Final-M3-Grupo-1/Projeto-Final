@@ -1,25 +1,25 @@
 import { useContext, useEffect } from "react";
-import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import Publications from "../../Publication";
 
-import HeaderDashboard from "../../HeaderDashboard";
 import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
+import { DropdownHeaderDev } from "../../HeaderDashboard/HeaderDashboardDev";
+import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { ProjectsToApply } from "../../ProjectsToApply";
 
 export const DashboardDev = () => {
-    const { renderPublications, handlePerfil, openPerfil } =
-        useContext(UserContext);
-
+    const { renderPublications, openPerfil } = useContext(UserContext);
+    const { render, setRender } = useContext(ProjectsContext);
     useEffect(() => {
         renderPublications();
     }, []);
 
     return (
         <>
-            <HeaderDashboard />
+            <DropdownHeaderDev />
             {openPerfil && <ModalPerfilDev />}
-            <button onClick={handlePerfil}>perfil</button>
-            <Publications></Publications>
+
+            {!render ? <Publications /> : <ProjectsToApply />}
         </>
     );
 };
