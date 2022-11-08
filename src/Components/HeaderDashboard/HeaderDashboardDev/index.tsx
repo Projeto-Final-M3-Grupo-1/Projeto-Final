@@ -42,7 +42,7 @@ export const DropdownHeaderDev = () => {
                     <S.MobileDropdown>
                         <S.MobileDropdownList>
                             <S.MobileDropdownItem
-                                onClick={handleProjectsToApply}
+                                onClick={() => navigate("/dashboard")}
                             >
                                 Ver todos projetos
                             </S.MobileDropdownItem>
@@ -50,7 +50,9 @@ export const DropdownHeaderDev = () => {
                                 Meu projeto
                             </S.MobileDropdownItem>
                             <S.MobileDropdownItem
-                                onClick={handleProjectsToApply}
+                                onClick={() =>
+                                    handleProjectsToApply("publications")
+                                }
                             >
                                 Ver todas publicações
                             </S.MobileDropdownItem>
@@ -68,20 +70,32 @@ export const DropdownHeaderDev = () => {
                             Projetos
                             <VscTriangleDown />
                             <S.DropdownList>
-                                <S.DropdownItem onClick={handleProjectsToApply}>
+                                <S.DropdownItem
+                                    onClick={() =>
+                                        navigate("/dashboard/projectstoapply")
+                                    }
+                                >
                                     Ver todos projetos
                                 </S.DropdownItem>
-                                <S.DropdownItem>Meu projeto</S.DropdownItem>
+                                <S.DropdownItem
+                                    onClick={() =>
+                                        navigate("/dashboard/myproject")
+                                    }
+                                >
+                                    Meu projeto
+                                </S.DropdownItem>
                             </S.DropdownList>
                         </S.Span>
                         <S.Span>
                             Publicações
                             <VscTriangleDown />
                             <S.DropdownList>
-                                <S.DropdownItem onClick={handleProjectsToApply}>
+                                <S.DropdownItem>
                                     Ver todas publicações
                                 </S.DropdownItem>
-                                <S.DropdownItem onClick={handleProjectsToApply}>
+                                <S.DropdownItem
+                                    onClick={() => navigate("/dashboard")}
+                                >
                                     Ver todas publicações
                                 </S.DropdownItem>
                             </S.DropdownList>

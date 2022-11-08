@@ -20,7 +20,7 @@ export const ShowPerfilOng = () => {
     console.log(ongPerfil);
     return (
         <StyledBoxModal>
-            <StyledOngOnProject style={{ textAlign: "center" }}>
+            <StyledOngOnProject>
                 <ButtonCloseModal callback={handlePerfilOngOnProject} />
                 <img src={ongPerfil.fotoDePerfil} alt="" />
                 <h2>{ongPerfil.razaoSocial}</h2>
