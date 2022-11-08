@@ -12,6 +12,8 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
+
 
 export interface IUserRegister {
     email: string;
@@ -34,7 +36,10 @@ export interface IUserRegister {
 }
 export const ModalRegister = () => {
     const { onSubmitRegister } = useContext(UserContext);
-    const { handleModal } = useContext(ProjectsContext);
+    const { handleModal, setShowModal } = useContext(ProjectsContext);
+     const modalRef = useOutSideClick(() => {
+        setShowModal(null)
+    })
     const {
         handleSubmit,
         register,
@@ -54,8 +59,7 @@ export const ModalRegister = () => {
     });
     return (
         <StyledBoxModal>
-            <StyledForm onSubmit={handleSubmit(onSubmitRegister)}>
-                <ButtonCloseModal callback={handleModal} />
+            <StyledForm onSubmit={handleSubmit(onSubmitRegister)} ref={modalRef}>
                 <h2>Cadastrar Dev</h2>
                 <InputAndLabel
                     textLabel="Nome"

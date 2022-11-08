@@ -20,6 +20,30 @@ export const StyledAside = styled.aside`
       color: white;
     }
   }
+  button {
+    height: 55px;
+    border-bottom: 1px solid black;
+    margin: 10px;
+    align-items: center;
+    text-align: left;
+    display: flex;
+    cursor: pointer;
+    color: white;
+    background-color: var(--slate-500);
+    border: none;
+  }
+
+  button:hover {
+    height: 55px;
+    border-bottom: 1px solid black;
+    margin: 10px;
+    align-items: center;
+    text-align: left;
+    display: flex;
+    cursor: pointer;
+    scale: 1.02;
+    color: white;
+  }
 
   a {
     height: 55px;

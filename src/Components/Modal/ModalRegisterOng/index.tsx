@@ -11,6 +11,7 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
 
 export interface IUserOng {
     email: string;
@@ -35,7 +36,10 @@ export interface IUserOng {
 }
 export const ModalRegisterOng = () => {
     const { onSubmitOng } = useContext(UserContext);
-    const { handleModal } = useContext(ProjectsContext);
+    const { setShowModal } = useContext(ProjectsContext);
+    const modalRef = useOutSideClick(() => {
+        setShowModal(null)
+    })
     const {
         handleSubmit,
         register,
@@ -56,8 +60,7 @@ export const ModalRegisterOng = () => {
     });
     return (
         <StyledBoxModal>
-            <StyledForm onSubmit={handleSubmit(onSubmitOng)}>
-                <ButtonCloseModal callback={handleModal} />
+            <StyledForm onSubmit={handleSubmit(onSubmitOng)} ref={modalRef}>
                 <h2>Cadastrar ONG</h2>
                 <InputAndLabel
                     textLabel="Razão Social"
