@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import api from "../Services/api";
 
 interface IProjectsContext {
-
     projects: any;
     setProjects: any;
     requestProjects: () => void;
@@ -19,36 +18,37 @@ interface IProjectsContext {
     handleMenu: () => void;
     handleModal: () => void;
     handleProjectsToApply: () => void;
-    handleNavigate: any;
     scrollToTop: () => void;
     render: boolean;
     setRender: any;
     youRight: boolean;
     handleYouRight: any;
     applyOnProject: any;
-
+    showProject: any;
+    setShowProjects: any;
+    createProjects: any;
+    HandleModalProject: () => void;
+    handleNavigate: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
-	{} as IProjectsContext
+    {} as IProjectsContext
 );
 
 interface IProjectChildren {
-	children: ReactNode;
+    children: ReactNode;
 }
 
 export const ProjectsProvider = ({ children }: IProjectChildren) => {
-
     const [projects, setProjects] = useState([] as any);
     const [menu, setMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [modalHome, setModalHome] = useState(false);
     const [render, setRender] = useState(false);
     const [youRight, setYouRight] = useState(false);
+    const [showProject, setShowProjects] = useState(false);
 
-
-	const navigate = useNavigate();
-
+    const navigate = useNavigate();
 
     const handleYouRight = (projectId: any) => {
         localStorage.setItem("projectId", projectId);
@@ -57,6 +57,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const handleProjectsToApply = () => {
         return !render ? setRender(true) : setRender(false);
     };
+    const handleNavigate = (route: string) => {
+        return navigate(route);
+    };
 
     const handleMenu = () => {
         return !menu ? setMenu(true) : setMenu(false);
@@ -64,16 +67,30 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const handleModal = () => {
         return !showModal ? setShowModal(true) : setShowModal(false);
     };
-    const handleNavigate = (route: string) => {
-        return navigate(route);
-    };
 
+    const HandleModalProject = () => {
+        return !showProject ? setShowProjects(true) : setShowProjects(false);
+    };
     const applyOnProject = () => {
         const body = {
             projectId: +localStorage.projectId,
         };
         console.log(body);
         requestApplyOnProject(body);
+    };
+
+    const createProjects = (data: any) => {
+        data.userId = localStorage.userId;
+        data.ongId = localStorage.userId;
+        console.log(data);
+        api.post("/pendings", data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => {
+            setShowProjects(false);
+            toast.success("Projeto cadastrado com sucesso!");
+        });
     };
 
     const requestApplyOnProject = (body: any) => {
@@ -98,11 +115,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => setProjects(res.data));
     };
 
-
-	const scrollToTop = () => {
-		scroll.scrollToTop();
-	};
-
+    const scrollToTop = () => {
+        scroll.scrollToTop();
+    };
 
     return (
         <ProjectsContext.Provider
@@ -126,6 +141,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 handleYouRight,
                 youRight,
                 applyOnProject,
+                HandleModalProject,
+                createProjects,
+                showProject,
+                setShowProjects,
             }}
         >
             {children}

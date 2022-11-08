@@ -59,3 +59,15 @@ export const schemaEditePerfil = yup.object().shape({
     github: yup.string().required(`Campo obrigatório`),
     linkedin: yup.string().required(`Campo obrigatório`),
 });
+
+export const schemaCreateProject = yup.object().shape({
+    title: yup.string().required(`Campo obrigatório`),
+    description: yup.string().required(`Campo obrigatório`),
+});
+
+export const schemaOngDescription = yup.object().shape({
+    descricaoDaOng: yup.string().required(),
+    telefone: yup
+        .string()
+        .matches(/.{11,}/, "Deve conter no minimo 11 caracateres"),
+});

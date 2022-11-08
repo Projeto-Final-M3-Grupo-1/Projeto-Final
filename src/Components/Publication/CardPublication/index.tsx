@@ -30,8 +30,8 @@ const Card = ({ img, title, description, id, site }: ICard ) => {
 
   const [isOpenEdit, setIsOpenEdit] = useState<Boolean>(false);
 
-	const handleIsOpenEdit = () => {
-		setShowModal(!showModal);    
+	const handleIsOpen = () => {
+		setIsOpenEdit(!isOpenEdit);    
 	};
 
   const teste = () => {
@@ -40,7 +40,7 @@ const Card = ({ img, title, description, id, site }: ICard ) => {
 
   return (
   <StyledMainCard>
-      {showModal && <ModalEditPubli handleIsOpenEdit={handleIsOpenEdit}  img={img} site={site} title={title} description={description} />}
+      {isOpenEdit && <ModalEditPubli handleIsOpen={handleIsOpen} id={id} img={img} site={site} title={title} description={description} />}
       <StyledCard>
         <img src={img} alt="" />
         <StyledRightCard>
@@ -51,7 +51,7 @@ const Card = ({ img, title, description, id, site }: ICard ) => {
           {typeUser === "admin" ? (
             <StyledButtonsAdmin>
               <StyledLoginButton>Ver site</StyledLoginButton>
-              <StyledLoginButton onClick={handleIsOpenEdit}>Editar</StyledLoginButton>
+              <StyledLoginButton onClick={handleIsOpen}>Editar</StyledLoginButton>
             </StyledButtonsAdmin>
           ) : (
             <StyledLoginButton>Ver site</StyledLoginButton>

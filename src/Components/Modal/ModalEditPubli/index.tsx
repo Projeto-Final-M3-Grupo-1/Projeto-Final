@@ -10,11 +10,12 @@ import { newNoticeSchema } from "../../../Services/validation/newNoticeSchema";
 import { UserContext } from "../../../Providers/UserProvider";
 
 interface iModalEditPubli {
-  handleIsOpenEdit: () => void;
+  handleIsOpen: () => void;
   img: string;
   title: string;
   site: string;
   description: string;
+  id: number;
 }
 
 interface iNoticeForm {
@@ -37,30 +38,32 @@ const ModalEditPubli = ({
   title,
   site,
   description,
+  id,
 }: iModalEditPubli) => {
   const { dataUser, loadingUser } = useContext(AuthContext);
-  const { showModal, setShowModal } = useContext(ProjectsContext);
-  const { editPubli, renderPublications, onSubmitEditPubli } = useContext(UserContext);
+  const { setShowModal } = useContext(ProjectsContext);
+
+  const { onSubmitEditPubli } = useContext(UserContext);
 
   const modalRef = useOutSideClick(() => {
-    setShowModal(!showModal);
-  });
+    setShowModal(false);
+});
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<iNoticeForm>({
+} = useForm<iNoticeForm>({
     resolver: yupResolver(newNoticeSchema),
-  });
-  useEffect(() => {
+});
+useEffect(() => {
     loadingUser();
-  }, []);
+}, []);
 
   return (
     <S.Background>
       <S.Container ref={modalRef}>
-        <S.CloseButton onClick={() => setShowModal(!showModal)} />
+        <S.CloseButton onClick={handleIsOpen} />
         <S.Content>
           <S.UserContainer>
             <S.UserImage src={dataUser.fotoDePerfil} alt="Foto de Perfil" />
