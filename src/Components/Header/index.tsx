@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-scroll";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { ModalLogin } from "../Modal/ModalLogin";
-import { StyledHeader } from "./header";
+import { StyledHeader, Logo } from "./header";
 import { StyledLoginButton } from "../Button";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,10 @@ function Headers() {
 	return (
 		<>
 			<StyledHeader>
-				<h2>Logo</h2>
+				<Logo>
+					<h3>De</h3>
+					<h4>Volunteer</h4>
+				</Logo>
 				<nav>
 					<Link
 						activeClass="active"
