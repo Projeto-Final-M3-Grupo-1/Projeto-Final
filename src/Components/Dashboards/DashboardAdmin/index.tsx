@@ -4,19 +4,19 @@ import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import HeaderDashboard from "../../HeaderDashboard";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
-import { ProjectsToApply } from "../../ProjectsToApply";
-import Publications from "../../Publication";
 
-import { render } from "react-dom";
+import Publications from "../../Publication";
+import { RenderPorjectsDashAdmin } from "../../RenderProjectsDashAdmin";
 
 export const DashboardAdmin = () => {
   const { loadingUser } = useContext(AuthContext);
-  const { renderPublications } = useContext(UserContext);
+  const { render, setRender, requestProjects } = useContext(ProjectsContext);
+
   const { showModal } = useContext(ProjectsContext);
 
   useEffect(() => {
     loadingUser();
-    renderPublications();
+    requestProjects();
   }, []);
 
   return (
@@ -24,7 +24,7 @@ export const DashboardAdmin = () => {
       <HeaderDashboard />
       {showModal && <ModalPerfilAdmin />}
 
-      {!render ? <Publications /> : <ProjectsToApply />}
+      {!render ? <Publications /> : <RenderPorjectsDashAdmin/>}
     </>
   );
 };

@@ -5,11 +5,12 @@ import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
+import { RenderPorjectsDashAdmin } from "../RenderProjectsDashAdmin";
 
 const DropdownHeader = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { handleModal, HandleModalProject } = useContext(ProjectsContext);
+  const { handleModal, HandleModalProject, render, handleProjectsToApply} = useContext(ProjectsContext);
 
   const width = window.innerWidth;
   const navigate = useNavigate();
@@ -58,8 +59,8 @@ const DropdownHeader = () => {
               Projetos
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem>Ver todos projetos</S.DropdownItem>
-                <S.DropdownItem onClick={HandleModalProject}>
+                <S.DropdownItem onClick={handleProjectsToApply}>Ver todos projetos</S.DropdownItem>
+                <S.DropdownItem >
                   Adicionar projeto
                 </S.DropdownItem>
               </S.DropdownList>
@@ -68,7 +69,7 @@ const DropdownHeader = () => {
               Publicações
               <VscTriangleDown />
               <S.DropdownList>
-                <S.DropdownItem>Ver todas publicações</S.DropdownItem>
+                <S.DropdownItem onClick={handleProjectsToApply}>Ver todas publicações</S.DropdownItem>
                 <S.DropdownItem>Adicionar publicação</S.DropdownItem>
               </S.DropdownList>
             </S.Span>

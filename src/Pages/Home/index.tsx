@@ -23,6 +23,7 @@ export const Home = () => {
                 <AllProjects />
             </StyledContentWrapper>
             <Footer />
+
             {/* <CreateTask
         open={open}
         handleClose={() => setOpen(false)}

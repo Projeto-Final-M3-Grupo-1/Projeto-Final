@@ -17,6 +17,7 @@ interface IProjectsContext {
     setModalHome: React.Dispatch<React.SetStateAction<boolean>>;
     handleMenu: () => void;
     handleModal: () => void;
+    
     handleProjectsToApply: () => void;
     scrollToTop: () => void;
     render: boolean;
