@@ -102,9 +102,6 @@ export const HeaderDashboard = () => {
 											Criar projeto
 										</S.DropdownItem>
 										<S.DropdownItem>
-											Ver todos projetos
-										</S.DropdownItem>
-										<S.DropdownItem>
 											Meu projeto
 										</S.DropdownItem>
 									</S.DropdownList>
@@ -129,14 +126,16 @@ export const HeaderDashboard = () => {
 									Projetos
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem>
-											Criar projeto
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todos projetos em andamento
 										</S.DropdownItem>
 										<S.DropdownItem>
-											Ver todos projetos
+											Ver solicitações de Projeto
 										</S.DropdownItem>
 										<S.DropdownItem>
-											Meu projeto
+											Meus projetos
 										</S.DropdownItem>
 									</S.DropdownList>
 								</S.Span>
@@ -144,14 +143,16 @@ export const HeaderDashboard = () => {
 									Publicações
 									<VscTriangleDown />
 									<S.DropdownList>
+										<S.DropdownItem
+											onClick={handleProjectsToApply}
+										>
+											Ver todas publicações
+										</S.DropdownItem>
 										<S.DropdownItem>
 											Criar nova publicação
 										</S.DropdownItem>
-										<S.DropdownItem>
-											Ver todas publicações
-										</S.DropdownItem>
 									</S.DropdownList>
-								</S.Span>{" "}
+								</S.Span>
 							</>
 						)}
 					</S.Dropdown>
