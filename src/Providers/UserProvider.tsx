@@ -7,6 +7,7 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
+
   onSubmitLogin: any;
   onSubmitRegister: any;
   onSubmitOng: any;
@@ -25,6 +26,7 @@ interface IUserContext {
   openPerfil: boolean;
   handlePerfil: any;
   setOpenPerfil: any;
+  newNotice: any;
 }
 interface IUserChildren {
   children: ReactNode;
@@ -34,28 +36,66 @@ interface iCreateTask {
   title: string;
   content: string;
   projectId: number;
+ }
+
+
+interface iNotice {
+	title: string;
+	description: string;
+	site?: string;
+	img?: string;
+
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
-  const { setDataUser } = useContext(AuthContext);
-  const [createTech, setCreateTech] = useState<any>(false);
-  const [techs, setTechs] = useState([]);
-  const [user, setUser] = useState<any>({});
-  const [token, setToken] = useState<any>({});
-  const [email, setEmail] = useState<any>({});
-  const [openPerfil, setOpenPerfil] = useState(false);
-  const [publications, setPublications] = useState<any>({});
-  const { setShowModal } = useContext(ProjectsContext);
 
-  const navigate = useNavigate();
-  const handleCreateTech = () => {
-    return !createTech ? setCreateTech(true) : setCreateTech(false);
-  };
-  const handlePerfil = () => {
-    return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
-  };
+
+    const { setDataUser } = useContext(AuthContext);
+    const [createTech, setCreateTech] = useState<any>(false);
+    const [techs, setTechs] = useState([]);
+    const [user, setUser] = useState<any>({});
+    const [token, setToken] = useState<any>({});
+    const [email, setEmail] = useState<any>({});
+    const [openPerfil, setOpenPerfil] = useState(false);
+    const [publications, setPublications] = useState<any>({});
+    const { setShowModal } = useContext(ProjectsContext);
+
+    const navigate = useNavigate();
+    const handleCreateTech = () => {
+        return !createTech ? setCreateTech(true) : setCreateTech(false);
+    };
+    const handlePerfil = () => {
+        return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
+    };
+    
+    const newNotice = (notice: iNotice) => {
+		  const userId = localStorage.userId;
+
+		const newNotice = {
+			...notice,
+			userId,
+		};
+
+		const headers = {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		};
+		try {
+			api.post("/notices", newNotice, headers);
+			toast.success("Noticia criada com sucesso!");
+
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 
   const onSubmitLogin = async (data: any) => {
     toast.promise(
@@ -113,6 +153,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
       api
         .post("/tasks", data)
 
+
         .then(() => {}),
       {
         pending: "Criando Tarefa",
@@ -122,9 +163,55 @@ export const UserProvider = ({ children }: IUserChildren) => {
     );
   };
 
+    const requestTechs = () => {
+        api.get("/techs", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => setTechs(res.data))
+            .catch((res) => console.log(res));
+    };
+    const requestCreateTech = (data: any) => {
+        api.post("/techs", data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then(() => {
+                setCreateTech(false);
+                requestTechs();
+            })
+            .catch((err) => console.log(err));
+    };
+    const requestDeleteTech = (id: any) => {
+        api.delete(`/techs/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => requestTechs());
+    };
+    const requestEditeTech = (data: any) => {
+        api.patch(`/users/${localStorage.userId}`, data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => {
+                console.log(res.data);
+                setDataUser(res);
+            })
+            .catch((err) => console.log(err));
+    };
+
+
   const onSubmitEditPerfil = (data: any) => {
     requestEditeTech(data);
   };
+
 
   const requestTechs = () => {
     api
@@ -199,9 +286,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
         handlePerfil,
         setOpenPerfil,
         onSubmitCreateTask,
+         newNotice,
       }}
     >
       {children}
     </UserContext.Provider>
   );
-};
+}
