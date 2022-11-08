@@ -10,6 +10,7 @@ import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
 import Publications from "../../Publication";
 
 export const DashboardOng = () => {
+
   const { showModal, handleNavigate, showProject } =
     useContext(ProjectsContext);
   const { renderPublications } = useContext(UserContext);
@@ -25,4 +26,3 @@ export const DashboardOng = () => {
       <Publications></Publications>
     </>
   );
-};

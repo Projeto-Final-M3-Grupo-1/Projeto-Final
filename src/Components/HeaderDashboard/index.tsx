@@ -4,8 +4,10 @@ import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 
 const DropdownHeader = () => {
+
   const { dataUser, loadingUser } = useContext(AuthContext);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const { handleModal, HandleModalProject } = useContext(ProjectsContext);
@@ -85,5 +87,6 @@ const DropdownHeader = () => {
       )}
     </S.Header>
   );
+
 };
 export default DropdownHeader;
