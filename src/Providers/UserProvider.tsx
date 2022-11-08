@@ -88,6 +88,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
       api.post("/notices", newNotice, headers);
       toast.success("Noticia criada com sucesso!");
 
+<<<<<<< HEAD
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -110,6 +111,204 @@ export const UserProvider = ({ children }: IUserChildren) => {
         success: "Login realizado com sucesso",
         error: "Email ou senha invalidos",
       }
+=======
+    const onSubmitLogin = async (data: any) => {
+        toast.promise(
+            api.post("/login", data).then((res) => {
+                navigate("/dashboard");
+
+                setUser(res.data.user);
+                localStorage.setItem("token", res.data.accessToken);
+                localStorage.setItem("userId", res.data.user.id);
+            }),
+            {
+                pending: "Logando...",
+                success: "Login realizado com sucesso",
+                error: "Email ou senha invalidos",
+            }
+        );
+    };
+
+    const onSubmitTech = async (data: any) => {
+        data.userId = Number(localStorage.userId);
+        requestCreateTech(data);
+    };
+    const onSubmitRegister = (data: any) => {
+        data.typeUser = "dev";
+        toast.promise(
+            api.post("/registerdev", data).then(() => {
+                navigate("/home");
+            }),
+            {
+                pending: "Criando...",
+                success: "Cadastro realizado com sucesso!",
+                error: "Cadastro não realizado",
+            }
+        );
+    };
+
+    const onSubmitOng = (data: any) => {
+        data.typeUser = "ong";
+        toast.promise(
+            api.post("/registerong", data).then(() => {
+                navigate("/home");
+            }),
+            {
+                pending: "Criando...",
+                success: "Cadastro realizado com sucesso!",
+                error: "Cadastro não realizado",
+            }
+        );
+    };
+
+    const onSubmitCreateTask = (data: iCreateTask) => {
+        toast.promise(
+            api
+                .post("/tasks", data)
+
+                .then(() => {}),
+            {
+                pending: "Criando Tarefa",
+                success: "Sucesso ao criar a tarefa",
+                error: "Erro ao criar a tarefa",
+            }
+        );
+    };
+
+    const requestTechs = () => {
+        api.get("/techs", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => setTechs(res.data))
+            .catch((res) => console.log(res));
+    };
+    const requestCreateTech = (data: any) => {
+        api.post("/techs", data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then(() => {
+                setCreateTech(false);
+                requestTechs();
+            })
+            .catch((err) => console.log(err));
+    };
+    const requestDeleteTech = (id: any) => {
+        api.delete(`/techs/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => requestTechs());
+    };
+    const requestEditeTech = (data: any) => {
+        api.patch(`/users/${localStorage.userId}`, data, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((res) => {
+                console.log(res.data);
+                setDataUser(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const onSubmitEditPerfil = (data: any) => {
+        requestEditeTech(data);
+    };
+
+    //   const requestTechs = () => {
+    //     api
+    //       .get("/techs", {
+    //         headers: {
+    //           Authorization: `Bearer ${localStorage.token}`,
+    //         },
+    //       })
+    //       .then((res) => setTechs(res.data))
+    //       .catch((res) => console.log(res));
+    //   };
+    //   const requestCreateTech = (data: any) => {
+    //     api
+    //       .post("/techs", data, {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           Authorization: `Bearer ${localStorage.token}`,
+    //         },
+    //       })
+    //       .then(() => {
+    //         setCreateTech(false);
+    //         requestTechs();
+    //       })
+    //       .catch((err) => console.log(err));
+    //   };
+    //   const requestDeleteTech = (id: any) => {
+    //     api
+    //       .delete(`/techs/${id}`, {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           Authorization: `Bearer ${localStorage.token}`,
+    //         },
+    //       })
+    //       .then(() => requestTechs());
+    //   };
+    //   const requestEditeTech = (data: any) => {
+    //     api
+    //       .patch(`/users/${localStorage.userId}`, data, {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           Authorization: `Bearer ${localStorage.token}`,
+    //         },
+    //       })
+    //       .then((res) => {
+    //         setDataUser(res);
+    //       })
+    //       .catch((err) => console.log(err));
+    //   };
+
+    const onSubmitEditOngPerfil = (data: any) => {
+        console.log(data);
+        requestEditeTech(data);
+    };
+
+    const renderPublications = () => {
+        api.get("/notices").then((resp) => setPublications(resp.data));
+    };
+
+    return (
+        <UserContext.Provider
+            value={{
+                onSubmitLogin,
+                onSubmitRegister,
+                onSubmitOng,
+                user,
+                setUser,
+                publications,
+                renderPublications,
+                onSubmitTech,
+                handleCreateTech,
+                createTech,
+                requestTechs,
+                requestEditeTech,
+                techs,
+                requestDeleteTech,
+                onSubmitEditPerfil,
+                openPerfil,
+                handlePerfil,
+                setOpenPerfil,
+                onSubmitCreateTask,
+                newNotice,
+                onSubmitEditOngPerfil,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+>>>>>>> ce13dad5eea3bd70717677d31f5ae4ac8273eb37
     );
   };
 
