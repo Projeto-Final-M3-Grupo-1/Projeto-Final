@@ -58,6 +58,34 @@ export const StyledBoxProjectsToApply = styled.div`
     ul > li > div > button {
         width: 40%;
     }
+    ul > li > h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--rose-600);
+    }
+    ul > li > p {
+        margin-top: 1rem;
+        height: 209px;
+        max-width: 1200px;
+
+        font-style: var(--main-subtitle-text-weight);
+        line-height: 2;
+        font-weight: 600;
+
+        color: var(--main-subtitle-text-color);
+
+        overflow: hidden;
+        overflow-y: scroll;
+        ::-webkit-scrollbar {
+            background-color: var(--rose-200);
+            border-radius: 20px;
+            width: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--main-title-text-color);
+            border-radius: 20px;
+        }
+    }
     @media (max-width: 740px) {
         ul > li > div > button {
             font-size: 10px;
