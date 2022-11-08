@@ -19,7 +19,6 @@ export const HeaderDashboard = () => {
 
 	const loadUserType = () => {
 		setUserType(dataUser.typeUser);
-		//console.log(dataUser.typeUser);
 	};
 
 	const windowSize = useWindowSize();
@@ -48,9 +47,9 @@ export const HeaderDashboard = () => {
 		}
 	};
 
-	// verificação do tipo de usuário
-	// dev && ong -> renderiza o header com os dois itens
-	// ong -> renderiza o header com leitura de todas publicacoes, criar projetos e aos projetos em que ela faz parte
+	const proc = () => {
+		console.log("proc");
+	};
 
 	return (
 		<S.Header>
@@ -103,14 +102,10 @@ export const HeaderDashboard = () => {
 									Projetos
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Criar projeto
 										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Ver todos projetos
 										</S.DropdownItem>
 										<S.DropdownItem>
@@ -122,14 +117,10 @@ export const HeaderDashboard = () => {
 									Publicações
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Ver todas publicações
 										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Ver todas publicações
 										</S.DropdownItem>
 									</S.DropdownList>
@@ -142,14 +133,10 @@ export const HeaderDashboard = () => {
 									Projetos
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Criar projeto
 										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Ver todos projetos
 										</S.DropdownItem>
 										<S.DropdownItem>
@@ -161,14 +148,10 @@ export const HeaderDashboard = () => {
 									Publicações
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Criar nova publicação
 										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={handleProjectsToApply}
-										>
+										<S.DropdownItem>
 											Ver todas publicações
 										</S.DropdownItem>
 									</S.DropdownList>
