@@ -127,7 +127,11 @@ export const HeaderDashboard = () => {
 										>
 											Criar projeto
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate("/PROJETODAONG");
+											}}
+										>
 											Meu projeto
 										</S.DropdownItem>
 									</S.DropdownList>
@@ -136,10 +140,18 @@ export const HeaderDashboard = () => {
 									Publicações
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate("/dashboard");
+											}}
+										>
 											Ver todas publicações
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate("/dashboard");
+											}}
+										>
 											Ver todas publicações
 										</S.DropdownItem>
 									</S.DropdownList>
@@ -153,11 +165,21 @@ export const HeaderDashboard = () => {
 									<VscTriangleDown />
 									<S.DropdownList>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate(
+													"/dashboard/projectsadmin"
+												);
+											}}
 										>
 											Ver todos projetos em andamento
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate(
+													"/dashboard/manageproject"
+												);
+											}}
+										>
 											Ver solicitações de Projeto
 										</S.DropdownItem>
 										<S.DropdownItem>

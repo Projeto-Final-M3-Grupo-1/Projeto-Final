@@ -35,6 +35,7 @@ interface IProjectsContext {
     dataOngMyProject: any;
     requestAddDevOnTask: any;
     requestCompleteTask: any;
+    handleManageProject: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -142,7 +143,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            requestMyProject();
+            requestOngMyProject();
+        });
     };
     const requestCompleteTask = (id: any) => {
         const body = {
@@ -152,7 +156,18 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            requestMyProject();
+            requestOngMyProject();
+            toast.success("Tarefa concluída com sucesso!");
+        });
+    };
+
+    const handleManageProject = (projectId: any, ongId: any) => {
+        localStorage.setItem("projectId", projectId);
+        localStorage.setItem("ongId", ongId);
+
+        navigate("/dashboard/manageproject");
     };
 
     const scrollToTop = () => {
@@ -191,6 +206,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 dataOngMyProject,
                 requestAddDevOnTask,
                 requestCompleteTask,
+                handleManageProject,
             }}
         >
             {children}
