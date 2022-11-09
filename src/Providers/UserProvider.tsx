@@ -202,43 +202,54 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 Authorization: `Bearer ${localStorage.token}`,
             },
         })
-            .then((res) => setTechs(res.data))
-            .catch((res) => console.log(res));
-    };
-    const requestCreateTech = (data: any) => {
-        api.post("/techs", data, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        })
-            .then(() => {
-                setCreateTech(false);
-                requestTechs();
-            })
-            .catch((err) => console.log(err));
-    };
-    const requestDeleteTech = (id: any) => {
-        api.delete(`/techs/${id}`, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        }).then(() => requestTechs());
-    };
-    const requestEditeTech = (data: any) => {
-        api.patch(`/users/${localStorage.userId}`, data, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        })
-            .then((res) => {
-                console.log(res.data);
-                setDataUser(res.data);
-            })
-            .catch((err) => console.log(err));
-    };
+    }
+	const requestTechs = () => {
+		api.get("/techs", {
+			headers: {
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		})
+			.then((res) => setTechs(res.data))
+			.catch((res) => console.log(res));
+	};
+	const requestCreateTech = (data: any) => {
+		api.post("/techs", data, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		})
+			.then(() => {
+				setCreateTech(false);
+				requestTechs();
+			})
+			.catch((err) => console.log(err));
+	};
+	const requestDeleteTech = (id: any) => {
+		api.delete(`/techs/${id}`, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		}).then(() => requestTechs());
+	};
+	const requestEditeTech = (data: any) => {
+		api.patch(`/users/${localStorage.userId}`, data, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.token}`,
+			},
+		})
+			.then((res) => {
+				console.log(res.data);
+				setDataUser(res.data);
+				toast.success("Dados de perfil editado com sucesso")
+			})
+			.catch((err) => 
+			toast.error("erro ao editar os dados")
+			)
+	};
+
 
     const onSubmitEditPerfil = (data: any) => {
         requestEditeTech(data);
