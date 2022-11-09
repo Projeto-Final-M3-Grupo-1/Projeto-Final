@@ -118,22 +118,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   };
 
 
-    const createProjects = (data: any) => {
-        data.userId = localStorage.userId;
-        data.ongId = localStorage.userId;
-
-        api.post("/projects", data, {
-            headers: {
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        }).then((res) => {
-            setShowProjects(false);
-            toast.success("Projeto cadastrado com sucesso!");
-            setPendingProjects(res.data)
-            requestProjects();
-        });
-    };
-
   const HandleModalProject = () => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
   };
