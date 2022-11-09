@@ -3,7 +3,7 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
-import { AuthContext } from "../../Providers/AuthContext";
+import { AuthContext, iDataUser } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
@@ -166,7 +166,13 @@ export const HeaderDashboard = () => {
             )}
           </S.Dropdown>
           <S.User>
-            <S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+            <S.Name>
+              {dataUser.typeUser == "dev" || dataUser.typeUser == "admin"
+                ? dataUser.nome
+                : dataUser.typeUser == "ong"
+                ? dataUser.razaoSocial
+                : null}
+            </S.Name>
 
             <S.Image
               onClick={handlePerfil}
