@@ -80,7 +80,10 @@ export const ModalPerfilOng = () => {
 									/>
 								</caption>
 								<div className="details">
-									<h3>{dataUser.razaoSocial}</h3>
+									<h3>
+										{dataUser.typeUser == "ong" &&
+											dataUser.razaoSocial}
+									</h3>
 									<p>ONG</p>
 								</div>
 							</div>
@@ -89,14 +92,22 @@ export const ModalPerfilOng = () => {
 									<p className="label">Razão Social</p>
 									<input
 										className="info"
-										value={dataUser.razaoSocial}
+										value={
+											dataUser.typeUser == "ong"
+												? dataUser.razaoSocial
+												: ""
+										}
 									/>
 								</StyledInfo>
 								<StyledInfo>
 									<p className="label">CNPJ</p>
 									<input
 										className="info"
-										value={dataUser.cnpj}
+										value={
+											dataUser.typeUser == "ong"
+												? dataUser.cnpj
+												: ""
+										}
 									/>
 								</StyledInfo>
 								<StyledDescription>
@@ -110,7 +121,8 @@ export const ModalPerfilOng = () => {
 											className="telephone"
 											{...register("telefone")}
 										>
-											{dataUser.telefone}
+											{dataUser.typeUser == "ong" &&
+												dataUser.telefone}
 										</textarea>
 										<p>O que fazemos</p>
 										<textarea
@@ -118,7 +130,8 @@ export const ModalPerfilOng = () => {
 											placeholder="Escreva sua descrição"
 											className="info"
 										>
-											{dataUser.descricaoDaOng}
+											{dataUser.typeUser == "ong" &&
+												dataUser.descricaoDaOng}
 										</textarea>
 										<StyledButtonCadastro type="submit">
 											Salvar
@@ -131,7 +144,8 @@ export const ModalPerfilOng = () => {
 							<h3 className="title">Solicitações do Projeto</h3>
 							<div className="projectInfo">
 								<h3 className="name">
-									{dataUser.nomeDoResponsavel}
+									{dataUser.typeUser == "ong" &&
+										dataUser.nomeDoResponsavel}
 								</h3>
 								{projects.length ? (
 									projects.map((element) => {

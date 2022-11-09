@@ -13,7 +13,7 @@ import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 export const HeaderDashboard = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
-	const { handlePerfil, openPerfil } = useContext(UserContext);
+	const { handlePerfil } = useContext(UserContext);
 	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
 	const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
@@ -232,7 +232,11 @@ export const HeaderDashboard = () => {
 						)}
 					</S.Dropdown>
 					<S.User>
-						<S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+						<S.Name>
+							{dataUser.typeUser === "ong"
+								? dataUser.razaoSocial
+								: dataUser.nome}
+						</S.Name>
 
 						<S.Image
 							onClick={handlePerfil}

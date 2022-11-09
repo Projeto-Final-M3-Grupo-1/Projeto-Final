@@ -7,36 +7,38 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
-  getPublication: any;
-  onSubmitEditPubli: any;
-  setIdPubli: any;
-  onSubmitLogin: any;
-  onSubmitRegister: any;
-  onSubmitOng: any;
+
+  getPublication: (id: number) => void;
+  onSubmitEditPubli: (data: any) => void;
+  setIdPubli: React.Dispatch<React.SetStateAction<number | null>>;
+  onSubmitLogin: (data: iLogin) => void;
+  onSubmitRegister: (data: iDevRegister) => void;
+  onSubmitOng: (data: iOngRegister) => void;
   renderPublications: () => void;
-  user: any;
-  onSubmitCreateTask: any;
-  setUser: any;
-  publications: [];
-  onSubmitTech: any;
-  handleCreateTech: any;
+  user: iUserLogin;
+  onSubmitCreateTask: (data: iCreateTask) => void;
+  setUser: React.Dispatch<React.SetStateAction<iUserLogin>>;
+  publications: iNoticeList[];
+  onSubmitTech: (data: any) => void;
+  handleCreateTech: () => void;
   createTech: boolean;
-  requestTechs: any;
-  requestEditeTech: any;
+  requestTechs: () => void;
+  requestEditeTech: (data: any) => void;
   techs: any;
-  requestDeleteTech: any;
-  onSubmitEditPerfil: any;
+  requestDeleteTech: (id: number) => void;
+  onSubmitEditPerfil: (data: any) => void;
   openPerfil: boolean;
-  handlePerfil: any;
-  setOpenPerfil: any;
-  newNotice: any;
-  onSubmitEditOngPerfil: any;
+  handlePerfil: () => void;
+  setOpenPerfil: React.Dispatch<React.SetStateAction<boolean>>;
+  newNotice: (notice: iNotice) => void;
+  onSubmitEditOngPerfil: (data: any) => void;
   openPerfilAdmin: boolean;
   setOpenPerfilAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   showPerfilOngOnProject: boolean;
-  handlePerfilOngOnProject: any;
-  requestAllUsers: any;
-  allUsers: any;
+  handlePerfilOngOnProject: (id: number) => void;
+  requestAllUsers: () => void;
+  allUsers: Array<iUserOng | iUserDev>;
+
 }
 interface IUserChildren {
   children: ReactNode;
@@ -46,6 +48,70 @@ interface iCreateTask {
   title: string;
   content: string;
   projectId: number;
+
+}
+
+interface iUserLogin {
+  email: string;
+  id: number;
+}
+
+interface iDevRegister {
+  email: string;
+  nome: string;
+  password: string;
+  confirmPassword: string;
+  github: string;
+  linkedin: string;
+  fotoDePerfil: string;
+  typeUser?: "dev";
+}
+
+interface iOngRegister {
+  email: string;
+  password: string;
+  razaoSocial: string;
+  cnpj: string;
+  telefone: string;
+  confirmPassword: string;
+  nomeDoResponsavel: string;
+  fotoDePerfil: string;
+  typeUser?: "ong";
+  descricaoDaOng: string;
+}
+
+interface iLogin {
+  email: string;
+  password: string;
+}
+
+interface iUserOng extends iUserLogin {
+  password: string;
+  razaoSocial: string;
+  cnpj: string;
+  telefone: string;
+  confirmPassword: string;
+  nomeDoResponsavel: string;
+  fotoDePerfil: string;
+  typeUser: string;
+  descricaoDaOng: string;
+}
+
+interface iUserDev extends iUserLogin {
+  password: string;
+  nome: string;
+  confirmPassword: string;
+  github: string;
+  linkedin: string;
+  fotoDePerfil: string;
+  typeUser: string;
+  projectId: number;
+}
+
+interface iNoticeList extends iNotice {
+  userId: number;
+  id: number;
+
 }
 
 interface iNotice {
@@ -59,37 +125,41 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
   const { setDataUser } = useContext(AuthContext);
-  const [createTech, setCreateTech] = useState<any>(false);
+
+  const [createTech, setCreateTech] = useState<boolean>(false);
   const [techs, setTechs] = useState([]);
-  const [user, setUser] = useState<any>({});
-  const [token, setToken] = useState<any>({});
-  const [email, setEmail] = useState<any>({});
-  const [openPerfil, setOpenPerfil] = useState(false);
-  const [publications, setPublications] = useState<any>({});
+  const [user, setUser] = useState<iUserLogin>({} as iUserLogin);
+  const [token, setToken] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [openPerfil, setOpenPerfil] = useState<boolean>(false);
+  const [publications, setPublications] = useState<iNoticeList[]>([]);
   const { setShowModal } = useContext(ProjectsContext);
-  const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
-  const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
-  const [idPubli, setIdPubli] = useState<Number | null>(null);
-  const [allUsers, setAllUsers] = useState({});
+  const [openPerfilAdmin, setOpenPerfilAdmin] = useState<boolean>(false);
+  const [showPerfilOngOnProject, setShowPerfilOngOnProject] =
+    useState<boolean>(false);
+  const [idPubli, setIdPubli] = useState<number | null>(null);
+  const [allUsers, setAllUsers] = useState<Array<iUserOng | iUserDev>>([]);
 
   const navigate = useNavigate();
 
-  const handlePerfilOngOnProject = (id: any) => {
-    localStorage.setItem("ongId", id);
-    return !showPerfilOngOnProject
+  const handlePerfilOngOnProject = (id: number) => {
+    localStorage.setItem("ongId", id + "");
+    !showPerfilOngOnProject
       ? setShowPerfilOngOnProject(true)
       : setShowPerfilOngOnProject(false);
   };
 
   const handleCreateTech = () => {
-    return !createTech ? setCreateTech(true) : setCreateTech(false);
+    !createTech ? setCreateTech(true) : setCreateTech(false);
   };
   const handlePerfil = () => {
-    return !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
+    !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
   };
 
   const newNotice = (notice: iNotice) => {
     const userId = localStorage.userId;
+
+
 
     const newNotice = {
       ...notice,
@@ -114,7 +184,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     }
   };
 
-  const onSubmitLogin = async (data: any) => {
+
+  const onSubmitLogin = async (data: iLogin) => {
+
     toast.promise(
       api.post("/login", data).then((res) => {
         navigate("/dashboard");
@@ -136,7 +208,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     data.userId = Number(localStorage.userId);
     requestCreateTech(data);
   };
-  const onSubmitRegister = (data: any) => {
+
+  const onSubmitRegister = (data: iDevRegister) => {
+
     data.typeUser = "dev";
     toast.promise(
       api.post("/registerdev", data).then(() => {
@@ -150,7 +224,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     );
   };
 
-  const onSubmitOng = (data: any) => {
+
+  const onSubmitOng = (data: iOngRegister) => {
+
     data.typeUser = "ong";
     toast.promise(
       api.post("/registerong", data).then(() => {
@@ -223,7 +299,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
       })
       .catch((err) => console.log(err));
   };
-  const requestDeleteTech = (id: any) => {
+
+  const requestDeleteTech = (id: number) => {
+
     api
       .delete(`/techs/${id}`, {
         headers: {

@@ -88,7 +88,10 @@ export const ModalPerfilDev = () => {
 									<img src={dataUser.fotoDePerfil} alt="" />
 								</caption>
 								<div className="details">
-									<h3>{dataUser.nome}</h3>
+									<h3>
+										{dataUser.typeUser == "dev" &&
+											dataUser.nome}
+									</h3>
 									<p>Dev Voluntário</p>
 								</div>
 							</div>
@@ -102,7 +105,11 @@ export const ModalPerfilDev = () => {
 										<input
 											{...register("nome")}
 											className="info"
-											defaultValue={dataUser.nome}
+											defaultValue={
+												dataUser.typeUser == "dev"
+													? dataUser.nome
+													: ""
+											}
 										></input>
 									</StyledInfo>
 
@@ -120,7 +127,11 @@ export const ModalPerfilDev = () => {
 										<input
 											{...register("github")}
 											className="info"
-											defaultValue={dataUser.github}
+											defaultValue={
+												dataUser.typeUser == "dev"
+													? dataUser.github
+													: ""
+											}
 										></input>
 									</StyledInfo>
 
@@ -129,7 +140,11 @@ export const ModalPerfilDev = () => {
 										<input
 											{...register("linkedin")}
 											className="info"
-											defaultValue={dataUser.linkedin}
+											defaultValue={
+												dataUser.typeUser == "dev"
+													? dataUser.linkedin
+													: ""
+											}
 										></input>
 									</StyledInfo>
 									<StyledButtonCadastro type="submit">

@@ -37,7 +37,7 @@ interface iState {
 export const ModalPerfilAdmin = () => {
 	const { setShowModal, handleNavigate, handleManageProject } =
 		useContext(ProjectsContext);
-	const { handlePerfil } = useContext(UserContext);
+	const { handlePerfil, setOpenPerfil } = useContext(UserContext);
 
 	const { dataUser } = useContext(AuthContext);
 	const [projects, setProjetcts] = useState([] as unknown as iState);
@@ -64,6 +64,8 @@ export const ModalPerfilAdmin = () => {
 		getProject();
 	}, [dataUser]);
 
+	console.log(projects);
+
 	return (
 		<>
 			<StyledBoxModal>
@@ -77,7 +79,10 @@ export const ModalPerfilAdmin = () => {
 									<img src={dataUser.fotoDePerfil} alt="" />
 								</caption>
 								<div className="details">
-									<h3>{dataUser.nome}</h3>
+									<h3>
+										{dataUser.typeUser == "admin" &&
+											dataUser.nome}
+									</h3>
 									<p>Tech Leader Voluntário</p>
 								</div>
 							</div>
@@ -86,7 +91,11 @@ export const ModalPerfilAdmin = () => {
 									<p className="label">Nome:</p>
 									<input
 										className="info"
-										value={dataUser.nome}
+										value={
+											dataUser.typeUser == "admin"
+												? dataUser.nome
+												: ""
+										}
 									/>
 								</StyledInfo>
 
@@ -94,7 +103,11 @@ export const ModalPerfilAdmin = () => {
 									<p className="label">Usuário:</p>
 									<input
 										className="info"
-										value={dataUser.nome}
+										value={
+											dataUser.typeUser == "admin"
+												? dataUser.nome
+												: ""
+										}
 									/>
 								</StyledInfo>
 
@@ -159,7 +172,8 @@ export const ModalPerfilAdmin = () => {
 
 							<div className="projectInfo">
 								<h3 className="name">
-									{dataUser.nomeDoResponsavel}
+									{dataUser.typeUser == "admin" &&
+										dataUser.nome}
 								</h3>
 								<ul className="projectsInProgress">
 									{projects.length ? (
@@ -174,7 +188,8 @@ export const ModalPerfilAdmin = () => {
 														<StyledButtonToManage
 															onClick={() =>
 																handleManageProject(
-																	element.id
+																	element.id,
+																	element.ongId
 																)
 															}
 														>

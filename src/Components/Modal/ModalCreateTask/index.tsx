@@ -12,17 +12,23 @@ import { TextArea } from "../../TextArea";
 import { StyledBoxModalCreateTask } from "./styles";
 
 interface iCreateTask {
+    open: boolean;
+    handleClose: () => void;
+
     projectId: number;
 }
 
 interface iFormTask {
     title: string;
     content: string;
+
+    projectId: number;
 }
 
 export const CreateTask = () => {
     const { onSubmitCreateTask } = useContext(UserContext);
     const { handleCreateTask } = useContext(ProjectsContext);
+
     const {
         handleSubmit,
         register,
@@ -32,6 +38,7 @@ export const CreateTask = () => {
     } = useForm<iFormTask>({
         resolver: yupResolver(schemaCreateTask),
     });
+
     return (
         <StyledBoxModalCreateTask>
             <StyledForm onSubmit={handleSubmit(onSubmitCreateTask)}>
@@ -48,15 +55,23 @@ export const CreateTask = () => {
                         <p>Tech Leader</p>
                     </div>
                 </div>
+
                 <InputAndLabel
-                    textLabel="Nome da Task"
+                    textLabel="Título"
                     name="title"
-                    placeholder="Digite o nome da task"
+                    placeholder="Título do seu Projeto"
                     type="text"
                     register={register}
                     error={title?.message}
                 />
-
+                <TextArea
+                    textLabel="Descrição"
+                    name="content"
+                    placeholder="Faça um resumo da tarefa a ser realizada"
+                    type="text"
+                    error={content?.message}
+                    register={register}
+                />
                 <StyledLoginButton type="submit">Salvar</StyledLoginButton>
             </StyledForm>
         </StyledBoxModalCreateTask>

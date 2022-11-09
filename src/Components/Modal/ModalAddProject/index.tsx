@@ -8,6 +8,7 @@ import { StyledModalAddProject } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaCreateProject } from "../../../Services/validation/createUser.validation";
 import { StyledBoxModal } from "../ModalLogin/style";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
 interface ICreateProjectProps {
     textLabel: string;
     name: string;
@@ -15,21 +16,38 @@ interface ICreateProjectProps {
     register: () => void;
     title: string;
     description: string;
+    userId: number;
+    imgProject: string;
+    ongId: number;
+    id: number;
+    status: "completed" | "pendings";
+    tasks: any;
 }
 
 function ModalCreateProject() {
     const { dataUser } = useContext(AuthContext);
-    const { createProjects } = useContext(ProjectsContext);
+    const { createProjects, setShowProjects } = useContext(ProjectsContext);
     const { handleSubmit, register } = useForm<ICreateProjectProps>({
         resolver: yupResolver(schemaCreateProject),
+    });
+    const modalRef = useOutSideClick(() => {
+        setShowProjects(false);
     });
 
     return (
         <StyledBoxModal>
-            <StyledModalAddProject onSubmit={handleSubmit(createProjects)}>
+            <StyledModalAddProject
+                onSubmit={handleSubmit(createProjects)}
+                ref={modalRef}
+            >
                 <S.User>
                     <S.Name>
-                        {dataUser.nome} || {dataUser.razaoSocial}
+                        {dataUser.typeUser == "dev" ||
+                        dataUser.typeUser == "admin"
+                            ? dataUser.nome
+                            : dataUser.typeUser == "ong"
+                            ? dataUser.razaoSocial
+                            : null}
                     </S.Name>
                     <S.Image
                         src={dataUser.fotoDePerfil}
