@@ -64,6 +64,7 @@ export const Task = styled.li`
 	justify-content: space-between;
 
 	height: 100px;
+	margin-top: 1rem;
 `;
 
 export const TaskTitle = styled.h4`
