@@ -90,6 +90,24 @@ export const ManageProject = () => {
 
                 <button onClick={handleCreateTask}>Criar Task</button>
             </section>
+            <section>
+                <h2>Tarefas Concluidas</h2>
+                <ul>
+                    {myProject.tasks ? (
+                        myProject.tasks.map((element: any) => {
+                            return (
+                                element.completed && (
+                                    <li>
+                                        <h2>{element.title}</h2>
+                                    </li>
+                                )
+                            );
+                        })
+                    ) : (
+                        <h2>Não a nenhuma tarefa em andamento</h2>
+                    )}
+                </ul>
+            </section>
             {/* {createTask && <CreateTask />} */}
         </>
     );
