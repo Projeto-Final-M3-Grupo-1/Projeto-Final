@@ -105,11 +105,29 @@ export const StyledAllProjectsBox = styled.div`
             height: 300px;
         }
     }
-    li > button {
-        width: 90%;
+    li > a {
+        width: 52%;
+
+        padding: 0 0.5rem;
+
+        height: 40px;
+
+        background: var(--button-background-color);
+        color: var(--button-text-color);
+        font-size: var(--button-text-size);
+        font-weight: var(--button-text-weight);
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--button-background-hover-color);
+            transition: var(--button-hover-transition);
+        }
+
     }
     @media (min-width: 700px) {
-        li > button {
+        li > a {
             max-width: 380px;
             position: absolute;
             right: 0%;
@@ -129,4 +147,5 @@ export const StyledAllProjectsBox = styled.div`
             white-space: nowrap;
         }
     }
+
 `;
