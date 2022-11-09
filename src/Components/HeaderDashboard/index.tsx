@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import Logo from "../Logo";
 
 export const HeaderDashboard = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
@@ -35,10 +36,9 @@ export const HeaderDashboard = () => {
     handleResize();
   }, [width]);
 
-
-	useEffect(() => {
-		loadUserType();
-	}, [dataUser]);
+  useEffect(() => {
+    loadUserType();
+  }, [dataUser]);
 
   const handleResize = () => {
     if (width <= 768) {
@@ -58,7 +58,7 @@ export const HeaderDashboard = () => {
         />
       ) : (
         <S.Nav>
-          <h2>Logo</h2>
+          <Logo></Logo>
           <S.Dropdown>
             {userType === "dev" && (
               <>
@@ -137,10 +137,13 @@ export const HeaderDashboard = () => {
                     >
                       Ver todos projetos em andamento
                     </S.DropdownItem>
-                    <S.DropdownItem  onClick={() => {
+                    <S.DropdownItem
+                      onClick={() => {
                         navigate("/dashboard/projectpending");
-                      }}>
-                      Ver solicitações de Projeto</S.DropdownItem>
+                      }}
+                    >
+                      Ver solicitações de Projeto
+                    </S.DropdownItem>
                     <S.DropdownItem>Meus projetos</S.DropdownItem>
                   </S.DropdownList>
                 </S.Span>

@@ -123,3 +123,27 @@ export const StyledButtonAddPubli = styled.button`
     transition: var(--button-hover-transition);
   }
 `;
+export const StyledButtonToManage = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 28px;
+  gap: 10px;
+
+  width: 205px;
+  height: 40px;
+
+  background: var(--button-background-color);
+  color: var(--button-text-color);
+  font-size: var(--button-text-size);
+  font-weight: var(--button-text-weight);
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--button-background-hover-color);
+    transition: var(--button-hover-transition);
+  }
+`;
