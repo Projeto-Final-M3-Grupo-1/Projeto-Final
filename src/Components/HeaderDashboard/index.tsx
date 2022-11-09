@@ -8,14 +8,24 @@ import { UserContext } from "../../Providers/UserProvider";
 import MobileHeader from "./MobileHeader";
 import ModalCreateProject from "../Modal/ModalAddProject";
 import Logo from "../Logo";
+
+import { ModalAcceptDecline } from "../Modal/ModalAcceptDecline";
+
 import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
+
 
 export const HeaderDashboard = () => {
     const { dataUser, loadingUser } = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const { handlePerfil } = useContext(UserContext);
+
+    const { handleProjectsToApply, HandleModalProject, modalChange} =
+        useContext(ProjectsContext);
+
+
     const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
     const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
+
     const [userType, setUserType] = useState<string>(dataUser.typeUser);
     const windowSize = useWindowSize();
     const width = windowSize.width;
@@ -56,6 +66,7 @@ export const HeaderDashboard = () => {
     };
 
     return (
+
         <S.Header>
             {isCreateNewNotice ? (
                 <>
@@ -222,5 +233,7 @@ export const HeaderDashboard = () => {
                 </S.Nav>
             )}
         </S.Header>
+        { modalChange && <ModalAcceptDecline /> }
+        </>
     );
 };
