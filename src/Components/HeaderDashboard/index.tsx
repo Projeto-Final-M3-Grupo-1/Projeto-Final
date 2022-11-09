@@ -17,14 +17,13 @@ export const HeaderDashboard = () => {
 	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
 	const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
+	const windowSize = useWindowSize();
+	const width = windowSize.width;
+	const navigate = useNavigate();
 
 	const loadUserType = () => {
 		setUserType(dataUser.typeUser);
 	};
-
-	const windowSize = useWindowSize();
-	const width = windowSize.width;
-	const navigate = useNavigate();
 
 	const logout = () => {
 		localStorage.clear();

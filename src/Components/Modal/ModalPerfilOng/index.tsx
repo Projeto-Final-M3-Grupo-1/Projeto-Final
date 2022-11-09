@@ -64,7 +64,7 @@ export const ModalPerfilOng = () => {
 		};
 		getProject();
 	}, []);
-
+	console.log(dataUser);
 	return (
 		<>
 			<StyledBoxModal>
