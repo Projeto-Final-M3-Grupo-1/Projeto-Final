@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ProjectsContext } from "../../Providers/ProjectsProvider";
-import api from "../../Services/api";
-import { StyledDiv } from "./style";
+import { useContext, useEffect, useState } from 'react'
+import { ProjectsContext } from '../../Providers/ProjectsProvider';
+import api from '../../Services/api';
+import { StyledLoginButton } from '../Button';
+import { StyledDashboardManageProjectsAdmin } from './style';
 
 interface iProjects {
     map(arg0: (project: any) => void): import("react").ReactNode;
@@ -25,29 +25,21 @@ export const RenderProjectsDashAdmin = () => {
         render();
     }, []);
 
-    return (
-        <StyledDiv>
-            <ul>
-                {projects.map(
-                    (project: any) => (
-                        // project.status == "pendings" && (
-                        <li key={project.id}>
-                            <h3>{project.title}</h3>
-                            <button
-                                onClick={() =>
-                                    handleManageProject(
-                                        project.id,
-                                        project.ongId
-                                    )
-                                }
-                            >
-                                add
-                            </button>
-                        </li>
-                    )
-                    // )
-                )}
-            </ul>
-        </StyledDiv>
-    );
-};
+
+return (
+    <StyledDashboardManageProjectsAdmin>
+        <ul className="openTasks">
+            {projects.map(
+                (project: any) => 
+                    project.status == "develop" && (
+                    <li key={project.id}>
+                        <h3>{project.title}</h3>
+                        <StyledLoginButton>add</StyledLoginButton>
+                    </li>
+            ) 
+            )}        
+        </ul>
+    </StyledDashboardManageProjectsAdmin>
+
+    )
+}
