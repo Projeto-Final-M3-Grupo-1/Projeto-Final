@@ -7,6 +7,9 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
+  getPublication: any;
+  onSubmitEditPubli: any;
+  setIdPubli: any;
   onSubmitLogin: any;
   onSubmitRegister: any;
   onSubmitOng: any;
@@ -64,6 +67,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
   const { setShowModal } = useContext(ProjectsContext);
   const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
   const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
+  const [idPubli, setIdPubli] = useState<Number | null>(null);
 
   const navigate = useNavigate();
 
@@ -112,8 +116,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
       api.post("/login", data).then((res) => {
         navigate("/dashboard");
         setUser(res.data.user);
+        console.log(res.data);
         localStorage.setItem("token", res.data.accessToken);
         localStorage.setItem("userId", res.data.user.id);
+        localStorage.setItem("projectId", res.data.user.projectId);
       }),
       {
         pending: "Logando...",
@@ -157,10 +163,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
   const onSubmitCreateTask = (data: iCreateTask) => {
     toast.promise(
-      api
-        .post("/tasks", data)
-
-        .then(() => {}),
+      api.post("/tasks", data).then(() => {}),
       {
         pending: "Criando Tarefa",
         success: "Sucesso ao criar a tarefa",
@@ -169,6 +172,21 @@ export const UserProvider = ({ children }: IUserChildren) => {
     );
   };
 
+  const onSubmitEditPubli = (data: any) => {
+    api
+      .patch(`notices/${idPubli}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+      .then(() => {
+        renderPublications();
+        toast.success("Noticia editada com sucesso!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
+  };
   const requestTechs = () => {
     api
       .get("/techs", {
@@ -223,12 +241,15 @@ export const UserProvider = ({ children }: IUserChildren) => {
   };
 
   const onSubmitEditOngPerfil = (data: any) => {
-    console.log(data);
     requestEditeTech(data);
   };
 
   const renderPublications = () => {
     api.get("/notices").then((resp) => setPublications(resp.data));
+  };
+
+  const getPublication = (id: number) => {
+    api.get(`/notices/${id}`).then((resp) => console.log(resp.data));
   };
 
   return (
@@ -254,7 +275,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
         setOpenPerfil,
         onSubmitCreateTask,
         newNotice,
+        getPublication,
+        onSubmitEditPubli,
         onSubmitEditOngPerfil,
+        setIdPubli,
         openPerfilAdmin,
         setOpenPerfilAdmin,
         showPerfilOngOnProject,

@@ -4,9 +4,11 @@ import { Home } from "../Pages/Home";
 import { Dashboard } from "../Pages/DashboardCompany";
 import { RegisterDev } from "../Pages/RegisterDev";
 import { RegisterOng } from "../Pages/RegisterOng";
+import Test from "../Components/Modal/ModalNovaPublicacao";
 import { MyProject } from "../Components/MyProjectDev";
 import Publications from "../Components/Publication";
 import { ProjectsToApply } from "../Components/ProjectsToApply";
+import { RenderProjectsDashAdmin } from "../Components/RenderProjectsDashAdmin";
 import { PendingProject } from "../Components/AllProjects/Pendings";
 
 const Routers = () => {
@@ -14,10 +16,11 @@ const Routers = () => {
     <Routes>
       <Route path="home" element={<Home />} />
       <Route path="dashboard" element={<Dashboard />}>
-        <Route path="ongmyproject" element={<PendingProject />} />
         <Route index element={<Publications />} />
         <Route path="myproject" element={<MyProject />} />
+        <Route path="ongmyproject" element={<PendingProject />} />
         <Route path="projectstoapply" element={<ProjectsToApply />} />
+        <Route path="projectsadmin" element={<RenderProjectsDashAdmin />} />
       </Route>
       <Route path="registerong" element={<RegisterOng />} />
       <Route path="registerdev" element={<RegisterDev />} />

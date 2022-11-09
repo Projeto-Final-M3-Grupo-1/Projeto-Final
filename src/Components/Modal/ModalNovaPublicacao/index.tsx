@@ -59,11 +59,7 @@ const ModalNovaPublicacao = ({ handleIsOpen }: iModalNovaPublicacaoProps) => {
 						/>
 						<S.UserInfo>
 							<S.UserName>{dataUser.nome}</S.UserName>
-							<S.UserType>
-								{dataUser.typeUser === "dev"
-									? "Desenvolvedor Voluntário"
-									: "Loading..."}
-							</S.UserType>
+							<S.UserType>Tech Lead</S.UserType>
 						</S.UserInfo>
 					</S.UserContainer>
 					<S.Form onSubmit={handleSubmit(newNotice)}>

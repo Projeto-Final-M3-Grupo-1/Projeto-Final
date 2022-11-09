@@ -17,9 +17,9 @@ interface IProjectsContext {
   setModalHome: React.Dispatch<React.SetStateAction<boolean>>;
   handleMenu: () => void;
   handleModal: () => void;
-  handleProjectsToApply: () => void;
+  handleProjectsToApply: any;
   scrollToTop: () => void;
-  render: boolean;
+  render: string;
   setRender: any;
   youRight: boolean;
   handleYouRight: any;
@@ -29,12 +29,14 @@ interface IProjectsContext {
   createProjects: any;
   HandleModalProject: () => void;
   handleNavigate: any;
+  requestMyProject: any;
+  myProject: any;
+  requestOngMyProject: any;
+  dataOngMyProject: any;
+  requestAddDevOnTask: any;
+  requestCompleteTask: any;
   pendingProject: any;
   setPendingProject: any;
-  HandleProjectsOng: any;
-  setShowProjectspending: any;
-  showProjectpending: any;
-  //requestPendingProjects: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -50,19 +52,20 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [menu, setMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalHome, setModalHome] = useState(false);
-  const [render, setRender] = useState(false);
+  const [render, setRender] = useState("publications");
   const [youRight, setYouRight] = useState(false);
   const [showProject, setShowProjects] = useState(false);
-  const [showProjectpending, setShowProjectspending] = useState(false);
-  const [pendingProject, setPendingProject] = useState([] as any);
+  const [myProject, setMyProject] = useState([] as any);
+  const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
+  const [pendingProject, setPendingProject] = useState([]);
   const navigate = useNavigate();
 
   const handleYouRight = (projectId: any) => {
     localStorage.setItem("projectId", projectId);
     return !youRight ? setYouRight(true) : setYouRight(false);
   };
-  const handleProjectsToApply = () => {
-    return !render ? setRender(true) : setRender(false);
+  const handleProjectsToApply = (destination: any) => {
+    return setRender(destination);
   };
   const handleNavigate = (route: string) => {
     return navigate(route);
@@ -78,34 +81,25 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const HandleModalProject = () => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
   };
-
-  const HandleProjectsOng = () => {
-    return !showProject ? setShowProjects(true) : setShowProjects(false);
-  };
-
   const applyOnProject = () => {
     const body = {
       projectId: +localStorage.projectId,
     };
-    console.log(body);
     requestApplyOnProject(body);
   };
 
   const createProjects = (data: any) => {
     data.userId = localStorage.userId;
     data.ongId = localStorage.userId;
-    console.log(data);
+
     api
-      .post("/projects", data, {
+      .post("/pendings", data, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
       })
-      .then((res) => {
+      .then(() => {
         setShowProjects(false);
-        setPendingProject(res.data);
-        requestProjects();
-        //requestPendingProjects();
         toast.success("Projeto cadastrado com sucesso!");
       });
   };
@@ -126,11 +120,56 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   };
 
   const requestProjects = () => {
-    api.get("/projects", {}).then((res) => {
-      setProjects(res.data);
-      setPendingProject(res.data);
-      setShowProjectspending(false);
+    api
+      .get("/projects", {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+      .then((res) => setProjects(res.data));
+  };
+
+  const requestMyProject = () => {
+    api.get(`/projects/${localStorage.projectId}?_embed=tasks`).then((res) => {
+      localStorage.setItem("ongId", res.data.ongId);
+      setMyProject(res.data);
     });
+  };
+  const requestOngMyProject = () => {
+    api
+      .get(`/users/${localStorage.ongId}`)
+      .then((res) => setDataOngMyProject(res.data));
+  };
+  const requestAddDevOnTask = (id: any) => {
+    const body = {
+      userId: +localStorage.userId,
+    };
+    api
+      .patch(`/tasks/${id}`, body, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+      .then((res) => {
+        requestMyProject();
+        requestOngMyProject();
+      });
+  };
+  const requestCompleteTask = (id: any) => {
+    const body = {
+      completed: true,
+    };
+    api
+      .patch(`/tasks/${id}`, body, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+      .then((res) => {
+        requestMyProject();
+        requestOngMyProject();
+        toast.success("Tarefa concluída com sucesso!");
+      });
   };
 
   const scrollToTop = () => {
@@ -163,11 +202,14 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         createProjects,
         showProject,
         setShowProjects,
+        requestMyProject,
+        myProject,
+        requestOngMyProject,
+        dataOngMyProject,
+        requestAddDevOnTask,
+        requestCompleteTask,
         pendingProject,
         setPendingProject,
-        HandleProjectsOng,
-        showProjectpending,
-        setShowProjectspending,
       }}
     >
       {children}

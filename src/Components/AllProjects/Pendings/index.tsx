@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import { StyledBoxModal } from "../../Modal/ModalLogin/style";
 import { StyledCardProject } from "../style";
 
 export const PendingProject = () => {

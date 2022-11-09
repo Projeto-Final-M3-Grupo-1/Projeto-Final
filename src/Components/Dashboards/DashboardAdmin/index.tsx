@@ -1,19 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
-import HeaderDashboard from "../../HeaderDashboard/HeaderDashboardOng";
+import { HeaderDashboard } from "../../HeaderDashboard/HeaderDashboardOng";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
-import { ProjectsToApply } from "../../ProjectsToApply";
-import Publications from "../../Publication";
-
-import { render } from "react-dom";
-
 export const DashboardAdmin = () => {
   const { loadingUser } = useContext(AuthContext);
   const { renderPublications } = useContext(UserContext);
   const { showModal } = useContext(ProjectsContext);
-
   useEffect(() => {
     loadingUser();
     renderPublications();
@@ -24,7 +19,7 @@ export const DashboardAdmin = () => {
       <HeaderDashboard />
       {showModal && <ModalPerfilAdmin />}
 
-      {!render ? <Publications /> : <ProjectsToApply />}
+      <Outlet />
     </>
   );
 };

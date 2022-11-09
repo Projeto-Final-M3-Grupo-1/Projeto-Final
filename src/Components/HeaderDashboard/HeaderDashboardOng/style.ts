@@ -6,7 +6,7 @@ export const MenuHamburger = styled(GiHamburgerMenu)`
 	width: 30px;
 	height: 30px;
 
-	&:hover ~ div {
+	&:block ~ div {
 		display: block;
 	}
 `;
@@ -14,8 +14,7 @@ export const MenuHamburger = styled(GiHamburgerMenu)`
 export const MobileDropdown = styled.div`
 	display: none;
 	position: absolute;
-	left: 0;
-	right: 0;
+	right: 10%;
 	top: 2rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -25,7 +24,7 @@ export const MobileDropdown = styled.div`
 	border-bottom-left-radius: 4px;
 	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
 	padding: 10px;
-	z-index: 1;
+	z-index: 10;
 `;
 
 export const MobileDropdownList = styled.ul`
@@ -35,6 +34,8 @@ export const MobileDropdownList = styled.ul`
 export const MobileDropdownItem = styled.li`
 	padding: 10px;
 	border-bottom: 1px solid var(--slate-200);
+	min-height: 1rem;
+	min-width: 1rem;
 `;
 
 export const LogoutButton = styled.button`
@@ -136,7 +137,7 @@ export const Span = styled.span`
 `;
 
 export const DropdownList = styled.ul`
-	position: absolute !important;
+	position: absolute;
 	background-color: var(--white);
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 	z-index: 1;
@@ -148,13 +149,6 @@ export const DropdownItem = styled.li`
 	gap: 10px;
 	padding: 10px 20px;
 	cursor: pointer;
-
-	min-height: 25px;
-	min-width: 200px;
-
-	position: relative !important;
-
-	z-index: 20;
 
 	&:hover {
 		background-color: var(--rose-600);
