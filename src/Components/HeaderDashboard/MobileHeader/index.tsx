@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "../../Logo";
 import * as S from "./style";
 
 const MobileHeader = ({ callback, logout, navigate }: any) => {
@@ -10,7 +11,7 @@ const MobileHeader = ({ callback, logout, navigate }: any) => {
 
 	return (
 		<S.MobileNav>
-			<h2>Logo</h2>
+			<Logo />
 			<S.MenuHamburger onClick={handleOpen} />
 			{isOpen ? (
 				<S.MobileDropdown>
