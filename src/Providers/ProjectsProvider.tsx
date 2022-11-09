@@ -82,14 +82,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         const body = {
             projectId: +localStorage.projectId,
         };
-        console.log(body);
         requestApplyOnProject(body);
     };
 
     const createProjects = (data: any) => {
         data.userId = localStorage.userId;
         data.ongId = localStorage.userId;
-        console.log(data);
+
         api.post("/pendings", data, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
