@@ -1,15 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import api from "../../Services/api";
-import { StyledLoginButton } from "../Button";
+import { StyledButtonCta } from "../Button";
 import { StyledDashboardManageProjectsAdmin } from "./style";
 
 interface iProjects {
   map(arg0: (project: any) => void): import("react").ReactNode;
+  onClick: () => void;
 }
 
+  
+
 export const ProjectPending = () => {
-  const { requestProjects, handleManageProject } = useContext(ProjectsContext);
+  const { modalChange, setModalChange, requestOngMyProject, setIdProject, idProject } = useContext(ProjectsContext);
+  console.log(idProject)
   const [projects, setProjects] = useState([] as unknown as iProjects);
 
   useEffect(() => {
@@ -23,25 +27,26 @@ export const ProjectPending = () => {
     render();
   }, []);
 
+ 
+
   return (
     <StyledDashboardManageProjectsAdmin>
       <ul className="doneTasks">
         {projects.map(
           (project: any) =>
-            project.status == "pendings" && (
+            project.status === "pendings" && (
               <li key={project.id}>
                 <h3>{project.title}</h3>
-                <StyledLoginButton
-                  onClick={() =>
-                    handleManageProject(project.id, 1 /* seria o ongID */)
-                  }
+                <StyledButtonCta onClick={() => {return  (setModalChange(true), localStorage.setItem("idProject",project.id))}}
                 >
                   add
-                </StyledLoginButton>
+                </StyledButtonCta>
+
               </li>
             )
         )}
       </ul>
     </StyledDashboardManageProjectsAdmin>
+    
   );
 };

@@ -27,6 +27,7 @@ interface iOng {
   id: number;
   razaoSocial: string;
   descricaoDaOng: string;
+ 
 }
 
 interface IProjectsContext {
@@ -66,6 +67,11 @@ interface IProjectsContext {
   createTask: boolean;
   pendingProject: any;
   setPendingProjects: any;
+  modalChange: boolean;
+  setModalChange: React.Dispatch<React.SetStateAction<boolean>>;
+  editProjects: () => void;
+  idProject: number;
+  setIdProject: React.Dispatch<React.SetStateAction<number>>;
 
 }
 
@@ -89,7 +95,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [myProject, setMyProject] = useState<iProject>({} as iProject);
   const [dataOngMyProject, setDataOngMyProject] = useState<iOng>({} as iOng);
   const [createTask, setCreateTask] = useState<boolean>(false);
-  const [pendingProject, setPendingProjects] = useState([] as any)
+  const [pendingProject, setPendingProjects] = useState([] as any);
+  const [modalChange, setModalChange] = useState<boolean>(false)
+  const [idProject, setIdProject] = useState(0)
 
 
   const navigate = useNavigate();
@@ -118,7 +126,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   };
 
 
+  
     const createProjects = (data: any) => {
+      console.log(data);
         data.userId = localStorage.userId;
         data.ongId = localStorage.userId;
         data.status = "pendings";
@@ -135,6 +145,24 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         });
     };
 
+    const editProjects = () => {
+      
+      const data = {
+        "status": "develop"
+      }
+      api.patch(`/projects/${localStorage.idProject}`, data,  {
+          headers: {
+              Authorization: `Bearer ${localStorage.token}`,
+          },
+      }).then((res) => {
+        console.log(res.data);
+        setModalChange(false)
+        requestProjects()
+        window.location.reload()
+      })
+
+    }
+
   const HandleModalProject = () => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
   };
@@ -150,8 +178,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             return setProjects(res.data), setPendingProjects(res.data);
         });
     }
-
-
 
   const requestApplyOnProject = (body: any) => {
     api
@@ -232,8 +258,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     scroll.scrollToTop();
   };
 
-
-
   return (
     <ProjectsContext.Provider
       value={{
@@ -272,6 +296,12 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         createTask,
         pendingProject, 
         setPendingProjects,
+        modalChange, 
+        setModalChange, 
+        editProjects,
+        idProject, 
+        setIdProject
+        
       }}
     >
       {children}
