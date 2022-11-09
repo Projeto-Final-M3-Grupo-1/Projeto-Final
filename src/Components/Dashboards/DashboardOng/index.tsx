@@ -1,17 +1,14 @@
 import { useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import { HeaderDashboard } from "../../HeaderDashboard";
 import ModalCreateProject from "../../Modal/ModalAddProject";
 import { ModalPerfilOng } from "../../Modal/ModalPerfilOng";
-import Publications from "../../Publication";
 
 export const DashboardOng = () => {
-	const { showModal, handleNavigate, showProject } =
-		useContext(ProjectsContext);
-	const { renderPublications } = useContext(UserContext);
+	const { showProject } = useContext(ProjectsContext);
+	const { renderPublications, openPerfil } = useContext(UserContext);
 
 	useEffect(() => {
 		renderPublications();
@@ -19,9 +16,9 @@ export const DashboardOng = () => {
 	return (
 		<>
 			<HeaderDashboard />
-			{showModal && <ModalPerfilOng />}
+			{openPerfil && <ModalPerfilOng />}
 			{showProject && <ModalCreateProject />}
-            <Outlet />
+			<Outlet />
 		</>
 	);
 };

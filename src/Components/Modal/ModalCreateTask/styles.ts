@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface iShow {
+  show: boolean;
+}
+
 export const StyledBoxModalCreateTask = styled.div`
   min-width: 100vw;
   min-height: 100vh;
@@ -8,7 +12,7 @@ export const StyledBoxModalCreateTask = styled.div`
   top: 0%;
   z-index: 4;
 
-  display: flex;
+  display: ${({ show }: iShow) => (show ? "flex" : "none")};
   justify-content: center;
   align-items: center;
 

@@ -64,3 +64,9 @@ export const StyledFooter = styled.footer`
         color: var(--slate-900);
     }
 `;
+
+export const StyledButtonRedes = styled.a`
+    color: var(--footer-socials-color);
+    background-color: transparent;
+    text-decoration: none;
+`

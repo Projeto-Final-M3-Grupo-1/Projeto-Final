@@ -8,19 +8,8 @@ export const StyledDiv = styled.div`
     height: 434px;
     flex-direction: column;
     margin: 0 auto;
-    padding: 2rem 0;
-
-    /* overflow: hidden;
-    overflow-x: scroll;
-    ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        height: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
-    } */
+    padding: 3rem 1rem;
+    align-items: center;
 
     @media (min-width: 768px) {
         box-sizing: border-box;
@@ -28,7 +17,7 @@ export const StyledDiv = styled.div`
         max-width: 1200px;
         height: 400px;
         margin: 0 auto;
-        padding: 100px;
+        padding: 1rem;
     }
 `;
 
@@ -44,14 +33,12 @@ export const StyledCard = styled.div`
     height: 216px;
     border-radius: 4px;
 
-    margin: 0 0 0 5px;
-
     gap: 12px;
 
     border: 1px solid var(--card-border-color);
 
     @media (min-width: 768px) {
-        max-height: 450px;
+        max-height: 550px;
         max-width: 400px;
         border-radius: 8px;
     

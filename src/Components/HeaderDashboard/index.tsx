@@ -1,32 +1,39 @@
 import { useContext, useEffect, useState } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
-
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
-import { AuthContext, iDataUser } from "../../Providers/AuthContext";
+import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
-import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import ModalCreateProject from "../Modal/ModalAddProject";
 import Logo from "../Logo";
+
 import { ModalAcceptDecline } from "../Modal/ModalAcceptDecline";
+
+import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
+
 
 export const HeaderDashboard = () => {
     const { dataUser, loadingUser } = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const { handlePerfil } = useContext(UserContext);
+
     const { handleProjectsToApply, HandleModalProject, modalChange} =
         useContext(ProjectsContext);
 
+
+    const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
+    const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
+
     const [userType, setUserType] = useState<string>(dataUser.typeUser);
+    const windowSize = useWindowSize();
+    const width = windowSize.width;
+    const navigate = useNavigate();
 
     const loadUserType = () => {
         setUserType(dataUser.typeUser);
     };
-
-    const windowSize = useWindowSize();
-    const width = windowSize.width;
-    const navigate = useNavigate();
 
     const logout = () => {
         localStorage.clear();
@@ -50,18 +57,41 @@ export const HeaderDashboard = () => {
         }
     };
 
+    const handleOpenModal = () => {
+        setIsAddProjectOpen(!isAddProjectOpen);
+    };
+
+    const handleOpenPublishModal = () => {
+        setIsCreateNewNotice(!isCreateNewNotice);
+    };
+
     return (
-       <>
-       <S.Header>
+
+        <S.Header>
+            {isCreateNewNotice ? (
+                <>
+                    <ModalNovaPublicacao
+                        handleIsOpen={handleOpenPublishModal}
+                    />
+                </>
+            ) : null}
+            {isAddProjectOpen ? (
+                <>
+                    <ModalCreateProject />
+                    <S.CloseButton onClick={handleOpenModal} />
+                </>
+            ) : null}
             {isMobile ? (
                 <MobileHeader
-                    callback={handleProjectsToApply}
                     navigate={navigate}
                     logout={logout}
+                    userType={userType}
+                    handleOpenPublishModal={handleOpenPublishModal}
+                    handleOpenModal={handleOpenModal}
                 />
             ) : (
                 <S.Nav>
-                    <Logo></Logo>
+                    <Logo />
                     <S.Dropdown>
                         {userType === "dev" && (
                             <>
@@ -89,25 +119,12 @@ export const HeaderDashboard = () => {
                                         </S.DropdownItem>
                                     </S.DropdownList>
                                 </S.Span>
-                                <S.Span>
+                                <S.Span
+                                    onClick={() => {
+                                        navigate("/dashboard");
+                                    }}
+                                >
                                     Publicações
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate("/dashboard");
-                                            }}
-                                        >
-                                            Ver todas publicações
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate("/dashboard");
-                                            }}
-                                        >
-                                            Ver todas publicações
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
                                 </S.Span>
                             </>
                         )}
@@ -118,7 +135,7 @@ export const HeaderDashboard = () => {
                                     <VscTriangleDown />
                                     <S.DropdownList>
                                         <S.DropdownItem
-                                            onClick={HandleModalProject}
+                                            onClick={handleOpenModal}
                                         >
                                             Criar projeto
                                         </S.DropdownItem>
@@ -133,21 +150,12 @@ export const HeaderDashboard = () => {
                                         </S.DropdownItem>
                                     </S.DropdownList>
                                 </S.Span>
-                                <S.Span>
+                                <S.Span
+                                    onClick={() => {
+                                        navigate("/dashboard");
+                                    }}
+                                >
                                     Publicações
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate("/dashboard");
-                                            }}
-                                        >
-                                            Ver todas publicações
-                                        </S.DropdownItem>
-                                        <S.DropdownItem>
-                                            Ver todas publicações
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
                                 </S.Span>
                             </>
                         )}
@@ -160,23 +168,28 @@ export const HeaderDashboard = () => {
                                         <S.DropdownItem
                                             onClick={() => {
                                                 navigate(
-                                                    "/dashboard/projectdevelop"
+                                                    "/dashboard/projectsadmin"
                                                 );
                                             }}
                                         >
                                             Ver todos projetos em andamento
                                         </S.DropdownItem>
-
                                         <S.DropdownItem
                                             onClick={() => {
                                                 navigate(
-                                                    "/dashboard/projectpending"
+                                                    "/dashboard/manageproject"
                                                 );
                                             }}
                                         >
                                             Ver solicitações de Projeto
                                         </S.DropdownItem>
-                                        <S.DropdownItem>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/myproject"
+                                                );
+                                            }}
+                                        >
                                             Meus projetos
                                         </S.DropdownItem>
                                     </S.DropdownList>
@@ -192,7 +205,11 @@ export const HeaderDashboard = () => {
                                         >
                                             Ver todas publicações
                                         </S.DropdownItem>
-                                        <S.DropdownItem>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                handleOpenPublishModal();
+                                            }}
+                                        >
                                             Criar nova publicação
                                         </S.DropdownItem>
                                     </S.DropdownList>
