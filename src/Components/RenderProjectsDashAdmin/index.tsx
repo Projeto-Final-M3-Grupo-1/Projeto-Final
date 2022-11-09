@@ -14,30 +14,30 @@ export const RenderProjectsDashAdmin = () => {
     const [projects, setProjects] = useState([] as unknown as iProjects)
 
 useEffect(() => {
-    requestProjects();
-    // const render = () => {
-    //   api.get("/projects")
-    //   .then(res => {
-    //       setProjects(res.data)
-    //       console.log(res.data)
-    //   })
-    // }
+    const render = () => {
+      api.get("/projects")
+      .then(res => {
+          setProjects(res.data)
+          console.log(res.data)
+      })
+    }
 
-    // render()
+    render()
 }, []);
 
 
 return (
     <StyledDiv>
         <ul>
-            {projects.map((project: any) => 
-                // console.log(projects);           
+            {projects.map(
+                (project: any) => 
+                    project.status == "pendings" && (
                     <li key={project.id}>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
                 </li>
-                
-        )}        
+            ) 
+            )}        
         </ul>
     </StyledDiv>
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
 width: 100vw;
 height: 100vh;
-background-color: red;
+/* background-color: red; */
 
 ul{
     display: flex;
@@ -15,7 +15,7 @@ ul{
 }
 
 li{
-    width: 70%;
+    border: 1px solid red
 }
 
 
