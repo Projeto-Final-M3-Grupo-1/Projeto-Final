@@ -10,6 +10,7 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import Main from "../../Components/Main";
 import { CreateTask } from "../../Components/Modal/ModalCreateTask";
 
+
 export const Home = () => {
     const { menu } = useContext(ProjectsContext);
     const [open, setOpen] = useState(true);
@@ -23,6 +24,7 @@ export const Home = () => {
                 <AllProjects />
             </StyledContentWrapper>
             <Footer />
+
             {/* <CreateTask
         open={open}
         handleClose={() => setOpen(false)}
@@ -36,7 +38,7 @@ export const Home = () => {
                 SOBRE NOS
                 PROJETOS FINALIZADOS
                 FOOTER 
-             */}
+            */}
         </>
     );
 };
