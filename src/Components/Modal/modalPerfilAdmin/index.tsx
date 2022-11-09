@@ -2,7 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import api from "../../../Services/api";
-import { StyledButtonCadastro, StyledButtonCta } from "../../Button";
+import {
+  StyledButtonCadastro,
+  StyledButtonCta,
+  StyledButtonToManage,
+} from "../../Button";
 import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 import { StyledBoxModal } from "../ModalLogin/style";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
@@ -31,7 +35,8 @@ interface iState {
 }
 
 export const ModalPerfilAdmin = () => {
-  const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+  const { setShowModal, handleNavigate, handleManageProject } =
+    useContext(ProjectsContext);
   const { handlePerfil, setOpenPerfil } = useContext(UserContext);
 
   const { dataUser } = useContext(AuthContext);
@@ -135,10 +140,16 @@ export const ModalPerfilAdmin = () => {
                   {projects.length ? (
                     projects.map((element) => {
                       return (
-                        <li>
-                          <p className="title">{element.title}</p>
-                          <button>gerenciar</button>
-                        </li>
+                        element.status === "develop" && (
+                          <li>
+                            <p className="title">{element.title}</p>
+                            <StyledButtonToManage
+                              onClick={() => handleManageProject(element.id)}
+                            >
+                              Gerenciar
+                            </StyledButtonToManage>
+                          </li>
+                        )
                       );
                     })
                   ) : (
