@@ -35,6 +35,7 @@ interface IProjectsContext {
   dataOngMyProject: any;
   requestAddDevOnTask: any;
   requestCompleteTask: any;
+  handleManageProject: any;
   pendingProject: any;
   setPendingProject: any;
 }
@@ -58,6 +59,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [myProject, setMyProject] = useState([] as any);
   const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
   const [pendingProject, setPendingProject] = useState([]);
+
   const navigate = useNavigate();
 
   const handleYouRight = (projectId: any) => {
@@ -172,6 +174,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
       });
   };
 
+  const handleManageProject = (projectId: any, ongId: any) => {
+    localStorage.setItem("projectId", projectId);
+    localStorage.setItem("ongId", ongId);
+
+    navigate("/dashboard/manageproject");
+  };
+
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
@@ -208,6 +217,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         dataOngMyProject,
         requestAddDevOnTask,
         requestCompleteTask,
+        handleManageProject,
         pendingProject,
         setPendingProject,
       }}

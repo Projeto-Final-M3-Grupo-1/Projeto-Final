@@ -1,4 +1,4 @@
-import * as S from "../../HeaderDashboard/HeaderDashboardOng/style";
+import * as S from "../../HeaderDashboard/style";
 
 import { useContext } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
