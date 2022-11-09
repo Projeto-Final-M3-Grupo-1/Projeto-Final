@@ -6,8 +6,9 @@ export const StyledDiv = styled.div`
     margin: 0 auto;
     height: 300px;
     text-align: center;
-    margin-top: 1rem;
-    border: 1px solid var(--rose-200);
+    padding: 1.5rem;
+    border-top: 1px solid var(--rose-600);
+    border-bottom: 1px solid var(--rose-600);
 
     display: flex;
     flex-direction: column;
@@ -16,8 +17,7 @@ export const StyledDiv = styled.div`
 
     @media (min-width: 768px) {
         box-sizing: border-box;
-        height: 15.8rem;
-        /* padding: 100px; */
+        max-width: 80%;
     }
 `;
 export const StyledTitle = styled.h3`
@@ -28,7 +28,6 @@ export const StyledTitle = styled.h3`
 `;
 export const StyledParagraph = styled.p`
     margin-top: 1rem;
-    height: 209px;
     max-width: 1200px;
     font-style: var(--main-subtitle-text-weight);
     color: var(--main-subtitle-text-color);

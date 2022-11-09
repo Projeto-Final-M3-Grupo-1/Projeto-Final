@@ -1,19 +1,29 @@
+<<<<<<< HEAD
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ProjectsContext } from '../../Providers/ProjectsProvider';
 import api from '../../Services/api';
 import { StyledLoginButton } from '../Button';
 import { StyledDashboardManageProjectsAdmin } from './style';
+=======
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ProjectsContext } from "../../Providers/ProjectsProvider";
+import api from "../../Services/api";
+import { StyledLoginButton } from "../Button";
+import { StyledDashboardManageProjectsAdmin } from "./style";
+>>>>>>> b79b355e789ad635c21aebb57bddc4384a55942b
 
 interface iProjects {
-    map(arg0: (project: any) => void): import("react").ReactNode;
+	map(arg0: (project: any) => void): import("react").ReactNode;
 }
 
 export const RenderProjectsDashAdmin = () => {
-    const { requestProjects, handleManageProject } =
-        useContext(ProjectsContext);
-    const [projects, setProjects] = useState([] as unknown as iProjects);
+	const { requestProjects, handleManageProject } =
+		useContext(ProjectsContext);
+	const [projects, setProjects] = useState([] as unknown as iProjects);
 
+<<<<<<< HEAD
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,25 +33,33 @@ export const RenderProjectsDashAdmin = () => {
                 console.log(res.data);
             });
         };
+=======
+	const navigate = useNavigate();
+	useEffect(() => {
+		const render = () => {
+			api.get("/projects").then((res) => {
+				setProjects(res.data);
+				console.log(res.data);
+			});
+		};
+>>>>>>> b79b355e789ad635c21aebb57bddc4384a55942b
 
-        render();
-    }, []);
+		render();
+	}, []);
 
-
-return (
-    <StyledDashboardManageProjectsAdmin>
-        <ul className="openTasks">
-            {projects.map(
-                (project: any) => 
-                    project.status == "develop" && (
-                    <li key={project.id}>
-                        <h3>{project.title}</h3>
-                        <StyledLoginButton>add</StyledLoginButton>
-                    </li>
-            ) 
-            )}        
-        </ul>
-    </StyledDashboardManageProjectsAdmin>
-
-    )
-}
+	return (
+		<StyledDashboardManageProjectsAdmin>
+			<ul className="openTasks">
+				{projects.map(
+					(project: any) =>
+						project.status == "develop" && (
+							<li key={project.id}>
+								<h3>{project.title}</h3>
+								<StyledLoginButton>add</StyledLoginButton>
+							</li>
+						)
+				)}
+			</ul>
+		</StyledDashboardManageProjectsAdmin>
+	);
+};

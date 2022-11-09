@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
-
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
@@ -10,14 +9,14 @@ import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
 import ModalCreateProject from "../Modal/ModalAddProject";
 import Logo from "../Logo";
+import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 
 export const HeaderDashboard = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
-	const { handlePerfil } = useContext(UserContext);
-	const { handleProjectsToApply } = useContext(ProjectsContext);
+	const { handlePerfil, openPerfil } = useContext(UserContext);
 	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
-
+	const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
 	const loadUserType = () => {
@@ -54,6 +53,10 @@ export const HeaderDashboard = () => {
 		setIsAddProjectOpen(!isAddProjectOpen);
 	};
 
+	const handleOpenPublishModal = () => {
+		setIsCreateNewNotice(!isCreateNewNotice);
+	};
+
 	return (
 		<S.Header>
 			{isMobile ? (
@@ -66,6 +69,14 @@ export const HeaderDashboard = () => {
 							<S.CloseButton onClick={handleOpenModal} />
 						</>
 					) : null}
+					{isCreateNewNotice ? (
+						<>
+							<ModalNovaPublicacao
+								handleIsOpen={handleOpenPublishModal}
+							/>
+						</>
+					) : null}
+
 					<Logo />
 					<S.Dropdown>
 						{userType === "dev" && (
@@ -192,11 +203,17 @@ export const HeaderDashboard = () => {
 									<VscTriangleDown />
 									<S.DropdownList>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate("/dashboard");
+											}}
 										>
 											Ver todas publicações
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												handleOpenPublishModal();
+											}}
+										>
 											Criar nova publicação
 										</S.DropdownItem>
 									</S.DropdownList>

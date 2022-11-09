@@ -4,9 +4,10 @@ export const StyledModalHome = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    align-content: center;
+    /* align-content: center; */
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 
     width: 90%;
     height: 460px;

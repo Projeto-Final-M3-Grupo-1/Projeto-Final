@@ -10,18 +10,6 @@ export const StyledDivHome = styled.div`
     margin: 0 auto;
     padding: 2rem 0;
 
-    /* overflow: hidden;
-    overflow-x: scroll;
-    ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        height: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
-    } */
-
     @media (min-width: 768px) {
         box-sizing: border-box;
         flex-direction: row;
@@ -43,8 +31,6 @@ export const StyledCardHome = styled.div`
     width: 95%;
     height: 216px;
     border-radius: 4px;
-
-    margin: 0 0 0 5px;
 
     gap: 12px;
 

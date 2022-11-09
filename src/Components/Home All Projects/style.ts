@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledAllProjectsBox = styled.div`
     width: 90%;
-    min-height: 600px;
+    min-height: 550px;
 
     margin: 0 auto;
     margin-top: 1rem;
@@ -12,25 +12,20 @@ export const StyledAllProjectsBox = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
-    /* z-index: -1; */
+    gap: 1.5rem;
 
     h2 {
-        font-size: var(--main-subtitle-text-size);
+        font-size: 2rem;
         font-weight: var(--main-title-text-weight);
         line-height: 1.8rem;
-
         color: var(--main-title-text-color);
+        align-self: center;
+        text-align: center;
     }
-    @media (min-width: 700px) {
-        h2 {
-            left: 47%;
-            top: 0%;
-        }
-    }
+
     h3 {
         font-size: var(--main-subtitle-text-size);
-        font-weight: var(--main-title-text-weight);
+        /* font-weight: var(--main-title-text-weight); */
         line-height: 1.8rem;
 
         color: var(--main-title-text-color);
@@ -46,9 +41,10 @@ export const StyledAllProjectsBox = styled.div`
     ul {
         width: 90%;
         max-width: 700px;
-        max-height: 400px;
+        max-height: 320px;
         margin-top: 1rem;
         margin-bottom: 1rem;
+        justify-content: center;
 
         display: flex;
         gap: 20px;
@@ -63,6 +59,7 @@ export const StyledAllProjectsBox = styled.div`
             width: 90%;
             max-width: 1200px;
             height: 600px;
+            overflow: hidden;
         }
     }
     ul::-webkit-scrollbar {
@@ -72,8 +69,9 @@ export const StyledAllProjectsBox = styled.div`
         height: 5px;
     }
     ul::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
+        background-color: var(--rose-600);
         border-radius: 20px;
+        
     }
 
     li {

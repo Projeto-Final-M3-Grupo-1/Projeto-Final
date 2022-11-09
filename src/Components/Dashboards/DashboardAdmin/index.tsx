@@ -8,8 +8,7 @@ import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 
 export const DashboardAdmin = () => {
 	const { loadingUser } = useContext(AuthContext);
-	const { renderPublications } = useContext(UserContext);
-	const { showModal } = useContext(ProjectsContext);
+	const { renderPublications, openPerfil } = useContext(UserContext);
 
 	useEffect(() => {
 		loadingUser();
@@ -19,8 +18,7 @@ export const DashboardAdmin = () => {
 	return (
 		<>
 			<HeaderDashboard />
-			{showModal && <ModalPerfilAdmin />}
-
+			{openPerfil && <ModalPerfilAdmin />}
 			<Outlet />
 		</>
 	);

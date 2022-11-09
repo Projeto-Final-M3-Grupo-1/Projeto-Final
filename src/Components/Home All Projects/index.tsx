@@ -4,9 +4,7 @@ import { StyledButtonCta } from "../Button";
 import { StyledAllProjectsBox } from "./style";
 
 export const AllProjects = () => {
-    // function requestProjects() {
-    //     api.get("/projects").then((res) => console.log(res));
-    // }
+
     const { requestProjects, projects } = useContext(ProjectsContext);
     useEffect(() => {
         requestProjects();
