@@ -32,7 +32,7 @@ interface iState {
 
 export const ModalPerfilAdmin = () => {
   const { setShowModal, handleNavigate } = useContext(ProjectsContext);
-  const { handlePerfil } = useContext(UserContext);
+  const { handlePerfil, setOpenPerfil } = useContext(UserContext);
 
   const { dataUser } = useContext(AuthContext);
   const [projects, setProjetcts] = useState([] as unknown as iState);
@@ -66,7 +66,7 @@ export const ModalPerfilAdmin = () => {
     <>
       <StyledBoxModal>
         <StyledModalBody>
-          <ButtonCloseModal callback={() => setShowModal(false)} />
+          <ButtonCloseModal callback={handlePerfil} />
 
           <StyledContent>
             <StyledOngDetails>
