@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Event } from "react-toastify/dist/core";
 import { string } from "yup";
 import { AuthContext } from "../../../Providers/AuthContext";
@@ -6,7 +7,7 @@ import { ProjectsContext, ProjectsProvider } from "../../../Providers/ProjectsPr
 import { UserContext } from "../../../Providers/UserProvider";
 import { StyledLoginButton } from "../../Button";
 import ModalEditPubli from "../../Modal/ModalEditPubli";
-import { StyledCard, StyledTextCard, StyledRightCard, StyledButtonsAdmin, StyledMainCard } from "./style";
+import { StyledCard, StyledTextCard, StyledRightCard, StyledButtonsAdmin, StyledMainCard, StyledButtonSite } from "./style";
 
 interface ICard {
   img: string;
@@ -35,9 +36,7 @@ const Card = ({ img, title, description, id, site }: ICard ) => {
     setIdPubli(id);
 	};
 
-  const teste = () => {
-    getPublication(id)
-  }
+  // <Link to={site} target="_blank">Ver site</Link>
 
   return (
   <StyledMainCard>
@@ -51,7 +50,7 @@ const Card = ({ img, title, description, id, site }: ICard ) => {
           </StyledTextCard>
           {typeUser === "admin" ? (
             <StyledButtonsAdmin>
-              <StyledLoginButton>Ver site</StyledLoginButton>
+              <StyledButtonSite href={site} target="_blank">Ver site</StyledButtonSite>
               <StyledLoginButton onClick={handleIsOpen}>Editar</StyledLoginButton>
             </StyledButtonsAdmin>
           ) : (

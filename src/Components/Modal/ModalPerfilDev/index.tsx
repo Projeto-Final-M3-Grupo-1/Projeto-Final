@@ -98,29 +98,25 @@ export const ModalPerfilDev = () => {
                 >
                   <StyledInfo>
                     <p className="label">Nome</p>
-                    <textarea {...register("nome")} className="info">
-                      {dataUser.nome}
+                    <textarea {...register("nome")} className="info" defaultValue={dataUser.nome}>
                     </textarea>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">E-mail</p>
-                    <textarea {...register("email")} className="info">
-                      {dataUser.email}
+                    <textarea {...register("email")} className="info" defaultValue={dataUser.email}>
                     </textarea>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">GitHub</p>
-                    <textarea {...register("github")} className="info">
-                      {dataUser.github}
+                    <textarea {...register("github")} className="info" defaultValue={dataUser.github}>
                     </textarea>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">Linkedin</p>
-                    <textarea {...register("linkedin")} className="info">
-                      {dataUser.linkedin}
+                    <textarea {...register("linkedin")} className="info" defaultValue={dataUser.linkedin}>
                     </textarea>
                   </StyledInfo>
                   <StyledButtonCadastro type="submit">
