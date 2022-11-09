@@ -35,6 +35,7 @@ export const HeaderDashboard = () => {
 		handleResize();
 	}, [width]);
 
+
 	useEffect(() => {
 		loadUserType();
 	}, [dataUser]);

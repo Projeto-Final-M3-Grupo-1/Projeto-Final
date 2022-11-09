@@ -142,7 +142,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            requestMyProject();
+            requestOngMyProject();
+        });
     };
     const requestCompleteTask = (id: any) => {
         const body = {
@@ -152,7 +155,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            requestMyProject();
+            requestOngMyProject();
+        });
     };
 
     const scrollToTop = () => {
