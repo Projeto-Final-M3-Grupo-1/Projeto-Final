@@ -118,17 +118,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   };
 
 
-  const HandleModalProject = () => {
-    return !showProject ? setShowProjects(true) : setShowProjects(false);
-  };
-  const applyOnProject = () => {
-    const body = {
-      projectId: +localStorage.projectId,
-    };
-    requestApplyOnProject(body);
-  };
-
-
     const createProjects = (data: any) => {
         data.userId = localStorage.userId;
         data.ongId = localStorage.userId;
@@ -146,6 +135,22 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         });
     };
 
+  const HandleModalProject = () => {
+    return !showProject ? setShowProjects(true) : setShowProjects(false);
+  };
+  const applyOnProject = () => {
+    const body = {
+      projectId: +localStorage.projectId,
+    };
+    requestApplyOnProject(body);
+  };
+
+    const requestProjects = () => {
+        api.get("/projects").then((res) => {
+            return setProjects(res.data), setPendingProjects(res.data);
+        });
+    }
+
 
 
   const requestApplyOnProject = (body: any) => {
@@ -161,16 +166,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
           "Cadastrado com sucesso no projeto, acesse Meu Projeto para ver os detalhes"
         );
       });
-  };
-
-  const requestProjects = () => {
-    api
-      .get("/projects", {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-      .then((res) => setProjects(res.data));
   };
 
   const requestMyProject = () => {
@@ -199,6 +194,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         requestOngMyProject();
       });
   };
+  
   const requestCompleteTask = (id: number) => {
     const body = {
       completed: true,
@@ -235,6 +231,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+
 
 
   return (
@@ -279,6 +276,5 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     >
       {children}
     </ProjectsContext.Provider>
-  );
-
-};
+  )
+}

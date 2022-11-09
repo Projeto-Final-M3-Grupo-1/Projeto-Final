@@ -101,13 +101,8 @@ export const ModalPerfilAdmin = () => {
                   />
                 </StyledInfo>
 
-                <StyledInfo>
-                  <p className="label">Idade:</p>
-                  <input className="info" placeholder="insira sua idade" />
-                </StyledInfo>
-
                 <StyledProjectsRequests
-                  style={{ width: "95%", marginTop: "7px" }}
+                  style={{ width: "95%", height: "130%", marginTop: "7px" }}
                 >
                   <h2 className="title">Tecnologias que trabalho</h2>
                   <div className="projectInfo">
@@ -152,7 +147,9 @@ export const ModalPerfilAdmin = () => {
                           <li>
                             <p className="title">{element.title}</p>
                             <StyledButtonToManage
-                              onClick={() => handleManageProject(element.id)}
+                              onClick={() =>
+                                handleManageProject(element.id, element.ongId)
+                              }
                             >
                               Gerenciar
                             </StyledButtonToManage>

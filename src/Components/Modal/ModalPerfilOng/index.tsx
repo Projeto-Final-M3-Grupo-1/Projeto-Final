@@ -40,7 +40,8 @@ export interface IUserRegister {
 export const ModalPerfilOng = () => {
   const { dataUser } = useContext(AuthContext);
   const { onSubmitEditOngPerfil, handlePerfil } = useContext(UserContext);
-  const { setShowModal, handleNavigate } = useContext(ProjectsContext);
+  const { setShowModal, handleNavigate, showProject, setShowProjects } =
+    useContext(ProjectsContext);
   const [projects, setProjetcts] = useState([] as unknown as iState);
   const {
     handleSubmit,
@@ -140,7 +141,13 @@ export const ModalPerfilOng = () => {
                 ) : (
                   <h1>Nenhum projeto</h1>
                 )}
-                <StyledButtonCadastro>Criar projeto</StyledButtonCadastro>
+                <StyledButtonCadastro
+                  onClick={() => {
+                    setShowProjects(true);
+                  }}
+                >
+                  Criar projeto
+                </StyledButtonCadastro>
               </div>
             </StyledProjectsRequests>
             <StyledButtons>

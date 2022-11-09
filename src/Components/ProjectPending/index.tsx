@@ -31,7 +31,13 @@ export const ProjectPending = () => {
             project.status == "pendings" && (
               <li key={project.id}>
                 <h3>{project.title}</h3>
-                <StyledLoginButton>add</StyledLoginButton>
+                <StyledLoginButton
+                  onClick={() =>
+                    handleManageProject(project.id, 1 /* seria o ongID */)
+                  }
+                >
+                  add
+                </StyledLoginButton>
               </li>
             )
         )}

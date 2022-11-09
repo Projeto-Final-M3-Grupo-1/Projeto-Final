@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainStyle = styled.main`
   max-height: 100vh;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -76,7 +76,7 @@ export const StyledImagesMain = styled.div`
   img {
     width: 100%;
     align-self: flex-end;
-    max-height: 254px;
+    max-height: 300px;
     margin-top: 4rem;
   }
 

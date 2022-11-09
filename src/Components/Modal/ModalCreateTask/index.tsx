@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
 import { schemaCreateTask } from "../../../Services/validation/createTask.validation";
@@ -12,18 +13,24 @@ import { TextArea } from "../../TextArea";
 import { StyledBoxModalCreateTask } from "./styles";
 
 interface iCreateTask {
+  open: boolean;
+  handleClose: () => void;
+
   projectId: number;
 }
 
 interface iFormTask {
   title: string;
   content: string;
+
   projectId: number;
 }
 
 export const CreateTask = () => {
   const { onSubmitCreateTask } = useContext(UserContext);
-  const { handleCreateTask } = useContext(ProjectsContext);
+  const { handleCreateTask, createTask } = useContext(ProjectsContext);
+  const { dataUser } = useContext(AuthContext);
+
   const {
     handleSubmit,
     register,
@@ -33,31 +40,43 @@ export const CreateTask = () => {
   } = useForm<iFormTask>({
     resolver: yupResolver(schemaCreateTask),
   });
+
   return (
-    <StyledBoxModalCreateTask>
+    <StyledBoxModalCreateTask show={createTask}>
       <StyledForm onSubmit={handleSubmit(onSubmitCreateTask)}>
         <ButtonCloseModal callback={handleCreateTask} />
         <div className="containerModal">
           <figure>
-            <img
-              src="http://www.abo-sc.org.br/wp-content/uploads/2017/06/img-perfil-masc2.png"
-              alt=""
-            />
+            <img src={dataUser.fotoDePerfil} alt="" />
           </figure>
           <div className="containerNomeFuncao">
-            <h2>João Silva</h2>
+            <h2>
+              {dataUser.typeUser == "admin"
+                ? dataUser.nome
+                : dataUser.typeUser == "ong"
+                ? dataUser.razaoSocial
+                : null}
+            </h2>
             <p>Tech Leader</p>
           </div>
         </div>
+
         <InputAndLabel
-          textLabel="Nome da Task"
+          textLabel="Título"
           name="title"
-          placeholder="Digite o nome da task"
+          placeholder="Título do seu Projeto"
           type="text"
           register={register}
           error={title?.message}
         />
-
+        <TextArea
+          textLabel="Descrição"
+          name="content"
+          placeholder="Faça um resumo da tarefa a ser realizada"
+          type="text"
+          error={content?.message}
+          register={register}
+        />
         <StyledLoginButton type="submit">Salvar</StyledLoginButton>
       </StyledForm>
     </StyledBoxModalCreateTask>
