@@ -6,23 +6,23 @@ import { UserContext } from "../../../Providers/UserProvider";
 import { HeaderDashboard } from "../../HeaderDashboard";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 
-// import Publications from "../../Publication";
+import { render } from "react-dom";
+import { Outlet } from "react-router-dom";
 
 export const DashboardAdmin = () => {
-  const { loadingUser } = useContext(AuthContext);
-  const { render, setRender, requestProjects } = useContext(ProjectsContext);
+    const { loadingUser } = useContext(AuthContext);
+    const { renderPublications } = useContext(UserContext);
+    const { showModal } = useContext(ProjectsContext);
 
-  const { showModal } = useContext(ProjectsContext);
+    useEffect(() => {
+        loadingUser();
+        renderPublications();
+    }, []);
 
-  // useEffect(() => {
-  //   loadingUser();
-  //   requestProjects();
-  // }, []);
-
-	return (
-		<>
-			<HeaderDashboard />
-			{showModal && <ModalPerfilAdmin />}
+    return (
+        <>
+            <HeaderDashboard />
+            {showModal && <ModalPerfilAdmin />}
 
       <Outlet/>
     </>
