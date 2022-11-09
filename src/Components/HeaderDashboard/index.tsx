@@ -140,7 +140,7 @@ export const HeaderDashboard = () => {
 										</S.DropdownItem>
 										<S.DropdownItem
 											onClick={() => {
-												navigate("/PROJETODAONG");
+												navigate("/pendingproject");
 											}}
 										>
 											Meu projeto

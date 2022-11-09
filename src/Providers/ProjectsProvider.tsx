@@ -36,6 +36,9 @@ interface IProjectsContext {
     requestAddDevOnTask: any;
     requestCompleteTask: any;
     handleManageProject: any;
+    deleteTask: any;
+    handleCreateTask: any;
+    createTask: boolean;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -56,8 +59,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [showProject, setShowProjects] = useState(false);
     const [myProject, setMyProject] = useState([] as any);
     const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
+    const [createTask, setCreateTask] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleCreateTask = () => {
+        return !createTask ? setCreateTask(true) : setCreateTask(false);
+    };
 
     const handleYouRight = (projectId: any) => {
         localStorage.setItem("projectId", projectId);
@@ -169,6 +177,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
 
         navigate("/dashboard/manageproject");
     };
+    const deleteTask = (id: any) => {
+        api.delete(`/tasks/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => requestMyProject());
+    };
 
     const scrollToTop = () => {
         scroll.scrollToTop();
@@ -207,6 +222,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 requestAddDevOnTask,
                 requestCompleteTask,
                 handleManageProject,
+                deleteTask,
+                handleCreateTask,
+                createTask,
             }}
         >
             {children}
