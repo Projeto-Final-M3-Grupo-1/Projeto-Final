@@ -51,7 +51,8 @@ export const HeaderDashboard = () => {
     };
 
     return (
-        <S.Header>
+       <>
+       <S.Header>
             {isMobile ? (
                 <MobileHeader
                     callback={handleProjectsToApply}
@@ -196,7 +197,6 @@ export const HeaderDashboard = () => {
                                         </S.DropdownItem>
                                     </S.DropdownList>
                                 </S.Span>
-                                { modalChange && <ModalAcceptDecline /> }
                             </>
                         )}
                     </S.Dropdown>
@@ -216,5 +216,7 @@ export const HeaderDashboard = () => {
                 </S.Nav>
             )}
         </S.Header>
+        { modalChange && <ModalAcceptDecline /> }
+        </>
     );
 };
