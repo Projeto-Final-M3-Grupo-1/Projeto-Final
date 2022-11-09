@@ -14,16 +14,16 @@ export const RenderProjectsDashAdmin = () => {
     const [projects, setProjects] = useState([] as unknown as iProjects)
 
 useEffect(() => {
-    // requestProjects();
-    const render = () => {
-      api.get("/projects")
-      .then(res => {
-          setProjects(res.data)
-          console.log(res.data)
-      })
-    }
+    requestProjects();
+    // const render = () => {
+    //   api.get("/projects")
+    //   .then(res => {
+    //       setProjects(res.data)
+    //       console.log(res.data)
+    //   })
+    // }
 
-    render()
+    // render()
 }, []);
 
 

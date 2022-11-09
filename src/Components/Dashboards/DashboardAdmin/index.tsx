@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
-import HeaderDashboard from "../../HeaderDashboard";
+import { HeaderDashboard } from "../../HeaderDashboard";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 
 // import Publications from "../../Publication";
@@ -19,10 +19,10 @@ export const DashboardAdmin = () => {
   //   requestProjects();
   // }, []);
 
-  return (
-    <>
-      <HeaderDashboard />
-      {showModal && <ModalPerfilAdmin />}
+	return (
+		<>
+			<HeaderDashboard />
+			{showModal && <ModalPerfilAdmin />}
 
       <Outlet/>
     </>

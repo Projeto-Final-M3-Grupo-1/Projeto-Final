@@ -16,7 +16,6 @@ ul{
 
 li{
     width: 70%;
-    gap: 35px;
 }
 
 
