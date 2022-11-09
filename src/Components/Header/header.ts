@@ -48,6 +48,11 @@ export const StyledHeader = styled.header`
 			font-weight: 600;
 			cursor: pointer;
 		}
+
+		.links--menu_header:hover{
+			color: var(--rose-600);
+			text-decoration: underline;
+		}
 	}
 	@media (max-width: 700px) {
 		nav {

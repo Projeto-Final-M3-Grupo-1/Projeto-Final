@@ -121,8 +121,9 @@ export const GlobalStyle = createGlobalStyle`
         --footer-title-text-size: 1.5rem;
         --footer-title-text-weight: 900;
         --footer-socials-text-size: 1.5rem;
+        --footer-socials-color: var(--white);
         --footer-socials-text-weight: 400;
-        --footer-button-background-color: var(--white);
+        --footer-button-background-color: var(--black);
         --footer-button-text-color: var(--slate-900);
         --footer-text-small-size: 0.9375rem;
         --footer-text-small-weight: 400;

@@ -102,7 +102,7 @@ export const ModalPerfilAdmin = () => {
                 </StyledInfo>
 
                 <StyledProjectsRequests
-                  style={{ width: "95%", marginTop: "7px" }}
+                  style={{ width: "95%", height: "130%", marginTop: "7px" }}
                 >
                   <h2 className="title">Tecnologias que trabalho</h2>
                   <div className="projectInfo">
