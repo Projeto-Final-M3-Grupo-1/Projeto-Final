@@ -29,6 +29,11 @@ interface IProjectsContext {
     createProjects: any;
     HandleModalProject: () => void;
     handleNavigate: any;
+    requestMyProject: any;
+    myProject: any;
+    requestOngMyProject: any;
+    dataOngMyProject: any;
+    requestAddDevOnTask: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -47,6 +52,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [render, setRender] = useState("publications");
     const [youRight, setYouRight] = useState(false);
     const [showProject, setShowProjects] = useState(false);
+    const [myProject, setMyProject] = useState([] as any);
+    const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
 
     const navigate = useNavigate();
 
@@ -114,6 +121,40 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => setProjects(res.data));
     };
 
+    const requestMyProject = () => {
+        api.get(`/projects/${localStorage.projectId}?_embed=tasks`).then(
+            (res) => {
+                localStorage.setItem("ongId", res.data.ongId);
+                setMyProject(res.data);
+            }
+        );
+    };
+    const requestOngMyProject = () => {
+        api.get(`/users/${localStorage.ongId}`).then((res) =>
+            setDataOngMyProject(res.data)
+        );
+    };
+    const requestAddDevOnTask = (id: any) => {
+        const body = {
+            userId: +localStorage.userId,
+        };
+        api.patch(`/tasks/${id}`, body, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then((res) => console.log(res));
+    };
+    const requestCompleteTask = (id: any) => {
+        const body = {
+            completed: true,
+        };
+        api.patch(`/tasks/${id}`, body, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then((res) => console.log(res));
+    };
+
     const scrollToTop = () => {
         scroll.scrollToTop();
     };
@@ -144,6 +185,11 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 createProjects,
                 showProject,
                 setShowProjects,
+                requestMyProject,
+                myProject,
+                requestOngMyProject,
+                dataOngMyProject,
+                requestAddDevOnTask,
             }}
         >
             {children}
