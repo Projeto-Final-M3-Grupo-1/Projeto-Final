@@ -19,9 +19,7 @@ const Routers = () => {
                 <Route path="projectstoapply" element={<ProjectsToApply />} />
             </Route>
             <Route path="registerong" element={<RegisterOng />} />
-            <Route path="registerdev" element={<RegisterDev />}>
-                <Route index element={<Publications />} />
-            </Route>
+            <Route path="registerdev" element={<RegisterDev />} />
             <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
     );
