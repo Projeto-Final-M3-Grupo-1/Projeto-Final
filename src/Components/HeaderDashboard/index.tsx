@@ -15,7 +15,6 @@ export const HeaderDashboard = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { handlePerfil } = useContext(UserContext);
-	const { handleProjectsToApply } = useContext(ProjectsContext);
 	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
 
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
@@ -192,7 +191,9 @@ export const HeaderDashboard = () => {
 									<VscTriangleDown />
 									<S.DropdownList>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate("/dashboard");
+											}}
 										>
 											Ver todas publicações
 										</S.DropdownItem>
