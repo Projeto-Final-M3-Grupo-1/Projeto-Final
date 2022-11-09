@@ -7,6 +7,10 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
+
+    getPublication: any;
+    onSubmitEditPubli: any;
+    setIdPubli: any;
 	onSubmitLogin: any;
 	onSubmitRegister: any;
 	onSubmitOng: any;
@@ -32,6 +36,7 @@ interface IUserContext {
 	setOpenPerfilAdmin: React.Dispatch<React.SetStateAction<boolean>>;
 	showPerfilOngOnProject: boolean;
 	handlePerfilOngOnProject: any;
+
 }
 interface IUserChildren {
 	children: ReactNode;
@@ -53,6 +58,7 @@ interface iNotice {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
+
 	const { setDataUser } = useContext(AuthContext);
 	const [createTech, setCreateTech] = useState<any>(false);
 	const [techs, setTechs] = useState([]);
@@ -64,6 +70,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
 	const { setShowModal } = useContext(ProjectsContext);
 	const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
 	const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
+    const [idPubli, setIdPubli] = useState<Number | null>(null);
 
 	const navigate = useNavigate();
 
@@ -161,7 +168,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
 		toast.promise(
 			api
 				.post("/tasks", data)
-
 				.then(() => {}),
 			{
 				pending: "Criando Tarefa",
@@ -171,6 +177,20 @@ export const UserProvider = ({ children }: IUserChildren) => {
 		);
 	};
 
+    const onSubmitEditPubli = (data : any) => {     
+        api.patch(`notices/${idPubli}`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+        .then(() => {
+            renderPublications()
+            toast.success("Noticia editada com sucesso!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        })
+    }
 	const requestTechs = () => {
 		api.get("/techs", {
 			headers: {
@@ -227,37 +247,47 @@ export const UserProvider = ({ children }: IUserChildren) => {
 		api.get("/notices").then((resp) => setPublications(resp.data));
 	};
 
-	return (
-		<UserContext.Provider
-			value={{
-				onSubmitLogin,
-				onSubmitRegister,
-				onSubmitOng,
-				user,
-				setUser,
-				publications,
-				renderPublications,
-				onSubmitTech,
-				handleCreateTech,
-				createTech,
-				requestTechs,
-				requestEditeTech,
-				techs,
-				requestDeleteTech,
-				onSubmitEditPerfil,
-				openPerfil,
-				handlePerfil,
-				setOpenPerfil,
-				onSubmitCreateTask,
-				newNotice,
-				onSubmitEditOngPerfil,
+
+    const getPublication = (id : number) => {
+        api.get(`/notices/${id}`).then((resp) => console.log(resp.data)
+        );
+    };
+
+    return (
+        <UserContext.Provider
+            value={{
+                onSubmitLogin,
+                onSubmitRegister,
+                onSubmitOng,
+                user,
+                setUser,
+                publications,
+                renderPublications,
+                onSubmitTech,
+                handleCreateTech,
+                createTech,
+                requestTechs,
+                requestEditeTech,
+                techs,
+                requestDeleteTech,
+                onSubmitEditPerfil,
+                openPerfil,
+                handlePerfil,
+                setOpenPerfil,
+                onSubmitCreateTask,
+                newNotice,
+                getPublication,
+                onSubmitEditPubli,
+                onSubmitEditOngPerfil,
+                setIdPubli,
 				openPerfilAdmin,
 				setOpenPerfilAdmin,
 				showPerfilOngOnProject,
 				handlePerfilOngOnProject,
-			}}
-		>
-			{children}
-		</UserContext.Provider>
-	);
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
+
 };

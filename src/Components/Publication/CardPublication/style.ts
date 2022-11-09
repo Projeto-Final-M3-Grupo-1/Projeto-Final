@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledMainCard = styled.div`
+    width: 100%;
+`
+
 export const StyledCard = styled.li`
     display: flex;
     flex-direction: row;
@@ -8,7 +12,7 @@ export const StyledCard = styled.li`
     border-radius: 4px;
     padding: 1rem;
     gap: 2rem;
-    width: 100%;
+    width: 96%;
 
     img{
         width: 50%;

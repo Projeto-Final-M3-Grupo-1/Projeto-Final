@@ -31,12 +31,12 @@ return (
         <ul>
             {projects.map(
                 (project: any) => 
-                    project.status == "pendings" && (
+                    // project.status == "pendings" && (
                     <li key={project.id}>
                     <h3>{project.title}</h3>
-                    <p>{project.description}</p>
+                    <button>add</button>
                 </li>
-            ) 
+            // ) 
             )}        
         </ul>
     </StyledDiv>

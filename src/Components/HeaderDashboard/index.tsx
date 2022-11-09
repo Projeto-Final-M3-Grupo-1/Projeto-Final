@@ -35,9 +35,10 @@ export const HeaderDashboard = () => {
     handleResize();
   }, [width]);
 
-  useEffect(() => {
-    loadUserType();
-  }, [dataUser]);
+
+	useEffect(() => {
+		loadUserType();
+	}, [dataUser]);
 
   const handleResize = () => {
     if (width <= 768) {
