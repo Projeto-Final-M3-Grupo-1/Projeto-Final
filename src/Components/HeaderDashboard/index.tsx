@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import Logo from "../Logo";
 
 export const HeaderDashboard = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const { handlePerfil } = useContext(UserContext);
-  const { handleProjectsToApply } = useContext(ProjectsContext);
+  const { handleProjectsToApply, HandleModalProject } = useContext(ProjectsContext);
 
   const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
@@ -57,7 +58,7 @@ export const HeaderDashboard = () => {
         />
       ) : (
         <S.Nav>
-          <h2>Logo</h2>
+          <Logo></Logo>
           <S.Dropdown>
             {userType === "dev" && (
               <>
@@ -109,15 +110,15 @@ export const HeaderDashboard = () => {
                   Projetos
                   <VscTriangleDown />
                   <S.DropdownList>
-                    <S.DropdownItem>Criar projeto</S.DropdownItem>
-                    <S.DropdownItem>Meu projeto</S.DropdownItem>
+                    <S.DropdownItem onClick={HandleModalProject} >Criar projeto</S.DropdownItem>
+                    <S.DropdownItem onClick={() => {navigate("/dashboard/pendingproject")}} >Meu projeto</S.DropdownItem>
                   </S.DropdownList>
                 </S.Span>
                 <S.Span>
                   Publicações
                   <VscTriangleDown />
                   <S.DropdownList>
-                    <S.DropdownItem>Ver todas publicações</S.DropdownItem>
+                    <S.DropdownItem onClick={() => {navigate("/dashboard")}}>Ver todas publicações</S.DropdownItem>
                     <S.DropdownItem>Ver todas publicações</S.DropdownItem>
                   </S.DropdownList>
                 </S.Span>
@@ -136,6 +137,7 @@ export const HeaderDashboard = () => {
                     >
                       Ver todos projetos em andamento
                     </S.DropdownItem>
+
                     <S.DropdownItem
                       onClick={() => {
                         navigate("/dashboard/projectpending");

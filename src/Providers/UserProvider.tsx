@@ -7,6 +7,7 @@ import { AuthContext } from "./AuthContext";
 import { ProjectsContext } from "./ProjectsProvider";
 
 interface IUserContext {
+
   getPublication: (id: number) => void;
   onSubmitEditPubli: (data: any) => void;
   setIdPubli: React.Dispatch<React.SetStateAction<number | null>>;
@@ -37,6 +38,7 @@ interface IUserContext {
   handlePerfilOngOnProject: (id: number) => void;
   requestAllUsers: () => void;
   allUsers: Array<iUserOng | iUserDev>;
+
 }
 interface IUserChildren {
   children: ReactNode;
@@ -46,6 +48,7 @@ interface iCreateTask {
   title: string;
   content: string;
   projectId: number;
+
 }
 
 interface iUserLogin {
@@ -108,6 +111,7 @@ interface iUserDev extends iUserLogin {
 interface iNoticeList extends iNotice {
   userId: number;
   id: number;
+
 }
 
 interface iNotice {
@@ -121,6 +125,7 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
   const { setDataUser } = useContext(AuthContext);
+
   const [createTech, setCreateTech] = useState<boolean>(false);
   const [techs, setTechs] = useState([]);
   const [user, setUser] = useState<iUserLogin>({} as iUserLogin);
@@ -154,6 +159,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
   const newNotice = (notice: iNotice) => {
     const userId = localStorage.userId;
 
+
+
     const newNotice = {
       ...notice,
       userId,
@@ -177,7 +184,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     }
   };
 
+
   const onSubmitLogin = async (data: iLogin) => {
+
     toast.promise(
       api.post("/login", data).then((res) => {
         navigate("/dashboard");
@@ -199,7 +208,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     data.userId = Number(localStorage.userId);
     requestCreateTech(data);
   };
+
   const onSubmitRegister = (data: iDevRegister) => {
+
     data.typeUser = "dev";
     toast.promise(
       api.post("/registerdev", data).then(() => {
@@ -213,7 +224,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
     );
   };
 
+
   const onSubmitOng = (data: iOngRegister) => {
+
     data.typeUser = "ong";
     toast.promise(
       api.post("/registerong", data).then(() => {
@@ -286,7 +299,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
       })
       .catch((err) => console.log(err));
   };
+
   const requestDeleteTech = (id: number) => {
+
     api
       .delete(`/techs/${id}`, {
         headers: {

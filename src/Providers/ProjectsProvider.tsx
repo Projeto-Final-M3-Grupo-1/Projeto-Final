@@ -30,6 +30,7 @@ interface iOng {
 }
 
 interface IProjectsContext {
+
   projects: iProject[];
   setProjects: React.Dispatch<React.SetStateAction<iProject[]>>;
   requestProjects: () => void;
@@ -63,6 +64,9 @@ interface IProjectsContext {
   deleteTask: (id: number) => void;
   handleCreateTask: () => void;
   createTask: boolean;
+  pendingProject: any;
+  setPendingProjects: any;
+
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -74,6 +78,7 @@ interface IProjectChildren {
 }
 
 export const ProjectsProvider = ({ children }: IProjectChildren) => {
+
   const [projects, setProjects] = useState<iProject[]>([]);
   const [menu, setMenu] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -84,12 +89,22 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [myProject, setMyProject] = useState<iProject>({} as iProject);
   const [dataOngMyProject, setDataOngMyProject] = useState<iOng>({} as iOng);
   const [createTask, setCreateTask] = useState<boolean>(false);
+  const [pendingProject, setPendingProjects] = useState([] as any)
+
 
   const navigate = useNavigate();
+
 
   const handleCreateTask = () => {
     !createTask ? setCreateTask(true) : setCreateTask(false);
   };
+
+    const handleMenu = () => {
+        return !menu ? setMenu(true) : setMenu(false);
+    };
+    const handleModal = () => {
+        return !showModal ? setShowModal(true) : setShowModal(false);
+    };
 
   const handleYouRight = (projectId: number) => {
     localStorage.setItem("projectId", projectId + "");
@@ -102,12 +117,22 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     navigate(route);
   };
 
-  const handleMenu = () => {
-    return !menu ? setMenu(true) : setMenu(false);
-  };
-  const handleModal = () => {
-    return !showModal ? setShowModal(true) : setShowModal(false);
-  };
+
+    const createProjects = (data: any) => {
+        data.userId = localStorage.userId;
+        data.ongId = localStorage.userId;
+
+        api.post("/projects", data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then((res) => {
+            setShowProjects(false);
+            toast.success("Projeto cadastrado com sucesso!");
+            setPendingProjects(res.data)
+            requestProjects();
+        });
+    };
 
   const HandleModalProject = () => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
@@ -119,21 +144,25 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     requestApplyOnProject(body);
   };
 
-  const createProjects = (data: iProject) => {
-    data.userId = localStorage.userId;
-    data.ongId = localStorage.userId;
 
-    api
-      .post("/pendings", data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-      .then(() => {
-        setShowProjects(false);
-        toast.success("Projeto cadastrado com sucesso!");
-      });
-  };
+    const createProjects = (data: any) => {
+        data.userId = localStorage.userId;
+        data.ongId = localStorage.userId;
+        data.status = "pendings";
+
+        api.post("/projects", data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then((res) => {
+            setShowProjects(false);
+            toast.success("Projeto cadastrado com sucesso!");
+            setPendingProjects(res.data);
+            requestProjects();
+        });
+    };
+
+
 
   const requestApplyOnProject = (body: any) => {
     api
@@ -223,6 +252,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     scroll.scrollToTop();
   };
 
+
   return (
     <ProjectsContext.Provider
       value={{
@@ -259,9 +289,12 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         deleteTask,
         handleCreateTask,
         createTask,
+        pendingProject, 
+        setPendingProjects,
       }}
     >
       {children}
     </ProjectsContext.Provider>
   );
+
 };
