@@ -118,7 +118,7 @@ export const ManageProject = () => {
               })
             ) : (
               <S.ProjectSubtitle>
-                Não a nenhuma tarefa em andamento
+                Não há nenhuma tarefa em andamento
               </S.ProjectSubtitle>
             )}
           </ul>
