@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../../../Providers/UserProvider";
 import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 import { Outlet } from "react-router-dom";
+import { HeaderDashboard } from "../../HeaderDashboard";
 
 export const DashboardDev = () => {
   const { renderPublications, openPerfil } = useContext(UserContext);
@@ -13,6 +14,7 @@ export const DashboardDev = () => {
 
   return (
     <>
+      <HeaderDashboard />
       {openPerfil && <ModalPerfilDev />}
       <Outlet />
     </>
