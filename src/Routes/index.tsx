@@ -23,6 +23,7 @@ const Routers = () => {
                 <Route path="projectstoapply" element={<ProjectsToApply />} />
                 <Route path="projectdevelop" element={<ProjectDevelop />} />
                 <Route path="pendingproject" element={<PendingProject />} />
+                <Route path="projectpending" element={<ProjectPending />} />
                 <Route path="manageproject" element={<ManageProject />} />
             </Route>
             <Route path="registerong" element={<RegisterOng />} />
