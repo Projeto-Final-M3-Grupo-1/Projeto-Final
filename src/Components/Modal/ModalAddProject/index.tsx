@@ -8,6 +8,7 @@ import { StyledModalAddProject } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaCreateProject } from "../../../Services/validation/createUser.validation";
 import { StyledBoxModal } from "../ModalLogin/style";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
 interface ICreateProjectProps {
     textLabel: string;
     name: string;
@@ -19,14 +20,17 @@ interface ICreateProjectProps {
 
 function ModalCreateProject() {
     const { dataUser } = useContext(AuthContext);
-    const { createProjects } = useContext(ProjectsContext);
+    const { createProjects, setShowProjects } = useContext(ProjectsContext);
+    const modalRef = useOutSideClick(() => {
+        setShowProjects(false);
+    });
     const { handleSubmit, register } = useForm<ICreateProjectProps>({
         resolver: yupResolver(schemaCreateProject),
     });
 
     return (
         <StyledBoxModal>
-            <StyledModalAddProject onSubmit={handleSubmit(createProjects)}>
+            <StyledModalAddProject onSubmit={handleSubmit(createProjects)} ref={modalRef}>
                 <S.User>
                     <S.Name>
                         {dataUser.nome} || {dataUser.razaoSocial}

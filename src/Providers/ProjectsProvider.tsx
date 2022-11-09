@@ -39,6 +39,8 @@ interface IProjectsContext {
     deleteTask: any;
     handleCreateTask: any;
     createTask: boolean;
+    pendingProject: any;
+    setPendingProjects: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -60,6 +62,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [myProject, setMyProject] = useState([] as any);
     const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
     const [createTask, setCreateTask] = useState(false);
+    const [pendingProject, setPendingProjects] = useState([] as any)
 
     const navigate = useNavigate();
 
@@ -84,6 +87,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const handleModal = () => {
         return !showModal ? setShowModal(true) : setShowModal(false);
     };
+    
 
     const HandleModalProject = () => {
         return !showProject ? setShowProjects(true) : setShowProjects(false);
@@ -99,13 +103,15 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         data.userId = localStorage.userId;
         data.ongId = localStorage.userId;
 
-        api.post("/pendings", data, {
+        api.post("/projects", data, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then(() => {
+        }).then((res) => {
             setShowProjects(false);
             toast.success("Projeto cadastrado com sucesso!");
+            setPendingProjects(res.data)
+            requestProjects();
         });
     };
 
@@ -123,11 +129,12 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     };
 
     const requestProjects = () => {
-        api.get("/projects", {
-            headers: {
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        }).then((res) => setProjects(res.data));
+        api.get("/projects").then((res) => {
+            return(
+                setProjects(res.data),
+                setPendingProjects(res.data)
+            )
+    });
     };
 
     const requestMyProject = () => {
@@ -225,6 +232,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 deleteTask,
                 handleCreateTask,
                 createTask,
+                pendingProject, 
+                setPendingProjects,
             }}
         >
             {children}
