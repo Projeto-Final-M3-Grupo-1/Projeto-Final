@@ -48,7 +48,6 @@ export const CreateTask = () => {
                         <p>Tech Leader</p>
                     </div>
                 </div>
-
                 <InputAndLabel
                     textLabel="Nome da Task"
                     name="title"

@@ -90,7 +90,7 @@ export const ManageProject = () => {
 
                 <button onClick={handleCreateTask}>Criar Task</button>
             </section>
-            {createTask && <CreateTask projectId={localStorage.projectId} />}
+            {/* {createTask && <CreateTask />} */}
         </>
     );
 };

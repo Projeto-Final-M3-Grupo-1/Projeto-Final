@@ -166,6 +166,7 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
     const onSubmitCreateTask = (data: iCreateTask) => {
         // data.projectId = localStorage.projectId;
+        console.log(data);
         toast.promise(
             api
                 .post("/tasks", data, {
