@@ -8,23 +8,24 @@ import { ProjectsToApply } from "../../ProjectsToApply";
 import Publications from "../../Publication";
 
 import { render } from "react-dom";
+import { Outlet } from "react-router-dom";
 
 export const DashboardAdmin = () => {
-	const { loadingUser } = useContext(AuthContext);
-	const { renderPublications } = useContext(UserContext);
-	const { showModal } = useContext(ProjectsContext);
+    const { loadingUser } = useContext(AuthContext);
+    const { renderPublications } = useContext(UserContext);
+    const { showModal } = useContext(ProjectsContext);
 
-	useEffect(() => {
-		loadingUser();
-		renderPublications();
-	}, []);
+    useEffect(() => {
+        loadingUser();
+        renderPublications();
+    }, []);
 
-	return (
-		<>
-			<HeaderDashboard />
-			{showModal && <ModalPerfilAdmin />}
+    return (
+        <>
+            <HeaderDashboard />
+            {showModal && <ModalPerfilAdmin />}
 
-			{!render ? <Publications /> : <ProjectsToApply />}
-		</>
-	);
+            <Outlet />
+        </>
+    );
 };
