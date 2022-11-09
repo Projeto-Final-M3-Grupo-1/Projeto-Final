@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { ProjectsContext } from '../../Providers/ProjectsProvider';
 import api from '../../Services/api';
 import { StyledLoginButton } from '../Button';
@@ -14,6 +15,7 @@ export const RenderProjectsDashAdmin = () => {
     const [projects, setProjects] = useState([] as unknown as iProjects);
 
     const navigate = useNavigate();
+
     useEffect(() => {
         const render = () => {
             api.get("/projects").then((res) => {

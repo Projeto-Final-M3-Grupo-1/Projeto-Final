@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import Logo from "../Logo";
 
 export const HeaderDashboard = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
@@ -58,7 +59,7 @@ export const HeaderDashboard = () => {
         />
       ) : (
         <S.Nav>
-          <h2>Logo</h2>
+          <Logo />
           <S.Dropdown>
             {userType === "dev" && (
               <>

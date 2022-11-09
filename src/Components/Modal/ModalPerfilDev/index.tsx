@@ -136,7 +136,6 @@ export const ModalPerfilDev = () => {
                         return (
                           <li key={element.id}>
                             <h2>{element.tech}</h2>
-
                             <MdDelete
                               onClick={() => requestDeleteTech(element.id)}
                             />

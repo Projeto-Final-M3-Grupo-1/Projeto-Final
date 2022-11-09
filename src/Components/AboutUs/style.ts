@@ -7,6 +7,7 @@ export const StyledDiv = styled.div`
     height: 300px;
     text-align: center;
     margin-top: 1rem;
+    border: 1px solid var(--rose-200);
 
     display: flex;
     flex-direction: column;
