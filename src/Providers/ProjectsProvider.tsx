@@ -121,6 +121,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const createProjects = (data: any) => {
         data.userId = localStorage.userId;
         data.ongId = localStorage.userId;
+        data.status = "pendings";
 
         api.post("/projects", data, {
             headers: {
@@ -129,7 +130,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => {
             setShowProjects(false);
             toast.success("Projeto cadastrado com sucesso!");
-            setPendingProjects(res.data)
+            setPendingProjects(res.data);
             requestProjects();
         });
     };
@@ -144,23 +145,11 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     requestApplyOnProject(body);
   };
 
-
-    const createProjects = (data: any) => {
-        data.userId = localStorage.userId;
-        data.ongId = localStorage.userId;
-        data.status = "pendings";
-
-        api.post("/projects", data, {
-            headers: {
-                Authorization: `Bearer ${localStorage.token}`,
-            },
-        }).then((res) => {
-            setShowProjects(false);
-            toast.success("Projeto cadastrado com sucesso!");
-            setPendingProjects(res.data);
-            requestProjects();
+    const requestProjects = () => {
+        api.get("/projects").then((res) => {
+            return setProjects(res.data), setPendingProjects(res.data);
         });
-    };
+    }
 
 
 
@@ -177,16 +166,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
           "Cadastrado com sucesso no projeto, acesse Meu Projeto para ver os detalhes"
         );
       });
-  };
-
-  const requestProjects = () => {
-    api
-      .get("/projects", {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-      .then((res) => setProjects(res.data));
   };
 
   const requestMyProject = () => {
@@ -215,6 +194,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         requestOngMyProject();
       });
   };
+  
   const requestCompleteTask = (id: number) => {
     const body = {
       completed: true,
@@ -251,6 +231,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+
 
 
   return (
@@ -295,6 +276,5 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     >
       {children}
     </ProjectsContext.Provider>
-  );
-
-};
+  )
+}
