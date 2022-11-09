@@ -34,6 +34,7 @@ interface IProjectsContext {
     requestOngMyProject: any;
     dataOngMyProject: any;
     requestAddDevOnTask: any;
+    requestCompleteTask: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -189,6 +190,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 requestOngMyProject,
                 dataOngMyProject,
                 requestAddDevOnTask,
+                requestCompleteTask,
             }}
         >
             {children}

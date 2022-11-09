@@ -9,6 +9,7 @@ export const MyProject = () => {
         myProject,
         dataOngMyProject,
         requestAddDevOnTask,
+        requestCompleteTask,
     } = useContext(ProjectsContext);
 
     useEffect(() => {
@@ -40,7 +41,13 @@ export const MyProject = () => {
                                 !element.completed && (
                                     <li>
                                         <h2>{element.title}</h2>
-                                        <button>Concluir a tarefa</button>
+                                        <button
+                                            onClick={() =>
+                                                requestCompleteTask(element.id)
+                                            }
+                                        >
+                                            Concluir a tarefa
+                                        </button>
                                     </li>
                                 )
                             );
@@ -52,26 +59,46 @@ export const MyProject = () => {
             </section>
             <section>
                 <h2>Tarefas em andamento</h2>
-                {myProject.tasks ? (
-                    myProject.tasks.map((element: any) => {
-                        return (
-                            !element.userId && (
-                                <li>
-                                    <h2>{element.title}</h2>
-                                    <button
-                                        onClick={() =>
-                                            requestAddDevOnTask(element.id)
-                                        }
-                                    >
-                                        Solicitar task
-                                    </button>
-                                </li>
-                            )
-                        );
-                    })
-                ) : (
-                    <h2>Não a nenhuma tarefa em andamento</h2>
-                )}
+                <ul>
+                    {myProject.tasks ? (
+                        myProject.tasks.map((element: any) => {
+                            return (
+                                !element.userId && (
+                                    <li>
+                                        <h2>{element.title}</h2>
+                                        <button
+                                            onClick={() =>
+                                                requestAddDevOnTask(element.id)
+                                            }
+                                        >
+                                            Solicitar task
+                                        </button>
+                                    </li>
+                                )
+                            );
+                        })
+                    ) : (
+                        <h2>Não a nenhuma tarefa em andamento</h2>
+                    )}
+                </ul>
+            </section>
+            <section>
+                <h2>Tarefas Concluidas</h2>
+                <ul>
+                    {myProject.tasks ? (
+                        myProject.tasks.map((element: any) => {
+                            return (
+                                element.completed && (
+                                    <li>
+                                        <h2>{element.title}</h2>
+                                    </li>
+                                )
+                            );
+                        })
+                    ) : (
+                        <h2>Não a nenhuma tarefa em andamento</h2>
+                    )}
+                </ul>
             </section>
         </>
     );
