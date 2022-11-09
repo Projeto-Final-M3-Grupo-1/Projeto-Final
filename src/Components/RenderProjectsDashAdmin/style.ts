@@ -1,41 +1,66 @@
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
-display: flex;
-flex-direction: column;
-width: 100vw;
-height: 100vh;
-margin: 0 auto;
-/* background-color: red; */
-
-ul{
+export const StyledDashboardManageProjectsAdmin = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1rem;
+  margin: 1rem auto;
+  max-width: 700px;
+  padding: 1rem;
+  /h2 {
+    color: var(--page-title-color);
+    font-size: 1.8rem;
+    font-weight: var(--page-title-text-weight);
+  }
+  h3 {
+    color: var(--slate-900);
+    font-size: 1.5rem;
+    font-weight: var(--page-title-text-weight);
+  }
+  p {
+    line-height: 1.75;
+    color: var(--slate-900);
+    font-weight: 400;
+    font-size: 1rem;
+  } 
+  .openTasks {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
-    margin-top: 30px; 
-
-    width: 60%;
-
-    gap: 10px;
-
-    
-}
-
-li{
-    box-sizing: border-box;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid red;
-    width: 90%;
-
-    height: 100px;
-
-    > button{
-        background-color: var(--blue-700);
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    li {
+      border: 2px solid var(--blue-500);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+      gap: 1rem;
+      height: 3rem;
+      margin: 0.5rem;
+      padding: 0.5rem;
     }
-}
-`
+  }
+  .doneTasks {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    li {
+      border: 2px solid var(--rose-500);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+      height: 3rem;
+      margin: 0.5rem;
+      padding: 0.5rem;
+
+      > button{
+        background-color: var(--blue-500);
+      }
+    }
+  }
+`;
