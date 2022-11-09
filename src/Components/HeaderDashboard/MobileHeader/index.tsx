@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as S from "./style";
 
-const MobileHeader = ({ callback, logout }: any) => {
+const MobileHeader = ({ callback, logout, navigate }: any) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleOpen = () => {
@@ -15,11 +15,25 @@ const MobileHeader = ({ callback, logout }: any) => {
 			{isOpen ? (
 				<S.MobileDropdown>
 					<S.MobileDropdownList>
-						<S.MobileDropdownItem onClick={callback}>
+						<S.MobileDropdownItem
+							onClick={() => {
+								navigate("/dashboard/projectstoapply");
+							}}
+						>
 							Ver todos projetos
 						</S.MobileDropdownItem>
-						<S.MobileDropdownItem>Meu projeto</S.MobileDropdownItem>
-						<S.MobileDropdownItem onClick={callback}>
+						<S.MobileDropdownItem
+							onClick={() => {
+								navigate("/dashboard/myproject");
+							}}
+						>
+							Meu projeto
+						</S.MobileDropdownItem>
+						<S.MobileDropdownItem
+							onClick={() => {
+								navigate("/dashboard");
+							}}
+						>
 							Ver todas publicações
 						</S.MobileDropdownItem>
 						<S.LogoutButton onClick={logout}>Sair</S.LogoutButton>

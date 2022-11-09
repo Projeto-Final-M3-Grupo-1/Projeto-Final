@@ -30,6 +30,8 @@ interface IUserContext {
 	onSubmitEditOngPerfil: any;
 	openPerfilAdmin: boolean;
 	setOpenPerfilAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+	showPerfilOngOnProject: boolean;
+	handlePerfilOngOnProject: any;
 }
 interface IUserChildren {
 	children: ReactNode;
@@ -61,8 +63,17 @@ export const UserProvider = ({ children }: IUserChildren) => {
 	const [publications, setPublications] = useState<any>({});
 	const { setShowModal } = useContext(ProjectsContext);
 	const [openPerfilAdmin, setOpenPerfilAdmin] = useState(false);
+	const [showPerfilOngOnProject, setShowPerfilOngOnProject] = useState(false);
 
 	const navigate = useNavigate();
+
+	const handlePerfilOngOnProject = (id: any) => {
+		localStorage.setItem("ongId", id);
+		return !showPerfilOngOnProject
+			? setShowPerfilOngOnProject(true)
+			: setShowPerfilOngOnProject(false);
+	};
+
 	const handleCreateTech = () => {
 		return !createTech ? setCreateTech(true) : setCreateTech(false);
 	};
@@ -100,10 +111,11 @@ export const UserProvider = ({ children }: IUserChildren) => {
 		toast.promise(
 			api.post("/login", data).then((res) => {
 				navigate("/dashboard");
-
 				setUser(res.data.user);
+				console.log(res.data);
 				localStorage.setItem("token", res.data.accessToken);
 				localStorage.setItem("userId", res.data.user.id);
+				localStorage.setItem("projectId", res.data.user.projectId);
 			}),
 			{
 				pending: "Logando...",
@@ -208,7 +220,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
 	};
 
 	const onSubmitEditOngPerfil = (data: any) => {
-		console.log(data);
 		requestEditeTech(data);
 	};
 
@@ -242,6 +253,8 @@ export const UserProvider = ({ children }: IUserChildren) => {
 				onSubmitEditOngPerfil,
 				openPerfilAdmin,
 				setOpenPerfilAdmin,
+				showPerfilOngOnProject,
+				handlePerfilOngOnProject,
 			}}
 		>
 			{children}

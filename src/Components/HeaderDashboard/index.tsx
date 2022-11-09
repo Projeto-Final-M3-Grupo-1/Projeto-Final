@@ -13,7 +13,7 @@ export const HeaderDashboard = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { handlePerfil } = useContext(UserContext);
-	const { setRender, handleProjectsToApply } = useContext(ProjectsContext);
+	const { handleProjectsToApply } = useContext(ProjectsContext);
 
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
@@ -52,6 +52,7 @@ export const HeaderDashboard = () => {
 			{isMobile ? (
 				<MobileHeader
 					callback={handleProjectsToApply}
+					navigate={navigate}
 					logout={logout}
 				/>
 			) : (
@@ -65,11 +66,21 @@ export const HeaderDashboard = () => {
 									<VscTriangleDown />
 									<S.DropdownList>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate(
+													"/dashboard/projectstoapply"
+												);
+											}}
 										>
 											Ver todos projetos
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate(
+													"/dashboard/myproject"
+												);
+											}}
+										>
 											Meu projeto
 										</S.DropdownItem>
 									</S.DropdownList>
@@ -79,12 +90,16 @@ export const HeaderDashboard = () => {
 									<VscTriangleDown />
 									<S.DropdownList>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate("/dashboard");
+											}}
 										>
 											Ver todas publicações
 										</S.DropdownItem>
 										<S.DropdownItem
-											onClick={handleProjectsToApply}
+											onClick={() => {
+												navigate("/dashboard");
+											}}
 										>
 											Ver todas publicações
 										</S.DropdownItem>

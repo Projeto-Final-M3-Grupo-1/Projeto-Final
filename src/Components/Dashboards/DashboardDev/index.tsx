@@ -1,15 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { UserContext } from "../../../Providers/UserProvider";
-import Publications from "../../Publication";
 import { HeaderDashboard } from "../../HeaderDashboard";
 import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
-import { ProjectsContext } from "../../../Providers/ProjectsProvider";
-import { ProjectsToApply } from "../../ProjectsToApply";
+import { Outlet } from "react-router-dom";
 
 export const DashboardDev = () => {
 	const { renderPublications, openPerfil } = useContext(UserContext);
-	const { render, setRender } = useContext(ProjectsContext);
+
 	useEffect(() => {
 		renderPublications();
 	}, []);
@@ -18,8 +16,7 @@ export const DashboardDev = () => {
 		<>
 			<HeaderDashboard />
 			{openPerfil && <ModalPerfilDev />}
-
-			{!render ? <Publications /> : <ProjectsToApply />}
+			<Outlet />
 		</>
 	);
 };
