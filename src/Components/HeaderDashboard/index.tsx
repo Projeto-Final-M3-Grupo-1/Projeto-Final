@@ -108,25 +108,12 @@ export const HeaderDashboard = () => {
 										</S.DropdownItem>
 									</S.DropdownList>
 								</S.Span>
-								<S.Span>
+								<S.Span
+									onClick={() => {
+										navigate("/dashboard");
+									}}
+								>
 									Publicações
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-									</S.DropdownList>
 								</S.Span>
 							</>
 						)}
@@ -150,25 +137,12 @@ export const HeaderDashboard = () => {
 										</S.DropdownItem>
 									</S.DropdownList>
 								</S.Span>
-								<S.Span>
+								<S.Span
+									onClick={() => {
+										navigate("/dashboard");
+									}}
+								>
 									Publicações
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-									</S.DropdownList>
 								</S.Span>
 							</>
 						)}
