@@ -28,7 +28,7 @@ export const ProjectPending = () => {
       <ul className="doneTasks">
         {projects.map(
           (project: any) =>
-            project.status == "pendings" && (
+            project.status === "pendings" && (
               <li key={project.id}>
                 <h3>{project.title}</h3>
                 <StyledLoginButton>add</StyledLoginButton>
@@ -37,5 +37,6 @@ export const ProjectPending = () => {
         )}
       </ul>
     </StyledDashboardManageProjectsAdmin>
+    
   );
 };

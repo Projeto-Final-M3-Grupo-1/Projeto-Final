@@ -9,12 +9,13 @@ import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
 import Logo from "../Logo";
+import { ModalAcceptDecline } from "../Modal/ModalAcceptDecline";
 
 export const HeaderDashboard = () => {
     const { dataUser, loadingUser } = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const { handlePerfil } = useContext(UserContext);
-    const { handleProjectsToApply, HandleModalProject } =
+    const { handleProjectsToApply, HandleModalProject, modalChange} =
         useContext(ProjectsContext);
 
     const [userType, setUserType] = useState<string>(dataUser.typeUser);
@@ -195,12 +196,13 @@ export const HeaderDashboard = () => {
                                         </S.DropdownItem>
                                     </S.DropdownList>
                                 </S.Span>
+                                { modalChange && <ModalAcceptDecline /> }
                             </>
                         )}
                     </S.Dropdown>
                     <S.User>
                         <S.Name>
-                            {dataUser.typeUser == "ong"
+                            {dataUser.typeUser === "ong"
                                 ? dataUser.razaoSocial
                                 : dataUser.nome}
                         </S.Name>

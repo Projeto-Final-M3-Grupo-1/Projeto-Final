@@ -66,6 +66,8 @@ interface IProjectsContext {
   createTask: boolean;
   pendingProject: any;
   setPendingProjects: any;
+  modalChange: boolean;
+  setModalChange: React.Dispatch<React.SetStateAction<boolean>>
 
 }
 
@@ -89,7 +91,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [myProject, setMyProject] = useState<iProject>({} as iProject);
   const [dataOngMyProject, setDataOngMyProject] = useState<iOng>({} as iOng);
   const [createTask, setCreateTask] = useState<boolean>(false);
-  const [pendingProject, setPendingProjects] = useState([] as any)
+  const [pendingProject, setPendingProjects] = useState([] as any);
+  const [modalChange, setModalChange] = useState<boolean>(false)
 
 
   const navigate = useNavigate();
@@ -232,8 +235,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     scroll.scrollToTop();
   };
 
-
-
   return (
     <ProjectsContext.Provider
       value={{
@@ -272,6 +273,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         createTask,
         pendingProject, 
         setPendingProjects,
+        modalChange, 
+        setModalChange
       }}
     >
       {children}
