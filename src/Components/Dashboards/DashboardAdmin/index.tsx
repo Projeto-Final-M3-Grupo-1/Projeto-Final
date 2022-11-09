@@ -7,21 +7,20 @@ import { HeaderDashboard } from "../../HeaderDashboard";
 import { ModalPerfilAdmin } from "../../Modal/modalPerfilAdmin";
 
 export const DashboardAdmin = () => {
-  const { loadingUser } = useContext(AuthContext);
-  const { renderPublications, openPerfil } = useContext(UserContext);
-  const { showModal } = useContext(ProjectsContext);
+	const { loadingUser } = useContext(AuthContext);
+	const { renderPublications, openPerfil } = useContext(UserContext);
 
-  useEffect(() => {
-    loadingUser();
-    renderPublications();
-  }, []);
+	useEffect(() => {
+		loadingUser();
+		renderPublications();
+	}, []);
 
-  return (
-    <>
-      <HeaderDashboard />
-      {openPerfil && <ModalPerfilAdmin />}
+	return (
+		<>
+			<HeaderDashboard />
+			{openPerfil && <ModalPerfilAdmin />}
 
-      <Outlet />
-    </>
-  );
+			<Outlet />
+		</>
+	);
 };
