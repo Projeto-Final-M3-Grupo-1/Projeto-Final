@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "../../Logo";
 import * as S from "./style";
 
-const MobileHeader = ({ callback, logout, navigate }: any) => {
+const MobileHeader = ({ logout, navigate }: any) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleOpen = () => {

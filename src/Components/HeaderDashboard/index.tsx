@@ -8,12 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import ModalCreateProject from "../Modal/ModalAddProject";
+import Logo from "../Logo";
 
 export const HeaderDashboard = () => {
 	const { dataUser, loadingUser } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { handlePerfil } = useContext(UserContext);
 	const { handleProjectsToApply } = useContext(ProjectsContext);
+	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
 
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
@@ -47,17 +50,23 @@ export const HeaderDashboard = () => {
 		}
 	};
 
+	const handleOpenModal = () => {
+		setIsAddProjectOpen(!isAddProjectOpen);
+	};
+
 	return (
 		<S.Header>
 			{isMobile ? (
-				<MobileHeader
-					callback={handleProjectsToApply}
-					navigate={navigate}
-					logout={logout}
-				/>
+				<MobileHeader navigate={navigate} logout={logout} />
 			) : (
 				<S.Nav>
-					<h2>Logo</h2>
+					{isAddProjectOpen ? (
+						<>
+							<ModalCreateProject />
+							<S.CloseButton onClick={handleOpenModal} />
+						</>
+					) : null}
+					<Logo />
 					<S.Dropdown>
 						{userType === "dev" && (
 							<>
@@ -113,7 +122,9 @@ export const HeaderDashboard = () => {
 									Projetos
 									<VscTriangleDown />
 									<S.DropdownList>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={handleOpenModal}
+										>
 											Criar projeto
 										</S.DropdownItem>
 										<S.DropdownItem>
