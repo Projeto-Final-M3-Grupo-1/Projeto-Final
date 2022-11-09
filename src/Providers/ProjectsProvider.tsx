@@ -36,6 +36,7 @@ interface IProjectsContext {
     requestAddDevOnTask: any;
     requestCompleteTask: any;
     handleManageProject: any;
+    deleteTask: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -169,6 +170,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
 
         navigate("/dashboard/manageproject");
     };
+    const deleteTask = (id: any) => {
+        api.delete(`/tasks/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => requestMyProject());
+    };
 
     const scrollToTop = () => {
         scroll.scrollToTop();
@@ -207,6 +215,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 requestAddDevOnTask,
                 requestCompleteTask,
                 handleManageProject,
+                deleteTask,
             }}
         >
             {children}
