@@ -3,7 +3,7 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
-import { AuthContext } from "../../Providers/AuthContext";
+import { AuthContext, iDataUser } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
@@ -35,10 +35,9 @@ export const HeaderDashboard = () => {
     handleResize();
   }, [width]);
 
-
-	useEffect(() => {
-		loadUserType();
-	}, [dataUser]);
+  useEffect(() => {
+    loadUserType();
+  }, [dataUser]);
 
   const handleResize = () => {
     if (width <= 768) {
@@ -137,10 +136,13 @@ export const HeaderDashboard = () => {
                     >
                       Ver todos projetos em andamento
                     </S.DropdownItem>
-                    <S.DropdownItem  onClick={() => {
+                    <S.DropdownItem
+                      onClick={() => {
                         navigate("/dashboard/projectpending");
-                      }}>
-                      Ver solicitações de Projeto</S.DropdownItem>
+                      }}
+                    >
+                      Ver solicitações de Projeto
+                    </S.DropdownItem>
                     <S.DropdownItem>Meus projetos</S.DropdownItem>
                   </S.DropdownList>
                 </S.Span>
@@ -162,7 +164,13 @@ export const HeaderDashboard = () => {
             )}
           </S.Dropdown>
           <S.User>
-            <S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+            <S.Name>
+              {dataUser.typeUser == "dev" || dataUser.typeUser == "admin"
+                ? dataUser.nome
+                : dataUser.typeUser == "ong"
+                ? dataUser.razaoSocial
+                : null}
+            </S.Name>
 
             <S.Image
               onClick={handlePerfil}

@@ -75,19 +75,25 @@ export const ModalPerfilAdmin = () => {
                   <img src={dataUser.fotoDePerfil} alt="" />
                 </caption>
                 <div className="details">
-                  <h3>{dataUser.nome}</h3>
+                  <h3>{dataUser.typeUser == "admin" && dataUser.nome}</h3>
                   <p>Tech Leader Voluntário</p>
                 </div>
               </div>
               <StyledProjectDetails>
                 <StyledInfo>
                   <p className="label">Nome:</p>
-                  <input className="info" value={dataUser.nome} />
+                  <input
+                    className="info"
+                    value={dataUser.typeUser == "admin" ? dataUser.nome : ""}
+                  />
                 </StyledInfo>
 
                 <StyledInfo>
                   <p className="label">Usuário:</p>
-                  <input className="info" value={dataUser.nome} />
+                  <input
+                    className="info"
+                    value={dataUser.typeUser == "admin" ? dataUser.nome : ""}
+                  />
                 </StyledInfo>
 
                 <StyledInfo>
@@ -130,7 +136,9 @@ export const ModalPerfilAdmin = () => {
               <h3 className="title">Solicitações do Projeto</h3>
 
               <div className="projectInfo">
-                <h3 className="name">{dataUser.nomeDoResponsavel}</h3>
+                <h3 className="name">
+                  {dataUser.typeUser == "admin" && dataUser.nome}
+                </h3>
                 <ul className="projectsInProgress">
                   {projects.length ? (
                     projects.map((element) => {

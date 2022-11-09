@@ -10,17 +10,33 @@ import api from "../Services/api";
 
 interface IAuthContext {
   loadingUser: () => void;
-  dataUser: iDataUser;
-  setDataUser: Dispatch<SetStateAction<iDataUser>>;
+  dataUser: iDataUser | iDataOng;
+  setDataUser: Dispatch<SetStateAction<iDataUser | iDataOng>>;
 }
 
-interface iDataUser {
+export interface iDataUser {
   email: string;
   fotoDePerfil: string;
   password: string;
   nome: string;
   id: number;
-  typeUser: "admin" | "dev" | "ong";
+  typeUser: "dev" | "admin";
+  linkedin: string;
+  github: string;
+}
+
+interface iDataOng {
+  email: string;
+  password: string;
+  razaoSocial: string;
+  cnpj: string;
+  telefone: string;
+  confirmPassword: string;
+  nomeDoResponsavel: string;
+  fotoDePerfil: string;
+  typeUser: "ong";
+  id: number;
+  descricaoDaOng: string;
 }
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -31,7 +47,9 @@ interface IAuthChildren {
 
 export const AuthProvider = ({ children }: IAuthChildren) => {
   const navigate = useNavigate();
-  const [dataUser, setDataUser] = useState<iDataUser>({} as iDataUser);
+  const [dataUser, setDataUser] = useState<iDataUser | iDataOng>(
+    {} as iDataUser
+  );
   const loadingUser = () => {
     api
       .get(`/users/${localStorage.userId}`, {
