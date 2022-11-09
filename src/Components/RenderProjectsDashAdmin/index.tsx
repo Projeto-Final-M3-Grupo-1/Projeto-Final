@@ -4,27 +4,26 @@ import api from '../../Services/api';
 import { StyledLoginButton } from '../Button';
 import { StyledDashboardManageProjectsAdmin } from './style';
 
-
-interface iProjects{
+interface iProjects {
     map(arg0: (project: any) => void): import("react").ReactNode;
 }
 
 export const RenderProjectsDashAdmin = () => {
-    const {  requestProjects } =
-    useContext(ProjectsContext);
-    const [projects, setProjects] = useState([] as unknown as iProjects)
+    const { requestProjects, handleManageProject } =
+        useContext(ProjectsContext);
+    const [projects, setProjects] = useState([] as unknown as iProjects);
 
-useEffect(() => {
-    const render = () => {
-      api.get("/projects")
-      .then(res => {
-          setProjects(res.data)
-          console.log(res.data)
-      })
-    }
+    const navigate = useNavigate();
+    useEffect(() => {
+        const render = () => {
+            api.get("/projects").then((res) => {
+                setProjects(res.data);
+                console.log(res.data);
+            });
+        };
 
-    render()
-}, []);
+        render();
+    }, []);
 
 
 return (
