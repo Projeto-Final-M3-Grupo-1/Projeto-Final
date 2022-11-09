@@ -37,6 +37,8 @@ interface IProjectsContext {
     requestCompleteTask: any;
     handleManageProject: any;
     deleteTask: any;
+    handleCreateTask: any;
+    createTask: boolean;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -57,8 +59,13 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [showProject, setShowProjects] = useState(false);
     const [myProject, setMyProject] = useState([] as any);
     const [dataOngMyProject, setDataOngMyProject] = useState([] as any);
+    const [createTask, setCreateTask] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleCreateTask = () => {
+        return !createTask ? setCreateTask(true) : setCreateTask(false);
+    };
 
     const handleYouRight = (projectId: any) => {
         localStorage.setItem("projectId", projectId);
@@ -216,6 +223,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 requestCompleteTask,
                 handleManageProject,
                 deleteTask,
+                handleCreateTask,
+                createTask,
             }}
         >
             {children}

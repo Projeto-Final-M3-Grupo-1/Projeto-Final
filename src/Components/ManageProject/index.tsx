@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { UserContext } from "../../Providers/UserProvider";
+import { CreateTask } from "../Modal/ModalCreateTask";
 
 export const ManageProject = () => {
     const {
@@ -9,12 +10,15 @@ export const ManageProject = () => {
         myProject,
         dataOngMyProject,
         deleteTask,
+        handleCreateTask,
+        createTask,
     } = useContext(ProjectsContext);
     const { requestAllUsers, allUsers } = useContext(UserContext);
+
     useEffect(() => {
+        requestAllUsers();
         requestMyProject();
         requestOngMyProject();
-        requestAllUsers();
     }, []);
     console.log(myProject);
     console.log(dataOngMyProject);
@@ -40,14 +44,15 @@ export const ManageProject = () => {
                                 element.userId &&
                                 !element.completed && (
                                     <li>
-                                        {allUsers
-                                            .filter(
-                                                (dev: any) =>
-                                                    dev.id == element.userId
-                                            )
-                                            .map((dev: any) => (
-                                                <h1>{dev.nome}</h1>
-                                            ))}
+                                        {allUsers.length &&
+                                            allUsers
+                                                .filter(
+                                                    (dev: any) =>
+                                                        dev.id == element.userId
+                                                )
+                                                .map((dev: any) => (
+                                                    <h1>{dev.nome}</h1>
+                                                ))}
                                         <h2>{element.title}</h2>
                                     </li>
                                 )
@@ -82,7 +87,10 @@ export const ManageProject = () => {
                         <h2>Nenhuma tarefa foi criada</h2>
                     )}
                 </ul>
+
+                <button onClick={handleCreateTask}>Criar Task</button>
             </section>
+            {createTask && <CreateTask projectId={localStorage.projectId} />}
         </>
     );
 };

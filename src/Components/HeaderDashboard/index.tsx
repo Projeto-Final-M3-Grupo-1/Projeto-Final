@@ -132,12 +132,15 @@ export const HeaderDashboard = () => {
                   <S.DropdownList>
                     <S.DropdownItem
                       onClick={() => {
-                        navigate("/dashboard/projectsadmin");
+                        navigate("/dashboard/projectdevelop");
                       }}
                     >
                       Ver todos projetos em andamento
                     </S.DropdownItem>
-                    <S.DropdownItem>Ver solicitações de Projeto</S.DropdownItem>
+                    <S.DropdownItem  onClick={() => {
+                        navigate("/dashboard/projectpending");
+                      }}>
+                      Ver solicitações de Projeto</S.DropdownItem>
                     <S.DropdownItem>Meus projetos</S.DropdownItem>
                   </S.DropdownList>
                 </S.Span>

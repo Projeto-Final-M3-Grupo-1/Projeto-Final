@@ -15,7 +15,7 @@ interface IUserContext {
     onSubmitOng: any;
     renderPublications: () => void;
     user: any;
-    onSubmitCreateTask: (data: iCreateTask) => void;
+    onSubmitCreateTask: any;
     setUser: any;
     publications: [];
     onSubmitTech: any;
@@ -165,8 +165,15 @@ export const UserProvider = ({ children }: IUserChildren) => {
     };
 
     const onSubmitCreateTask = (data: iCreateTask) => {
+        // data.projectId = localStorage.projectId;
         toast.promise(
-            api.post("/tasks", data).then(() => {}),
+            api
+                .post("/tasks", data, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                })
+                .then((res) => console.log(res)),
             {
                 pending: "Criando Tarefa",
                 success: "Sucesso ao criar a tarefa",
