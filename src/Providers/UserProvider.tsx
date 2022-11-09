@@ -231,8 +231,11 @@ export const UserProvider = ({ children }: IUserChildren) => {
 			.then((res) => {
 				console.log(res.data);
 				setDataUser(res.data);
+				toast.success("Dados de perfil editado com sucesso")
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => 
+			toast.error("erro ao editar os dados")
+			)
 	};
 
 	const onSubmitEditPerfil = (data: any) => {
