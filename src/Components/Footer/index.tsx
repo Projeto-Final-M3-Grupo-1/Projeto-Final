@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { TbArrowBigTop } from "react-icons/tb";
-import { StyledFooter } from "./style";
+import { StyledFooter, StyledButtonRedes } from "./style";
 
 import {
 	AiOutlineFacebook,
@@ -20,15 +20,15 @@ export const Footer = () => {
 				<ul>
 					<li>
 						<AiOutlineInstagram />
-						<p>@DeVolunteer</p>
+						<StyledButtonRedes href="https://www.instagram.com/" target="_blank">@DeVolunteer</StyledButtonRedes>
 					</li>
 					<li>
 						<AiOutlineLinkedin />
-						<p>/DeVolunteer</p>
+						<StyledButtonRedes href="https://www.linkedin.com/" target="_blank">/DeVolunteer</StyledButtonRedes>
 					</li>
 					<li>
 						<AiOutlineFacebook />
-						<p>/DeVolunteer</p>
+						<StyledButtonRedes href="https://pt-br.facebook.com/" target="_blank">/DeVolunteer</StyledButtonRedes>
 					</li>
 					<TbArrowBigTop className="scrolltop" onClick={scrollToTop}>
 						Topo

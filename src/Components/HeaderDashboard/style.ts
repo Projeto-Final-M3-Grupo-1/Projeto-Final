@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export const MenuHamburger = styled(GiHamburgerMenu)`
   color: var(--rose-600);
@@ -173,4 +174,19 @@ export const Image = styled.img`
   border-radius: 50%;
   border: 4px solid var(--rose-600);
   cursor: pointer;
+`;
+
+export const CloseButton = styled(IoIosCloseCircleOutline)`
+	position: absolute;
+	z-index: 99;
+
+	height: 2rem;
+	width: 2rem;
+
+	top: 9%;
+	right: 20%;
+
+	color: var(--rose-600);
+
+	cursor: pointer;
 `;

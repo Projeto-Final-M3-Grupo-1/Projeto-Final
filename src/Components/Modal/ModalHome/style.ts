@@ -19,6 +19,15 @@ export const StyledModalHome = styled.div`
 
   @media (min-width: 768px) {
     display: flex;
+<<<<<<< HEAD
+    flex-direction: column;
+    position: relative;
+    /* align-content: center; */
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+=======
+>>>>>>> 50e18d6c3323b5ca8343eb590647c5f9391caabe
 
     height: 15rem;
     max-width: 750px;

@@ -8,14 +8,14 @@ import { StyledBoxModal } from "../ModalLogin/style";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
 import { useForm } from "react-hook-form";
 import {
-  StyledModalBody,
-  StyledOngDetails,
-  StyledProjectsRequests,
-  StyledProjectDetails,
-  StyledInfo,
-  StyledDescription,
-  StyledContent,
-  StyledButtons,
+	StyledModalBody,
+	StyledOngDetails,
+	StyledProjectsRequests,
+	StyledProjectDetails,
+	StyledInfo,
+	StyledDescription,
+	StyledContent,
+	StyledButtons,
 } from "./style";
 
 import { schemaOngDescription } from "../../../Services/validation/createUser.validation";

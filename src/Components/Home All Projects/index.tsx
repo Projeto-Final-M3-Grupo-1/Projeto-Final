@@ -1,12 +1,11 @@
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { StyledButtonCta } from "../Button";
+import { StyledButtonSite } from "../Publication/CardPublication/style";
 import { StyledAllProjectsBox } from "./style";
 
 export const AllProjects = () => {
-    // function requestProjects() {
-    //     api.get("/projects").then((res) => console.log(res));
-    // }
+
     const { requestProjects, projects } = useContext(ProjectsContext);
     useEffect(() => {
         requestProjects();
@@ -22,7 +21,7 @@ export const AllProjects = () => {
                                 <img src={element.imgProject} alt="" />
                                 <h3>{element.title}</h3>
                                 <p>{element.description}</p>
-                                <StyledButtonCta>Visite o site</StyledButtonCta>
+                                <StyledButtonSite href={element.site} target="_blank">Visite o site</StyledButtonSite>
                             </li>
                         )
                 )}

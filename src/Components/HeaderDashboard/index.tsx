@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
-
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext, iDataUser } from "../../Providers/AuthContext";
@@ -8,24 +7,26 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
+import ModalCreateProject from "../Modal/ModalAddProject";
 import Logo from "../Logo";
+import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 
 export const HeaderDashboard = () => {
-    const { dataUser, loadingUser } = useContext(AuthContext);
-    const [isMobile, setIsMobile] = useState<boolean>(false);
-    const { handlePerfil } = useContext(UserContext);
+	const { dataUser, loadingUser } = useContext(AuthContext);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const { handlePerfil, openPerfil } = useContext(UserContext);
+	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
+	const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
+	const [userType, setUserType] = useState<string>(dataUser.typeUser);
+	const windowSize = useWindowSize();
+	const width = windowSize.width;
+	const navigate = useNavigate();
     const { handleProjectsToApply, HandleModalProject } =
         useContext(ProjectsContext);
-
-    const [userType, setUserType] = useState<string>(dataUser.typeUser);
 
     const loadUserType = () => {
         setUserType(dataUser.typeUser);
     };
-
-    const windowSize = useWindowSize();
-    const width = windowSize.width;
-    const navigate = useNavigate();
 
     const logout = () => {
         localStorage.clear();
@@ -48,6 +49,14 @@ export const HeaderDashboard = () => {
             setIsMobile(false);
         }
     };
+
+	const handleOpenModal = () => {
+		setIsAddProjectOpen(!isAddProjectOpen);
+	};
+
+	const handleOpenPublishModal = () => {
+		setIsCreateNewNotice(!isCreateNewNotice);
+	};
 
     return (
         <S.Header>
