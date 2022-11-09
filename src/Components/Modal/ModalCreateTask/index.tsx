@@ -12,19 +12,31 @@ import { TextArea } from "../../TextArea";
 import { StyledBoxModalCreateTask } from "./styles";
 
 interface iCreateTask {
+<<<<<<< HEAD
   open: boolean;
   handleClose: () => void;
+=======
+>>>>>>> 80c358fe1584e78d786c976ada63b257fa96cfce
   projectId: number;
 }
 
 interface iFormTask {
   title: string;
   content: string;
+<<<<<<< HEAD
 }
 
 export const CreateTask = ({ open, handleClose, projectId }: iCreateTask) => {
   const { onSubmitCreateTask } = useContext(UserContext);
   const { handleModal } = useContext(ProjectsContext);
+=======
+  projectId: number;
+}
+
+export const CreateTask = () => {
+  const { onSubmitCreateTask } = useContext(UserContext);
+  const { handleCreateTask } = useContext(ProjectsContext);
+>>>>>>> 80c358fe1584e78d786c976ada63b257fa96cfce
   const {
     handleSubmit,
     register,
@@ -36,12 +48,17 @@ export const CreateTask = ({ open, handleClose, projectId }: iCreateTask) => {
   });
   return (
     <StyledBoxModalCreateTask>
+<<<<<<< HEAD
       <StyledForm
         onSubmit={handleSubmit((data) =>
           onSubmitCreateTask({ ...data, projectId })
         )}
       >
         <ButtonCloseModal callback={handleModal} />
+=======
+      <StyledForm onSubmit={handleSubmit(onSubmitCreateTask)}>
+        <ButtonCloseModal callback={handleCreateTask} />
+>>>>>>> 80c358fe1584e78d786c976ada63b257fa96cfce
         <div className="containerModal">
           <figure>
             <img
@@ -54,6 +71,7 @@ export const CreateTask = ({ open, handleClose, projectId }: iCreateTask) => {
             <p>Tech Leader</p>
           </div>
         </div>
+<<<<<<< HEAD
 
         <InputAndLabel
           textLabel="Título"
@@ -71,6 +89,17 @@ export const CreateTask = ({ open, handleClose, projectId }: iCreateTask) => {
           error={content?.message}
           register={register}
         />
+=======
+        <InputAndLabel
+          textLabel="Nome da Task"
+          name="title"
+          placeholder="Digite o nome da task"
+          type="text"
+          register={register}
+          error={title?.message}
+        />
+
+>>>>>>> 80c358fe1584e78d786c976ada63b257fa96cfce
         <StyledLoginButton type="submit">Salvar</StyledLoginButton>
       </StyledForm>
     </StyledBoxModalCreateTask>

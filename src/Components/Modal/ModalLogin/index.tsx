@@ -15,52 +15,52 @@ import { useOutSideClick } from "../../../hooks/useOutSideClick";
 // import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 interface IUserLogin {
-    email: string;
-    password: string;
-    error?: {
-        email?: FieldError;
-        password?: FieldError;
-    };
+  email: string;
+  password: string;
+  error?: {
+    email?: FieldError;
+    password?: FieldError;
+  };
 }
 export const ModalLogin = () => {
-    const { onSubmitLogin } = useContext(UserContext);
-    const { setShowModal } = useContext(ProjectsContext);
-    const modalRef = useOutSideClick(() => {
-        setShowModal(null)
-    })
-    const {
-        handleSubmit,
-        register,
-        formState: {
-            errors: { email, password },
-        },
-    } = useForm<IUserLogin>({
-        resolver: yupResolver(schemaUserLogin),
-    });
+  const { onSubmitLogin } = useContext(UserContext);
+  const { setShowModal } = useContext(ProjectsContext);
+  const modalRef = useOutSideClick(() => {
+    setShowModal(false);
+  });
+  const {
+    handleSubmit,
+    register,
+    formState: {
+      errors: { email, password },
+    },
+  } = useForm<IUserLogin>({
+    resolver: yupResolver(schemaUserLogin),
+  });
 
-    return (
-        <StyledBoxModal>
-            <StyledForm ref={modalRef} onSubmit={handleSubmit(onSubmitLogin)} >
-                <h2>Já faz parte?</h2>
+  return (
+    <StyledBoxModal>
+      <StyledForm ref={modalRef} onSubmit={handleSubmit(onSubmitLogin)}>
+        <h2>Já faz parte?</h2>
 
-                <InputAndLabel
-                    textLabel="Email"
-                    name="email"
-                    placeholder="Digite seu email"
-                    type="text"
-                    register={register}
-                    error={email?.message}
-                />
-                <InputAndLabel
-                    textLabel="Senha"
-                    name="password"
-                    placeholder="Digite sua senha"
-                    type="password"
-                    error={password?.message}
-                    register={register}
-                />
-                <StyledLoginButton type="submit">Login</StyledLoginButton>
-            </StyledForm>
-        </StyledBoxModal>
-    );
+        <InputAndLabel
+          textLabel="Email"
+          name="email"
+          placeholder="Digite seu email"
+          type="text"
+          register={register}
+          error={email?.message}
+        />
+        <InputAndLabel
+          textLabel="Senha"
+          name="password"
+          placeholder="Digite sua senha"
+          type="password"
+          error={password?.message}
+          register={register}
+        />
+        <StyledLoginButton type="submit">Login</StyledLoginButton>
+      </StyledForm>
+    </StyledBoxModal>
+  );
 };
