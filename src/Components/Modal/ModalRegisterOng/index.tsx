@@ -21,6 +21,7 @@ export interface IUserOng {
   fotoDePerfil: string;
   telefone: string;
   confirmPassword: string;
+  descricaoDaOng: string;
 
   error?: {
     email?: FieldError;
@@ -37,7 +38,7 @@ export const ModalRegisterOng = () => {
   const { onSubmitOng } = useContext(UserContext);
   const { setShowModal } = useContext(ProjectsContext);
   const modalRef = useOutSideClick(() => {
-    setShowModal(null);
+    setShowModal(false);
   });
   const {
     handleSubmit,

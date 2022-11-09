@@ -6,17 +6,17 @@ import { ModalPerfilDev } from "../../Modal/ModalPerfilDev";
 import { Outlet } from "react-router-dom";
 
 export const DashboardDev = () => {
-	const { renderPublications, openPerfil } = useContext(UserContext);
+  const { renderPublications, openPerfil } = useContext(UserContext);
 
-	useEffect(() => {
-		renderPublications();
-	}, []);
+  useEffect(() => {
+    renderPublications();
+  }, []);
 
-	return (
-		<>
-			<HeaderDashboard />
-			{openPerfil && <ModalPerfilDev />}
-			<Outlet />
-		</>
-	);
+  return (
+    <>
+      <HeaderDashboard />
+      {openPerfil && <ModalPerfilDev />}
+      <Outlet />
+    </>
+  );
 };

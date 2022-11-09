@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { UserContext } from "../../../Providers/UserProvider";
@@ -20,6 +21,7 @@ export const DashboardOng = () => {
 			{openPerfil && <ModalPerfilOng />}
 			{showProject && <ModalCreateProject />}
 			<Publications />
+            <Outlet />
 		</>
 	);
 };

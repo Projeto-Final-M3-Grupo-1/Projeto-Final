@@ -87,7 +87,7 @@ export const ModalPerfilDev = () => {
                   <img src={dataUser.fotoDePerfil} alt="" />
                 </caption>
                 <div className="details">
-                  <h3>{dataUser.nome}</h3>
+                  <h3>{dataUser.typeUser == "dev" && dataUser.nome}</h3>
                   <p>Dev Voluntário</p>
                 </div>
               </div>
@@ -98,26 +98,44 @@ export const ModalPerfilDev = () => {
                 >
                   <StyledInfo>
                     <p className="label">Nome</p>
-                    <input {...register("nome")} className="info" defaultValue={dataUser.nome}>
-                    </input>
+                    <input
+                      {...register("nome")}
+                      className="info"
+                      defaultValue={
+                        dataUser.typeUser == "dev" ? dataUser.nome : ""
+                      }
+                    ></input>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">E-mail</p>
-                    <input {...register("email")} className="info" defaultValue={dataUser.email}>
-                    </input>
+                    <input
+                      {...register("email")}
+                      className="info"
+                      defaultValue={dataUser.email}
+                    ></input>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">GitHub</p>
-                    <input {...register("github")} className="info" defaultValue={dataUser.github}>
-                    </input>
+                    <input
+                      {...register("github")}
+                      className="info"
+                      defaultValue={
+                        dataUser.typeUser == "dev" ? dataUser.github : ""
+                      }
+                    ></input>
                   </StyledInfo>
 
                   <StyledInfo>
                     <p className="label">Linkedin</p>
-                    <input {...register("linkedin")} className="info" defaultValue={dataUser.linkedin}>
-                    </input>
+                    <input
+                      {...register("linkedin")}
+                      className="info"
+                      defaultValue={
+                        dataUser.typeUser == "dev" ? dataUser.linkedin : ""
+                      }
+                    ></input>
                   </StyledInfo>
                   <StyledButtonCadastro type="submit">
                     Salvar

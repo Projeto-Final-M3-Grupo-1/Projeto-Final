@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import * as S from "./style";
 import { VscTriangleDown } from "react-icons/vsc";
-import { AuthContext } from "../../Providers/AuthContext";
+import { AuthContext, iDataUser } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
@@ -18,36 +18,37 @@ export const HeaderDashboard = () => {
 	const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
 	const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
 	const [userType, setUserType] = useState<string>(dataUser.typeUser);
-
-	const loadUserType = () => {
-		setUserType(dataUser.typeUser);
-	};
-
 	const windowSize = useWindowSize();
 	const width = windowSize.width;
 	const navigate = useNavigate();
+    const { handleProjectsToApply, HandleModalProject } =
+        useContext(ProjectsContext);
 
-	const logout = () => {
-		localStorage.clear();
-		navigate("/");
-	};
+    const loadUserType = () => {
+        setUserType(dataUser.typeUser);
+    };
 
-	useEffect(() => {
-		loadingUser();
-		handleResize();
-	}, [width]);
+    const logout = () => {
+        localStorage.clear();
+        navigate("/");
+    };
 
-	useEffect(() => {
-		loadUserType();
-	}, [dataUser]);
+    useEffect(() => {
+        loadingUser();
+        handleResize();
+    }, [width]);
 
-	const handleResize = () => {
-		if (width <= 768) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	};
+    useEffect(() => {
+        loadUserType();
+    }, [dataUser]);
+
+    const handleResize = () => {
+        if (width <= 768) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    };
 
 	const handleOpenModal = () => {
 		setIsAddProjectOpen(!isAddProjectOpen);
@@ -57,181 +58,170 @@ export const HeaderDashboard = () => {
 		setIsCreateNewNotice(!isCreateNewNotice);
 	};
 
-	return (
-		<S.Header>
-			{isMobile ? (
-				<MobileHeader navigate={navigate} logout={logout} />
-			) : (
-				<S.Nav>
-					{isAddProjectOpen ? (
-						<>
-							<ModalCreateProject />
-							<S.CloseButton onClick={handleOpenModal} />
-						</>
-					) : null}
-					{isCreateNewNotice ? (
-						<>
-							<ModalNovaPublicacao
-								handleIsOpen={handleOpenPublishModal}
-							/>
-						</>
-					) : null}
+    return (
+        <S.Header>
+            {isMobile ? (
+                <MobileHeader
+                    callback={handleProjectsToApply}
+                    navigate={navigate}
+                    logout={logout}
+                />
+            ) : (
+                <S.Nav>
+                    <Logo></Logo>
+                    <S.Dropdown>
+                        {userType === "dev" && (
+                            <>
+                                <S.Span>
+                                    Projetos
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/projectstoapply"
+                                                );
+                                            }}
+                                        >
+                                            Ver todos projetos
+                                        </S.DropdownItem>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/myproject"
+                                                );
+                                            }}
+                                        >
+                                            Meu projeto
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                                <S.Span>
+                                    Publicações
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate("/dashboard");
+                                            }}
+                                        >
+                                            Ver todas publicações
+                                        </S.DropdownItem>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate("/dashboard");
+                                            }}
+                                        >
+                                            Ver todas publicações
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                            </>
+                        )}
+                        {userType === "ong" && (
+                            <>
+                                <S.Span>
+                                    Projetos
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={HandleModalProject}
+                                        >
+                                            Criar projeto
+                                        </S.DropdownItem>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/pendingproject"
+                                                );
+                                            }}
+                                        >
+                                            Meu projeto
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                                <S.Span>
+                                    Publicações
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate("/dashboard");
+                                            }}
+                                        >
+                                            Ver todas publicações
+                                        </S.DropdownItem>
+                                        <S.DropdownItem>
+                                            Ver todas publicações
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                            </>
+                        )}
+                        {userType === "admin" && (
+                            <>
+                                <S.Span>
+                                    Projetos
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/projectdevelop"
+                                                );
+                                            }}
+                                        >
+                                            Ver todos projetos em andamento
+                                        </S.DropdownItem>
 
-					<Logo />
-					<S.Dropdown>
-						{userType === "dev" && (
-							<>
-								<S.Span>
-									Projetos
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate(
-													"/dashboard/projectstoapply"
-												);
-											}}
-										>
-											Ver todos projetos
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate(
-													"/dashboard/myproject"
-												);
-											}}
-										>
-											Meu projeto
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-								<S.Span>
-									Publicações
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-							</>
-						)}
-						{userType === "ong" && (
-							<>
-								<S.Span>
-									Projetos
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={handleOpenModal}
-										>
-											Criar projeto
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/PROJETODAONG");
-											}}
-										>
-											Meu projeto
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-								<S.Span>
-									Publicações
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-							</>
-						)}
-						{userType === "admin" && (
-							<>
-								<S.Span>
-									Projetos
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate(
-													"/dashboard/projectsadmin"
-												);
-											}}
-										>
-											Ver todos projetos em andamento
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												navigate(
-													"/dashboard/manageproject"
-												);
-											}}
-										>
-											Ver solicitações de Projeto
-										</S.DropdownItem>
-										<S.DropdownItem>
-											Meus projetos
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-								<S.Span>
-									Publicações
-									<VscTriangleDown />
-									<S.DropdownList>
-										<S.DropdownItem
-											onClick={() => {
-												navigate("/dashboard");
-											}}
-										>
-											Ver todas publicações
-										</S.DropdownItem>
-										<S.DropdownItem
-											onClick={() => {
-												handleOpenPublishModal();
-											}}
-										>
-											Criar nova publicação
-										</S.DropdownItem>
-									</S.DropdownList>
-								</S.Span>
-							</>
-						)}
-					</S.Dropdown>
-					<S.User>
-						<S.Name>{dataUser.nome || dataUser.razaoSocial}</S.Name>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate(
+                                                    "/dashboard/projectpending"
+                                                );
+                                            }}
+                                        >
+                                            Ver solicitações de Projeto
+                                        </S.DropdownItem>
+                                        <S.DropdownItem>
+                                            Meus projetos
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                                <S.Span>
+                                    Publicações
+                                    <VscTriangleDown />
+                                    <S.DropdownList>
+                                        <S.DropdownItem
+                                            onClick={() => {
+                                                navigate("/dashboard");
+                                            }}
+                                        >
+                                            Ver todas publicações
+                                        </S.DropdownItem>
+                                        <S.DropdownItem>
+                                            Criar nova publicação
+                                        </S.DropdownItem>
+                                    </S.DropdownList>
+                                </S.Span>
+                            </>
+                        )}
+                    </S.Dropdown>
+                    <S.User>
+                        <S.Name>
+                            {dataUser.typeUser == "ong"
+                                ? dataUser.razaoSocial
+                                : dataUser.nome}
+                        </S.Name>
 
-						<S.Image
-							onClick={handlePerfil}
-							src={dataUser.fotoDePerfil}
-							alt="Foto de perfil"
-						/>
-					</S.User>
-				</S.Nav>
-			)}
-		</S.Header>
-	);
+                        <S.Image
+                            onClick={handlePerfil}
+                            src={dataUser.fotoDePerfil}
+                            alt="Foto de perfil"
+                        />
+                    </S.User>
+                </S.Nav>
+            )}
+        </S.Header>
+    );
 };
