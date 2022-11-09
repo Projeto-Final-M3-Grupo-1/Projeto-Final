@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import ModalNovaPublicacao from "../../Modal/ModalNovaPublicacao";
 import { PendingProject } from "../../AllProjects/Pendings";
+import Logo from "../../Logo";
 
 const DropdownHeader = () => {
   const { dataUser, loadingUser } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const DropdownHeader = () => {
     <S.Header>
       {isMobile ? (
         <S.MobileNav>
-          <h2>DeVoluntário</h2>
+          <Logo />
           <S.MenuHamburger />
           <S.MobileDropdown>
             <S.MobileDropdownList>
@@ -53,7 +54,7 @@ const DropdownHeader = () => {
         </S.MobileNav>
       ) : (
         <S.Nav>
-          <h2>DeVoluntário</h2>
+          <Logo />
           <S.Dropdown>
             <S.Span>
               Projetos

@@ -31,7 +31,10 @@ interface IProjectsContext {
   handleNavigate: any;
   pendingProject: any;
   setPendingProject: any;
-  requestPendingProjects: any;
+  HandleProjectsOng: any;
+  setShowProjectspending: any;
+  showProjectpending: any;
+  //requestPendingProjects: any;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -50,6 +53,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   const [render, setRender] = useState(false);
   const [youRight, setYouRight] = useState(false);
   const [showProject, setShowProjects] = useState(false);
+  const [showProjectpending, setShowProjectspending] = useState(false);
   const [pendingProject, setPendingProject] = useState([] as any);
   const navigate = useNavigate();
 
@@ -75,6 +79,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     return !showProject ? setShowProjects(true) : setShowProjects(false);
   };
 
+  const HandleProjectsOng = () => {
+    return !showProject ? setShowProjects(true) : setShowProjects(false);
+  };
+
   const applyOnProject = () => {
     const body = {
       projectId: +localStorage.projectId,
@@ -88,7 +96,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     data.ongId = localStorage.userId;
     console.log(data);
     api
-      .post("/pendings", data, {
+      .post("/projects", data, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
@@ -96,7 +104,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
       .then((res) => {
         setShowProjects(false);
         setPendingProject(res.data);
-        requestPendingProjects();
+        requestProjects();
+        //requestPendingProjects();
         toast.success("Projeto cadastrado com sucesso!");
       });
   };
@@ -117,17 +126,11 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
   };
 
   const requestProjects = () => {
-    api
-      .get("/projects", {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-      .then((res) => setProjects(res.data));
-  };
-
-  const requestPendingProjects = () => {
-    api.get("/pendings").then((res: any) => setPendingProject(res.data));
+    api.get("/projects", {}).then((res) => {
+      setProjects(res.data);
+      setPendingProject(res.data);
+      setShowProjectspending(false);
+    });
   };
 
   const scrollToTop = () => {
@@ -162,7 +165,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         setShowProjects,
         pendingProject,
         setPendingProject,
-        requestPendingProjects,
+        HandleProjectsOng,
+        showProjectpending,
+        setShowProjectspending,
       }}
     >
       {children}

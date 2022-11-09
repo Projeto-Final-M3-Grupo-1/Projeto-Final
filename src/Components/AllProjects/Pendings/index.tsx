@@ -1,15 +1,14 @@
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
+import { StyledBoxModal } from "../../Modal/ModalLogin/style";
 import { StyledCardProject } from "../style";
 
 export const PendingProject = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { pendingProject, requestPendingProjects } =
-    useContext(ProjectsContext);
-  console.log(pendingProject);
+  const { pendingProject, requestProjects } = useContext(ProjectsContext);
   const idUser = localStorage.userId;
   useEffect(() => {
-    requestPendingProjects();
+    requestProjects();
   }, []);
   return (
     <StyledCardProject>
@@ -29,7 +28,3 @@ export const PendingProject = () => {
     </StyledCardProject>
   );
 };
-
-/* {pendingProject.map((data: any) => {
-    <li>{data.title}</li>;
-  })} */

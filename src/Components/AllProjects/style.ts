@@ -31,6 +31,7 @@ export const StyledCardProject = styled.ul`
     gap: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow: auto;
 
     :hover {
       background-color: var(--rose-50);
