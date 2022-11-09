@@ -59,24 +59,29 @@ export const HeaderDashboard = () => {
 
 	return (
 		<S.Header>
+			{isCreateNewNotice ? (
+				<>
+					<ModalNovaPublicacao
+						handleIsOpen={handleOpenPublishModal}
+					/>
+				</>
+			) : null}
+			{isAddProjectOpen ? (
+				<>
+					<ModalCreateProject />
+					<S.CloseButton onClick={handleOpenModal} />
+				</>
+			) : null}
 			{isMobile ? (
-				<MobileHeader navigate={navigate} logout={logout} />
+				<MobileHeader
+					navigate={navigate}
+					logout={logout}
+					userType={userType}
+					handleOpenPublishModal={handleOpenPublishModal}
+					handleOpenModal={handleOpenModal}
+				/>
 			) : (
 				<S.Nav>
-					{isAddProjectOpen ? (
-						<>
-							<ModalCreateProject />
-							<S.CloseButton onClick={handleOpenModal} />
-						</>
-					) : null}
-					{isCreateNewNotice ? (
-						<>
-							<ModalNovaPublicacao
-								handleIsOpen={handleOpenPublishModal}
-							/>
-						</>
-					) : null}
-
 					<Logo />
 					<S.Dropdown>
 						{userType === "dev" && (
@@ -193,7 +198,13 @@ export const HeaderDashboard = () => {
 										>
 											Ver solicitações de Projeto
 										</S.DropdownItem>
-										<S.DropdownItem>
+										<S.DropdownItem
+											onClick={() => {
+												navigate(
+													"/dashboard/myproject"
+												);
+											}}
+										>
 											Meus projetos
 										</S.DropdownItem>
 									</S.DropdownList>
