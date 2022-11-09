@@ -2,13 +2,21 @@ import { useState } from "react";
 import Logo from "../../Logo";
 import * as S from "./style";
 
+export interface iMobileProps {
+	logout: () => void;
+	navigate: (data: string) => void;
+	userType: string;
+	handleOpenPublishModal: () => void;
+	handleOpenModal: () => void;
+}
+
 const MobileHeader = ({
 	logout,
 	navigate,
 	userType,
 	handleOpenPublishModal,
 	handleOpenModal,
-}: any) => {
+}: iMobileProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleOpen = () => {

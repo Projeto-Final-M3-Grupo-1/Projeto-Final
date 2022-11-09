@@ -5,7 +5,6 @@ import { VscTriangleDown } from "react-icons/vsc";
 import { AuthContext } from "../../Providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Providers/UserProvider";
-import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import MobileHeader from "./MobileHeader";
 import ModalCreateProject from "../Modal/ModalAddProject";
 import Logo from "../Logo";
