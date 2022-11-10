@@ -3,34 +3,21 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
     display: flex;
-    align-items: center;
-
     gap: 20px;
-
     max-width: 95%;
-    height: 300px;
-
+    height: 434px;
+    flex-direction: column;
     margin: 0 auto;
-
-    overflow: hidden;
-    overflow-x: scroll;
-    ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        height: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
-    }
+    padding: 3rem 1rem;
+    align-items: center;
 
     @media (min-width: 768px) {
         box-sizing: border-box;
-        overflow: hidden;
+        flex-direction: row;
         max-width: 1200px;
         height: 400px;
         margin: 0 auto;
-        padding: 100px;
+        padding: 1rem;
     }
 `;
 
@@ -46,16 +33,22 @@ export const StyledCard = styled.div`
     height: 216px;
     border-radius: 4px;
 
-    margin: 0 0 0 5px;
-
     gap: 12px;
+    padding: 1rem;
 
     border: 1px solid var(--card-border-color);
 
     @media (min-width: 768px) {
-        max-height: 450px;
+        max-height: 550px;
         max-width: 400px;
         border-radius: 8px;
+    
+        &:hover{
+            box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            -webkit-box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            -moz-box-shadow: 10px 12px 5px 0px rgba(0,0,0,0.21);
+            transition: .5s
+        }
     }
 
     h2 {
@@ -92,6 +85,12 @@ export const StyledCard = styled.div`
         width: 90%;
         height: 25px;
         font-size: 14px;
+    }
+
+    @media (min-width:768px){
+        > button {
+            height: 40px;
+        }
     }
 `;
 

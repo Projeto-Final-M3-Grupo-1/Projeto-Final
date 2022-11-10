@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -14,6 +13,17 @@ export const GlobalStyle = createGlobalStyle`
         --rose-200: #fecdd3;
         --rose-100: #ffe4e6;
         --rose-50: #fff1f2;
+
+        --blue-900: #1e3a8a;
+        --blue-800: #1e40af;
+        --blue-700: #1e4ed8;
+        --blue-600: #2563eb;
+        --blue-500: #3b82f6;
+        --blue-400: #60a5fa;
+        --blue-300: #93c5fd;
+        --blue-200: #bfdbfe;
+        --blue-100: #dbeafe;
+        --blue-50: #eff6ff;
 
         --slate-900: #0f172a;
         --slate-800: #1e293b;
@@ -54,7 +64,7 @@ export const GlobalStyle = createGlobalStyle`
         --header-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
         // Main
-        --main-title-text-size: 5rem;
+        --main-title-text-size: 4rem;
         --main-title-text-color: var(--rose-600);
         --main-title-text-color-secondary: var(--slate-800);
         --main-title-text-weight: 900;
@@ -111,36 +121,64 @@ export const GlobalStyle = createGlobalStyle`
         --footer-title-text-size: 1.5rem;
         --footer-title-text-weight: 900;
         --footer-socials-text-size: 1.5rem;
+        --footer-socials-color: var(--white);
         --footer-socials-text-weight: 400;
-        --footer-button-background-color: var(--white);
+        --footer-button-background-color: var(--black);
         --footer-button-text-color: var(--slate-900);
         --footer-text-small-size: 0.9375rem;
         --footer-text-small-weight: 400;
+
+        /*Page Ong e Dev*/
+        --page-title-font-size: 2rem;
+        --page-title-color: var(--rose-600);
+        --page-title-text-weight: 600;
+
     }
 
     /* Reset */
     html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-    b, u, i, center,
-    dl, dt, dd, ol, ul, li,
-    fieldset, form, label, legend,
-    table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed, 
-    figure, figcaption, footer, header, hgroup, 
-    menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-    }
-
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li, textarea,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
@@ -148,6 +186,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        overflow-x: hidden;
     }
     ol, ul {
         list-style: none;
@@ -170,10 +209,9 @@ export const GlobalStyle = createGlobalStyle`
         height: 100vh;
         position: relative;
     }
-
+    
     #root {
         position: relative;
         min-height: 100vh;
     }
 `;
-

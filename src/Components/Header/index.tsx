@@ -1,44 +1,65 @@
-import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 import { ModalLogin } from "../Modal/ModalLogin";
-import { StyledHeader } from "./header";
+import { StyledHeader, Logo } from "./header";
+import { StyledLoginButton } from "../Button";
+import { useNavigate } from "react-router-dom";
 
 function Headers() {
-    // const { menu, setMenu } = useContext(ProjectsContext);
-    // const handleClick = () => {
-    //     return !menu ? setMenu(true) : setMenu(false);
-    // };
-    const { handleModal, showModal } = useContext(ProjectsContext);
-    return (
-        <>
-            <StyledHeader>
-                <h2>Logo</h2>
-                {/* {menu && (
-                <nav>
-                    <Link className="links--menu_header" to="/home">
-                        Início
-                    </Link>
-                    <Link className="links--menu_header" to="/sobre-nos">
-                        Sobre nós
-                    </Link>
-                    <Link className="links--menu_header" to="/projetos">
-                        Projetos
-                    </Link>
-                    <Link className="links--menu_header" to="/contato">
-                        Contato
-                    </Link>
-                </nav>
-            )}
-            <button onClick={handleClick}></button> */}
-                <button onClick={handleModal} type="button">
-                    Login
-                </button>
-            </StyledHeader>
-            {showModal && <ModalLogin />}
-        </>
-    );
-}
+	const { handleModal, showModal } = useContext(ProjectsContext);
+	const navigate = useNavigate();
 
+	return (
+		<>
+			<StyledHeader>
+				<Logo>
+					<h3>De</h3>
+					<h4>Volunteer</h4>
+				</Logo>
+				<nav>
+					<Link
+						activeClass="active"
+						spy={true}
+						smooth={true}
+						offset={-70}
+						duration={500}
+						to="/home"
+						className="links--menu_header"
+						href="/git"
+						onClick={() => navigate("/home")}
+					>
+						Início
+					</Link>
+					<Link
+						activeClass="active"
+						spy={true}
+						smooth={true}
+						offset={-70}
+						duration={500}
+						to="aboutUs"
+						className="links--menu_header"
+					>
+						Sobre nós
+					</Link>
+					<Link
+						activeClass="active"
+						spy={true}
+						smooth={true}
+						offset={-70}
+						duration={500}
+						to="projects"
+						className="links--menu_header"
+					>
+						Projetos
+					</Link>
+				</nav>
+				<StyledLoginButton onClick={handleModal} type="button">
+					Login
+				</StyledLoginButton>
+			</StyledHeader>
+			{showModal && <ModalLogin />}
+		</>
+	);
+}
 export default Headers;

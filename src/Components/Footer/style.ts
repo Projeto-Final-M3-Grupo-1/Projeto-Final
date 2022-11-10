@@ -1,13 +1,10 @@
-
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
     bottom: 0%;
-    width: 100%;
     height: 9rem;
     background-color: var(--rose-600);
     display: flex;
-    /* padding: 4px; */
     flex-direction: row;
     color: var(--white);
     justify-content: space-around;
@@ -39,6 +36,24 @@ export const StyledFooter = styled.footer`
         }
     }
 
+    .scrolltop {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        left: 85%;
+        bottom: 2%;
+        cursor: pointer;
+
+        @media (max-width: 720px) {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            left: 45%;
+            bottom: 150px;
+            color: var(--rose-700);
+        }
+    }
+
     button {
         font-size: 8px;
         width: 8rem;
@@ -47,5 +62,14 @@ export const StyledFooter = styled.footer`
         border-radius: 2px;
         color: var(--slate-900);
     }
+
+    @media(max-width: 720px){
+        margin-top: 30px;
+    }
 `;
 
+export const StyledButtonRedes = styled.a`
+    color: var(--footer-socials-color);
+    background-color: transparent;
+    text-decoration: none;
+`
