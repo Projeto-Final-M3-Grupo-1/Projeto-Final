@@ -33,7 +33,7 @@ const MobileHeader = ({
                         <S.MobileDropdownList>
                             <S.MobileDropdownItem
                                 onClick={() => {
-                                    navigate("/dashboard/projectsadmin");
+                                    navigate("/dashboard/projectdevelop");
                                 }}
                             >
                                 Ver todos projetos em andamento
@@ -45,13 +45,7 @@ const MobileHeader = ({
                             >
                                 Ver solicitações de Projeto
                             </S.MobileDropdownItem>
-                            <S.MobileDropdownItem
-                                onClick={() => {
-                                    navigate("/dashboard/myproject");
-                                }}
-                            >
-                                Meus projetos
-                            </S.MobileDropdownItem>
+
                             <S.MobileDropdownItem
                                 onClick={() => {
                                     navigate("/dashboard");

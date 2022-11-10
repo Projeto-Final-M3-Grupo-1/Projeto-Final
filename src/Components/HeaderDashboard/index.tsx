@@ -12,16 +12,15 @@ import Logo from "../Logo";
 import { ModalAcceptDecline } from "../Modal/ModalAcceptDecline";
 
 import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
-
+import { ProjectsContext } from "../../Providers/ProjectsProvider";
 
 export const HeaderDashboard = () => {
     const { dataUser, loadingUser } = useContext(AuthContext);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const { handlePerfil } = useContext(UserContext);
 
-    const { handleProjectsToApply, HandleModalProject, modalChange} =
+    const { handleProjectsToApply, HandleModalProject, modalChange } =
         useContext(ProjectsContext);
-
 
     const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
     const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
@@ -66,174 +65,165 @@ export const HeaderDashboard = () => {
     };
 
     return (
-
-        <S.Header>
-            {isCreateNewNotice ? (
-                <>
-                    <ModalNovaPublicacao
-                        handleIsOpen={handleOpenPublishModal}
-                    />
-                </>
-            ) : null}
-            {isAddProjectOpen ? (
-                <>
-                    <ModalCreateProject />
-                    <S.CloseButton onClick={handleOpenModal} />
-                </>
-            ) : null}
-            {isMobile ? (
-                <MobileHeader
-                    navigate={navigate}
-                    logout={logout}
-                    userType={userType}
-                    handleOpenPublishModal={handleOpenPublishModal}
-                    handleOpenModal={handleOpenModal}
-                />
-            ) : (
-                <S.Nav>
-                    <Logo />
-                    <S.Dropdown>
-                        {userType === "dev" && (
-                            <>
-                                <S.Span>
-                                    Projetos
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/projectstoapply"
-                                                );
-                                            }}
-                                        >
-                                            Ver todos projetos
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/myproject"
-                                                );
-                                            }}
-                                        >
-                                            Meu projeto
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
-                                </S.Span>
-                                <S.Span
-                                    onClick={() => {
-                                        navigate("/dashboard");
-                                    }}
-                                >
-                                    Publicações
-                                </S.Span>
-                            </>
-                        )}
-                        {userType === "ong" && (
-                            <>
-                                <S.Span>
-                                    Projetos
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={handleOpenModal}
-                                        >
-                                            Criar projeto
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/pendingproject"
-                                                );
-                                            }}
-                                        >
-                                            Meu projeto
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
-                                </S.Span>
-                                <S.Span
-                                    onClick={() => {
-                                        navigate("/dashboard");
-                                    }}
-                                >
-                                    Publicações
-                                </S.Span>
-                            </>
-                        )}
-                        {userType === "admin" && (
-                            <>
-                                <S.Span>
-                                    Projetos
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/projectsadmin"
-                                                );
-                                            }}
-                                        >
-                                            Ver todos projetos em andamento
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/manageproject"
-                                                );
-                                            }}
-                                        >
-                                            Ver solicitações de Projeto
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate(
-                                                    "/dashboard/myproject"
-                                                );
-                                            }}
-                                        >
-                                            Meus projetos
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
-                                </S.Span>
-                                <S.Span>
-                                    Publicações
-                                    <VscTriangleDown />
-                                    <S.DropdownList>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                navigate("/dashboard");
-                                            }}
-                                        >
-                                            Ver todas publicações
-                                        </S.DropdownItem>
-                                        <S.DropdownItem
-                                            onClick={() => {
-                                                handleOpenPublishModal();
-                                            }}
-                                        >
-                                            Criar nova publicação
-                                        </S.DropdownItem>
-                                    </S.DropdownList>
-                                </S.Span>
-                            </>
-                        )}
-                    </S.Dropdown>
-                    <S.User>
-                        <S.Name>
-                            {dataUser.typeUser === "ong"
-                                ? dataUser.razaoSocial
-                                : dataUser.nome}
-                        </S.Name>
-
-                        <S.Image
-                            onClick={handlePerfil}
-                            src={dataUser.fotoDePerfil}
-                            alt="Foto de perfil"
+        <>
+            <S.Header>
+                {isCreateNewNotice ? (
+                    <>
+                        <ModalNovaPublicacao
+                            handleIsOpen={handleOpenPublishModal}
                         />
-                    </S.User>
-                </S.Nav>
-            )}
-        </S.Header>
-        { modalChange && <ModalAcceptDecline /> }
+                    </>
+                ) : null}
+                {isAddProjectOpen ? (
+                    <>
+                        <ModalCreateProject />
+                        <S.CloseButton onClick={handleOpenModal} />
+                    </>
+                ) : null}
+                {isMobile ? (
+                    <MobileHeader
+                        navigate={navigate}
+                        logout={logout}
+                        userType={userType}
+                        handleOpenPublishModal={handleOpenPublishModal}
+                        handleOpenModal={handleOpenModal}
+                    />
+                ) : (
+                    <S.Nav>
+                        <Logo />
+                        <S.Dropdown>
+                            {userType === "dev" && (
+                                <>
+                                    <S.Span>
+                                        Projetos
+                                        <VscTriangleDown />
+                                        <S.DropdownList>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate(
+                                                        "/dashboard/projectstoapply"
+                                                    );
+                                                }}
+                                            >
+                                                Ver todos projetos
+                                            </S.DropdownItem>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate(
+                                                        "/dashboard/myproject"
+                                                    );
+                                                }}
+                                            >
+                                                Meu projeto
+                                            </S.DropdownItem>
+                                        </S.DropdownList>
+                                    </S.Span>
+                                    <S.Span
+                                        onClick={() => {
+                                            navigate("/dashboard");
+                                        }}
+                                    >
+                                        Publicações
+                                    </S.Span>
+                                </>
+                            )}
+                            {userType === "ong" && (
+                                <>
+                                    <S.Span>
+                                        Projetos
+                                        <VscTriangleDown />
+                                        <S.DropdownList>
+                                            <S.DropdownItem
+                                                onClick={handleOpenModal}
+                                            >
+                                                Criar projeto
+                                            </S.DropdownItem>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate(
+                                                        "/dashboard/pendingproject"
+                                                    );
+                                                }}
+                                            >
+                                                Meu projeto
+                                            </S.DropdownItem>
+                                        </S.DropdownList>
+                                    </S.Span>
+                                    <S.Span
+                                        onClick={() => {
+                                            navigate("/dashboard");
+                                        }}
+                                    >
+                                        Publicações
+                                    </S.Span>
+                                </>
+                            )}
+                            {userType === "admin" && (
+                                <>
+                                    <S.Span>
+                                        Projetos
+                                        <VscTriangleDown />
+                                        <S.DropdownList>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate(
+                                                        "/dashboard/projectdevelop"
+                                                    );
+                                                }}
+                                            >
+                                                Ver todos projetos em andamento
+                                            </S.DropdownItem>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate(
+                                                        "/dashboard/projectpending"
+                                                    );
+                                                }}
+                                            >
+                                                Ver solicitações de Projeto
+                                            </S.DropdownItem>
+                                        </S.DropdownList>
+                                    </S.Span>
+                                    <S.Span>
+                                        Publicações
+                                        <VscTriangleDown />
+                                        <S.DropdownList>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    navigate("/dashboard");
+                                                }}
+                                            >
+                                                Ver todas publicações
+                                            </S.DropdownItem>
+                                            <S.DropdownItem
+                                                onClick={() => {
+                                                    handleOpenPublishModal();
+                                                }}
+                                            >
+                                                Criar nova publicação
+                                            </S.DropdownItem>
+                                        </S.DropdownList>
+                                    </S.Span>
+                                </>
+                            )}
+                        </S.Dropdown>
+                        <S.User>
+                            <S.Name>
+                                {dataUser.typeUser === "ong"
+                                    ? dataUser.razaoSocial
+                                    : dataUser.nome}
+                            </S.Name>
+
+                            <S.Image
+                                onClick={handlePerfil}
+                                src={dataUser.fotoDePerfil}
+                                alt="Foto de perfil"
+                            />
+                        </S.User>
+                    </S.Nav>
+                )}
+            </S.Header>
+            {modalChange && <ModalAcceptDecline />}
         </>
     );
 };
