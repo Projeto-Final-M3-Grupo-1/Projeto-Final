@@ -158,7 +158,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         console.log(res.data);
         setModalChange(false)
         requestProjects()
-        window.location.reload()
+        // window.location.reload()
       })
 
     }
