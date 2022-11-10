@@ -13,72 +13,72 @@ import { TextArea } from "../../TextArea";
 import { StyledBoxModalCreateTask } from "./styles";
 
 interface iCreateTask {
-  open: boolean;
-  handleClose: () => void;
+    open: boolean;
+    handleClose: () => void;
 
-  projectId: number;
+    projectId: number;
 }
 
 interface iFormTask {
-  title: string;
-  content: string;
+    title: string;
+    content: string;
 
-  projectId: number;
+    projectId: number;
 }
 
 export const CreateTask = () => {
-  const { onSubmitCreateTask } = useContext(UserContext);
-  const { handleCreateTask, createTask } = useContext(ProjectsContext);
-  const { dataUser } = useContext(AuthContext);
+    const { onSubmitCreateTask } = useContext(UserContext);
+    const { handleCreateTask, createTask } = useContext(ProjectsContext);
+    const { dataUser } = useContext(AuthContext);
 
-  const {
-    handleSubmit,
-    register,
-    formState: {
-      errors: { title, content },
-    },
-  } = useForm<iFormTask>({
-    resolver: yupResolver(schemaCreateTask),
-  });
+    const {
+        handleSubmit,
+        register,
+        formState: {
+            errors: { title, content },
+        },
+    } = useForm<iFormTask>({
+        resolver: yupResolver(schemaCreateTask),
+    });
 
-  return (
-    <StyledBoxModalCreateTask show={createTask}>
-      <StyledForm onSubmit={handleSubmit(onSubmitCreateTask)}>
-        <ButtonCloseModal callback={handleCreateTask} />
-        <div className="containerModal">
-          <figure>
-            <img src={dataUser.fotoDePerfil} alt="" />
-          </figure>
-          <div className="containerNomeFuncao">
-            <h2>
-              {dataUser.typeUser == "admin"
-                ? dataUser.nome
-                : dataUser.typeUser == "ong"
-                ? dataUser.razaoSocial
-                : null}
-            </h2>
-            <p>Tech Leader</p>
-          </div>
-        </div>
+    return (
+        <StyledBoxModalCreateTask show={createTask}>
+            <StyledForm onSubmit={handleSubmit(onSubmitCreateTask)}>
+                <ButtonCloseModal callback={handleCreateTask} />
+                <div className="containerModal">
+                    <figure>
+                        <img src={dataUser.fotoDePerfil} alt="" />
+                    </figure>
+                    <div className="containerNomeFuncao">
+                        <h2>
+                            {dataUser.typeUser == "admin"
+                                ? dataUser.nome
+                                : dataUser.typeUser == "ong"
+                                ? dataUser.razaoSocial
+                                : null}
+                        </h2>
+                        <p>Tech Leader</p>
+                    </div>
+                </div>
 
-        <InputAndLabel
-          textLabel="Título"
-          name="title"
-          placeholder="Título do seu Projeto"
-          type="text"
-          register={register}
-          error={title?.message}
-        />
-        <TextArea
-          textLabel="Descrição"
-          name="content"
-          placeholder="Faça um resumo da tarefa a ser realizada"
-          type="text"
-          error={content?.message}
-          register={register}
-        />
-        <StyledLoginButton type="submit">Salvar</StyledLoginButton>
-      </StyledForm>
-    </StyledBoxModalCreateTask>
-  );
+                <InputAndLabel
+                    textLabel="Título"
+                    name="title"
+                    placeholder="Título do seu Projeto"
+                    type="text"
+                    register={register}
+                    error={title?.message}
+                />
+                <TextArea
+                    textLabel="Descrição"
+                    name="content"
+                    placeholder="Faça um resumo da tarefa a ser realizada"
+                    type="text"
+                    error={content?.message}
+                    register={register}
+                />
+                <StyledLoginButton type="submit">Salvar</StyledLoginButton>
+            </StyledForm>
+        </StyledBoxModalCreateTask>
+    );
 };
