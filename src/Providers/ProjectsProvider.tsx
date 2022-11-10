@@ -144,6 +144,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     };
 
     const editProjects = () => {
+
         const data = {
             status: "develop",
         };
@@ -154,9 +155,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => {
             setModalChange(false);
             requestProjects();
-            window.location.reload();
         });
     };
+
 
     const HandleModalProject = () => {
         return !showProject ? setShowProjects(true) : setShowProjects(false);
