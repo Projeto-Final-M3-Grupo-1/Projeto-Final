@@ -52,6 +52,7 @@ export const StyledModalBody = styled.div`
 
     div{
         display: flex;
+        flex-direction: column;
         align-content: center;
         justify-content: space-between;
         align-items: center;
@@ -59,6 +60,12 @@ export const StyledModalBody = styled.div`
         width: 91%;
         
         margin-top: 1rem;
+
+        div{
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+        }
     }
 
     button :nth-child(1){

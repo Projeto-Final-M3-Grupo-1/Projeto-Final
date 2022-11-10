@@ -77,7 +77,7 @@ export const HeaderDashboard = () => {
                 {isAddProjectOpen ? (
                     <>
                         <ModalCreateProject />
-                        <S.CloseButton onClick={handleOpenModal} />
+                        <S.CloseButton className="buttonCreateProject" onClick={handleOpenModal} />
                     </>
                 ) : null}
                 {isMobile ? (

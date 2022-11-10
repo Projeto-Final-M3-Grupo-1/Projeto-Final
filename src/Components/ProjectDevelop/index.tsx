@@ -12,7 +12,6 @@ export const ProjectDevelop = () => {
   const { requestProjects, handleManageProject } = useContext(ProjectsContext);
   const [projects, setProjects] = useState([] as unknown as iProjects);
 
-  // const navigate = useNavigate();
   useEffect(() => {
     const render = () => {
       api.get("/projects").then((res) => {

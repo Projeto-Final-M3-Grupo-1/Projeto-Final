@@ -27,8 +27,6 @@ export const ProjectPending = () => {
     render();
   }, []);
 
- 
-
   return (
     <StyledDashboardManageProjectsAdmin>
       <ul className="doneTasks">

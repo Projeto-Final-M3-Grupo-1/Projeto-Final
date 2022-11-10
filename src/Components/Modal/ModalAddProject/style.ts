@@ -59,4 +59,21 @@ export const StyledModalAddProject = styled.form`
       transition: var(--button-hover-transition);
     }
   }
+
+  
+`;
+
+export const CloseButton = styled.button`
+	position: absolute;
+	z-index: 99;
+
+	height: 2rem;
+	width: 2rem;
+
+	top: 9%;
+	right: 20%;
+
+	color: var(--rose-600);
+
+	cursor: pointer;
 `;

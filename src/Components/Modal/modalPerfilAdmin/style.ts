@@ -311,7 +311,7 @@ export const StyledProjectsRequests = styled.div`
       justify-content: center;
       align-items: center;
       gap: 10px;
-      width: 100%;
+      width: 110%;
       overflow-y: scroll;
     }
 

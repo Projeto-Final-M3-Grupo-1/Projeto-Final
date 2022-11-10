@@ -8,14 +8,14 @@ export const StyledDashboardManageProjectsAdmin = styled.main`
   margin: 1rem auto;
   max-width: 700px;
   padding: 1rem;
-  /h2 {
+  h2 {
     color: var(--page-title-color);
     font-size: 1.8rem;
     font-weight: var(--page-title-text-weight);
   }
   h3 {
     color: var(--slate-900);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: var(--page-title-text-weight);
   }
   p {
@@ -40,6 +40,23 @@ export const StyledDashboardManageProjectsAdmin = styled.main`
       height: 3rem;
       margin: 0.5rem;
       padding: 0.5rem;
+
+      button{
+        width: 20%;
+      }
+    }
+
+    @media(max-width: 460px){
+      li{
+        flex-direction: column;
+        height: 6rem;
+
+        button{
+          height: 1.5rem;;
+          width: 100%;
+          border-radius: 5px;
+        }
+      }
     }
   }
   .doneTasks {

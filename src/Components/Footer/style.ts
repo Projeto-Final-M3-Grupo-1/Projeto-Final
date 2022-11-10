@@ -5,7 +5,6 @@ export const StyledFooter = styled.footer`
     height: 9rem;
     background-color: var(--rose-600);
     display: flex;
-    /* padding: 4px; */
     flex-direction: row;
     color: var(--white);
     justify-content: space-around;
@@ -62,6 +61,10 @@ export const StyledFooter = styled.footer`
         border: 1px solid var(--white);
         border-radius: 2px;
         color: var(--slate-900);
+    }
+
+    @media(max-width: 720px){
+        margin-top: 30px;
     }
 `;
 

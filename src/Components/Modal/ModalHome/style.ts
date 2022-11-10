@@ -9,26 +9,20 @@ export const StyledModalHome = styled.div`
   align-items: center;
 
   width: 90%;
-  height: 460px;
+  height: 500px;
   background-color: var(--white);
 
   border-radius: 8px;
 
-  overflow: hidden;
-  overflow-y: scroll;
-
   @media (min-width: 768px) {
     display: flex;
-<<<<<<< HEAD
     flex-direction: column;
     position: relative;
-    /* align-content: center; */
+    align-content: center;
     justify-content: center;
     align-items: center;
     padding: 1rem;
-=======
->>>>>>> 50e18d6c3323b5ca8343eb590647c5f9391caabe
-
+    
     height: 15rem;
     max-width: 750px;
 

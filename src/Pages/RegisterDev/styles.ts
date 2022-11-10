@@ -16,4 +16,8 @@ export const StyledRegisterDev = styled.div`
   p {
     line-height: 1.75;
   }
+
+  @media(max-width: 600px){
+    padding: 2.5rem;
+  }
 `;

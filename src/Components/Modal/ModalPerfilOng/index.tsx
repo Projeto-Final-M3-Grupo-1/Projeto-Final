@@ -127,20 +127,22 @@ export const ModalPerfilOng = () => {
                 <h3 className="name">
                   {dataUser.typeUser == "ong" && dataUser.nomeDoResponsavel}
                 </h3>
-                {projects.length ? (
-                  projects.map((element) => {
-                    if (element.ongId === dataUser.id) {
-                      return (
-                        <>
-                          <p className="title">{element.title}</p>
-                          <p className="description">{element.description}</p>
-                        </>
-                      );
-                    }
-                  })
-                ) : (
-                  <h1>Nenhum projeto</h1>
-                )}
+                <ul className="projectsInProgress">
+                  {projects.length ? (
+                    projects.map((element) => {
+                      if (element.ongId === dataUser.id) {
+                        return (
+                          <li>
+                            <p className="titleLi">{element.title}</p>
+                            <p className="description">{element.description}</p>
+                          </li>
+                        );
+                      }
+                    })
+                    ) : (
+                      <h1>Nenhum projeto</h1>
+                    )}
+                </ul>
                 <StyledButtonCadastro
                   onClick={() => {
                     setShowProjects(true);
