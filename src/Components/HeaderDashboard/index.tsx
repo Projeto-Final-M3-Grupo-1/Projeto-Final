@@ -167,7 +167,7 @@ export const HeaderDashboard = () => {
                                             <S.DropdownItem
                                                 onClick={() => {
                                                     navigate(
-                                                        "/dashboard/projectsadmin"
+                                                        "/dashboard/projectdevelop"
                                                     );
                                                 }}
                                             >
@@ -176,20 +176,11 @@ export const HeaderDashboard = () => {
                                             <S.DropdownItem
                                                 onClick={() => {
                                                     navigate(
-                                                        "/dashboard/manageproject"
+                                                        "/dashboard/projectpending"
                                                     );
                                                 }}
                                             >
                                                 Ver solicitações de Projeto
-                                            </S.DropdownItem>
-                                            <S.DropdownItem
-                                                onClick={() => {
-                                                    navigate(
-                                                        "/dashboard/myproject"
-                                                    );
-                                                }}
-                                            >
-                                                Meus projetos
                                             </S.DropdownItem>
                                         </S.DropdownList>
                                     </S.Span>
