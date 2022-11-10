@@ -33,7 +33,7 @@ export const ProjectPending = () => {
                                             );
                                         }}
                                     >
-                                        add
+                                        Gerenciar
                                     </StyledButtonCta>
                                 </li>
                             )

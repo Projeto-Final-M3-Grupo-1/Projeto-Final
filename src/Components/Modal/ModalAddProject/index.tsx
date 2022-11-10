@@ -56,6 +56,10 @@ function ModalCreateProject() {
                 </S.User>
                 <label>Titulo</label>
                 <input placeholder="Insira o Nome" {...register("title")} />
+                <input
+                    placeholder="Link da imagem"
+                    {...register("imgProject")}
+                />
                 <label>Descrição do Projeto</label>
                 <textarea
                     placeholder="Insira o Nome"
