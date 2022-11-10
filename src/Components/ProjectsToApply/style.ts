@@ -45,6 +45,7 @@ export const StyledBoxProjectsToApply = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 1rem;
 
         width: 95%;
         min-height: 300px;
@@ -62,6 +63,7 @@ export const StyledBoxProjectsToApply = styled.div`
     }
     ul > li > div > button {
         width: 40%;
+        padding: 1.5rem;
     }
     ul > li > h2 {
         font-size: 20px;
@@ -71,9 +73,9 @@ export const StyledBoxProjectsToApply = styled.div`
     ul > li > p {
         width: 90%;
         margin-top: 1rem;
-        height: 209px;
+        max-height: 209px;
         max-width: 1200px;
-
+        
         font-style: var(--main-subtitle-text-weight);
         line-height: 2;
         font-weight: 600;
@@ -85,7 +87,7 @@ export const StyledBoxProjectsToApply = styled.div`
         ::-webkit-scrollbar {
             background-color: var(--rose-200);
             border-radius: 20px;
-            width: 5px;
+            width: 5px; 
         }
         ::-webkit-scrollbar-thumb {
             background-color: var(--main-title-text-color);

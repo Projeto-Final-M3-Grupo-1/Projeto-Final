@@ -4,42 +4,19 @@ export const StyledDivHome = styled.div`
   display: flex;
   gap: 20px;
   max-width: 95%;
-  height: 434px;
+  height: 450px;
+  align-items: center;
   flex-direction: column;
   margin: 0 auto;
   padding: 2rem 0;
 
-<<<<<<< HEAD
     @media (min-width: 768px) {
         box-sizing: border-box;
         flex-direction: row;
         max-width: 1200px;
         height: 400px;
         margin: 0 auto;
-        /* padding: 100px; */
-    }
-=======
-  /* overflow: hidden;
-    overflow-x: scroll;
-    ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        height: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
-    } */
-
-  @media (min-width: 768px) {
-    box-sizing: border-box;
-    flex-direction: row;
-    max-width: 1200px;
-    height: 400px;
-    margin: auto 12px;
-    /* padding: 100px; */
-  }
->>>>>>> 50e18d6c3323b5ca8343eb590647c5f9391caabe
+    } 
 `;
 
 export const StyledCardHome = styled.div`
@@ -51,7 +28,7 @@ export const StyledCardHome = styled.div`
 
   min-width: 280px;
   width: 95%;
-  height: 216px;
+  height: 220px;
   border-radius: 4px;
 
   margin: 0 0 0 5px;
@@ -89,9 +66,8 @@ export const StyledCardHome = styled.div`
     font-weight: var(--card-subtitle-text-weight);
     text-align: center;
 
-<<<<<<< HEAD
     gap: 12px;
-=======
+
     width: 90%;
   }
 
@@ -101,7 +77,7 @@ export const StyledCardHome = styled.div`
     justify-content: center;
     align-items: center;
     text-align: justify;
->>>>>>> 50e18d6c3323b5ca8343eb590647c5f9391caabe
+
 
     width: 90%;
     font-size: var(--card-text3-size);

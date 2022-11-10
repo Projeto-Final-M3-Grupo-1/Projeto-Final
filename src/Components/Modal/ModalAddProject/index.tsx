@@ -25,6 +25,7 @@ interface ICreateProjectProps {
 }
 
 function ModalCreateProject() {
+    
     const { dataUser } = useContext(AuthContext);
     const { createProjects, setShowProjects } = useContext(ProjectsContext);
     const { handleSubmit, register } = useForm<ICreateProjectProps>({

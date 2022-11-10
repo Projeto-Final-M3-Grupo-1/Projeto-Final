@@ -28,9 +28,10 @@ export const Background = styled.div`
 
 export const Container = styled.div`
 	min-height: 50px;
+	height: 100%;
 	width: 80%;
 	max-width: 1200px;
-	position: fixed;
+	position: relative;
 	top: 0%;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -112,7 +113,7 @@ export const Input = styled.input`
 	width: 100%;
 	align-self: center;
 
-	height: 45px;
+	height: 35px;
 
 	border: 2px solid var(--rose-600);
 	border-radius: 4px;
@@ -145,7 +146,7 @@ export const Description = styled.textarea`
 	align-self: center;
 	width: 100%;
 	resize: none;
-	height: 200px;
+	height: 150px;
 
 	border: 2px solid var(--rose-600);
 	border-radius: 4px;
@@ -161,7 +162,7 @@ export const CloseButton = styled(IoIosCloseCircleOutline)`
 	height: 2rem;
 	width: 2rem;
 
-	top: 8px;
+	top: 3%;
 	right: 8%;
 
 	color: var(--rose-600);

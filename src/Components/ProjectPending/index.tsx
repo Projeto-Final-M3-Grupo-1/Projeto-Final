@@ -8,6 +8,7 @@ interface iProjects {
     onClick: () => void;
 }
 export const ProjectPending = () => {
+
     const { setModalChange, requestProjects, projects, modalChange } =
         useContext(ProjectsContext);
     useEffect(() => {

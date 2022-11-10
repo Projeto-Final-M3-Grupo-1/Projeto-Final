@@ -15,54 +15,54 @@ import ModalNovaPublicacao from "../Modal/ModalNovaPublicacao";
 import { ProjectsContext } from "../../Providers/ProjectsProvider";
 
 export const HeaderDashboard = () => {
-    const { dataUser, loadingUser } = useContext(AuthContext);
-    const [isMobile, setIsMobile] = useState<boolean>(false);
-    const { handlePerfil } = useContext(UserContext);
+  const { dataUser, loadingUser } = useContext(AuthContext);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const { handlePerfil } = useContext(UserContext);
 
-    const { handleProjectsToApply, HandleModalProject, modalChange } =
-        useContext(ProjectsContext);
+  const { handleProjectsToApply, HandleModalProject, modalChange } =
+    useContext(ProjectsContext);
 
-    const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
-    const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
+  const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
+  const [isCreateNewNotice, setIsCreateNewNotice] = useState(false);
 
-    const [userType, setUserType] = useState<string>(dataUser.typeUser);
-    const windowSize = useWindowSize();
-    const width = windowSize.width;
-    const navigate = useNavigate();
+  const [userType, setUserType] = useState<string>(dataUser.typeUser);
+  const windowSize = useWindowSize();
+  const width = windowSize.width;
+  const navigate = useNavigate();
 
-    const loadUserType = () => {
-        setUserType(dataUser.typeUser);
-    };
+  const loadUserType = () => {
+    setUserType(dataUser.typeUser);
+  };
 
-    const logout = () => {
-        localStorage.clear();
-        navigate("/");
-    };
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
-    useEffect(() => {
-        loadingUser();
-        handleResize();
-    }, [width]);
+  useEffect(() => {
+    loadingUser();
+    handleResize();
+  }, [width]);
 
-    useEffect(() => {
-        loadUserType();
-    }, [dataUser]);
+  useEffect(() => {
+    loadUserType();
+  }, [dataUser]);
 
-    const handleResize = () => {
-        if (width <= 768) {
-            setIsMobile(true);
-        } else {
-            setIsMobile(false);
-        }
-    };
+  const handleResize = () => {
+    if (width <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
 
-    const handleOpenModal = () => {
-        setIsAddProjectOpen(!isAddProjectOpen);
-    };
+  const handleOpenModal = () => {
+    setIsAddProjectOpen(!isAddProjectOpen);
+  };
 
-    const handleOpenPublishModal = () => {
-        setIsCreateNewNotice(!isCreateNewNotice);
-    };
+  const handleOpenPublishModal = () => {
+    setIsCreateNewNotice(!isCreateNewNotice);
+  };
 
     return (
         <>
@@ -77,7 +77,7 @@ export const HeaderDashboard = () => {
                 {isAddProjectOpen ? (
                     <>
                         <ModalCreateProject />
-                        <S.CloseButton onClick={handleOpenModal} />
+                        <S.CloseButton className="buttonCreateProject" onClick={handleOpenModal} />
                     </>
                 ) : null}
                 {isMobile ? (

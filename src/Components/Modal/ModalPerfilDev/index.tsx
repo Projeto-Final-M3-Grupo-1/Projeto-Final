@@ -22,6 +22,7 @@ import {
 } from "../ModalPerfilOng/style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaEditePerfil } from "../../../Services/validation/createUser.validation";
+import { StyledListTechs } from "./style";
 
 interface iState {
 	length: any;
@@ -156,7 +157,7 @@ export const ModalPerfilDev = () => {
 
 						<StyledProjectsRequests>
 							<h2 className="title">Tecnologias que trabalho</h2>
-							<div className="projectInfo">
+							<StyledListTechs>
 								<ul className="techs">
 									{techs.length ? (
 										techs.map((element: any) => {
@@ -181,7 +182,7 @@ export const ModalPerfilDev = () => {
 										<h2>Cadastre alguma tecnologia</h2>
 									)}
 								</ul>
-							</div>
+							</StyledListTechs>
 							<StyledButtonCta onClick={handleCreateTech}>
 								Adicionar tecnologias
 							</StyledButtonCta>

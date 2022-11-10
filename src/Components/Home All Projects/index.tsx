@@ -19,8 +19,10 @@ export const AllProjects = () => {
                         element.status == "completed" && (
                             <li key={element.id}>
                                 <img src={element.imgProject} alt="" />
-                                <h3>{element.title}</h3>
-                                <p>{element.description}</p>
+                                <div> 
+                                    <h3>{element.title}</h3>
+                                    <p>{element.description}</p>
+                                </div>
                                 <StyledButtonSite href={element.site} target="_blank">Visite o site</StyledButtonSite>
                             </li>
                         )

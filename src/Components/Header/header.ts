@@ -39,7 +39,6 @@ export const StyledHeader = styled.header`
 		gap: 48px;
 		text-decoration: none;
 		list-style: none;
-		/* padding-right: 314px; */
 
 		.links--menu_header {
 			text-decoration-line: none;

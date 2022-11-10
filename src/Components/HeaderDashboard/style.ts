@@ -189,4 +189,8 @@ export const CloseButton = styled(IoIosCloseCircleOutline)`
 	color: var(--rose-600);
 
 	cursor: pointer;
+
+  .buttonCreateProject{
+    margin-right: 10rem;
+  }
 `;

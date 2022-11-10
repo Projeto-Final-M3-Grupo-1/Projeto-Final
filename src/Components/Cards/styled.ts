@@ -34,6 +34,7 @@ export const StyledCard = styled.div`
     border-radius: 4px;
 
     gap: 12px;
+    padding: 1rem;
 
     border: 1px solid var(--card-border-color);
 
