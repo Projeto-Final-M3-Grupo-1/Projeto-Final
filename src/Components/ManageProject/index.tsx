@@ -20,6 +20,7 @@ export const ManageProject = () => {
         deleteTask,
         handleCreateTask,
         createTask,
+        requestCompleteProject,
     } = useContext(ProjectsContext);
     const { requestAllUsers, allUsers } = useContext(UserContext);
 
@@ -150,7 +151,11 @@ export const ManageProject = () => {
                             )}
                         </ul>
                     </section>
-                    <StyledButtonCompleteProject>
+                    <StyledButtonCompleteProject
+                        onClick={() =>
+                            requestCompleteProject(localStorage.projectId)
+                        }
+                    >
                         Concluir projeto
                     </StyledButtonCompleteProject>
                 </S.Main>
