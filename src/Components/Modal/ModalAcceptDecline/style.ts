@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledModalBody = styled.div`
+export const StyledModalAccept = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,11 +10,11 @@ export const StyledModalBody = styled.div`
     width: 60%;
     height: 300px;
 
-    position: relative;
-    
+    /* position: relative; */
+
     background-color: var(--white);
 
-    h3{
+    h3 {
         position: relative;
         top: -6%;
         color: var(--rose-700);
@@ -22,43 +22,46 @@ export const StyledModalBody = styled.div`
         font-weight: var(--card-subtitle-text-weight);
     }
 
-    p{
+    .divAccept {
+        flex-direction: column;
+    }
+    p {
         position: relative;
         top: 0%;
-        
+
         display: flex;
         align-content: center;
         justify-content: center;
         align-items: center;
-        
+
         width: 90%;
         height: 132px;
-        
+
         font-size: var(--card-text-size);
 
         overflow: hidden;
         overflow-y: scroll;
 
         ::-webkit-scrollbar {
-        background-color: var(--rose-200);
-        border-radius: 20px;
-        width: 5px;
-    }
+            background-color: var(--rose-200);
+            border-radius: 20px;
+            width: 5px;
+        }
         ::-webkit-scrollbar-thumb {
-        background-color: var(--main-title-text-color);
-        border-radius: 20px;
-    }
+            background-color: var(--main-title-text-color);
+            border-radius: 20px;
+        }
     }
 
-    div{
+    div {
         display: flex;
         flex-direction: column;
         align-content: center;
         justify-content: space-between;
         align-items: center;
-        
+
         width: 91%;
-        
+
         margin-top: 1rem;
 
         div{
@@ -68,15 +71,14 @@ export const StyledModalBody = styled.div`
         }
     }
 
-    button :nth-child(1){
+    button :nth-child(1) {
         position: relative;
         left: -25%;
         top: 18%;
     }
-    button :nth-child(2){
+    button :nth-child(2) {
         position: relative;
         top: 5%;
         left: 25%;
     }
-
-`
+`;

@@ -77,6 +77,7 @@ interface IProjectsContext {
     idProject: number;
     setIdProject: React.Dispatch<React.SetStateAction<number>>;
     onSubmitCreateTask: (data: iCreateTask) => void;
+    requestCompleteProject: (id: number) => void;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -154,7 +155,6 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
         }).then((res) => {
             setModalChange(false);
             requestProjects();
-            window.location.reload();
         });
     };
 
@@ -228,6 +228,19 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             toast.success("Tarefa concluída com sucesso!");
         });
     };
+    const requestCompleteProject = (id: number) => {
+        const body = {
+            status: "completed",
+        };
+        api.patch(`/projects/${id}`, body, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => {
+            toast.success("Projeto concluido!");
+            navigate("/dashboard/projectdevelop");
+        });
+    };
 
     const handleManageProject = (projectId: number, ongId: number) => {
         localStorage.setItem("projectId", `${projectId}`);
@@ -240,7 +253,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then(() => requestMyProject());
+        }).then(() => {
+            return requestMyProject();
+        });
     };
 
     const onSubmitCreateTask = (data: iCreateTask) => {
@@ -312,6 +327,7 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 idProject,
                 setIdProject,
                 onSubmitCreateTask,
+                requestCompleteProject,
             }}
         >
             {children}
