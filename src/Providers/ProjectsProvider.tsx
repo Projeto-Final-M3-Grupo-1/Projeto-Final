@@ -240,7 +240,9 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
             },
-        }).then(() => requestMyProject());
+        }).then(() => {
+            return requestMyProject();
+        });
     };
 
     const onSubmitCreateTask = (data: iCreateTask) => {
