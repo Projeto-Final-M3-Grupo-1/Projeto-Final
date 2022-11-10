@@ -128,8 +128,8 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     };
 
     const createProjects = (data: any) => {
-        data.userId = localStorage.userId;
-        data.ongId = localStorage.userId;
+        data.userId = +localStorage.userId;
+        data.ongId = +localStorage.userId;
         data.status = "pendings";
 
         api.post("/projects", data, {
