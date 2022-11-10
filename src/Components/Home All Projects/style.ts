@@ -70,8 +70,7 @@ export const StyledAllProjectsBox = styled.div`
     }
     ul::-webkit-scrollbar-thumb {
         background-color: var(--rose-600);
-        border-radius: 20px;
-        
+        border-radius: 20px;    
     }
 
     li {

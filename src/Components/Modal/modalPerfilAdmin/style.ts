@@ -223,10 +223,16 @@ export const StyledProjectsRequests = styled.div`
 
   border-radius: 4px;
 
-  padding: 1rem 0rem;
+  padding: 15px 0rem;
+
+  .titleContainer {
+    margin-bottom: 25px;
+    font-size: var(--card-button-text-size);
+    font-weight: var(--about-subtitle-text-weight);
+  }
 
   .title {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: var(--card-button-text-size);
     font-weight: var(--about-subtitle-text-weight);
   }
@@ -236,7 +242,6 @@ export const StyledProjectsRequests = styled.div`
     flex-direction: column;
 
     padding: 5px;
-    /* border: 1px solid red; */
     height: 327px;
     width: 90%;
     gap: 7px;
@@ -246,6 +251,7 @@ export const StyledProjectsRequests = styled.div`
     align-items: center;
 
     .name {
+      margin-top: -15px;
       font-size: var(--card-button-text-size);
       font-weight: var(--card-border-color);
     }
@@ -274,6 +280,8 @@ export const StyledProjectsRequests = styled.div`
       justify-content: space-between;
       align-items: center;
 
+      margin-right: 7px;
+
       padding: 0px 5px;
 
       font-size: 16px;
@@ -283,6 +291,19 @@ export const StyledProjectsRequests = styled.div`
 
       border: solid 1px var(--rose-600);
       border-radius: 4px;
+
+      .buttonDelete{
+        cursor: pointer;
+      }
+    }
+    .techs::-webkit-scrollbar {
+        background-color: var(--rose-200);
+        border-radius: 20px;
+        width: 5px;
+    }
+    .techs::-webkit-scrollbar-thumb {
+        background-color: var(--rose-600);
+        border-radius: 20px;    
     }
     .projectsInProgress {
       display: flex;
@@ -291,12 +312,25 @@ export const StyledProjectsRequests = styled.div`
       align-items: center;
       gap: 10px;
       width: 100%;
+      overflow-y: scroll;
     }
+
+    .projectsInProgress::-webkit-scrollbar {
+        background-color: var(--rose-200);
+        border-radius: 20px;
+        width: 5px;
+    }
+
+    .projectsInProgress::-webkit-scrollbar-thumb {
+        background-color: var(--rose-600);
+        border-radius: 20px;    
+    }
+
     .projectsInProgress > li {
       box-sizing: border-box;
       width: 90%;
 
-      padding: 4px 4px 4px 4px;
+      padding: 4px;
 
       border-radius: 4px;
       border: 1px solid var(--rose-600);
@@ -335,11 +369,10 @@ export const StyledProjectsRequests = styled.div`
       justify-content: center;
       align-items: center;
 
-      /* border: 1px solid red; */
       border-radius: 4px;
 
-      height: 65%;
-      width: 80%;
+      height: 80%;
+      width: 90%;
 
       gap: 20px;
 

@@ -114,7 +114,7 @@ export const ModalPerfilAdmin = () => {
                               <li key={element.id}>
                                 <h2>{element.tech}</h2>
 
-                                <MdDelete
+                                <MdDelete className="buttonDelete"
                                   onClick={() => requestDeleteTech(element.id)}
                                 />
                               </li>
@@ -133,7 +133,7 @@ export const ModalPerfilAdmin = () => {
             </StyledOngDetails>
 
             <StyledProjectsRequests>
-              <h3 className="title">Solicitações do Projeto</h3>
+              <h3 className="titleContainer">Solicitações do Projeto</h3>
 
               <div className="projectInfo">
                 <h3 className="name">
