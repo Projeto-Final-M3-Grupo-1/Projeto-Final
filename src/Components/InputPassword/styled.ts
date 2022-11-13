@@ -49,8 +49,8 @@ export const StyledShowBtn = styled.button`
     color: var(--white);
  
     position: absolute;
-    right: 7%;
-    top: 61.1%;
+    right: 2%;
+    top: 9%;
  
     cursor: pointer;
 `;
