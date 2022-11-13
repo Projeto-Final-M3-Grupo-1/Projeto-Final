@@ -1,4 +1,4 @@
-import { StyledInput } from "./styled";
+import { StyledInput, StyledPasswordDiv } from "./styled";
 
 interface IInput {
     textLabel: string;

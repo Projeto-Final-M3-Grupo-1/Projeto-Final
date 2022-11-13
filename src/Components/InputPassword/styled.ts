@@ -34,26 +34,26 @@ export const StyledPasswordDiv = styled.div`
     align-items: center;
 `;
 
-// export const StyledShowBtn = styled.button`
-//     display: flex;
-//     align-content: center;
-//     justify-content: center;
-//     align-items: center;
+export const StyledShowBtn = styled.button`
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
  
-//     border: none;
-//     border-radius: 4px;
+    border: none;
+    border-radius: 4px;
  
-//     padding: 4px;
+    padding: 4px;
  
-//     background-color: var(--rose-600);
-//     color: var(--white);
+    background-color: var(--rose-600);
+    color: var(--white);
  
-//     position: absolute;
-//     right: 7%;
-//     top: 61.1%;
+    position: absolute;
+    right: 7%;
+    top: 61.1%;
  
-//     cursor: pointer;
-// `;
+    cursor: pointer;
+`;
 
 
 

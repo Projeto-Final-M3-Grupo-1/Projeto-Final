@@ -1,11 +1,28 @@
 import styled from "styled-components";
 
+export const StyledModalContent = styled.div`
+ display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  padding: 10px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  background-color: var(--white);
+  gap: 20px;
+`
+
 export const StyledModalAddProject = styled.form`
   display: flex;
   flex-direction: column;
   padding: 10px;
-  top: 10%;
-  left: 20%;
+  position: relative;
+  /* top: 10%;
+  left: 20%; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -59,21 +76,19 @@ export const StyledModalAddProject = styled.form`
       transition: var(--button-hover-transition);
     }
   }
-
-  
 `;
 
 export const CloseButton = styled.button`
-	position: absolute;
-	z-index: 99;
+  position: absolute;
+  z-index: 99;
 
-	height: 2rem;
-	width: 2rem;
+  height: 2rem;
+  width: 2rem;
 
-	top: 9%;
-	right: 20%;
+  top: 8%;
+  right: 25%;
 
-	color: var(--rose-600);
+  color: var(--rose-600);
 
-	cursor: pointer;
+  cursor: pointer;
 `;

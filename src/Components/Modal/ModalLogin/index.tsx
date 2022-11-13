@@ -8,10 +8,12 @@ import { schemaUserLogin } from "../../../Services/validation/createUser.validat
 import { UserContext } from "../../../Providers/UserProvider";
 import { useContext } from "react";
 import { FieldError } from "react-hook-form";
-import { StyledForm } from "../../Form/styled";
-
+import { StyledForm} from "../../Form/styled";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { StyledShowBtn } from "../../Input/styled";
+import { InputAndLabelPassword } from "../../InputPassword";
 // import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 
 interface IUserLogin {
@@ -23,7 +25,7 @@ interface IUserLogin {
   };
 }
 export const ModalLogin = () => {
-  const { onSubmitLogin } = useContext(UserContext);
+  const { onSubmitLogin, shownPassword, togglePassword } = useContext(UserContext);
   const { setShowModal } = useContext(ProjectsContext);
   const modalRef = useOutSideClick(() => {
     setShowModal(false);
@@ -51,14 +53,14 @@ export const ModalLogin = () => {
           register={register}
           error={email?.message}
         />
-        <InputAndLabel
-          textLabel="Senha"
-          name="password"
-          placeholder="Digite sua senha"
-          type="password"
-          error={password?.message}
-          register={register}
-        />
+          <InputAndLabelPassword
+            textLabel="Senha"
+            name="password"
+            placeholder="Digite sua senha"
+            type={shownPassword ? "text" : "password"}
+            error={password?.message}
+            register={register}
+          />
         <StyledLoginButton type="submit">Login</StyledLoginButton>
       </StyledForm>
     </StyledBoxModal>

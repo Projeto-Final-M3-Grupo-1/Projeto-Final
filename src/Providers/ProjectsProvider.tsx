@@ -67,6 +67,7 @@ interface IProjectsContext {
     requestCompleteTask: (id: number) => void;
     handleManageProject: (projectId: number, ongId: number) => void;
     deleteTask: (id: number) => void;
+    deleteProject: (id: number) => void;
     handleCreateTask: () => void;
     createTask: boolean;
     pendingProject: any;
@@ -78,6 +79,10 @@ interface IProjectsContext {
     setIdProject: React.Dispatch<React.SetStateAction<number>>;
     onSubmitCreateTask: (data: iCreateTask) => void;
     requestCompleteProject: (id: number) => void;
+    isAddProjectOpen: boolean;
+    setIsAddProjectOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    handleOpenModal: () => void;
+
 }
 
 export const ProjectsContext = createContext<IProjectsContext>(
@@ -101,9 +106,14 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
     const [createTask, setCreateTask] = useState<boolean>(false);
     const [pendingProject, setPendingProjects] = useState([] as any);
     const [modalChange, setModalChange] = useState<boolean>(false);
+    const [isAddProjectOpen, setIsAddProjectOpen] = useState<boolean>(false);
     const [idProject, setIdProject] = useState(0);
 
     const navigate = useNavigate();
+
+    const handleOpenModal = () => {
+        setIsAddProjectOpen(!isAddProjectOpen);
+      };
 
     const handleCreateTask = () => {
         !createTask ? setCreateTask(true) : setCreateTask(false);
@@ -257,6 +267,16 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
             return requestMyProject();
         });
     };
+    const deleteProject = (id: number) => {
+        api.delete(`/projects/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        }).then(() => {
+            return (requestProjects(),
+            setModalChange(false))
+        });
+    };
 
     const onSubmitCreateTask = (data: iCreateTask) => {
         data.projectId = +localStorage.projectId;
@@ -328,6 +348,10 @@ export const ProjectsProvider = ({ children }: IProjectChildren) => {
                 setIdProject,
                 onSubmitCreateTask,
                 requestCompleteProject,
+                deleteProject, 
+                isAddProjectOpen, 
+                setIsAddProjectOpen,
+                handleOpenModal
             }}
         >
             {children}

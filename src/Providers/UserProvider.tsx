@@ -37,6 +37,10 @@ interface IUserContext {
     handlePerfilOngOnProject: (id: number) => void;
     requestAllUsers: () => void;
     allUsers: Array<iUserOng | iUserDev>;
+    shownPassword: boolean; 
+    setShownPassword: React.Dispatch<React.SetStateAction<boolean>>;
+    togglePassword: () => void;
+
 }
 interface IUserChildren {
     children: ReactNode;
@@ -115,7 +119,7 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserChildren) => {
     const { setDataUser } = useContext(AuthContext);
-
+    const [shownPassword, setShownPassword] = useState<boolean>(false)
     const [createTech, setCreateTech] = useState<boolean>(false);
     const [techs, setTechs] = useState([]);
     const [user, setUser] = useState<iUserLogin>({} as iUserLogin);
@@ -132,20 +136,21 @@ export const UserProvider = ({ children }: IUserChildren) => {
 
     const navigate = useNavigate();
 
+    const togglePassword = () => {
+        setShownPassword(!shownPassword);
+    };
     const handlePerfilOngOnProject = (id: number) => {
         localStorage.setItem("ongId", id + "");
         !showPerfilOngOnProject
             ? setShowPerfilOngOnProject(true)
             : setShowPerfilOngOnProject(false);
     };
-
     const handleCreateTech = () => {
         !createTech ? setCreateTech(true) : setCreateTech(false);
     };
     const handlePerfil = () => {
         !openPerfil ? setOpenPerfil(true) : setOpenPerfil(false);
     };
-
     const newNotice = (notice: iNotice) => {
         const userId = localStorage.userId;
 
@@ -171,7 +176,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             console.log(error);
         }
     };
-
     const onSubmitLogin = async (data: iLogin) => {
         toast.promise(
             api.post("/login", data).then((res) => {
@@ -189,12 +193,10 @@ export const UserProvider = ({ children }: IUserChildren) => {
             }
         );
     };
-
     const onSubmitTech = async (data: any) => {
         data.userId = Number(localStorage.userId);
         requestCreateTech(data);
     };
-
     const onSubmitRegister = (data: iDevRegister) => {
         data.typeUser = "dev";
         toast.promise(
@@ -208,7 +210,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             }
         );
     };
-
     const onSubmitOng = (data: iOngRegister) => {
         data.typeUser = "ong";
         toast.promise(
@@ -222,7 +223,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             }
         );
     };
-
     const onSubmitEditPubli = (data: any) => {
         api.patch(`notices/${idPubli}`, data, {
             headers: {
@@ -236,7 +236,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             }, 1000);
         });
     };
-
     const requestTechs = () => {
         api.get("/techs", {
             headers: {
@@ -259,7 +258,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             })
             .catch((err) => console.log(err));
     };
-
     const requestDeleteTech = (id: number) => {
         api.delete(`/techs/${id}`, {
             headers: {
@@ -282,19 +280,15 @@ export const UserProvider = ({ children }: IUserChildren) => {
             })
             .catch((err) => toast.error("erro ao editar os dados"));
     };
-
     const onSubmitEditPerfil = (data: any) => {
         requestEditeTech(data);
     };
-
     const onSubmitEditOngPerfil = (data: any) => {
         requestEditeTech(data);
     };
-
     const renderPublications = () => {
         api.get("/notices").then((resp) => setPublications(resp.data));
     };
-
     const requestAllUsers = () => {
         api.get("/users", {
             headers: {
@@ -302,7 +296,6 @@ export const UserProvider = ({ children }: IUserChildren) => {
             },
         }).then((res) => setAllUsers(res.data));
     };
-
     const getPublication = (id: number) => {
         api.get(`/notices/${id}`).then((resp) => console.log(resp.data));
     };
@@ -339,6 +332,9 @@ export const UserProvider = ({ children }: IUserChildren) => {
                 handlePerfilOngOnProject,
                 requestAllUsers,
                 allUsers,
+                shownPassword, 
+                setShownPassword,
+                togglePassword
             }}
         >
             {children}

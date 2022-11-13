@@ -3,9 +3,6 @@ import { AuthContext } from "../../../Providers/AuthContext";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import api from "../../../Services/api";
 import { StyledButtonCadastro } from "../../Button";
-import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
-import { StyledBoxModal } from "../ModalLogin/style";
-import { useOutSideClick } from "../../../hooks/useOutSideClick";
 import { useForm } from "react-hook-form";
 import {
   StyledModalBody,
@@ -21,6 +18,9 @@ import {
 import { schemaOngDescription } from "../../../Services/validation/createUser.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserContext } from "../../../Providers/UserProvider";
+import { useOutSideClick } from "../../../hooks/useOutSideClick";
+import { StyledBoxModal } from "../ModalLogin/style";
+import { ButtonCloseModal } from "../../Button/ButtonCloseModal";
 interface iState {
   length: any;
   map(arg0: (elem: any) => void): import("react").ReactNode;
@@ -39,8 +39,9 @@ export interface IUserRegister {
 }
 export const ModalPerfilOng = () => {
   const { dataUser } = useContext(AuthContext);
-  const { onSubmitEditOngPerfil, handlePerfil } = useContext(UserContext);
-  const { setShowModal, handleNavigate, showProject, setShowProjects } =
+  const { onSubmitEditOngPerfil, handlePerfil, setOpenPerfil } = useContext(UserContext);
+  const {handleOpenModal} = useContext(ProjectsContext)
+  const { setShowModal, handleNavigate, showProject, setShowProjects,  } =
     useContext(ProjectsContext);
   const [projects, setProjetcts] = useState([] as unknown as iState);
   const {
@@ -53,7 +54,7 @@ export const ModalPerfilOng = () => {
     resolver: yupResolver(schemaOngDescription),
   });
   const modalRef = useOutSideClick(() => {
-    setShowModal(false);
+    setOpenPerfil(false);
   });
   useEffect(() => {
     const getProject = () => {
@@ -79,7 +80,7 @@ export const ModalPerfilOng = () => {
                   <img src={dataUser.fotoDePerfil} alt="foto de perfil" />
                 </caption>
                 <div className="details">
-                  <h3>{dataUser.typeUser == "ong" && dataUser.razaoSocial}</h3>
+                  <h3>{dataUser.typeUser === "ong" && dataUser.razaoSocial}</h3>
                   <p>ONG</p>
                 </div>
               </div>
@@ -89,7 +90,7 @@ export const ModalPerfilOng = () => {
                   <input
                     className="info"
                     value={
-                      dataUser.typeUser == "ong" ? dataUser.razaoSocial : ""
+                      dataUser.typeUser === "ong" ? dataUser.razaoSocial : ""
                     }
                   />
                 </StyledInfo>
@@ -97,14 +98,14 @@ export const ModalPerfilOng = () => {
                   <p className="label">CNPJ</p>
                   <input
                     className="info"
-                    value={dataUser.typeUser == "ong" ? dataUser.cnpj : ""}
+                    value={dataUser.typeUser === "ong" ? dataUser.cnpj : ""}
                   />
                 </StyledInfo>
                 <StyledDescription>
                   <form onSubmit={handleSubmit(onSubmitEditOngPerfil)}>
                     <p className="label">Telefone</p>
                     <textarea className="telephone" {...register("telefone")}>
-                      {dataUser.typeUser == "ong" && dataUser.telefone}
+                      {dataUser.typeUser === "ong" && dataUser.telefone}
                     </textarea>
                     <p>O que fazemos</p>
                     <textarea
@@ -112,7 +113,7 @@ export const ModalPerfilOng = () => {
                       placeholder="Escreva sua descrição"
                       className="info"
                     >
-                      {dataUser.typeUser == "ong" && dataUser.descricaoDaOng}
+                      {dataUser.typeUser === "ong" && dataUser.descricaoDaOng}
                     </textarea>
                     <StyledButtonCadastro type="submit">
                       Salvar
@@ -144,9 +145,7 @@ export const ModalPerfilOng = () => {
                     )}
                 </ul>
                 <StyledButtonCadastro
-                  onClick={() => {
-                    setShowProjects(true);
-                  }}
+                  onClick={handleOpenModal}
                 >
                   Criar projeto
                 </StyledButtonCadastro>

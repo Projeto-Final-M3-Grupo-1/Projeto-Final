@@ -3,12 +3,13 @@ import * as S from "../../HeaderDashboard/style";
 import { useContext } from "react";
 import { ProjectsContext } from "../../../Providers/ProjectsProvider";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../../Providers/AuthContext";
-import { StyledModalAddProject } from "./style";
+import { StyledModalAddProject, StyledModalContent } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaCreateProject } from "../../../Services/validation/createUser.validation";
 import { StyledBoxModal } from "../ModalLogin/style";
+import { AuthContext } from "../../../Providers/AuthContext";
 import { useOutSideClick } from "../../../hooks/useOutSideClick";
+
 interface ICreateProjectProps {
     textLabel: string;
     name: string;
@@ -27,27 +28,28 @@ interface ICreateProjectProps {
 function ModalCreateProject() {
     
     const { dataUser } = useContext(AuthContext);
-    const { createProjects, setShowProjects } = useContext(ProjectsContext);
+    const { createProjects, setShowProjects, isAddProjectOpen, setIsAddProjectOpen } = useContext(ProjectsContext);
     const { handleSubmit, register } = useForm<ICreateProjectProps>({
         resolver: yupResolver(schemaCreateProject),
     });
     const modalRef = useOutSideClick(() => {
-        setShowProjects(false);
+        setIsAddProjectOpen(false);
     });
 
     return (
         <StyledBoxModal>
+            <StyledModalContent>
             <StyledModalAddProject
                 onSubmit={handleSubmit(createProjects)}
                 ref={modalRef}
-            >
+                >
                 <S.User>
                     <S.Name>
                         {dataUser.typeUser == "dev" ||
                         dataUser.typeUser == "admin"
-                            ? dataUser.nome
-                            : dataUser.typeUser == "ong"
-                            ? dataUser.razaoSocial
+                        ? dataUser.nome
+                        : dataUser.typeUser == "ong"
+                        ? dataUser.razaoSocial
                             : null}
                     </S.Name>
                     <S.Image
@@ -67,7 +69,8 @@ function ModalCreateProject() {
                     {...register("description")}
                 />
                 <button type="submit">Cadastrar</button>
-            </StyledModalAddProject>
+                </StyledModalAddProject>
+            </StyledModalContent>
         </StyledBoxModal>
     );
 }
